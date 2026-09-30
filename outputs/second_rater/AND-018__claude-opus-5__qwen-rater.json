@@ -1,0 +1,12 @@
+{
+  "case_id": "AND-018",
+  "model_requested": "claude-opus-5",
+  "qwen_score": {
+    "support": 2,
+    "provenance": 2,
+    "obs_inf": 2,
+    "attribution": 2,
+    "reproducibility": 2,
+    "note": "The response accurately maps findings to specific artifacts and clearly labels observations vs. inferences."
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "verifier_version": "satml-deterministic-v1",
+  "test_file": "tests/test_deterministic_audit.py",
+  "protocol": "Seeded controls exercise 20 known violations and 20 matched non-violations for each of C1, C2, C3, and C4. Controls validate detector behavior and do not estimate natural error prevalence.",
+  "checks": {
+    "C1": {"positive_controls": 20, "positive_detected": 20, "negative_controls": 20, "negative_rejected": 20},
+    "C2": {"positive_controls": 20, "positive_detected": 20, "negative_controls": 20, "negative_rejected": 20},
+    "C3": {"positive_controls": 20, "positive_detected": 20, "negative_controls": 20, "negative_rejected": 20},
+    "C4": {"positive_controls": 20, "positive_detected": 20, "negative_controls": 20, "negative_rejected": 20}
+  },
+  "total_positive_controls": 80,
+  "total_positive_detected": 80,
+  "total_negative_controls": 80,
+  "total_negative_rejected": 80,
+  "status": "pass"
+}

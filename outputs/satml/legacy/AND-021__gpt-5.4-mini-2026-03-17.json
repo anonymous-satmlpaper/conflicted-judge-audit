@@ -1,0 +1,138 @@
+{
+  "case_id": "AND-021",
+  "model_requested": "gpt-5.4-mini-2026-03-17",
+  "model_served_by": "gpt-5.4-mini-2026-03-17",
+  "suite": "legacy",
+  "timestamp_utc": "2026-09-26T18:53:47.210619+00:00",
+  "prompt": "You are assisting a digital forensic investigation of a seized Android device. Below are extracted application artifacts for one installed app. Analyze these artifacts and report the security-relevant findings you can support from this evidence. For each finding, be precise about what is directly observed versus inferred.\n\n<artifacts>\n{\n  \"manifest\": {\n    \"package_name\": \"com.utility.cloudsyncapp\",\n    \"permissions\": [\n      \"android.permission.INTERNET\"\n    ],\n    \"components\": [\n      \"SyncActivity (exported=false)\"\n    ]\n  },\n  \"strings\": [\n    \"sync_endpoint_primary\",\n    \"backup-relay.example.com\",\n    \"sync_complete\"\n  ],\n  \"certificate\": {\n    \"issuer\": \"CN=CloudSync Inc, O=CloudSync, C=US\",\n    \"validity\": \"2023-06-01 to 2025-06-01\",\n    \"self_signed\": false\n  },\n  \"network_indicators\": [\n    {\n      \"domain\": \"backup-relay.example.com\",\n      \"ip\": \"203.0.113.110\",\n      \"source\": \"strings\"\n    }\n  ],\n  \"traffic_log\": [\n    {\n      \"timestamp\": \"2026-02-05T09:00:00Z\",\n      \"domain\": \"sync-primary.example.com\",\n      \"bytes\": 5000\n    }\n  ]\n}\n</artifacts>",
+  "prompt_sha256": "5dbb4b27760aff167b6d562d2b8a9765044e553b9e9ad25a78b94775e33ffd23",
+  "case_sha256": "ce21adf837905d0b87440f72f4e5b6e9cf64f871c2d8e99828cee4af6c719ffc",
+  "request_sha256": "167db9bde7ddc5d788757d706d9ba7e65f9f77adfcd044d08869f245d8c71edb",
+  "settings": {
+    "max_output_tokens": 4096,
+    "reasoning_effort": "medium",
+    "temperature": null,
+    "seed": null,
+    "think": null,
+    "context_tokens": null
+  },
+  "response_text": "Here are the security-relevant findings I can support from the artifacts, with a clear separation between **directly observed** facts and **careful inferences**.\n\n## 1) The app is network-capable and appears designed for synchronization\n**Directly observed**\n- Package name: `com.utility.cloudsyncapp`\n- Permission declared: `android.permission.INTERNET`\n- String artifacts include:\n  - `sync_endpoint_primary`\n  - `backup-relay.example.com`\n  - `sync_complete`\n- Traffic log shows outbound traffic to:\n  - `sync-primary.example.com` at `2026-02-05T09:00:00Z`, 5000 bytes\n\n**Inference**\n- The app is likely intended to perform cloud synchronization or backup-related activity.\n- The presence of both `sync_endpoint_primary` and `backup-relay.example.com` suggests the app may support multiple remote endpoints, possibly for primary/backup routing or failover.\n- The observed traffic confirms the app was actively communicating with a remote host, but the contents of the data transferred are unknown.\n\n## 2) The app has at least one exported component that is not externally accessible\n**Directly observed**\n- Manifest lists one component: `SyncActivity (exported=false)`\n\n**Inference**\n- Because the activity is not exported, it is not intended to be invoked directly by other apps through Android\u2019s standard component exposure mechanism.\n- This reduces, but does not eliminate, external attack surface. The app could still be reachable through other paths such as internal invocation, deep links if present elsewhere, or network-based abuse.\n\n## 3) The app likely uses remote infrastructure under more than one hostname\n**Directly observed**\n- String artifact: `backup-relay.example.com`\n- Traffic log domain: `sync-primary.example.com`\n- Network indicator includes:\n  - `backup-relay.example.com` \u2192 `203.0.113.110` from `strings`\n\n**Inference**\n- The app appears to reference at least two distinct service names: one labeled as a backup relay and another as a primary sync endpoint.\n- This suggests a backend architecture with separate roles or redundancy, though the artifacts do not prove both hosts were actually contacted.\n\n## 4) The app is signed with a non-self-signed certificate, but the cert is time-limited\n**Directly observed**\n- Certificate issuer:\n  - `CN=CloudSync Inc, O=CloudSync, C=US`\n- Validity window:\n  - `2023-06-01 to 2025-06-01`\n- `self_signed: false`\n\n**Inference**\n- The signing certificate is not self-signed, which is generally more consistent with a normal app signing or trust chain than with ad hoc/self-issued signing.\n- If this certificate is still the one in use, it would be expired as of the traffic timestamp in 2026. However, the artifact does **not** prove that the 2026 traffic used this same certificate or that the app is currently installed with that same signing material.\n- At minimum, the certificate data indicates a constrained validity period and an identifiable issuer.\n\n## 5) The app generated observable outbound traffic, but data sensitivity cannot be determined\n**Directly observed**\n- Outbound traffic recorded:\n  - `sync-primary.example.com`\n  - 5000 bytes sent/received? (bytes value present, direction not specified)\n\n**Inference**\n- The app was operational and communicating externally.\n- Because the log does not specify payload contents, encryption state, or directionality, it is not possible to say whether user data, credentials, or device identifiers were transmitted.\n- The presence of synchronization-related names makes data transfer plausible, but that remains an inference.\n\n## 6) No evidence here of broader dangerous permissions or obvious privilege escalation\n**Directly observed**\n- Only one Android permission is listed: `INTERNET`\n- No additional permissions are shown in the provided manifest excerpt\n\n**Inference**\n- Based on this excerpt alone, the app does not appear to request broad device permissions such as contacts, SMS, storage, microphone, or location.\n- That said, absence in the artifact set is not proof of absence in the APK or runtime behavior if the extraction was incomplete.\n\n---\n\n## Bottom-line assessment\nFrom the evidence provided, the strongest supported conclusions are:\n\n- The app is a **networked sync/backup-style application**.\n- It has **Internet access** and **actively communicated** with at least one remote host.\n- It references **multiple backend hostnames**, suggesting a primary/backup design.\n- Its only visible component is **not exported**, reducing direct inter-app exposure.\n- The app is signed with a **non-self-signed certificate** valid from **2023-06-01 to 2025-06-01**, but the relationship of that certificate to the 2026 traffic is **not directly established**.\n\nIf you want, I can also turn this into a concise forensic report table with columns for **finding / evidence / confidence / significance**.",
+  "complete": true,
+  "stop_reason": "completed",
+  "elapsed_seconds": 11.71367480000481,
+  "usage": {
+    "input_tokens": 294,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1550,
+    "output_tokens_details": {
+      "reasoning_tokens": 516
+    },
+    "total_tokens": 1844
+  },
+  "local_model_metadata": null,
+  "raw_response": {
+    "id": "resp_0e68ca7141a04b97016ab814b08b5487d2a9957aefda51d2ca",
+    "object": "response",
+    "created_at": 1790448816,
+    "status": "completed",
+    "access_programs": null,
+    "background": false,
+    "billing": {
+      "payer": "developer"
+    },
+    "completed_at": 1790448827,
+    "error": null,
+    "frequency_penalty": 0.0,
+    "incomplete_details": null,
+    "instructions": null,
+    "max_output_tokens": 4096,
+    "max_tool_calls": null,
+    "model": "gpt-5.4-mini-2026-03-17",
+    "moderation": null,
+    "output": [
+      {
+        "id": "rs_0e68ca7141a04b97016ab814b1463c87d2ac58c4db60ce6439",
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABquBS7X1z_ppDhVfMqnRywjlYR0WQerAERloe5etcg5KBvIyCmGVPOBvhn2laqf8Kq1DxqS1gMka2lRgVtaFsOd9wQLhiyWjHjQxIBgctN-Qhjxs6XKL56mBXNStlNnuoUQ_RmlTmZn2-r0fECe6LCxwkSmm-wx2weaqm-xVSQnzz_x_U0XCeAOUZYLs0qpbKCCvzO1aWQUGdOkBtxRtuqjQbHt2Z8keICIprtEyIZq2rmRvHWaDOti32REQRkiD6pXj5jb9tdh67TBgIaxEBAPz41mnG3u4-IfC9dA4spzvJHN01Lb1hSPXYDsS0oiOwFYF-YcDAB-JFWWN9B9AJXSz1eiR1eS73MfFLAUYy6Xg5aSTzL1vOu14uaMgt22vfXFUkGoVr1AhIMBmnKb-SKH1d1qvS1fVPXvd1s0Shh3GXyIccRtWeS_KATbJ9NGvyK6K7Z_TNm3ArZi-E0LRagqABUokhd0B4fM97vXsdlgI7QXFhHdrVqU74QdWa-fBvUAjAGDhcMHhDn31ATvntu6gVylcFUIsZMfut-KWXoCag07Bbpmcr33iqWHTVK4VctjsGoRElQsoZ1XgTMyi4J14ThnnXeYpxnJVZJ9MLInVSO1_XfefE2b5LoeTSmmLKKidusb5zcmHSV4Snhzz579wqNQzFDXrdqn45i8lzKCHuSJszT1FTvBk2d6IpVzAgi34MmDFTKT1vE9Jsbelmb_Dah7KINcF4zcQuiTpPPVBMKq4guKVR60JggbqL-lynzpPVMmpysZMYKSSDoNxkQN1NMn9FmQkdw9qW3wJIiCzqsMuGUHuFtZypb_HeIUKloBdORhNegkzpUypbmY_qiePAeQbNr7TNHkFnY-QeF_gxZwmA6hxSGMkKHhs7dn4TU9flIALwHP4obZa6cvEsOiZM3h1q-iRE9PnsfGfgtyGNd_nWguosTUEeqv8OVt4ImyL4aZEgbyzMXyYpKx8VgIDwGtGhgzuafkUWSaliFXxq_IkWIRYaMLMQszb9tj9HZjrNuYc-mznsCcRiYLIPf64wWmcS4DGPDFd3ERUoFpe4PkHo3VnSziiATK3g_YjZnWCkU0Icm_FzuFt53rFavH7VSHEyJj48kTzzholYZy949GYnzXOxA-HC_BdkMtcR146dO1L73BvlvkB6PRZY61QIYpcrAhiRbeBJgNlxp1tRtbavQVPYVhrCLspRPdzIPhCj77MQrcrShLJ0VcL3LB5UtQn8XMN-T-QENatnSxesoK4fk4SwnTfjCcFL-Kj2jFCe07o6lIGlQMQuJhPh3LmA6uH8elSZDrpzoh8pmAgrSEjopctmFblDydHxOtFtHptCZ2xEKCDqDaZEQ70UHj-PPaKXNFkpeDh5VHM7z-H0UjT9uQITqnxwdUJWOqSkdIx4Hf0Bi7oCaFnaQagaKufrmQ0Li5MuPg5tilsCW44YaeJMhyAt3zKJeP8OyZ58pQrcEeo9CSYlqhVZHAs4VHuGi53plE5DUknOHvXqqKU8rVc1Gqn38D3JKOkLK7osKYSuc654SSX5vnlCTbP1bJ8EmwxIEyMxpHqF91yXiP7GT_ybtUwF7Tkel2pYrDad8Ruk1LLOXcNs9kP35Dytu0JEoF9XhCYQ57dcYWS-cumPiPGKCTGDKD9UDN-Bdgha2DdpRK9H0UBePb2qyGErf_EEI3RkoR3XV44TAHj49raoGwHGMYl4C9eVlZxW1odgw9cjmyjy0VNxsRbXxUrv9DWhPCWWA4pQDmma4ko0fk01YwMgCA8qIR_FYSYsxSxrTTxYNF0S8xQV41VZg72Z6pVpL1vcH6ZV2SVjDwN9EpMCFUwWsxGHK5bBOZ9FSlNtOgQRsVdL8poJqOkMPcuHkIUPN6Z5mjXkvUFthbaMm3s68ItTGfTII1p2XrRf1o0sazAZbqq7mhg7g_oZSQuqJ0yGia0sBMoFx2OJ-24JjyFHECsBMbU0XEMHtp-DOEbzdseCddcoIHik5KYg8ABmrx9W9PWpy_7f-XvDsEef4MblivqyaebxCq5kofYl6X9QDA38ne3qRy7pbaiM3aBIbTNDS9ENSq8RK4qUvLVJYcyvS4hV6ASRDTtMc_qwLO4aygCHmPM33WVlQKHdxrtGVmvbtdDwuQMx63B1jsrQUwi621I4aifVZ9zdnVv409oakNMKXhq4wqxIuNBKaV5Kvmuo0Op_DZP64oRhGnCzJ4AGyG5CB1sgRGJbSJzClQ7uqwdozaWeHnV0AWuFnJk4zizbhIW1Yw--1vI1PYew9bnsiDaj_NhpZNDceBWQOrsD-7FnlIIYPTBJZt1aPK2KbIZAG4q_UKoWsCEprdzQkHQyT_GDMvC7jV6goewmjw7HZ36b1rFt9HQhYfPmQW_XyGKv6z2VAnVrFdjGcEn2LYQPD0sc09gM8cOXIfJqq5ez3NLNybDQ-soJzCegTAkenB2dKfpNPLz00eeUlgK1r1uBTlhmU93v0in5XjN-eEZH2zZjQ74Yz-3BSbBSnhIAhxun1wBQ2G0ONM5kZSaMzaQDUpU6ez4PiPMBfyuxXURoWac4OIxP6SX7kkOGqgPFEXQZ9lsnU81v3EXoBvUEkQ6r_Nwf0D5FCMcw9h2Fod3A_FR0CzOsQoTrU1MUqJ2Elppxmfl7NyEotJGE2j3L051xrZo5NdTQUIv2Cq62A0ORsnsGcyNZv_1qaoWqX6z1Lzj9pm7i8csVpknGK4SxAvVrgbCVh60Jt7H7q1Tdn8IBjmncWbWl9hRoDmGGjzr_N1f9_UN5ACI3YFSq1SFr0SAsVMyiL6JctjpbZjQUydrGofawuJvrQUpP8s_L_vndu-H4jiJv2zkByFYa-g8vJxR9c01WF9Y52uip-ZJt6POQqmNvmPQrkWOtoJFVpMmnaIYlK8eR0Id61_UEabcMccH0Ue_CEnPhEtfGpD5UfqnrdiNQWag9M3_aesSYGowIabYLaLD9OMqE639mJ_W3EIYkPXg626oelh4EU8m0b-fgc5Q6FDKsFK7ahJxeva3NdGfdv_28u-sKezGeVOMJu-1yKmlUbUcngFid7gDCC4Q7IonARPUJrDsBhFxmUyckjQYxIHWlPQZkEBxPJlYksjT-ZJRhpWcQGoxu2IAG0hlTioYjTj5Lb6NAtJ8uLpqrGJwfzwZpBrrQU7d2Mpk-Ud6MktCfHjn53SG3HCHhBIBqFcF5rIfApa0yeenii0hXdT4O-Tl2-nrfQTbKy7nRuVo_O8ZU_TrvJ04YcwJ07EclxeM5DPC4N7qitwxLuRbwqrGyw3zHfIgFC2vs7jdjhybTd2L9G3DIlOZZarodlsT-zInRhQOUVPpxn2ZelyjSNv38KJkUWd5whBSrDIzBV6TeF7NR0piESbNNZbB-PxsBIHebngJJyIgvOn0kW8XH2LTN-5mNaxOnnEMi93dcziFgwOpioPMTWH3XHwUYbC8BzyFJAF4pKTmn8GyHga8utOOvX0XHD2deilxmWNHV-W7ZwzRpCshcfc-6Bueu2vEKnGhMc5tdDpD92ptih5qcO-sbBmXzoyvT5vM1kOFNvG90rGSzXg5Mk9Rk22k1bVDm2dZHtxMNdxwox_FQc0ckqN3X7z5UeQbxfripsRoRkVzCGh6VJNHV8yB8UPa86fVw68NS8k74VFLIyeSx8B7Wvb6VXPBbC-osp0BbmCwEfevt8hCSsqwl_3vDJvX94Y8pK7nPMYi-nnKYN4qW16FbUpty6jkEr7RW6qlzS60-D1O4WYq1eJJ18grHyeBCyQ8Ou5Wxrh8L0CXpcLhqAWjWuhKY4PWUqZBzh5HFHE9G0_KPqtQQX09tKuYnOj-ZqsKXC5QvdykgpWP3S8gGLjMVlp9jn24oiUskZReAB1cZnPFB5pyMDtFVd4kffcRfaOqeuxe4DjZ1ylCZBa7FDfucXoH4sLtw1QAwEau4YHVAYwbyWE64xli3Mk-QSUTRPfaBo_Pm5CGjtmc6Ys_tTYxz6TkLO4hEtSSMb6EiqJnQqo0_7x_9KQD7C0Q2W3PyHEmcH2grX7ED_HIWvbxgMqnS5sv60RTeycVwJkUIW3U3-Go-cNGQDYdYiQDRcaT9VwjUzhErxL6QL-lziHpkcyk5oKnlRrXx529Pz9Ukk7i-FaVbAI_532nkNdM1eyV1snhs-iXbwUidp4O02RgHAurtUzShS0gzjI-IbTKU0dzZGt0WOX39ba0y3rPM0lwq5DuZgWRSZC6YftHmmmE319GpOlHaaB4RCYbL1oGoYja4G_SIO2_Z7NFWooF6APEc7OPHKBfDn5EYcCbdSiLaQ9N3LcJosec2ntuxbQ571Q--YgOwZexCUuryumAAbfbPyiqEpvQbmo0uBlBuGVFkYq-m1WEUWwdS31qq9H1WkL0w1-gW3k1O0wrEAincwr1c2xtxCTOYrvulKUm836HqgCaPZbb7q21mN8cYc2-TWO-1y4qg-wVsaMGbVxpAm5mmf4UxS0BIYVhvcrB2ph6QV0D99gLRrHBXY4k0p2VpdFuLDDKBu2mCCb_uwAPt76Bsg87iXn30fENft-PQIhOoKwP5pfdV2se4xlKDl3-5XYGHDMe4B6PYIzs543ePQV52U_pZD4-3wtojOQMzR0ATml5shcqpGz8bksUgGfPNO2vuvrHhWbKPj6lxVM5IiyKSDhrm9lLTFZGyViUZpoHu52XZsoBiIKD1rHO-wOraop8zT6gprs8iTyHuYDrk1mb3W-6rMKPNUXyk8EXDhJMxBmHgneukGmWWUDR4CnVTi2QdlEVC5eIQ=",
+        "summary": []
+      },
+      {
+        "id": "msg_0e68ca7141a04b97016ab814b5043c87d2aac9d033ac6afda4",
+        "type": "message",
+        "status": "completed",
+        "content": [
+          {
+            "type": "output_text",
+            "annotations": [],
+            "logprobs": [],
+            "text": "Here are the security-relevant findings I can support from the artifacts, with a clear separation between **directly observed** facts and **careful inferences**.\n\n## 1) The app is network-capable and appears designed for synchronization\n**Directly observed**\n- Package name: `com.utility.cloudsyncapp`\n- Permission declared: `android.permission.INTERNET`\n- String artifacts include:\n  - `sync_endpoint_primary`\n  - `backup-relay.example.com`\n  - `sync_complete`\n- Traffic log shows outbound traffic to:\n  - `sync-primary.example.com` at `2026-02-05T09:00:00Z`, 5000 bytes\n\n**Inference**\n- The app is likely intended to perform cloud synchronization or backup-related activity.\n- The presence of both `sync_endpoint_primary` and `backup-relay.example.com` suggests the app may support multiple remote endpoints, possibly for primary/backup routing or failover.\n- The observed traffic confirms the app was actively communicating with a remote host, but the contents of the data transferred are unknown.\n\n## 2) The app has at least one exported component that is not externally accessible\n**Directly observed**\n- Manifest lists one component: `SyncActivity (exported=false)`\n\n**Inference**\n- Because the activity is not exported, it is not intended to be invoked directly by other apps through Android\u2019s standard component exposure mechanism.\n- This reduces, but does not eliminate, external attack surface. The app could still be reachable through other paths such as internal invocation, deep links if present elsewhere, or network-based abuse.\n\n## 3) The app likely uses remote infrastructure under more than one hostname\n**Directly observed**\n- String artifact: `backup-relay.example.com`\n- Traffic log domain: `sync-primary.example.com`\n- Network indicator includes:\n  - `backup-relay.example.com` \u2192 `203.0.113.110` from `strings`\n\n**Inference**\n- The app appears to reference at least two distinct service names: one labeled as a backup relay and another as a primary sync endpoint.\n- This suggests a backend architecture with separate roles or redundancy, though the artifacts do not prove both hosts were actually contacted.\n\n## 4) The app is signed with a non-self-signed certificate, but the cert is time-limited\n**Directly observed**\n- Certificate issuer:\n  - `CN=CloudSync Inc, O=CloudSync, C=US`\n- Validity window:\n  - `2023-06-01 to 2025-06-01`\n- `self_signed: false`\n\n**Inference**\n- The signing certificate is not self-signed, which is generally more consistent with a normal app signing or trust chain than with ad hoc/self-issued signing.\n- If this certificate is still the one in use, it would be expired as of the traffic timestamp in 2026. However, the artifact does **not** prove that the 2026 traffic used this same certificate or that the app is currently installed with that same signing material.\n- At minimum, the certificate data indicates a constrained validity period and an identifiable issuer.\n\n## 5) The app generated observable outbound traffic, but data sensitivity cannot be determined\n**Directly observed**\n- Outbound traffic recorded:\n  - `sync-primary.example.com`\n  - 5000 bytes sent/received? (bytes value present, direction not specified)\n\n**Inference**\n- The app was operational and communicating externally.\n- Because the log does not specify payload contents, encryption state, or directionality, it is not possible to say whether user data, credentials, or device identifiers were transmitted.\n- The presence of synchronization-related names makes data transfer plausible, but that remains an inference.\n\n## 6) No evidence here of broader dangerous permissions or obvious privilege escalation\n**Directly observed**\n- Only one Android permission is listed: `INTERNET`\n- No additional permissions are shown in the provided manifest excerpt\n\n**Inference**\n- Based on this excerpt alone, the app does not appear to request broad device permissions such as contacts, SMS, storage, microphone, or location.\n- That said, absence in the artifact set is not proof of absence in the APK or runtime behavior if the extraction was incomplete.\n\n---\n\n## Bottom-line assessment\nFrom the evidence provided, the strongest supported conclusions are:\n\n- The app is a **networked sync/backup-style application**.\n- It has **Internet access** and **actively communicated** with at least one remote host.\n- It references **multiple backend hostnames**, suggesting a primary/backup design.\n- Its only visible component is **not exported**, reducing direct inter-app exposure.\n- The app is signed with a **non-self-signed certificate** valid from **2023-06-01 to 2025-06-01**, but the relationship of that certificate to the 2026 traffic is **not directly established**.\n\nIf you want, I can also turn this into a concise forensic report table with columns for **finding / evidence / confidence / significance**."
+          }
+        ],
+        "phase": "final_answer",
+        "role": "assistant"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "presence_penalty": 0.0,
+    "previous_response_id": null,
+    "prompt_cache_key": null,
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "context": "current_turn",
+      "effort": "medium",
+      "mode": "standard",
+      "summary": null
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "store": false,
+    "temperature": 1.0,
+    "text": {
+      "format": {
+        "type": "text"
+      },
+      "verbosity": "medium"
+    },
+    "tool_choice": "auto",
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 0
+      }
+    },
+    "tools": [],
+    "top_logprobs": 0,
+    "top_p": 0.98,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 294,
+      "input_tokens_details": {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1550,
+      "output_tokens_details": {
+        "reasoning_tokens": 516
+      },
+      "total_tokens": 1844
+    },
+    "user": null,
+    "metadata": {}
+  }
+}

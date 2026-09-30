@@ -1,0 +1,138 @@
+{
+  "case_id": "AND-026",
+  "model_requested": "gpt-5.5-2026-04-23",
+  "model_served_by": "gpt-5.5-2026-04-23",
+  "suite": "legacy",
+  "timestamp_utc": "2026-09-26T18:53:03.404628+00:00",
+  "prompt": "You are assisting a digital forensic investigation of a seized Android device. Below are extracted application artifacts for one installed app. Analyze these artifacts and report the security-relevant findings you can support from this evidence. For each finding, be precise about what is directly observed versus inferred.\n\n<artifacts>\n{\n  \"manifest\": {\n    \"package_name\": \"com.social.chatmessengerapp\",\n    \"permissions\": [\n      \"android.permission.INTERNET\",\n      \"android.permission.CAMERA\",\n      \"android.permission.RECORD_AUDIO\"\n    ],\n    \"components\": [\n      \"ChatActivity (exported=false)\",\n      \"MessageService (exported=false)\"\n    ]\n  },\n  \"strings\": [\n    \"message_send\",\n    \"message_receive\",\n    \"typing_indicator\",\n    \"audio_call_start\"\n  ],\n  \"certificate\": {\n    \"issuer\": \"CN=ChatApp Inc, O=ChatApp, C=US\",\n    \"validity\": \"2023-12-01 to 2025-12-01\",\n    \"self_signed\": false\n  },\n  \"network_indicators\": [\n    {\n      \"domain\": \"chat-relay.example.com\",\n      \"ip\": \"198.51.100.60\",\n      \"source\": \"traffic_log\"\n    }\n  ],\n  \"traffic_log\": [\n    {\n      \"timestamp\": \"2026-02-08T15:00:00Z\",\n      \"domain\": \"chat-relay.example.com\",\n      \"bytes\": 7000\n    }\n  ]\n}\n</artifacts>",
+  "prompt_sha256": "8ad5b97e2d6508ee555e46300f9ed3796150700b10ca6e11c46035c54ed11d50",
+  "case_sha256": "6e716646f85ed8d179043b570223220d7f22adb45c1a4bdad355538811141b3d",
+  "request_sha256": "011577ef65abe3c2611d77a504762264d7257c3114c4d947fb2b7329cf47568a",
+  "settings": {
+    "max_output_tokens": 4096,
+    "reasoning_effort": "medium",
+    "temperature": null,
+    "seed": null,
+    "think": null,
+    "context_tokens": null
+  },
+  "response_text": "## Security-relevant findings from the provided artifacts\n\n### 1. App identity and apparent function\n\n**Directly observed**\n- Package name: `com.social.chatmessengerapp`\n- Manifest components:\n  - `ChatActivity`\n  - `MessageService`\n- Extracted strings include:\n  - `message_send`\n  - `message_receive`\n  - `typing_indicator`\n  - `audio_call_start`\n\n**Supported inference**\n- The app appears to present itself as a chat or messaging application.\n- The strings are consistent with messaging features and possibly audio-call functionality.\n\n**Limits**\n- The strings alone do not prove that messages or calls actually occurred.\n- No message content, account identifiers, contacts, or call records are present in the supplied artifacts.\n\n---\n\n### 2. Sensitive permissions declared\n\n**Directly observed**\nThe app declares the following Android permissions:\n\n- `android.permission.INTERNET`\n- `android.permission.CAMERA`\n- `android.permission.RECORD_AUDIO`\n\n**Supported inference**\n- The app is capable of requesting network access.\n- The app is capable of requesting access to the camera and microphone, subject to Android runtime permission approval depending on OS version and user/device policy.\n- `RECORD_AUDIO` aligns with the extracted string `audio_call_start`, suggesting microphone access may be intended for audio-call or voice features.\n- `CAMERA` may support media messaging, profile photos, video calls, QR scanning, or similar functionality.\n\n**Limits**\n- The manifest shows requested permissions, not necessarily that they were granted or used.\n- No artifact here directly proves microphone or camera capture occurred.\n- No runtime permission grant state was provided.\n\n---\n\n### 3. Network communication observed\n\n**Directly observed**\n- Network indicator:\n  - Domain: `chat-relay.example.com`\n  - IP: `198.51.100.60`\n  - Source: `traffic_log`\n- Traffic log entry:\n  - Timestamp: `2026-02-08T15:00:00Z`\n  - Domain: `chat-relay.example.com`\n  - Bytes: `7000`\n\n**Supported inference**\n- The device or app generated network traffic to `chat-relay.example.com` at the recorded time.\n- The domain name is consistent with a relay service for chat or messaging traffic.\n- The presence of 7,000 bytes indicates some data transfer occurred, but the artifact does not show directionality, content, protocol, encryption, or destination port.\n\n**Limits**\n- The traffic log does not prove message content, audio content, or exfiltration.\n- It does not show whether the 7,000 bytes were sent, received, or both.\n- The domain uses `example.com`, which is commonly reserved for documentation/test data; however, within the provided evidence it is listed as an observed traffic indicator. That should be verified against the original network capture or device logs.\n\n---\n\n### 4. App components are not exported\n\n**Directly observed**\n- `ChatActivity` is marked `exported=false`.\n- `MessageService` is marked `exported=false`.\n\n**Supported inference**\n- These components are not directly accessible to other apps through standard exported component invocation.\n- This reduces the app\u2019s exposed inter-app attack surface compared with exported activities/services.\n\n**Limits**\n- This does not prove the app is secure overall.\n- Other attack surfaces may exist, such as network communications, WebViews, dynamic code loading, native libraries, intent handling inside the app, or permissions abuse, none of which are addressed by the provided artifacts.\n\n---\n\n### 5. Signing certificate information\n\n**Directly observed**\n- Certificate issuer:\n  - `CN=ChatApp Inc, O=ChatApp, C=US`\n- Validity period:\n  - `2023-12-01 to 2025-12-01`\n- `self_signed`: `false`\n\n**Supported inference**\n- The APK was signed with a certificate that is reported as not self-signed.\n- The certificate validity period ended on `2025-12-01`.\n- The observed traffic log entry occurred on `2026-02-08`, after the certificate validity end date.\n\n**Security relevance**\n- As of the traffic timestamp and the current date, the certificate validity period had expired.\n- Certificate expiration may be relevant when assessing app provenance or update/signing practices.\n\n**Limits**\n- Android APK signing certificate expiration does not necessarily mean the installed app is malicious or nonfunctional.\n- The artifact does not include the certificate fingerprint, full chain, signing scheme version, or verification status against a trusted CA.\n- `self_signed=false` does not by itself prove the certificate chains to a publicly trusted root.\n\n---\n\n### 6. No evidence of broad data-harvesting permissions in the supplied manifest\n\n**Directly observed**\nThe listed permissions do not include, for example:\n\n- Contacts access\n- SMS access\n- Call log access\n- Location access\n- External storage access\n- Accessibility service declaration\n- Notification listener access\n- Device admin privileges\n\n**Supported inference**\n- Based only on the provided manifest excerpt, the app does not request several commonly abused Android permissions associated with broad personal-data collection.\n\n**Limits**\n- The manifest provided may be incomplete.\n- Apps can receive data through user interaction, app-specific storage, shared content intents, network responses, or embedded SDKs without these permissions.\n- Absence from the provided list is not proof that the app never accessed sensitive data.\n\n---\n\n## Overall assessment\n\nThe artifacts are consistent with a chat/messaging application that declares Internet, camera, and microphone permissions and generated observed network traffic to `chat-relay.example.com` on `2026-02-08`. The app\u2019s main listed components are not exported, which reduces direct exposure to other apps. The certificate information shows a non-self-signed certificate with a validity period ending `2025-12-01`, which had expired before the recorded network activity.\n\nThere is no direct evidence in the supplied artifacts of malware behavior, message contents, camera or microphone recording, credential theft, contact harvesting, or data exfiltration. The most security-relevant items warranting follow-up are the sensitive permissions, the observed network traffic, and the expired signing certificate validity relative to the 2026 activity timestamp.",
+  "complete": true,
+  "stop_reason": "completed",
+  "elapsed_seconds": 16.622535299975425,
+  "usage": {
+    "input_tokens": 323,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1644,
+    "output_tokens_details": {
+      "reasoning_tokens": 365
+    },
+    "total_tokens": 1967
+  },
+  "local_model_metadata": null,
+  "raw_response": {
+    "id": "resp_08faac90d5b2116f016ab8147fc94087d281958c929d37bcb0",
+    "object": "response",
+    "created_at": 1790448767,
+    "status": "completed",
+    "access_programs": null,
+    "background": false,
+    "billing": {
+      "payer": "developer"
+    },
+    "completed_at": 1790448783,
+    "error": null,
+    "frequency_penalty": 0.0,
+    "incomplete_details": null,
+    "instructions": null,
+    "max_output_tokens": 4096,
+    "max_tool_calls": null,
+    "model": "gpt-5.5-2026-04-23",
+    "moderation": null,
+    "output": [
+      {
+        "id": "rs_08faac90d5b2116f016ab81480928887d2a2d36a7e0ef3bd46",
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABquBSPZXm84xOBXEQP0SE7EiBVoghklLhuefVIG8lP39-sLGZy3IxIgDgFR7cvNafULAkwU31qVkHPDiz53TixDktmSq5Z0rDFs1SxvFoqLxO2zTkXgeqpgu6E4Pn7J9TWXYxx9fVeapjr612oPgTjww-oSuHR6lRc4mCnoLGFtsCfoYuIFaMmtWR1kIaiYyAbhXDI1vrkjM7fy3Urp_5qBaIwM5znkHUgH-EYLvNgn80b71zkzQfAGQsXnKgWXUxMe_xxNHJm1AhojAzoC9TgWuTdYBu8_SxoIu89BHNRYJfS78zbqJavefWZVvpRKtwVpHrHLwyGMEnpwwHToY-PaqyLm7YaNaD4_JA9NQ9jsQ-7UHn4AxM4PB3ikAd2t7NQeXUy7yqpYfxz678Xfu1SqpkNjfMwHtcAJ6nx4xrpPb3Ddco4oixKv5pWfgPTayoRlU1cByEucA8xhq4A0MkLK7qwaFPyjTrG65qaJRYaaR5gTUcSL__B1t4aDc7CHXFdKpe1LlQDSpz9i6StSidi9T0brjwxhCA-7hexmSTAOtf2lFDmGsCRfcf37Z8ZfZz_vJv0m8jzuoqW64lNw1fuDOhFOXT1vwGn3BNQC2PaOH2k1qxg4Axr9H7uzNylSsgLAWMmqGlxAhZwxUW91ibfhObYUl-KWKkQR_RRGwdPIaRe2HR1kB_oPXlErtrYHih9Tn1VAHvXEitKzpjwqN6_iyNoB5aguhCKyzHAMZ5KvvTej9iJ1DbT00H5oN5Z7OIC6IEMLE0U1xTuBD8yYs9-bZ4zttLGXtZTwueg3qTKGCsMpmsO7DZ6AJgpGxA7hsII4XJYvXkVvgOdav9nU5mgaZMHxX94wdgJraagoXgc8At5ZVI-2IC-ftrL1jvTrXCFGNFTq_GzT2GqkfsV-pVBCurSjiKCmffu-47NN5PExEmHKmr5CIbxqGQH3GEuk05e2H42j8AXaT_0Arjh9Ux65w3pwZdEDTMybEg8C3aCjLKU8LmxoJiZDbKFqcHisyrfI69YdsWGVytWnNhtd3yZBDg5YOxk_hwQsFI6NzJTcWDrSpsJ_FS06kbMpG-58XIqvHgp-ppwskEd1HSfiYCkk41xO5jLSEe0PRy7aPja0f4DSgg9zMLbdc0SCEWHOrR8exKAM19r0RGsDSxXLpZ4-b_3Wuw1O5TlsfMSl8Z12QCV_cy6mugDV8Y2E5RerM2Mv4v3sjhFhqDApIoM_KAlGQKewEwWd3HjYQxcESm2bIOnhWKdM-kUq1CcvJzGsvHacRtkvNoVVGbYXSTd1ssCtAGpJOfgJoUMaW7pMfHum15lE2d-HPI6-Zgcdf3AvJWjNFbwmVqu5PXPaQIAYq1BYTtrQiPyxM7s8Ts--giPlAa9e1MWXLnt0pN7RvSGCGKkuEhfKaVmdPXuld91JJMul5E3VvQb4HaJyMbme-_3-ZkNt-8KFBJ07UKQpzdlm2v7t7LFR_Hay25PWb7R-co-8uXbZjYBx1U3R2A71K4I7a0x0bEJOj14bOOmBsiv7ux5aEYmUUH4FDTPhJ1CVdwCLAlTAeC2TspLvktxITwEpIUTLnzpSJ7uuiBl0TLnuLB-Ii33RxN-qr4c9TZzWkSwU9DELRw_8fYYDefk6I8cX_t5ZIbfll-6Gx29r4ecAJMOyEwsj3fTZe5iy3rUsgtl1Ecl3hV9hEiTgXcsdaC1OuJIFVpplr8DuMZD4AdVgEUIB04nVmbZ3PIeYBbu21QngW_CSiIxRTlfXMk6Ec2xvg0C20DNXRFeiOk-nPu91hMipSUhrwcjbhB-vW8zkOmskZp1CxvSvPFip9Nkw_NCM4hjNhdTZu9dJ2805-66qvWEHV3RDpaMVjh7DezFbg137LmAMKY1Pn0fcaHveszP8BW5I2hz2rvfT9PO9RuphBXAhKxxAR--yA64F-SLNdDFlhGsTkuCeUs0cj0-9-2fxDl7m-a7FLtIyJuNSwJw7mEEw37YGo5ltYI4DNJOe4R86Uqkb1zvpScYSCSHk4k1UILkMVIImtUb76FwcaNjWp0HYSKa5htF-9E41_2TLg_SYBy5Lc6GDOg3mb1TxePbrwA8kN1vYCeuH9pUgOQqwgTkeOJmDcnC_I47I9WL9mKJ_nLxjH93--Zrnlc-nct0uxI6OUGGrS40a4PO8_KIFSHg-l_FAPj1K3zvh7uw8esndBvPPz_7jelZZODZl_DNDJxKX1egdh4GCSjy3622P4yUGpQXC5-AZ7mE_JXsHSECGB3hDhTbGwloeBsof5DBzxtGHvXCkJfoPVRzne29QsVC0m-8jmelW6UZTQnA8VgrMz43cVAebv-sTb14ejGCQNJW0qhlnq11rQuYg7Va9PQg821P0C87ateJJ23G9KdeG7aecAFvi16EiS3ix_O5ciYEqIapNAAfJ8hrJah7ILqTUgzlUNc_6SwXVTxWI3KiPDRbYbea1VdrOKOaFSKpDmB9415R2PcPQ3E6rLWFBpMxp2KN3FLTlbd3kKh7cPoQBj4OEh9hMS2RSfSF_z92Kh3u4r9_Jn0kPbXCxDiXML3k1TZ4CA1sacrOi2dZSU5BUTD7Dbl1-m--G7Xn7FIbOGWt1muJw_xdLlC5b5N7gUf1abdN1OAmHGuVwK1HiUlXXVz9MT2UmIkHW0guD2MbxjcsWKyfr-F3ZJJoL3o1NRVNlXuR4Z_mFz_PHgqlJpl08pEQWEvuDB63kb2RUNyjFCvqhrlk6-dHQ0Klp7rBM-BDoHoYX7yH_v8HvC9LBEIrKYg5LXeffa2mr6naBjRqknMaXQ-w55Ca_MNHyzYucD8X4XZAU51Kgljl3ZmxDH8sDskZv0frdUJy-N2CULJ9AFgLFVT9C-DBI6FTslDzeefbvev74deSAjN1CxtDwFYCX-iqeNcBXUP4Q70Y5SSE2Kp2QnODCciIhB12E-X77yqyh7hieQVR_ZFKeSra6H5L_Eiz5nB7HtCE9OPi9tLcdx0sGfOhoADYnizjQvvak2FgT_WjfEi8TRkTVTAZrngoLMs5G01roFVZL7NVmVzBGMJ4ExzkG9v3IZ-l2fOqJ1lbvqvtsPcGK_vuu2EyKcZPgjG__AfJJN5EkeqFUxBQHTMKv23ujbvn6VZRh8FXBfUWk5EHuQfz_SBVEy3ouPBj-84EnMBYWskFreHOJOHLccs0IeCU92X-k_5vCXd1pWMiupT11HutU38-ynGT8wxVUlqHgPPx9AZewOTkuUqrlEJKFdW8NZAy57gCzCUHzlv-57RmhZef_AuLfqhNOGOmcsh4ksdb1bJb4Yh4so5CKVgJsnh86lV5H615S2S-7Xp2VFjVkKN3uJp9gWgdf-A7E7gTYHcV-N84sBRPi-R1Cfy2v8g5Cc9qgy4fvk-7byVnpOTbzIMpXuWrtKLZuwyvpCvujj79_Y9Wb8THy3IEobImCv0aEJs_Pxj_7zjDFHBRCQJ02eW5PIxQg84Rm0HqvAy_v45pYDX34-8XWtxBdEQy5Ahs2u17sY0_V41euPal9L-lCUtYskFzi61BdO3CKBe7Fy-XnRWJP64E14DntZY7EUHXg-NT3Esj1GOicGW9Xx-2QJSWDnANmzpzqtMKY4pWSGg8aJ37WzlkSF_6YNoJGMJs5jUaZSIgbBEwE_hasGl5WmdkqvV5BwwZkmyQnf5LUg==",
+        "summary": []
+      },
+      {
+        "id": "msg_08faac90d5b2116f016ab8148448a887d291c64fae0c6a36b3",
+        "type": "message",
+        "status": "completed",
+        "content": [
+          {
+            "type": "output_text",
+            "annotations": [],
+            "logprobs": [],
+            "text": "## Security-relevant findings from the provided artifacts\n\n### 1. App identity and apparent function\n\n**Directly observed**\n- Package name: `com.social.chatmessengerapp`\n- Manifest components:\n  - `ChatActivity`\n  - `MessageService`\n- Extracted strings include:\n  - `message_send`\n  - `message_receive`\n  - `typing_indicator`\n  - `audio_call_start`\n\n**Supported inference**\n- The app appears to present itself as a chat or messaging application.\n- The strings are consistent with messaging features and possibly audio-call functionality.\n\n**Limits**\n- The strings alone do not prove that messages or calls actually occurred.\n- No message content, account identifiers, contacts, or call records are present in the supplied artifacts.\n\n---\n\n### 2. Sensitive permissions declared\n\n**Directly observed**\nThe app declares the following Android permissions:\n\n- `android.permission.INTERNET`\n- `android.permission.CAMERA`\n- `android.permission.RECORD_AUDIO`\n\n**Supported inference**\n- The app is capable of requesting network access.\n- The app is capable of requesting access to the camera and microphone, subject to Android runtime permission approval depending on OS version and user/device policy.\n- `RECORD_AUDIO` aligns with the extracted string `audio_call_start`, suggesting microphone access may be intended for audio-call or voice features.\n- `CAMERA` may support media messaging, profile photos, video calls, QR scanning, or similar functionality.\n\n**Limits**\n- The manifest shows requested permissions, not necessarily that they were granted or used.\n- No artifact here directly proves microphone or camera capture occurred.\n- No runtime permission grant state was provided.\n\n---\n\n### 3. Network communication observed\n\n**Directly observed**\n- Network indicator:\n  - Domain: `chat-relay.example.com`\n  - IP: `198.51.100.60`\n  - Source: `traffic_log`\n- Traffic log entry:\n  - Timestamp: `2026-02-08T15:00:00Z`\n  - Domain: `chat-relay.example.com`\n  - Bytes: `7000`\n\n**Supported inference**\n- The device or app generated network traffic to `chat-relay.example.com` at the recorded time.\n- The domain name is consistent with a relay service for chat or messaging traffic.\n- The presence of 7,000 bytes indicates some data transfer occurred, but the artifact does not show directionality, content, protocol, encryption, or destination port.\n\n**Limits**\n- The traffic log does not prove message content, audio content, or exfiltration.\n- It does not show whether the 7,000 bytes were sent, received, or both.\n- The domain uses `example.com`, which is commonly reserved for documentation/test data; however, within the provided evidence it is listed as an observed traffic indicator. That should be verified against the original network capture or device logs.\n\n---\n\n### 4. App components are not exported\n\n**Directly observed**\n- `ChatActivity` is marked `exported=false`.\n- `MessageService` is marked `exported=false`.\n\n**Supported inference**\n- These components are not directly accessible to other apps through standard exported component invocation.\n- This reduces the app\u2019s exposed inter-app attack surface compared with exported activities/services.\n\n**Limits**\n- This does not prove the app is secure overall.\n- Other attack surfaces may exist, such as network communications, WebViews, dynamic code loading, native libraries, intent handling inside the app, or permissions abuse, none of which are addressed by the provided artifacts.\n\n---\n\n### 5. Signing certificate information\n\n**Directly observed**\n- Certificate issuer:\n  - `CN=ChatApp Inc, O=ChatApp, C=US`\n- Validity period:\n  - `2023-12-01 to 2025-12-01`\n- `self_signed`: `false`\n\n**Supported inference**\n- The APK was signed with a certificate that is reported as not self-signed.\n- The certificate validity period ended on `2025-12-01`.\n- The observed traffic log entry occurred on `2026-02-08`, after the certificate validity end date.\n\n**Security relevance**\n- As of the traffic timestamp and the current date, the certificate validity period had expired.\n- Certificate expiration may be relevant when assessing app provenance or update/signing practices.\n\n**Limits**\n- Android APK signing certificate expiration does not necessarily mean the installed app is malicious or nonfunctional.\n- The artifact does not include the certificate fingerprint, full chain, signing scheme version, or verification status against a trusted CA.\n- `self_signed=false` does not by itself prove the certificate chains to a publicly trusted root.\n\n---\n\n### 6. No evidence of broad data-harvesting permissions in the supplied manifest\n\n**Directly observed**\nThe listed permissions do not include, for example:\n\n- Contacts access\n- SMS access\n- Call log access\n- Location access\n- External storage access\n- Accessibility service declaration\n- Notification listener access\n- Device admin privileges\n\n**Supported inference**\n- Based only on the provided manifest excerpt, the app does not request several commonly abused Android permissions associated with broad personal-data collection.\n\n**Limits**\n- The manifest provided may be incomplete.\n- Apps can receive data through user interaction, app-specific storage, shared content intents, network responses, or embedded SDKs without these permissions.\n- Absence from the provided list is not proof that the app never accessed sensitive data.\n\n---\n\n## Overall assessment\n\nThe artifacts are consistent with a chat/messaging application that declares Internet, camera, and microphone permissions and generated observed network traffic to `chat-relay.example.com` on `2026-02-08`. The app\u2019s main listed components are not exported, which reduces direct exposure to other apps. The certificate information shows a non-self-signed certificate with a validity period ending `2025-12-01`, which had expired before the recorded network activity.\n\nThere is no direct evidence in the supplied artifacts of malware behavior, message contents, camera or microphone recording, credential theft, contact harvesting, or data exfiltration. The most security-relevant items warranting follow-up are the sensitive permissions, the observed network traffic, and the expired signing certificate validity relative to the 2026 activity timestamp."
+          }
+        ],
+        "phase": "final_answer",
+        "role": "assistant"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "presence_penalty": 0.0,
+    "previous_response_id": null,
+    "prompt_cache_key": null,
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "context": "current_turn",
+      "effort": "medium",
+      "mode": "standard",
+      "summary": null
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "store": false,
+    "temperature": 1.0,
+    "text": {
+      "format": {
+        "type": "text"
+      },
+      "verbosity": "medium"
+    },
+    "tool_choice": "auto",
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 0
+      }
+    },
+    "tools": [],
+    "top_logprobs": 0,
+    "top_p": 0.98,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 323,
+      "input_tokens_details": {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1644,
+      "output_tokens_details": {
+        "reasoning_tokens": 365
+      },
+      "total_tokens": 1967
+    },
+    "user": null,
+    "metadata": {}
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "case_id": "AND-027",
+  "model_requested": "gpt-5.5-2026-04-23",
+  "model_served_by": "gpt-5.5-2026-04-23",
+  "suite": "legacy",
+  "timestamp_utc": "2026-09-26T18:53:04.641260+00:00",
+  "prompt": "You are assisting a digital forensic investigation of a seized Android device. Below are extracted application artifacts for one installed app. Analyze these artifacts and report the security-relevant findings you can support from this evidence. For each finding, be precise about what is directly observed versus inferred.\n\n<artifacts>\n{\n  \"manifest\": {\n    \"package_name\": \"com.utility.alarmclockapp\",\n    \"permissions\": [\n      \"android.permission.INTERNET\"\n    ],\n    \"components\": [\n      \"AlarmActivity (exported=false)\"\n    ]\n  },\n  \"strings\": [\n    \"alarm_set\",\n    \"alarm_sync_time\"\n  ],\n  \"certificate\": {\n    \"issuer\": \"CN=ClockApps Inc, O=ClockApps, C=US\",\n    \"validity\": \"2023-09-01 to 2025-09-01\",\n    \"self_signed\": false\n  },\n  \"network_indicators\": [\n    {\n      \"domain\": \"time-sync.example.com\",\n      \"ip\": \"203.0.113.130\",\n      \"source\": \"traffic_log\"\n    }\n  ],\n  \"traffic_log\": [\n    {\n      \"timestamp\": \"2026-02-12 09:15:00\",\n      \"domain\": \"time-sync.example.com\",\n      \"bytes\": 800,\n      \"timezone\": \"unknown -- extraction tool did not preserve original TZ offset\"\n    }\n  ]\n}\n</artifacts>",
+  "prompt_sha256": "2a27003e02567ccd789c58c4935b4f593756815d3cd543d0f47c9c270f749bd9",
+  "case_sha256": "ede87f4eabe5e2909da1a19e50cda37dba8f483be854102dd2e01d4d6ac3c9d8",
+  "request_sha256": "aee1118b9d7c473f2b3b4b9127f64c5f653567be06392bf25d544b8847755e41",
+  "settings": {
+    "max_output_tokens": 4096,
+    "reasoning_effort": "medium",
+    "temperature": null,
+    "seed": null,
+    "think": null,
+    "context_tokens": null
+  },
+  "response_text": "## Security-relevant findings supported by the artifacts\n\n### 1. App identity and apparent function\n**Directly observed**\n- Package name: `com.utility.alarmclockapp`\n- Manifest lists one component: `AlarmActivity`\n- Extracted strings include:\n  - `alarm_set`\n  - `alarm_sync_time`\n\n**Inference**\n- The app presents itself as an alarm-clock utility.\n- The string `alarm_sync_time` suggests the app may include functionality to synchronize time, but the string alone does not prove that the functionality executed.\n\n---\n\n### 2. Network capability is present\n**Directly observed**\n- The app requests:\n  - `android.permission.INTERNET`\n\n**Security relevance**\n- This permission allows the app to make outbound network connections.\n\n**Inference**\n- For a basic alarm-clock app, Internet access may be legitimate if used for time synchronization, ads, analytics, or cloud features.\n- The presence of `INTERNET` alone is not evidence of malicious behavior.\n\n---\n\n### 3. Observed network communication to a time-sync domain\n**Directly observed**\n- Network indicator:\n  - Domain: `time-sync.example.com`\n  - IP: `203.0.113.130`\n  - Source: `traffic_log`\n- Traffic log entry:\n  - Timestamp: `2026-02-12 09:15:00`\n  - Domain: `time-sync.example.com`\n  - Bytes: `800`\n  - Timezone: unknown; extraction tool did not preserve original timezone offset.\n\n**Security relevance**\n- The app artifacts show outbound communication to `time-sync.example.com`.\n- The low volume, `800` bytes, is consistent with a small request/response exchange, though the content is unknown.\n\n**Inference**\n- Given the string `alarm_sync_time` and the domain `time-sync.example.com`, the communication may be related to time synchronization.\n- There is no evidence in the provided data of data exfiltration, command-and-control behavior, credential theft, or payload download.\n- Because the traffic content is not provided, the purpose and sensitivity of the transmitted data cannot be confirmed.\n\n**Important limitation**\n- The timestamp lacks timezone information, so it should not be treated as an exact UTC/local time without corroboration.\n- The artifacts attribute the traffic to this app, but no UID/package-to-flow mapping is shown in the provided data.\n\n---\n\n### 4. Use of reserved/example indicators\n**Directly observed**\n- Domain: `time-sync.example.com`\n- IP: `203.0.113.130`\n\n**Security relevance**\n- `example.com` and the `203.0.113.0/24` address range are commonly used for documentation and examples rather than real operational infrastructure.\n\n**Inference**\n- These indicators may be sanitized, placeholder, or test values in the artifact set.\n- They should not be treated as real-world malicious infrastructure without additional corroboration.\n\n---\n\n### 5. Limited Android permission exposure\n**Directly observed**\n- The only permission listed is:\n  - `android.permission.INTERNET`\n\n**Security relevance**\n- No dangerous permissions are shown for access to:\n  - SMS\n  - Contacts\n  - Call logs\n  - Location\n  - Camera\n  - Microphone\n  - External storage\n\n**Inference**\n- Based on the manifest evidence provided, the app\u2019s declared access to protected user data appears limited.\n- However, absence of these permissions does not prove the app is harmless; it may still communicate over the network or access unprotected/app-local data.\n\n---\n\n### 6. Activity is not exported\n**Directly observed**\n- `AlarmActivity` is listed as:\n  - `exported=false`\n\n**Security relevance**\n- A non-exported activity is not directly launchable by other apps through normal Android inter-process mechanisms.\n\n**Inference**\n- This reduces external attack surface and lowers the risk of other apps abusing `AlarmActivity`.\n- This does not address risks from code executed internally by the app.\n\n---\n\n### 7. Signing certificate details\n**Directly observed**\n- Certificate issuer:\n  - `CN=ClockApps Inc, O=ClockApps, C=US`\n- Validity:\n  - `2023-09-01 to 2025-09-01`\n- `self_signed`: `false`\n\n**Security relevance**\n- The certificate is not self-signed according to the artifact.\n- The issuer identifies as \u201cClockApps Inc,\u201d but no certificate chain, fingerprint, or trust validation result is provided.\n\n**Inference**\n- The app appears to have been signed with a certificate associated with \u201cClockApps Inc.\u201d\n- Because the certificate validity ended on `2025-09-01`, and the observed traffic timestamp is `2026-02-12`, the app appears to have been present or active after the certificate\u2019s validity period ended.\n- On Android, an expired signing certificate does not automatically mean the app is malicious; Android primarily uses the signing certificate for package identity and update trust. Still, an expired certificate may be relevant for assessing maintenance, provenance, or update history.\n\n---\n\n## Overall assessment\n\nFrom the provided artifacts, the app appears to be an alarm-clock application with Internet access and observed outbound communication to a domain suggestive of time synchronization. The manifest shows a limited permission set and a non-exported activity, which reduces some local attack surface.  \n\nThere is no direct evidence in these artifacts of malware behavior, sensitive-data collection, privilege abuse, or unauthorized access. The main security-relevant observations are the presence of network capability, observed network traffic, certificate validity ending before the logged activity date, and the need to corroborate the traffic attribution and timestamp because of missing timezone and limited network metadata.",
+  "complete": true,
+  "stop_reason": "completed",
+  "elapsed_seconds": 16.79851100000087,
+  "usage": {
+    "input_tokens": 301,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1686,
+    "output_tokens_details": {
+      "reasoning_tokens": 516
+    },
+    "total_tokens": 1987
+  },
+  "local_model_metadata": null,
+  "raw_response": {
+    "id": "resp_0b6cc1ec669f7e06016ab81480cfa487d2b297dffbad13ba72",
+    "object": "response",
+    "created_at": 1790448768,
+    "status": "completed",
+    "access_programs": null,
+    "background": false,
+    "billing": {
+      "payer": "developer"
+    },
+    "completed_at": 1790448785,
+    "error": null,
+    "frequency_penalty": 0.0,
+    "incomplete_details": null,
+    "instructions": null,
+    "max_output_tokens": 4096,
+    "max_tool_calls": null,
+    "model": "gpt-5.5-2026-04-23",
+    "moderation": null,
+    "output": [
+      {
+        "id": "rs_0b6cc1ec669f7e06016ab81481687887d2ab57c211dc60e160",
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABquBSRHaYVoEV7ejL_JAdOylEAE17q1xw4WNhtDYc7Tx8eKiO-Is6ma8C3gP-ZgjfJloDilqsmixs4fUXRXR2IaDpHM77Q36Ltu7rcBClrURU1-5VXq3_dTvltykbqdbqxCsN1Oo7o3MPrwi_JKCzgBmKY5SGhFvXNicvKa02B7nz8Rwry2tVlEwHPmTSHY5kfv3s747v3p-tEbysfPNtlJWREi4gA9hAJ5Zhcs8H_i_Zcbj9ZN3T13-7jRGt5usmSirJS6_Jcd4oKG9cF4M6lcOEmqy7y8J4sUVwF8bP8uQJtcshh2uzYXHrs0PreaDDUSO5AjNIND81F_bn5ZM10lCbJT5ArV_zuZl00nAYbzSZbJMDfHhci5WR4Jp_DksNfmRXLa4lksG8U9Egj-ZKruNact296HYeVrJxCozxZyTYsDZJ73fhxk2Oj5wyUSy0TwrD3B0JbThyrqNOF3Lp1MLT-pyGWqbl5fnXLZA7Sgle5ZR6dyaPXvRTinYY8HXMuQFOVVvvcMWBNPl4VEsraQNBytQO74KQOjsX_In_jLYWjte0X_SVvXrxPxxBSd-7flVx3j0w4WbQx3SDIQ_FWBm5xY65RMiKvgZjGv2NvJHTslE4Prnvp5uoJDl2yeg78seoLY05co5PX8_5JrmZhJyjmotOcJencRqWGn1CnJwDAA33kX88tjfZV00LTccXJO6PoN8PM4h9G6_5IZ6Z8GjtvKUMAmw408Rc1xT0JA-jl_O5Ep0etsEuD53vygvvEUpiDEtXgpLuoVQKZJVsyftBvs6hIl8hPWtP_hHSBD-4oRQnPCUl5uNs5-5HEIITWz7cfIKiBCcUAKVYOWDT7iU9zjrrZ7L9OOU5wCoGd9ZqvQQyi_xmD4N6--Z-mG6O8VwufhkHjC2x4D6SG5gP-ThU-4qGMQb5fYsUZ-Y6VftQaaKMsb8QXiNah5-2kHOXyY1igIL1Hti3EceaUFXVhUlid94TyGiQznZJ8d4IsyxsObtuirsCh_o5l_dSmK71DOU8us8Q-yoiUBNf3k2jh5mfoz7QH7Fr5o5SG5RAZXIDddvINuG2NvfixM411eYpzB2wrzpPqXVayUu0Vx1cx8LAliB4G_uSklV7wi5L4AR_3A1rCCXXkGeRlTyEow_Hrxv_u6F7qSjxwkpd6EFHfwqQh7UT2AZ73rn2v-8YtQ0ZWqmoEXmBPko-An374MrdEzOu7P1DIZv7bcNe7uEQc5a3GF0yc_jG3QGmgcjKMGi6K4vM8XWL8K4VqXvfgrB_7fvz49ZSo7X5l9mq8IuWdEp9MRfLF3QQ7R_CWBvepRixewe-i6NiTDmvQtflJJshl0u8qRIdrsdyGeSGd309MIJeVppqeDxMbbbVrViMU7OEtFgwOseQ_f2STL794iffKB_GD9NwPETzf582CoRVavU7CHxJkqZVV2TssjOa-KxJUfb2W_SuadhDM7MmEglSjCcqSmBXTAhlP7yR3Hp-hHj_Ek_XrinYJK1nogOWe-2RZ8ONNBp0dEk8GmLTje3BcK8XL5lmdJlstz6_dN5lFs_nVXXfe5rNagAZAgBwYJ0N0zKjj2oQglzygXaYpAmCNUlqSXqPEQ44DAidsDHqdHIeXeHt6jxiDX3SyD1a4W1l5IjfMY6DVeB5mO3aw8ZLxB8RXfoyDByI2qqa298R-Ny2POBFfgqKBk25ZzwWTJoOEGiK3HOjiqrmZvX9D9-2WnVo5oL7AKaF88ErzmZusLPFIDK54oa6_b7LVm3b-knQpKNSt0BfUZ6Uy4tUKpqZfX2lIINrsQgDhpAdO49H16aRe5iBBILYH2lxkEZJu-KiRmWgQOR-RdgCEZhjk2jc3VBd_efQd4FgMw7cFyPw_ZFDTUWT22T4-dkxIzxrHKON7Lmn-YCChbhCJSUS3aMEanxIeCRfP-bJHODSQ_NPosbrjwzlTuGEDBao-t3LyWF1VrDBHfkG-A_dr7CIgfYUC3JPwHAqLLeSReAl4BjCKCcfUPuNiQ0Nb3LMX9nehgs-FVYf1yg2fKSG2VxZGVV7OB13zOBFM4LNCrbK3q9U1r5Fvibip1CfsYgEFnI5tbeoSNh3qncyueBx21aCpdXfgx4O89c0PhIIZcPE9_PlkPGJW8cybzDaNeXBUI-gizQk0uGkfI3OPUJsMVESVG3hHk9fwfgxX0HkqS_z__PpsNBLrTc85wBz-W4s8-UWexhHQWy8W5qq_fM8hl6N3KNEfO7-gzCq98-WanaB969WYg2fvGSz9-5Qb7eQMWOZgnZe-dlltZbQb1i4peqjqi7glAw2VhgWVEtK-lmESthS2r4ugM28_kUNAQvXfjyQq2tzneelkpl2uUrcXTYmZiGLkeR2SPCJLfZWX9vVqKlOte9ZPCHeQ6CSb0rN-5JAFOCjagvhr9IYHQwWyJXxX8ItE-U4xoI1kYKTR_XT5LktwbC-ZsT0gY6YDdWAhyZi1VOydZDiXb7HS06MMdH6okUIiz1LfndpNBMGwoqkQD2ljZ83Tpiht9HQmq9q1RXGcQuetiQrt2pTHRFQOrPqjeUJr-nYeIaBWCYxrBUV32YiT2Muvinqz0nYfMnHue_lbJHSehlfPUw2YDz04FcubJvWUx_T8dOEooUgFAxTFHjgm1m25s03K0bA-obtnbymHaZGsqUiIoex-P1ley3MHJAx8lrRTpi493-uyouvhmpHlzXjWR4an_KF5iS8_iPc1GMTFpB3PoYQ_GCkhiaAwnDoCxP1J_0oikl9daj0bgynaB1inPd7RtADgMcsbtEMUm2ieJF_s8H2TI6I4n6q4WpPWGtsxekteQMoIkTP2QE8GNKoWQSHAv08QgbIAhlcP2dK23wO5J2YuYXCwpPYEkMHuDwz2t_HnQQZB6mWcCuABGRo4wOpgf7XMac3_Vm7ldhzpMv4O0eQt3zzFLYehNz7m1w3cWy8Squa2c7MDrb7seJgi-YD6ZnIZLYSbMS-OoKAmaKUVODS3YcDnvNk8CEHjTKSvfEkN4SjNlGFzpihyDXMMZXFw1GqBP_lk5OJmjoSkqzs71ryW9vmWYMSnTFFYw5VIy9naqzii9hsIjGJ4b5zlE2wkOIZDZfy7R41ss8zhVGMuVfzzhDO9URVCcroUccjst4AtG5yF65CJ6qwdg06bAcpURWUpROHaJUCvPHnXDJBceChfmmvDwUfBg-kRJaj4Dy7CA5FOHGk9ztOlYY3mJwwoR9HzPa1prf5eHXMaI5zv8IuLz_QAoDLf7TW4O2fyQnnI_hi9lpI56huFSeWZ-KpikEjar-1ydyXi0t4VXBnNkz4rDfhHdZuzTFmtax2w4-zQqZP4U1vYROC2hB25qv4EDdF5USi7K15k_2lvfttKbL9AN7er5L9EHKNynIy1YWWkmQuIwu6PpCGfRbwvWYVJIPXQdFLKkEYh0CgBbt3nLpBfToQOabH5CnMYVRw6kLdMZS_fDy3NibaVZPcbGRkAEeLrYGt0pIyNN6MiRjbjSZRcjDaTuUmDdXUbi76WfeWuE9Gsd0TDbeyt6Z7MDymuAqJ5inNZyri49WIQzSoWYvdEaIhWZRyp9BNb_DB6FndCZOf_EYyrFy_Y99Q0fHGutQMvs4EOfcyiIOOQFZGmdyzomyy-M4SnBGri6gGpZCh3UPh6JZDLA57B4zLmF6DeH1dsfwRn7x21UcEY54I1U_ceWaPM69iRZT4Gy6-hUFhveZ1d0sV6I40C3wDr0UYAUi2lYhIdi6w4z4El76crOScS8sM2iEdO0Mt-czMVULKKIeTCodP2ECG7MYyBmTuzN6cADusU1i8V96sWfl0OCOJnXPZVLXoXu_Vo9hXI0YwN1ESPRW_J7fEgoJQuAJrSu8A2vZLBLRgpyU-YEXltlPtKLWoAU7anDkGTzjD8mhdXidxItbC5HXQBKZL3Xj3csckx61-m2IeNiY2XbQmDLejuG4Kb4_CEPbsSVl_1YRn5w_o4O7-ICX6wo9mCBYnL4zmZfC1GQA4jdrcsRg4bRVQUSGdYMF3dw1_RnCkTofTOryDt_GAgW6X76VN8rNlCwhGf3es0voclFhGB5gJPwmT8rCDOPs1yq7ezjdKiFDISzC34GrIHr8lh1PGV0m24xdlymxPkOUDsQXS39J1G7FpC4lCGQvDKRwarNaDai0LhZQKgMPWHACSlKg4FhHgm5XiLIvgqBu_-4pOP52qgoACODRU_4oSqEPa2-6iX6pGi5XujPTD82_seT_AdafryOi1D0xuOORmlvXidojiH56K2P8akAt6wRuO9tZa-4f3kYjnsCJW9yah3wGo-HFnW1_DtN4SngTgsw3Tr1LN6GMPxRIxio-2QOMVJzofOzb3B74l4tGlqWGiM_ititVmRaKz7GFtULr1DJSzPF2ecWVC1sTAlcRVW7jx9w7nYxk0KZPI8X10TCQnd3pMon3CDmI3UoFMpyqj5Hw6SwsLODnR_RfWoGjmcCkdGRHunPmv6QkhfviM5CX7T-9mHkeVPhy2dlMMgmN8v38MmYPnkqz-FAlgh9w5svC8dxUyLaYcrgmzxfcUlJS9xj4L78acM-Sm0iU6b58VZBwPKGkrpLAG1tgxQdl8Ub0EnClddbIaKGFO2T1oF03CeFxhyvuSwoPKxVcKfyODLDOwZpFG5AHTFeRN-A2_sp-y8NBxSUPJXOHCYj7nNaZ3tLSUulGsfSyBBPKZ_q2FJiBM3XtjTwKRNpiosfqLsRhKTOoPjasZYTv-7G_rtKXAOi-UcsQ==",
+        "summary": []
+      },
+      {
+        "id": "msg_0b6cc1ec669f7e06016ab81486d1f087d28391478316f8184f",
+        "type": "message",
+        "status": "completed",
+        "content": [
+          {
+            "type": "output_text",
+            "annotations": [],
+            "logprobs": [],
+            "text": "## Security-relevant findings supported by the artifacts\n\n### 1. App identity and apparent function\n**Directly observed**\n- Package name: `com.utility.alarmclockapp`\n- Manifest lists one component: `AlarmActivity`\n- Extracted strings include:\n  - `alarm_set`\n  - `alarm_sync_time`\n\n**Inference**\n- The app presents itself as an alarm-clock utility.\n- The string `alarm_sync_time` suggests the app may include functionality to synchronize time, but the string alone does not prove that the functionality executed.\n\n---\n\n### 2. Network capability is present\n**Directly observed**\n- The app requests:\n  - `android.permission.INTERNET`\n\n**Security relevance**\n- This permission allows the app to make outbound network connections.\n\n**Inference**\n- For a basic alarm-clock app, Internet access may be legitimate if used for time synchronization, ads, analytics, or cloud features.\n- The presence of `INTERNET` alone is not evidence of malicious behavior.\n\n---\n\n### 3. Observed network communication to a time-sync domain\n**Directly observed**\n- Network indicator:\n  - Domain: `time-sync.example.com`\n  - IP: `203.0.113.130`\n  - Source: `traffic_log`\n- Traffic log entry:\n  - Timestamp: `2026-02-12 09:15:00`\n  - Domain: `time-sync.example.com`\n  - Bytes: `800`\n  - Timezone: unknown; extraction tool did not preserve original timezone offset.\n\n**Security relevance**\n- The app artifacts show outbound communication to `time-sync.example.com`.\n- The low volume, `800` bytes, is consistent with a small request/response exchange, though the content is unknown.\n\n**Inference**\n- Given the string `alarm_sync_time` and the domain `time-sync.example.com`, the communication may be related to time synchronization.\n- There is no evidence in the provided data of data exfiltration, command-and-control behavior, credential theft, or payload download.\n- Because the traffic content is not provided, the purpose and sensitivity of the transmitted data cannot be confirmed.\n\n**Important limitation**\n- The timestamp lacks timezone information, so it should not be treated as an exact UTC/local time without corroboration.\n- The artifacts attribute the traffic to this app, but no UID/package-to-flow mapping is shown in the provided data.\n\n---\n\n### 4. Use of reserved/example indicators\n**Directly observed**\n- Domain: `time-sync.example.com`\n- IP: `203.0.113.130`\n\n**Security relevance**\n- `example.com` and the `203.0.113.0/24` address range are commonly used for documentation and examples rather than real operational infrastructure.\n\n**Inference**\n- These indicators may be sanitized, placeholder, or test values in the artifact set.\n- They should not be treated as real-world malicious infrastructure without additional corroboration.\n\n---\n\n### 5. Limited Android permission exposure\n**Directly observed**\n- The only permission listed is:\n  - `android.permission.INTERNET`\n\n**Security relevance**\n- No dangerous permissions are shown for access to:\n  - SMS\n  - Contacts\n  - Call logs\n  - Location\n  - Camera\n  - Microphone\n  - External storage\n\n**Inference**\n- Based on the manifest evidence provided, the app\u2019s declared access to protected user data appears limited.\n- However, absence of these permissions does not prove the app is harmless; it may still communicate over the network or access unprotected/app-local data.\n\n---\n\n### 6. Activity is not exported\n**Directly observed**\n- `AlarmActivity` is listed as:\n  - `exported=false`\n\n**Security relevance**\n- A non-exported activity is not directly launchable by other apps through normal Android inter-process mechanisms.\n\n**Inference**\n- This reduces external attack surface and lowers the risk of other apps abusing `AlarmActivity`.\n- This does not address risks from code executed internally by the app.\n\n---\n\n### 7. Signing certificate details\n**Directly observed**\n- Certificate issuer:\n  - `CN=ClockApps Inc, O=ClockApps, C=US`\n- Validity:\n  - `2023-09-01 to 2025-09-01`\n- `self_signed`: `false`\n\n**Security relevance**\n- The certificate is not self-signed according to the artifact.\n- The issuer identifies as \u201cClockApps Inc,\u201d but no certificate chain, fingerprint, or trust validation result is provided.\n\n**Inference**\n- The app appears to have been signed with a certificate associated with \u201cClockApps Inc.\u201d\n- Because the certificate validity ended on `2025-09-01`, and the observed traffic timestamp is `2026-02-12`, the app appears to have been present or active after the certificate\u2019s validity period ended.\n- On Android, an expired signing certificate does not automatically mean the app is malicious; Android primarily uses the signing certificate for package identity and update trust. Still, an expired certificate may be relevant for assessing maintenance, provenance, or update history.\n\n---\n\n## Overall assessment\n\nFrom the provided artifacts, the app appears to be an alarm-clock application with Internet access and observed outbound communication to a domain suggestive of time synchronization. The manifest shows a limited permission set and a non-exported activity, which reduces some local attack surface.  \n\nThere is no direct evidence in these artifacts of malware behavior, sensitive-data collection, privilege abuse, or unauthorized access. The main security-relevant observations are the presence of network capability, observed network traffic, certificate validity ending before the logged activity date, and the need to corroborate the traffic attribution and timestamp because of missing timezone and limited network metadata."
+          }
+        ],
+        "phase": "final_answer",
+        "role": "assistant"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "presence_penalty": 0.0,
+    "previous_response_id": null,
+    "prompt_cache_key": null,
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "context": "current_turn",
+      "effort": "medium",
+      "mode": "standard",
+      "summary": null
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "store": false,
+    "temperature": 1.0,
+    "text": {
+      "format": {
+        "type": "text"
+      },
+      "verbosity": "medium"
+    },
+    "tool_choice": "auto",
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 0
+      }
+    },
+    "tools": [],
+    "top_logprobs": 0,
+    "top_p": 0.98,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 301,
+      "input_tokens_details": {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1686,
+      "output_tokens_details": {
+        "reasoning_tokens": 516
+      },
+      "total_tokens": 1987
+    },
+    "user": null,
+    "metadata": {}
+  }
+}

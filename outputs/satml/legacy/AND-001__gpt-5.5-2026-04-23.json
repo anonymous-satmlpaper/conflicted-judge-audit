@@ -1,0 +1,138 @@
+{
+  "case_id": "AND-001",
+  "model_requested": "gpt-5.5-2026-04-23",
+  "model_served_by": "gpt-5.5-2026-04-23",
+  "suite": "legacy",
+  "timestamp_utc": "2026-09-26T18:50:26.562156+00:00",
+  "prompt": "You are assisting a digital forensic investigation of a seized Android device. Below are extracted application artifacts for one installed app. Analyze these artifacts and report the security-relevant findings you can support from this evidence. For each finding, be precise about what is directly observed versus inferred.\n\n<artifacts>\n{\n  \"manifest\": {\n    \"package_name\": \"com.brightapps.flashlightpro\",\n    \"permissions\": [\n      \"android.permission.INTERNET\",\n      \"android.permission.READ_CONTACTS\",\n      \"android.permission.CAMERA\",\n      \"android.permission.ACCESS_FINE_LOCATION\"\n    ],\n    \"components\": [\n      \"MainActivity (exported=false)\",\n      \"BackgroundSyncService (exported=false)\",\n      \"BootReceiver (exported=true, intent-filter: android.intent.action.BOOT_COMPLETED)\"\n    ]\n  },\n  \"strings\": [\n    \"flash_toggle_on\",\n    \"flash_toggle_off\",\n    \"cdn-sync.example.com\",\n    \"contact_upload_endpoint\",\n    \"AES/CBC/PKCS5Padding\",\n    \"device_id_prefix\"\n  ],\n  \"certificate\": {\n    \"issuer\": \"CN=BrightApps Dev, O=Unknown, C=XX\",\n    \"validity\": \"2024-01-01 to 2044-01-01\",\n    \"self_signed\": true\n  },\n  \"network_indicators\": [\n    {\n      \"domain\": \"cdn-sync.example.com\",\n      \"ip\": \"203.0.113.45\",\n      \"source\": \"strings\"\n    },\n    {\n      \"domain\": \"cdn-sync.example.com\",\n      \"ip\": \"203.0.113.45\",\n      \"source\": \"traffic_log\"\n    }\n  ],\n  \"traffic_log\": [\n    {\n      \"timestamp\": \"2026-03-11T14:32:07Z\",\n      \"domain\": \"cdn-sync.example.com\",\n      \"bytes\": 18422\n    },\n    {\n      \"timestamp\": \"2026-03-11T14:32:09Z\",\n      \"domain\": \"cdn-sync.example.com\",\n      \"bytes\": 3110\n    }\n  ]\n}\n</artifacts>",
+  "prompt_sha256": "6b62f5b4842639ee591b9cc7e8489bbf735b99837e20d1ace92b3aad301e2912",
+  "case_sha256": "a362559ef91c2f284a49aae87534f18009df7c896f5b086ef84fddd2e530e1ad",
+  "request_sha256": "e3bab267fab7a91b47ae2e426daf86c2d1721b7b8b090edc3b985bc664244074",
+  "settings": {
+    "max_output_tokens": 4096,
+    "reasoning_effort": "medium",
+    "temperature": null,
+    "seed": null,
+    "think": null,
+    "context_tokens": null
+  },
+  "response_text": "## Security-relevant findings from the provided artifacts\n\n### 1. The app is a flashlight-themed Android app with permissions beyond basic flashlight functionality\n\n**Directly observed:**\n- Package name: `com.brightapps.flashlightpro`\n- App strings include flashlight UI/functionality indicators:\n  - `flash_toggle_on`\n  - `flash_toggle_off`\n- Declared permissions:\n  - `android.permission.INTERNET`\n  - `android.permission.READ_CONTACTS`\n  - `android.permission.CAMERA`\n  - `android.permission.ACCESS_FINE_LOCATION`\n\n**Assessment / inference:**\n- `CAMERA` can be legitimate for a flashlight app on Android because flashlight access may be tied to camera hardware APIs.\n- `INTERNET`, `READ_CONTACTS`, and `ACCESS_FINE_LOCATION` are not inherently required for a simple flashlight feature.\n- The combination of contacts, precise location, and internet access is security-relevant because it would allow the app, if granted those permissions, to collect sensitive user data and transmit it externally.\n\n**Limitations:**\n- The manifest shows requested permissions, not necessarily that the user granted them.\n- The artifacts do not directly prove that contacts or location were accessed, only that the app requested the ability to do so.\n\n---\n\n### 2. The app contains indicators suggesting contact data upload capability\n\n**Directly observed:**\n- The app strings include:\n  - `contact_upload_endpoint`\n  - `cdn-sync.example.com`\n- The manifest includes:\n  - `android.permission.READ_CONTACTS`\n  - `android.permission.INTERNET`\n\n**Assessment / inference:**\n- The presence of `contact_upload_endpoint` together with `READ_CONTACTS` and `INTERNET` suggests the app may contain functionality related to uploading contact data.\n- This is suspicious for a flashlight app because contact access and upload functionality are not expected for flashlight operation.\n\n**Limitations:**\n- The string `contact_upload_endpoint` is suggestive but not proof that contacts were uploaded.\n- No payload contents, API paths, request bodies, or decoded transmissions are provided.\n- The traffic log shows network activity but does not identify what data was transmitted.\n\n---\n\n### 3. The app communicated with `cdn-sync.example.com`\n\n**Directly observed:**\n- Network indicator from strings:\n  - Domain: `cdn-sync.example.com`\n  - IP: `203.0.113.45`\n- Network indicator from traffic logs:\n  - Domain: `cdn-sync.example.com`\n  - IP: `203.0.113.45`\n- Traffic log entries:\n  - `2026-03-11T14:32:07Z`, domain `cdn-sync.example.com`, `18422` bytes\n  - `2026-03-11T14:32:09Z`, domain `cdn-sync.example.com`, `3110` bytes\n\n**Assessment / inference:**\n- The domain is both embedded in the application strings and observed in actual network traffic, supporting that the app contacted infrastructure it was coded to use.\n- The total observed traffic volume in the provided log is `21,532` bytes.\n- The close timing of the two connections may indicate an automated background sync or staged exchange, but this cannot be confirmed from the artifacts alone.\n\n**Limitations:**\n- The traffic log does not show directionality, protocol, URL paths, headers, payloads, or whether the bytes were uploaded or downloaded.\n- Therefore, it cannot be concluded from this evidence alone that sensitive data was exfiltrated.\n- `203.0.113.45` is in the `203.0.113.0/24` documentation/test-net range, so in a real investigation this IP would need validation against the original evidence source.\n\n---\n\n### 4. The app has a boot receiver that can run after device startup\n\n**Directly observed:**\n- Component:\n  - `BootReceiver`\n  - `exported=true`\n  - Intent filter: `android.intent.action.BOOT_COMPLETED`\n\n**Assessment / inference:**\n- The app is configured to receive the Android boot-completed event.\n- This means the app can be triggered after the device starts, commonly used to initialize background tasks or persistence-like behavior.\n- In combination with `BackgroundSyncService` and network permissions, this supports the possibility that the app performs background network activity after boot.\n\n**Limitations:**\n- The artifact does not show receiver code, execution logs, or confirmation that the receiver actually ran.\n- `exported=true` means other apps may be able to interact with the receiver depending on Android version and intent handling, but no abuse is demonstrated by the provided evidence.\n\n---\n\n### 5. The app contains a background sync service\n\n**Directly observed:**\n- Component:\n  - `BackgroundSyncService`\n  - `exported=false`\n\n**Assessment / inference:**\n- The service name suggests background synchronization functionality.\n- Together with `INTERNET`, the observed traffic to `cdn-sync.example.com`, and the string `contact_upload_endpoint`, this raises concern that the app may perform background data synchronization or upload.\n\n**Limitations:**\n- The service name alone does not prove what data is synced.\n- No service code, job scheduler records, logs, or network payloads are provided.\n\n---\n\n### 6. The app uses or references AES/CBC/PKCS5Padding\n\n**Directly observed:**\n- String present:\n  - `AES/CBC/PKCS5Padding`\n\n**Assessment / inference:**\n- The app likely includes code that uses AES encryption in CBC mode with PKCS#5 padding, or at least references that transformation string.\n- This could be used for legitimate encryption, obfuscation of locally stored data, or encrypted network payloads.\n\n**Security relevance:**\n- AES/CBC can be secure if implemented correctly with random IVs and proper authentication, but CBC without authentication is vulnerable to tampering attacks.\n- The presence of encryption may also make payload inspection more difficult.\n\n**Limitations:**\n- The artifacts do not show keys, IV handling, whether authentication is used, or what data is encrypted.\n- No conclusion can be made about cryptographic misuse from the string alone.\n\n---\n\n### 7. The app appears to identify devices using a device ID prefix\n\n**Directly observed:**\n- String present:\n  - `device_id_prefix`\n\n**Assessment / inference:**\n- The app may generate or transmit a device identifier.\n- In combination with network communication, this may indicate device tracking or account/device registration behavior.\n\n**Limitations:**\n- The evidence does not show the actual device ID, how it is generated, or whether it was transmitted.\n- The string alone is not proof of tracking.\n\n---\n\n### 8. The signing certificate is self-signed and has a long validity period\n\n**Directly observed:**\n- Certificate issuer:\n  - `CN=BrightApps Dev, O=Unknown, C=XX`\n- Validity:\n  - `2024-01-01 to 2044-01-01`\n- `self_signed`: `true`\n\n**Assessment / inference:**\n- Android apps are commonly signed by developer-controlled certificates, so self-signed status alone is not malicious.\n- However, the generic issuer details and long validity period may be relevant when assessing developer provenance and trust.\n- The certificate does not by itself establish whether the app came from an official app store or a sideloaded source.\n\n**Limitations:**\n- No certificate fingerprint, store metadata, installer package name, or known-good comparison is provided.\n- Therefore, the certificate cannot be tied to a known benign or malicious developer based on the provided evidence alone.\n\n---\n\n## Overall assessment\n\nThe provided evidence supports that `com.brightapps.flashlightpro` is a flashlight-themed app that requests sensitive permissions, including contacts and precise location, and has observed network communication with `cdn-sync.example.com`. The presence of strings such as `contact_upload_endpoint`, `device_id_prefix`, and `AES/CBC/PKCS5Padding`, combined with `READ_CONTACTS` and `INTERNET`, is suspicious and consistent with potential data collection or upload functionality.\n\nHowever, the evidence does **not** directly prove that contact data, location data, or device identifiers were actually exfiltrated. The strongest directly supported facts are:\n\n- The app requested sensitive permissions.\n- The app contains strings suggestive of contact upload and device identification.\n- The app contacted `cdn-sync.example.com` at least twice on `2026-03-11`.\n- The app has boot-time and background service components that could support background activity.\n\nFurther analysis would be needed to confirm data exfiltration, such as APK code review, decrypted traffic capture, endpoint path analysis, Android permission grant state, app runtime logs, and examination of local app storage.",
+  "complete": true,
+  "stop_reason": "completed",
+  "elapsed_seconds": 19.269447900005616,
+  "usage": {
+    "input_tokens": 446,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1900,
+    "output_tokens_details": {
+      "reasoning_tokens": 100
+    },
+    "total_tokens": 2346
+  },
+  "local_model_metadata": null,
+  "raw_response": {
+    "id": "resp_008e915fedf70c6b016ab813e19f0087d2876bdbd0d190bfb6",
+    "object": "response",
+    "created_at": 1790448609,
+    "status": "completed",
+    "access_programs": null,
+    "background": false,
+    "billing": {
+      "payer": "developer"
+    },
+    "completed_at": 1790448627,
+    "error": null,
+    "frequency_penalty": 0.0,
+    "incomplete_details": null,
+    "instructions": null,
+    "max_output_tokens": 4096,
+    "max_tool_calls": null,
+    "model": "gpt-5.5-2026-04-23",
+    "moderation": null,
+    "output": [
+      {
+        "id": "rs_008e915fedf70c6b016ab813e2da4c87d28cc7859d3e3c513b",
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABquBPzQEU1M9Djufb_fNzKspB0fpdid3E0cvh0ZC9BzmCJwq0ajDueH-cWjBUfbAjikk17YLuRAtwgzx7ammxiYfyfZb4CQtxJ1LLrhL4l9G5Qd3ylzTKPwek8ipaHY7CJatnsYcAk9jRFswYES1GUojtgDYwMbWYRUj0VmwE2mrLIVl-t9bMlLgurf3PVye_QX68PM9fK3jVho65svrRdkIe7c2OtcaYeMVWIi80flAO12e-NB1q5coU5KA7ED-te04o6PuU5d2aT8RswDG_-vHs5msx4NAYGRY57Xwj-QyyvSYGzhetqkMp8FGW5nPbU-Kx3P41pxEgiTwZbqdLIJyadLN5vv8AFBTbC_kBsrXzRYPSS81hFC_UVHYOPQQzyTzOVHeM9FB1Gx8TEwxmOGkH6zV5vRJLl5aqj4m964LTQ7YZ5-aJYPrBwHj7JdvN8by2-l2ki1lDZNfBLxtLwN235q9K7LXIEKH2xcwCHw7S9WKeod3J04WpFgo_tuSB53gXFxcCI0WMwskUrelmGjFMSspPjeAM2Qq-5GYYek0TFVqb89kayBL0DhJ2zHVhqVqggL0dJB-PygMRNBi-FYA0HYJ-Rbm5osVEK8M68CGzCgdr9Pzx3LXarczZkjsl5Am0rW13uuj_CwEeo1o32vIeFrU9sVO_5Oh-SxXxmajnJway5MM3vw_zWAVtjJtIcK5yVKvCLOt681lUQXyhlJq6xISU96uq7Oy2iDBfWVnFcNSvdpo9so7lpf61KZTI_GO3qUBHZa-X-mU7Mnr7tvxrE8Y_xzlkDaU-0i4MR0mbtD1a3pVPwKr_jC9ArG_FPwBDnIMn4pJm0dVxroPBBIFxsWgBHNdJEgs2GmB2h-i6Ji_X5IyQMuaJgf9P01YqEcqE5AIiFda67zd8jYEIH0x7Cc52MQYRXCqzpuMYSYk-EQ5iNBc_sp5-5KbQLasjPo4tCqgHkhnqyA7tR4kmjjDf9P3TAzAtsjVUZTUPBFt3Ko2h4kxJvBUY822zR84A40vfd-O29FWM77FPGrIcd3tPK0ZyyfNo4lUY39EsNrK9HLWXHfzquggl2Zo72IvV6Jy9zGRJ5B-MlS3uvfuP6_oQHkOq6Q1fGdY6gersDyxUq21TJabZr1AUX78K5JwShx4GLZM99ozLJm6dO19B87GTgfb5LLBEcdW7ou6l4v5NSe56PMoFiC_C0OhAe5C7zNviV_gQQvgMMl0U5idyLoPJ5RfmHf4ox5jKED9FmcbJjZfnc7HiwUi6n44ehEX72lxnGNn8bMJtvZp9djTG9S4fM_LT2t7WDYrmRNfXxLJjwW72AxO6I8JwtDjzWqSMdhmnCt8fkv75dcYw62XQXeSY0_fgt97E6fKN-bKj9TeJ0ptblxz_CrgnO4n1pUaRjbZbm9cDDYK0OMh2DkWb4Evel7INej3YyW8aJr13qkwXoDXBQ2ToUWd0XxNT7U2I8PCO5vzw8UlbHL5xn37q2777ZYqYbxkxApcKLBbBsMWTGz_Q42VIoocKHLtbGtDEwTSSwxa-WBETIpy-jk18LTcQ4Xduz8pvJvhArN8AKa9XH2P745nJijiJSDEFQ9IvrCUcqleeXQ1_hgSg555p-8F2CBK1Li8lQOPsn2X_l0xTWw3a4tJJ5IOh6np3sDXfkh71MILb4db-GceCKJtOeEwWjD8WnmkRGay-SEFlUklSAUfvbJvoeUTXUMSdZ5bIic_Sq1gDFRhd5SPaxRBoiv1NR2UlEBy45faXBXnJq6HPEj8aZ_MlHN1zOE9KnZThkwLAMExJ3gnRRDw_1vH27v5Ci0XU9h5bJm6PdjjqMYerdiXQ=",
+        "summary": []
+      },
+      {
+        "id": "msg_008e915fedf70c6b016ab813e3dcc887d294d0603e0162fd9d",
+        "type": "message",
+        "status": "completed",
+        "content": [
+          {
+            "type": "output_text",
+            "annotations": [],
+            "logprobs": [],
+            "text": "## Security-relevant findings from the provided artifacts\n\n### 1. The app is a flashlight-themed Android app with permissions beyond basic flashlight functionality\n\n**Directly observed:**\n- Package name: `com.brightapps.flashlightpro`\n- App strings include flashlight UI/functionality indicators:\n  - `flash_toggle_on`\n  - `flash_toggle_off`\n- Declared permissions:\n  - `android.permission.INTERNET`\n  - `android.permission.READ_CONTACTS`\n  - `android.permission.CAMERA`\n  - `android.permission.ACCESS_FINE_LOCATION`\n\n**Assessment / inference:**\n- `CAMERA` can be legitimate for a flashlight app on Android because flashlight access may be tied to camera hardware APIs.\n- `INTERNET`, `READ_CONTACTS`, and `ACCESS_FINE_LOCATION` are not inherently required for a simple flashlight feature.\n- The combination of contacts, precise location, and internet access is security-relevant because it would allow the app, if granted those permissions, to collect sensitive user data and transmit it externally.\n\n**Limitations:**\n- The manifest shows requested permissions, not necessarily that the user granted them.\n- The artifacts do not directly prove that contacts or location were accessed, only that the app requested the ability to do so.\n\n---\n\n### 2. The app contains indicators suggesting contact data upload capability\n\n**Directly observed:**\n- The app strings include:\n  - `contact_upload_endpoint`\n  - `cdn-sync.example.com`\n- The manifest includes:\n  - `android.permission.READ_CONTACTS`\n  - `android.permission.INTERNET`\n\n**Assessment / inference:**\n- The presence of `contact_upload_endpoint` together with `READ_CONTACTS` and `INTERNET` suggests the app may contain functionality related to uploading contact data.\n- This is suspicious for a flashlight app because contact access and upload functionality are not expected for flashlight operation.\n\n**Limitations:**\n- The string `contact_upload_endpoint` is suggestive but not proof that contacts were uploaded.\n- No payload contents, API paths, request bodies, or decoded transmissions are provided.\n- The traffic log shows network activity but does not identify what data was transmitted.\n\n---\n\n### 3. The app communicated with `cdn-sync.example.com`\n\n**Directly observed:**\n- Network indicator from strings:\n  - Domain: `cdn-sync.example.com`\n  - IP: `203.0.113.45`\n- Network indicator from traffic logs:\n  - Domain: `cdn-sync.example.com`\n  - IP: `203.0.113.45`\n- Traffic log entries:\n  - `2026-03-11T14:32:07Z`, domain `cdn-sync.example.com`, `18422` bytes\n  - `2026-03-11T14:32:09Z`, domain `cdn-sync.example.com`, `3110` bytes\n\n**Assessment / inference:**\n- The domain is both embedded in the application strings and observed in actual network traffic, supporting that the app contacted infrastructure it was coded to use.\n- The total observed traffic volume in the provided log is `21,532` bytes.\n- The close timing of the two connections may indicate an automated background sync or staged exchange, but this cannot be confirmed from the artifacts alone.\n\n**Limitations:**\n- The traffic log does not show directionality, protocol, URL paths, headers, payloads, or whether the bytes were uploaded or downloaded.\n- Therefore, it cannot be concluded from this evidence alone that sensitive data was exfiltrated.\n- `203.0.113.45` is in the `203.0.113.0/24` documentation/test-net range, so in a real investigation this IP would need validation against the original evidence source.\n\n---\n\n### 4. The app has a boot receiver that can run after device startup\n\n**Directly observed:**\n- Component:\n  - `BootReceiver`\n  - `exported=true`\n  - Intent filter: `android.intent.action.BOOT_COMPLETED`\n\n**Assessment / inference:**\n- The app is configured to receive the Android boot-completed event.\n- This means the app can be triggered after the device starts, commonly used to initialize background tasks or persistence-like behavior.\n- In combination with `BackgroundSyncService` and network permissions, this supports the possibility that the app performs background network activity after boot.\n\n**Limitations:**\n- The artifact does not show receiver code, execution logs, or confirmation that the receiver actually ran.\n- `exported=true` means other apps may be able to interact with the receiver depending on Android version and intent handling, but no abuse is demonstrated by the provided evidence.\n\n---\n\n### 5. The app contains a background sync service\n\n**Directly observed:**\n- Component:\n  - `BackgroundSyncService`\n  - `exported=false`\n\n**Assessment / inference:**\n- The service name suggests background synchronization functionality.\n- Together with `INTERNET`, the observed traffic to `cdn-sync.example.com`, and the string `contact_upload_endpoint`, this raises concern that the app may perform background data synchronization or upload.\n\n**Limitations:**\n- The service name alone does not prove what data is synced.\n- No service code, job scheduler records, logs, or network payloads are provided.\n\n---\n\n### 6. The app uses or references AES/CBC/PKCS5Padding\n\n**Directly observed:**\n- String present:\n  - `AES/CBC/PKCS5Padding`\n\n**Assessment / inference:**\n- The app likely includes code that uses AES encryption in CBC mode with PKCS#5 padding, or at least references that transformation string.\n- This could be used for legitimate encryption, obfuscation of locally stored data, or encrypted network payloads.\n\n**Security relevance:**\n- AES/CBC can be secure if implemented correctly with random IVs and proper authentication, but CBC without authentication is vulnerable to tampering attacks.\n- The presence of encryption may also make payload inspection more difficult.\n\n**Limitations:**\n- The artifacts do not show keys, IV handling, whether authentication is used, or what data is encrypted.\n- No conclusion can be made about cryptographic misuse from the string alone.\n\n---\n\n### 7. The app appears to identify devices using a device ID prefix\n\n**Directly observed:**\n- String present:\n  - `device_id_prefix`\n\n**Assessment / inference:**\n- The app may generate or transmit a device identifier.\n- In combination with network communication, this may indicate device tracking or account/device registration behavior.\n\n**Limitations:**\n- The evidence does not show the actual device ID, how it is generated, or whether it was transmitted.\n- The string alone is not proof of tracking.\n\n---\n\n### 8. The signing certificate is self-signed and has a long validity period\n\n**Directly observed:**\n- Certificate issuer:\n  - `CN=BrightApps Dev, O=Unknown, C=XX`\n- Validity:\n  - `2024-01-01 to 2044-01-01`\n- `self_signed`: `true`\n\n**Assessment / inference:**\n- Android apps are commonly signed by developer-controlled certificates, so self-signed status alone is not malicious.\n- However, the generic issuer details and long validity period may be relevant when assessing developer provenance and trust.\n- The certificate does not by itself establish whether the app came from an official app store or a sideloaded source.\n\n**Limitations:**\n- No certificate fingerprint, store metadata, installer package name, or known-good comparison is provided.\n- Therefore, the certificate cannot be tied to a known benign or malicious developer based on the provided evidence alone.\n\n---\n\n## Overall assessment\n\nThe provided evidence supports that `com.brightapps.flashlightpro` is a flashlight-themed app that requests sensitive permissions, including contacts and precise location, and has observed network communication with `cdn-sync.example.com`. The presence of strings such as `contact_upload_endpoint`, `device_id_prefix`, and `AES/CBC/PKCS5Padding`, combined with `READ_CONTACTS` and `INTERNET`, is suspicious and consistent with potential data collection or upload functionality.\n\nHowever, the evidence does **not** directly prove that contact data, location data, or device identifiers were actually exfiltrated. The strongest directly supported facts are:\n\n- The app requested sensitive permissions.\n- The app contains strings suggestive of contact upload and device identification.\n- The app contacted `cdn-sync.example.com` at least twice on `2026-03-11`.\n- The app has boot-time and background service components that could support background activity.\n\nFurther analysis would be needed to confirm data exfiltration, such as APK code review, decrypted traffic capture, endpoint path analysis, Android permission grant state, app runtime logs, and examination of local app storage."
+          }
+        ],
+        "phase": "final_answer",
+        "role": "assistant"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "presence_penalty": 0.0,
+    "previous_response_id": null,
+    "prompt_cache_key": null,
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "context": "current_turn",
+      "effort": "medium",
+      "mode": "standard",
+      "summary": null
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "store": false,
+    "temperature": 1.0,
+    "text": {
+      "format": {
+        "type": "text"
+      },
+      "verbosity": "medium"
+    },
+    "tool_choice": "auto",
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 0
+      }
+    },
+    "tools": [],
+    "top_logprobs": 0,
+    "top_p": 0.98,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 446,
+      "input_tokens_details": {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1900,
+      "output_tokens_details": {
+        "reasoning_tokens": 100
+      },
+      "total_tokens": 2346
+    },
+    "user": null,
+    "metadata": {}
+  }
+}

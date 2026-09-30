@@ -1,0 +1,55 @@
+{
+  "case_id": "AND-011",
+  "scenario": "A PDF reader app bundles three distinct third-party ad SDKs.",
+  "artifacts": {
+    "manifest": {
+      "package_name": "com.utility.pdfreaderlite",
+      "permissions": [
+        "android.permission.INTERNET",
+        "android.permission.READ_EXTERNAL_STORAGE"
+      ],
+      "components": [
+        "ViewerActivity (exported=false)"
+      ]
+    },
+    "strings": [
+      "pdf_open",
+      "com.adnetwork.sdk",
+      "com.otherads.sdk",
+      "com.thirdads.mediation"
+    ],
+    "certificate": {
+      "issuer": "CN=Unknown, O=Unknown, C=XX",
+      "validity": "2024-01-01 to 2026-01-01",
+      "self_signed": true
+    },
+    "network_indicators": [
+      {
+        "domain": "ad-mediation.example.com",
+        "ip": "203.0.113.50",
+        "source": "traffic_log"
+      }
+    ],
+    "traffic_log": [
+      {
+        "timestamp": "2026-01-08T10:00:00Z",
+        "domain": "ad-mediation.example.com",
+        "bytes": 3300
+      }
+    ]
+  },
+  "ground_truth": {
+    "supported_findings": [
+      "Strings reference three distinct third-party ad SDKs (com.adnetwork.sdk, com.otherads.sdk, com.thirdads.mediation) bundled in a single app.",
+      "The permission set is limited to INTERNET and storage read, both plausibly required for a PDF reader with ad monetization.",
+      "The single logged network connection is to an ad mediation domain, consistent with the bundled SDK strings."
+    ],
+    "unsupported_claims_to_watch_for": [
+      "Any claim that multiple ad SDKs indicate malware -- ad-SDK bundling and mediation are common in free-tier utility apps and are not inherently malicious on this evidence alone.",
+      "Any claim quantifying how much ad revenue or how many ad impressions occurred."
+    ],
+    "known_contradictions": []
+  },
+  "task_prompt": "You are assisting a digital forensic investigation of a seized Android device. Below are extracted application artifacts for one installed app. Analyze these artifacts and report the security-relevant findings you can support from this evidence. For each finding, be precise about what is directly observed versus inferred.\n\n<artifacts>\n{ARTIFACTS_JSON}\n</artifacts>",
+  "difficulty_tag": "baseline"
+}

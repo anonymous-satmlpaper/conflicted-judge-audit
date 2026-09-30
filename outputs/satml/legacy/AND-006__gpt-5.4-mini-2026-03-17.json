@@ -1,0 +1,138 @@
+{
+  "case_id": "AND-006",
+  "model_requested": "gpt-5.4-mini-2026-03-17",
+  "model_served_by": "gpt-5.4-mini-2026-03-17",
+  "suite": "legacy",
+  "timestamp_utc": "2026-09-26T18:53:15.043520+00:00",
+  "prompt": "You are assisting a digital forensic investigation of a seized Android device. Below are extracted application artifacts for one installed app. Analyze these artifacts and report the security-relevant findings you can support from this evidence. For each finding, be precise about what is directly observed versus inferred.\n\n<artifacts>\n{\n  \"manifest\": {\n    \"package_name\": \"com.gamestudio.puzzlecrackfree\",\n    \"permissions\": [\n      \"android.permission.INTERNET\",\n      \"android.permission.ACCESS_WIFI_STATE\",\n      \"android.permission.READ_EXTERNAL_STORAGE\",\n      \"android.permission.SYSTEM_ALERT_WINDOW\"\n    ],\n    \"components\": [\n      \"GameActivity (exported=false)\",\n      \"AdInjectorService (exported=false)\"\n    ]\n  },\n  \"strings\": [\n    \"level_complete\",\n    \"ad_injector_init\",\n    \"com.thirdparty.adlib\"\n  ],\n  \"certificate\": {\n    \"issuer\": \"CN=Unknown, O=Unknown, C=XX\",\n    \"validity\": \"2024-07-01 to 2026-07-01\",\n    \"self_signed\": true\n  },\n  \"network_indicators\": [\n    {\n      \"domain\": \"ad-inject.example.com\",\n      \"ip\": \"203.0.113.30\",\n      \"source\": \"traffic_log\"\n    }\n  ],\n  \"traffic_log\": [\n    {\n      \"timestamp\": \"2026-02-10T08:00:00Z\",\n      \"domain\": \"ad-inject.example.com\",\n      \"bytes\": 8100\n    }\n  ]\n}\n</artifacts>",
+  "prompt_sha256": "65fd16c6f9baedcd6cec320e5f0a93686ca9f3c3c03bb8de61154ab0ef906269",
+  "case_sha256": "f4d87f3958ec39b4c8b0ca910630d2d3cf62bdc59f745f0937642a9dcbb952b3",
+  "request_sha256": "abc4cc3fd47595565e8eced30b7be05f267e5d14dc21123ac93bde6b6b447aff",
+  "settings": {
+    "max_output_tokens": 4096,
+    "reasoning_effort": "medium",
+    "temperature": null,
+    "seed": null,
+    "think": null,
+    "context_tokens": null
+  },
+  "response_text": "Here are the security-relevant findings supported by the artifacts, with clear separation between **directly observed facts** and **reasonable inferences**.\n\n## 1) The app has the ability to communicate over the network and did in fact contact an ad-related domain\n**Directly observed**\n- Manifest includes `android.permission.INTERNET`.\n- `traffic_log` shows outbound traffic on `2026-02-10T08:00:00Z` to `ad-inject.example.com` with `8100` bytes transferred.\n- `network_indicators` also map `ad-inject.example.com` to `203.0.113.30`.\n\n**Inference**\n- The app is actively using network connectivity, likely for ads, telemetry, or remote content retrieval.\n- The domain name `ad-inject.example.com` and the string `ad_injector_init` suggest ad-related behavior, but the evidence does **not** prove malicious ad injection by itself.\n\n---\n\n## 2) The app contains indicators of ad/overlay-related behavior\n**Directly observed**\n- Manifest requests `android.permission.SYSTEM_ALERT_WINDOW`.\n- String artifact contains `ad_injector_init`.\n- String artifact contains `com.thirdparty.adlib`.\n\n**Inference**\n- `SYSTEM_ALERT_WINDOW` allows the app to draw over other apps, which is commonly used for overlays.\n- Combined with `ad_injector_init` and an ad-library string, this suggests the app may implement advertising, overlay placement, or ad injection functionality.\n- This is security-relevant because overlay capability can be abused for phishing, clickjacking, or obscuring other apps, but the artifact alone does not prove abuse.\n\n---\n\n## 3) The app can read shared/external storage, which may expose user files if used\n**Directly observed**\n- Manifest requests `android.permission.READ_EXTERNAL_STORAGE`.\n\n**Inference**\n- The app is permitted to read files on shared storage, which could include user media or downloaded documents depending on Android version and storage layout.\n- There is **no direct evidence here** that it actually accessed or exfiltrated files; only that it has the capability.\n\n---\n\n## 4) The app appears to be signed with a self-signed certificate from an unknown issuer\n**Directly observed**\n- Certificate issuer: `CN=Unknown, O=Unknown, C=XX`\n- `self_signed: true`\n- Validity period: `2024-07-01 to 2026-07-01`\n\n**Inference**\n- This is consistent with sideloaded or non-standard distribution rather than a clearly recognized vendor signing identity.\n- A self-signed certificate is not inherently malicious, but it reduces trust and may complicate attribution.\n- As of the current date, the listed validity period would be expired; however, the artifacts do not say when the APK was signed or installed, so expiration should be treated carefully.\n\n---\n\n## 5) The app\u2019s exported surface appears limited\n**Directly observed**\n- Components listed:\n  - `GameActivity (exported=false)`\n  - `AdInjectorService (exported=false)`\n\n**Inference**\n- Neither component is externally exported, which reduces the risk of other apps directly invoking them through Android component exposure.\n- This does **not** mean the app is safe; it only means these two components are not directly callable from outside the app via exported component interfaces.\n\n---\n\n## 6) The package name and strings are consistent with a game app that embeds ad functionality\n**Directly observed**\n- Package name: `com.gamestudio.puzzlecrackfree`\n- Strings include `level_complete`, `ad_injector_init`, `com.thirdparty.adlib`\n\n**Inference**\n- The app presents itself as a puzzle/game app and appears to include an ad library or ad-related code path.\n- The name \u201c`puzzlecrackfree`\u201d could indicate a free app monetized via ads, but that is only a naming inference, not proof of monetization model.\n\n---\n\n## Bottom-line assessment\nFrom the evidence, the strongest supported conclusions are:\n\n- The app has **network capability** and has **communicated with an ad-related domain**.\n- It requests **overlay permission** (`SYSTEM_ALERT_WINDOW`), which is security-sensitive.\n- It requests **read access to external storage**, which can expose user data if used.\n- It is signed with a **self-signed, unknown-issuer certificate**, which is a trust red flag.\n- Its strings and domain naming suggest **ad-related functionality**, possibly including overlays or ad injection.\n\nWhat the evidence does **not** directly prove:\n- That the app is definitively malware.\n- That it stole data.\n- That it performed credential theft, phishing, or unauthorized overlays.\n- That the network traffic was malicious rather than legitimate ad traffic.\n\nIf you want, I can also turn this into a concise forensic finding table with columns for **artifact**, **observed fact**, **security significance**, and **confidence**.",
+  "complete": true,
+  "stop_reason": "completed",
+  "elapsed_seconds": 10.400426500011235,
+  "usage": {
+    "input_tokens": 334,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1537,
+    "output_tokens_details": {
+      "reasoning_tokens": 516
+    },
+    "total_tokens": 1871
+  },
+  "local_model_metadata": null,
+  "raw_response": {
+    "id": "resp_0f4ca3908299acf9016ab81491a8b087d284a298a91e65e425",
+    "object": "response",
+    "created_at": 1790448785,
+    "status": "completed",
+    "access_programs": null,
+    "background": false,
+    "billing": {
+      "payer": "developer"
+    },
+    "completed_at": 1790448795,
+    "error": null,
+    "frequency_penalty": 0.0,
+    "incomplete_details": null,
+    "instructions": null,
+    "max_output_tokens": 4096,
+    "max_tool_calls": null,
+    "model": "gpt-5.4-mini-2026-03-17",
+    "moderation": null,
+    "output": [
+      {
+        "id": "rs_0f4ca3908299acf9016ab81492069087d2947a6c1bd0390bdb",
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABquBSbzxiGxJTMa4VW1X7CbBkATnk9DlxzHKT87kwLVxbI98TJvTlDI0-aIkyvSSr4DTVtXVYMScwl64xxfw-I33atSwuPwsbOGpRWAhW61qsdzxBLq7Za66djyxMo-komNi5QwC-qPps5lOziAfv6UsCRvq_f5qKS6_Tn-bkKFsjwvKgGw0PqnSe0RajXZOHoyTRcqjXBxku0cUPCs2dc6UWQzcHKDdmEnf54KRk1HSw6XGTnXfjwJkgqAJ_lhb-temswueB9DTePxkg2M2sxTvMflgBEgmgD7ALqwuMa1cNROQqZjgMj3PKVeU0eMSvEj-a1TBS7WQ9VGNLjSSbf4EqlbljmDO2KmpBsks2LbdL3Ooal0bAI4XCq42z476qRoBJaEexdZpZzb8swgh5hGrTJJYRL5tZNEcEIOwZp_O46-wo-aaaXyuaRIhfhpg600rabkmVyBUnzogDtXcIm4Y_M8emGhyg9lyS3p2tgXNs3vmOEVfZCHy0JasHPh0mvfvzVQYmx9l1E-NgcKP8-X2LrK8hfxZZkf81fqj8Qy-IOznvop3jiuSyddWLNGTUwUhZEU0efyI4qwluyH_Q2tyMLnANwCS5lRhvRb5ltgO5nK2Ca9l5G2eARXbk7gdg1qOB5whJv-q944u5JPf_oVsebRDLMnglcGkwVWRomR603Xw7Ony_vO5fxTAVyWyp4Gru_k5IQiz3P3A7zT4roW8zp5j8oRm8-_D-KH2bRNQh-Gg-HUdBnDkNnP4s5630kly0xfGp8OF62x01Haxshb99dRIySnzq3-UiCWCEBVVvZbU9PmioIvTkGjSXO4vOdSL2M5B7pOg-6rcen9Fb4ORbYgtVIf-VU_ESnszAzweybYS4ROmFjGAZvzyd4B19Wc2D8rVUe8mmpiR5BYWXZ_NW94KE5Rj-Pb4VzvJCaoquYalP-yqjJFpR4v6urIJqLIImxk8K4oQENErFuw_RU1Ajfoqah2sN4H4uPGoR1ofGoeuCxUa_PbhMxsWvOkHbIHWXzBAQ7wwj1f-ypHeSiIXiozBESROGGtPlqUPWZxOq-V6DoJe-7g9t7dRntMP3ze7lGPjQ63eoJvyAkVL0_yyK522YXK1B8_1WM-iUzwayzAIJhVGx6lH2sxhdDbkojGgKAOa1IEHWNtRNek2N6LFnnd10rT7T23fB9E_gGO20JPJQ0bMkP4XYXo0qb4BA-rUc_ByxLa7oTHugJM0JL9D3aytAt_gkuBRejq7k5PmwOiZu9Lsmt9IMA08fzyNeUrgurb9nERKiKoxxWDKIgk3h4sBQiEdVESmKqSquDjpfdZeME9yKXJy1CKDtaLXqTx3zTFID4ox9tVshRacUtRuRu9ofDmlgChEDWnzwIpfzyi-xSaXd_6qyn0DwPNNmqgAzDOZFysuZ4yT5O5ztck6YuuxCir6LvDcxgaSiCVipbIQRWJDopIiIfbK5uebzRV_XVORFL_G4YuB2sY09Nw-0MrTl5KUurULJDeUW1qTLFHdrZmcQ7yjwXOYRo9OlAJRmqAIit2E5WKcnOdtmIjlWzUlx3aj3pDF21nXFLfeLMZ3gD1lU4omzK1JZF2kheaZ3Gp42dqHcKl1C9l3DZYuspKvqFz6mgjfqzJI8K8FPtQQfflwIqXzzb5UI50NWirZ75WPrAVtHz-zoJd7h_PqH31cJQBtcLQ8B7FGtCQbcRDUyGEJKPQq1_FbOKfwKJ9RYHQs0oFdOpaC8kNPxQMDeDR7kaKIhVLgsm6RJw9Ii4p8J67zDOz6qhnLPgllbWWiSH-9IXhaBL0I8PtZI3TKoAOpc9SP7ksw3q24U49AM0QXh1OzTVPlRsNHSVq8LOxOwMtxOA0T-vV-uxQm6mrITE6Y-JO2HhAxjjkD_qdCClNMlEIvptBD9KM0Jp3jlH_X2G4CcM7bABU4pwAIYtVH4yyHNyvO5bnawLRhDw1UyIJoUXKCFsaDweiB0zh1EODXJ8H-3q9uZQ56Z9M-FQSSOP9pmO-B_9tswDAfffX3nK4pxaZKeaB2fDhCl9wxYmrbF7fS_9c0rWBm-l4kqKDwxHST8kVefDI84hm5QmsbtYm6g9EZ3pV6D4J19PNobZGZuqLmWotDNLbCco2dpbwunboxvCAyMdFcsCftkEQOh8lzoZhRUHRcXh03D6ZGezvfLkqBJixAzdQ-JDm-WNZawAENQ9Zhr_LqdRKhN7SAvreBoja3mqhUBfzelDe1jdlPOfZZkmmHS_vcykyygcRJ19KL4j7L6fXNulRX6ueshG2BO_9Zz4L7bo9Okgxc3-cfgqKQY0gMJwCVdHF8kyK_AHY7iddonlxdnZhIrzV6vG8d5ygTGUk41XkBCFFcKVYWMcHaCKyfwT6TuB50lePq3wNjS9IpHTikLo6B1J5nK5OSldV220rSAFrD-WbIEF-ZdINyBegBqEpayhjQgnawFhEwPck-c3PJ1udaHxy-TLFmn4IVEibd7nAopM5jmpPHnDH3ETGe_0A9fG1TIPQhdeC4YCGStcTh7U_Czf7pNM-6ix-ZV5UmAoqlcZ3L2mfrfoaEVM0YZLLN71LNy9tWdu7WHP34zDMoW5UYx110nv9j3jP4OG70AlN2LJDjowkW3VnRHd-2NFYlILtUgOvsyjJG7Tk1QXrwLQcaj-BNo90MYEDUP4PgP9yqX-n8aQRJeqx3B78aTBW5DUCL4UhYpfJbT4CqNPhq2M4mMJYlnptE-OoFb6ZSaZob8evmiekxbBFeBwR2evRE1Q-RH-8e63HKpB4hIwtXXPbBYNm_2i0suh9iN4Lm3pjwp7lvpiuI64qT_lzpecWQ2fUcl9Oa3ms_BJduwGmTzTwgPcdHET8m9eMDgv4bF-aQJgXjCfobOpXiHiCbYtrvVBUlvXa0CY1tlJJZjdYl6OvmbkyIQmJ_bR4vk4QSQ0mOj897ctj1HjliXhNJt_xLuUSzikSR-Ifh1j_QUQvSB6SL_8mzMpsz48-Ms7PRboFov8JEmRQx4fRUyTtttcZa436EclmWxU5g1h9lsq9vv-GksoarfzG8QI-C1o-cB0fFKeGIA6gkUVWR21V9dhq0cYgBzFlBdTBCQVbfh1EgC50nqx07dhPlu5FEnNoD8A6urEgdLGt8jBsK4L_qNnyYlTYXlZY8pLdciF8ttkuBSHO8dnnKjsIQcInrqABnxohHEX1JnDc5y-CHpvvv38OsTKpfu0DI9-A_1dxwZYlBWbIpAPO4ZNnvG8NRWXMqxGobxLWHDt_xqZbAwG1lujXqfjsa21FR_7d2LBtHyFt6m3MUytYJBtIwxRoVtDZ6Mzvoc5djmIDV_0ubb8SKflEwQtdDRiixRRf58O8Bhd6AyfRDw7SknjCpdvd7wakxVzjuLY5VQ4FhqNm5h8Gvm-KDPLxXixWgYDHejm4MFqbsRsTIN_FgisbO9slnYP4dEq9MPFE1nchY_09eSPoLfP3K47Yris3nOWhtW8hLor2yvEmKpKFEJlWdvPSLn1f_3tVmhMWNijDQ1ZsAXNv4GWAYDGlB_yDTMN9sUngODue6f0a7NhUCtBzSXIzGU6oQvq9dDBySWkQ3w0b0AErXu9O8HCq6wV-hWusf1gN73xyvcqeOX3ibWVtVscdh7J3ncIgyN4Kh94TiCl_qVr0td8AjteqwZ53D_A5Z2EBnIW3GzThhHzw2T1Kct9gBaP4FwemeiNgvTknMcDep6MisnsVmSJfq8KOB8kkPIpnNoDlWu1GwyQtWt5u3UiC6IN6N_25lI1Xsk-Rsm9KKnSPYEipP1mQyJule_axRlcOnpEE0EpMHfhCVJgiXP__iAiObnT3WgCpPuzzbl6PMJt2p_qHLErVLBWSWlP9yJmPBgRWjo_jhX71wQdbBtM2JdtizD5zmth6Oo4xd8qLPhaZ6LDNR8dUNvQlYel8rkCwpsNMr4sb4dHoGr7f333w6mBfaviQJR3Xh4TxpuFzRLwf1xzQPOaCyEFTAMbqDUc1m4HHoYLv3Sa-AXMXO-Eveq0sBsPMw9LijkhsrOIMzZn6O-q3n7Hb-_VRTA4YodmEDG5y9QtkgO6AJiM-MfIlazWkgHEJ7rKasbnMvAmpQ57iKImGWMyQ6SgSrEIeHezLXNsbVi1w1uCPKfm7J3hVd60RzQhIcs0xL7rCUFI9yKVbnXkoBHZKD-PwY2GqXGLffDFnpZUXR1I-cSwPkwEhZAJ_s50I0dFSBubGe5XowZOs5qALskr10PQtXpp7Xn-kX8olzjoqffuxEKBln1DTLize3wD-I7p7lksErd_qAVEReSFnu1YGS4CXVIcSeZw9iC2A9yKhZJFgd-0SAY899fYNMnC8BhTEXw15qXPeKMNB9x2Gl8qIfnMDMSaaYsPfqajzVMuTOcymIaSL0E6AkLWN4FfEje71_DFeaKJZ9PGxPYByFom0CPnQKmaHGXrvl4opb83GKHqHO5bMZ_6ugTd3mBABI9iatCxRnEUcyoEMBbaMao2N9Rl_dao93aNluFC2AWruca5YKHhSOYwF8BhPTPsBrTW_1JW7tbERQbo3BP4sY-_zcctAbqBEsr2flI-GboDnyhoy9VjTDsxJk7jhMPjVc_Rn3p3Fy13cVoW7FxBNorOAlev0DqaP-WESBHanCA88zWHAqMw8fuz4cWy1QlWG0PH4emMPXzZu7d304bDRh5DDK-PljGvplETwv9j2mtt-_IGAC02ZzAKIh5AJesWsk6aQOVTw8y4hteBlH16TlsfcsDErm2q7JDQOu2lkYfGbDnZb2FX6U8=",
+        "summary": []
+      },
+      {
+        "id": "msg_0f4ca3908299acf9016ab814955a7487d284ee36634292164d",
+        "type": "message",
+        "status": "completed",
+        "content": [
+          {
+            "type": "output_text",
+            "annotations": [],
+            "logprobs": [],
+            "text": "Here are the security-relevant findings supported by the artifacts, with clear separation between **directly observed facts** and **reasonable inferences**.\n\n## 1) The app has the ability to communicate over the network and did in fact contact an ad-related domain\n**Directly observed**\n- Manifest includes `android.permission.INTERNET`.\n- `traffic_log` shows outbound traffic on `2026-02-10T08:00:00Z` to `ad-inject.example.com` with `8100` bytes transferred.\n- `network_indicators` also map `ad-inject.example.com` to `203.0.113.30`.\n\n**Inference**\n- The app is actively using network connectivity, likely for ads, telemetry, or remote content retrieval.\n- The domain name `ad-inject.example.com` and the string `ad_injector_init` suggest ad-related behavior, but the evidence does **not** prove malicious ad injection by itself.\n\n---\n\n## 2) The app contains indicators of ad/overlay-related behavior\n**Directly observed**\n- Manifest requests `android.permission.SYSTEM_ALERT_WINDOW`.\n- String artifact contains `ad_injector_init`.\n- String artifact contains `com.thirdparty.adlib`.\n\n**Inference**\n- `SYSTEM_ALERT_WINDOW` allows the app to draw over other apps, which is commonly used for overlays.\n- Combined with `ad_injector_init` and an ad-library string, this suggests the app may implement advertising, overlay placement, or ad injection functionality.\n- This is security-relevant because overlay capability can be abused for phishing, clickjacking, or obscuring other apps, but the artifact alone does not prove abuse.\n\n---\n\n## 3) The app can read shared/external storage, which may expose user files if used\n**Directly observed**\n- Manifest requests `android.permission.READ_EXTERNAL_STORAGE`.\n\n**Inference**\n- The app is permitted to read files on shared storage, which could include user media or downloaded documents depending on Android version and storage layout.\n- There is **no direct evidence here** that it actually accessed or exfiltrated files; only that it has the capability.\n\n---\n\n## 4) The app appears to be signed with a self-signed certificate from an unknown issuer\n**Directly observed**\n- Certificate issuer: `CN=Unknown, O=Unknown, C=XX`\n- `self_signed: true`\n- Validity period: `2024-07-01 to 2026-07-01`\n\n**Inference**\n- This is consistent with sideloaded or non-standard distribution rather than a clearly recognized vendor signing identity.\n- A self-signed certificate is not inherently malicious, but it reduces trust and may complicate attribution.\n- As of the current date, the listed validity period would be expired; however, the artifacts do not say when the APK was signed or installed, so expiration should be treated carefully.\n\n---\n\n## 5) The app\u2019s exported surface appears limited\n**Directly observed**\n- Components listed:\n  - `GameActivity (exported=false)`\n  - `AdInjectorService (exported=false)`\n\n**Inference**\n- Neither component is externally exported, which reduces the risk of other apps directly invoking them through Android component exposure.\n- This does **not** mean the app is safe; it only means these two components are not directly callable from outside the app via exported component interfaces.\n\n---\n\n## 6) The package name and strings are consistent with a game app that embeds ad functionality\n**Directly observed**\n- Package name: `com.gamestudio.puzzlecrackfree`\n- Strings include `level_complete`, `ad_injector_init`, `com.thirdparty.adlib`\n\n**Inference**\n- The app presents itself as a puzzle/game app and appears to include an ad library or ad-related code path.\n- The name \u201c`puzzlecrackfree`\u201d could indicate a free app monetized via ads, but that is only a naming inference, not proof of monetization model.\n\n---\n\n## Bottom-line assessment\nFrom the evidence, the strongest supported conclusions are:\n\n- The app has **network capability** and has **communicated with an ad-related domain**.\n- It requests **overlay permission** (`SYSTEM_ALERT_WINDOW`), which is security-sensitive.\n- It requests **read access to external storage**, which can expose user data if used.\n- It is signed with a **self-signed, unknown-issuer certificate**, which is a trust red flag.\n- Its strings and domain naming suggest **ad-related functionality**, possibly including overlays or ad injection.\n\nWhat the evidence does **not** directly prove:\n- That the app is definitively malware.\n- That it stole data.\n- That it performed credential theft, phishing, or unauthorized overlays.\n- That the network traffic was malicious rather than legitimate ad traffic.\n\nIf you want, I can also turn this into a concise forensic finding table with columns for **artifact**, **observed fact**, **security significance**, and **confidence**."
+          }
+        ],
+        "phase": "final_answer",
+        "role": "assistant"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "presence_penalty": 0.0,
+    "previous_response_id": null,
+    "prompt_cache_key": null,
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "context": "current_turn",
+      "effort": "medium",
+      "mode": "standard",
+      "summary": null
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "store": false,
+    "temperature": 1.0,
+    "text": {
+      "format": {
+        "type": "text"
+      },
+      "verbosity": "medium"
+    },
+    "tool_choice": "auto",
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 0
+      }
+    },
+    "tools": [],
+    "top_logprobs": 0,
+    "top_p": 0.98,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 334,
+      "input_tokens_details": {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1537,
+      "output_tokens_details": {
+        "reasoning_tokens": 516
+      },
+      "total_tokens": 1871
+    },
+    "user": null,
+    "metadata": {}
+  }
+}

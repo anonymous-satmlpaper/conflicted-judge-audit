@@ -1,0 +1,8 @@
+﻿{
+    "raised":  9,
+    "confirmed":  9,
+    "rejected":  0,
+    "observed_precision":  1,
+    "recall_validated":  false,
+    "blinded":  false
+}

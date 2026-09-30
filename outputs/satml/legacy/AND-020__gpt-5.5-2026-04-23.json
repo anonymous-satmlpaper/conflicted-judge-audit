@@ -1,0 +1,138 @@
+{
+  "case_id": "AND-020",
+  "model_requested": "gpt-5.5-2026-04-23",
+  "model_served_by": "gpt-5.5-2026-04-23",
+  "suite": "legacy",
+  "timestamp_utc": "2026-09-26T18:52:50.090185+00:00",
+  "prompt": "You are assisting a digital forensic investigation of a seized Android device. Below are extracted application artifacts for one installed app. Analyze these artifacts and report the security-relevant findings you can support from this evidence. For each finding, be precise about what is directly observed versus inferred.\n\n<artifacts>\n{\n  \"manifest\": {\n    \"package_name\": \"com.utility.clipboardmanagerpro\",\n    \"permissions\": [\n      \"android.permission.INTERNET\"\n    ],\n    \"components\": [\n      \"ClipboardMonitorService (exported=false, launched by BootReceiver)\"\n    ]\n  },\n  \"strings\": [\n    \"clipboard_watch_loop\",\n    \"btc_address_regex\",\n    \"eth_address_regex\",\n    \"clipboard_replace_content\"\n  ],\n  \"certificate\": {\n    \"issuer\": \"CN=Unknown, O=Unknown, C=XX\",\n    \"validity\": \"2024-05-15 to 2044-05-15\",\n    \"self_signed\": true\n  },\n  \"network_indicators\": [\n    {\n      \"domain\": \"addr-config.example.com\",\n      \"ip\": \"203.0.113.100\",\n      \"source\": \"traffic_log\"\n    }\n  ],\n  \"traffic_log\": [\n    {\n      \"timestamp\": \"2026-03-01T18:45:00Z\",\n      \"domain\": \"addr-config.example.com\",\n      \"bytes\": 300\n    }\n  ]\n}\n</artifacts>",
+  "prompt_sha256": "c734f806fe8a8336784a3e16994fb8f1d83544e462231e49582cf7e362a0c733",
+  "case_sha256": "dbb9ca56edf5c2aa7fdd24b32471d14cf6aabccb32ff69046f4624f4ba35e48d",
+  "request_sha256": "0c9d7d6fb051b839c15ddae9e016b6d833ab35f9606d00f734476e1e00d60d64",
+  "settings": {
+    "max_output_tokens": 4096,
+    "reasoning_effort": "medium",
+    "temperature": null,
+    "seed": null,
+    "think": null,
+    "context_tokens": null
+  },
+  "response_text": "## Security-relevant findings from the provided artifacts\n\n### 1. App has clipboard-monitoring indicators\n**Directly observed:**\n- Package name: `com.utility.clipboardmanagerpro`\n- Manifest component: `ClipboardMonitorService`\n- String artifact: `clipboard_watch_loop`\n\n**Supported inference:**\n- The app likely contains functionality to monitor clipboard contents.\n- The service name and string strongly suggest a clipboard-watching loop, but the artifacts do not show the actual implementation code or runtime clipboard reads.\n\n---\n\n### 2. App appears to target cryptocurrency addresses\n**Directly observed:**\n- Strings:\n  - `btc_address_regex`\n  - `eth_address_regex`\n\n**Supported inference:**\n- The app likely contains logic to identify Bitcoin and Ethereum wallet addresses in text, possibly clipboard text.\n- This is security-relevant because clipboard-monitoring malware commonly looks for cryptocurrency addresses to replace them with attacker-controlled addresses.\n\n**Not directly proven:**\n- The evidence does not include the regex patterns themselves.\n- The evidence does not prove any specific wallet address was detected, collected, or modified on this device.\n\n---\n\n### 3. App contains an apparent clipboard-replacement capability\n**Directly observed:**\n- String artifact: `clipboard_replace_content`\n\n**Supported inference:**\n- The app likely has functionality related to replacing clipboard contents.\n- Combined with clipboard-monitoring and cryptocurrency address regex strings, this is consistent with \u201cclipboard hijacker\u201d or \u201cclipper\u201d behavior.\n\n**Not directly proven:**\n- No clipboard history, memory capture, or runtime trace is provided showing that clipboard contents were actually replaced.\n- No replacement wallet address is present in the provided artifacts.\n\n---\n\n### 4. App has persistence-related behavior through boot launch\n**Directly observed:**\n- Manifest component: `ClipboardMonitorService`\n- Component description: `exported=false, launched by BootReceiver`\n\n**Supported inference:**\n- The app is designed to start its clipboard-monitoring service after device boot.\n- This suggests persistence behavior: the app may resume monitoring without user interaction after reboot.\n\n**Security significance:**\n- Boot-start behavior is common in legitimate utilities but is also useful for malware that needs continuous monitoring.\n\n---\n\n### 5. App has network capability and observed outbound communication\n**Directly observed:**\n- Manifest permission:\n  - `android.permission.INTERNET`\n- Network indicator:\n  - Domain: `addr-config.example.com`\n  - IP: `203.0.113.100`\n  - Source: `traffic_log`\n- Traffic log:\n  - Timestamp: `2026-03-01T18:45:00Z`\n  - Domain: `addr-config.example.com`\n  - Bytes: `300`\n\n**Supported inference:**\n- The app or device communicated with `addr-config.example.com` at the recorded time.\n- The small transfer size, domain name containing `addr-config`, and the app\u2019s clipboard/cryptocurrency indicators are consistent with the possibility that the app fetched address configuration, such as replacement wallet addresses.\n\n**Not directly proven:**\n- The content of the 300-byte transfer is not provided.\n- There is no proof that cryptocurrency addresses, clipboard contents, or user data were transmitted.\n- There is no proof that the contacted server was command-and-control, although it is suspicious in context.\n\n**Note:**\n- `203.0.113.0/24` is a documentation/test IP range. If this is from a real investigation, the IP may have been sanitized or substituted in the artifact set.\n\n---\n\n### 6. App is signed with a self-signed certificate with unknown identity\n**Directly observed:**\n- Certificate issuer: `CN=Unknown, O=Unknown, C=XX`\n- Self-signed: `true`\n- Validity: `2024-05-15 to 2044-05-15`\n\n**Supported inference:**\n- The app was not signed by a certificate chain identifying a known public organization.\n- The 20-year validity period and unknown self-signed identity may reduce trustworthiness.\n\n**Caveat:**\n- Android apps are commonly self-signed, including legitimate apps. This fact alone does not prove maliciousness.\n\n---\n\n### 7. Limited exported attack surface from the listed service\n**Directly observed:**\n- `ClipboardMonitorService` is `exported=false`.\n\n**Supported inference:**\n- That service is not intended to be directly invoked by other apps.\n- This slightly reduces inter-app attack surface for that component.\n\n**Caveat:**\n- This does not reduce concern about the app\u2019s own behavior once installed.\n\n---\n\n## Overall assessment\n\nThe artifacts are strongly suggestive of a cryptocurrency clipboard hijacker/clipper app.\n\n**Directly supported indicators include:**\n- Clipboard monitoring-related strings and service name.\n- Bitcoin and Ethereum address regex strings.\n- Clipboard replacement-related string.\n- Boot-launched background service.\n- Internet permission.\n- Observed outbound network contact to `addr-config.example.com`.\n\n**Reasonable inference:**\n- The app may monitor clipboard contents for cryptocurrency wallet addresses and replace them, potentially using network-fetched configuration.\n\n**Not proven by the provided evidence:**\n- Actual clipboard replacement occurred.\n- Any cryptocurrency was stolen.\n- Any specific replacement wallet address was used.\n- Clipboard contents were exfiltrated.\n- The network endpoint delivered malicious configuration.\n\n## Recommended follow-up artifacts to examine\n\n- Decompiled code for `ClipboardMonitorService` and `BootReceiver`.\n- Runtime logs showing clipboard read/write events.\n- SharedPreferences, SQLite databases, or files storing replacement addresses.\n- Full packet capture or TLS interception logs, if available.\n- Clipboard history artifacts, if present.\n- Installed app source, signing certificate reuse, and reputation checks for the package/certificate/domain.",
+  "complete": true,
+  "stop_reason": "completed",
+  "elapsed_seconds": 17.297191600024235,
+  "usage": {
+    "input_tokens": 302,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1634,
+    "output_tokens_details": {
+      "reasoning_tokens": 457
+    },
+    "total_tokens": 1936
+  },
+  "local_model_metadata": null,
+  "raw_response": {
+    "id": "resp_0e8a89c891a05aaa016ab81471ea8087d28b17a23133d6ed94",
+    "object": "response",
+    "created_at": 1790448753,
+    "status": "completed",
+    "access_programs": null,
+    "background": false,
+    "billing": {
+      "payer": "developer"
+    },
+    "completed_at": 1790448770,
+    "error": null,
+    "frequency_penalty": 0.0,
+    "incomplete_details": null,
+    "instructions": null,
+    "max_output_tokens": 4096,
+    "max_tool_calls": null,
+    "model": "gpt-5.5-2026-04-23",
+    "moderation": null,
+    "output": [
+      {
+        "id": "rs_0e8a89c891a05aaa016ab81472914087d295c985d6eb25cca1",
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABquBSCIcdV1BoD7lS-4w_bNmfMW_sInTtKpoXa65a5Xy6FYxaVRRUDDD414Kg270xGJhyx48OowcrFkOTIfEP-cawuMCWeFeJ98WUYVeBIEGzM36kkQCjeH8jzFlK5C-4H5x1j3I0T4MDhT79z1q4ud8xucWQSk4VwGrZoz6Ja2CmWD2MORmWlAGtF3cfgNy0ZDfIhxzoq0XjDSrtYM9radvSjrTjrtV3TwjuZ2B_8YkoH7nwmGQMhNaFqRFdIGCDYK-8gNACB7isIu-yDm6JDe5vcEFbvXoQi9yg5Z0qZ4S4aZYm_Zgfjt4sGPTy9Vh2hypL3Q55RYKNQX4PelcYR2_NsynEvCTvhgi6nZD7WSOSmEw3V197YUQmnFEBVzhaDcBska8maiRkIGGMtdjfml03Fr9hb6ouXW8MJavPHWKcf0lYyO7enEKYsa43bynddiLWIaY0XSxgqTy8-VdXN967NTWbH7q0pQEgVYljvqTtc355hj8dolRGGGNIUhufUN72OpA6ddcrCWDw1j2jqyqJCvnTxZT2rUNfzoHx_b5-ZiX9OmQ2-W_tH3BM0kjuPmd1vcYrCKMsPUn77diGHsBrhPYN_DEVuN2IrkvHEKVcyo8k7MBZq5a_dtt21dSj8VdF8tqOxGOjLq5z7Bf1e7qbwgVK28LKGJPUrxY-lUyb3p-Cp_exc3_sPeeMNyR-ZZP7LEa911APYUawlU6-qOZ6302xyHjAYtlGf2BwSOv_r3OlR38HmkNkNXU6QL5lNSzfqHqEKey6DepHRHjNdW3j0hMYMxZ2J0tUen8cN2kbGMi08Um_m3Z9csbu9a9HQWI4-7kxwpxyBOoNLxkhkwxO2i0d31iSQ2QF1JqnJG1-5mkrdYIdjHT904sWuJisY4yBz7J-5YgVQXq7Hy5-JskAt9oNk4Ylp3GLOwM2kt_cxgf915AKS5NYBhRixe4MROJW71BxkXsuQJ9RfT9NrKCUgtLZAFt5dXyeDVD_CzX2Sg5ASaHI7YpoBOqUPQEkJ9YcXra1zBWVW2JNviAtwnCIwzHcSTMKQtsNtjSRESTT8_BnffHB7wzesHRxRezvEN9yGLp-5bAlpJVdSGrFPKQm0ddVo1bW-PUcViFQbXnWlFg7NMDJX18qnstOmw4kJPpNtdg_atkAb80gjaGqwsgmEQCWh8qSp2K0x-2uOZTayBjcuJYTdo_uH5EYbpt--Gy4jrlv-fo1nKIl3FDtI4Ekv0w43HGgUJhXtwvQ702_w-aJedunATIOMdVkwTxVfqFD1vZqORpIEdqx0qBiozVs1V1RXlwuThLaCiR8vdsAw7jdX5bVIQIQjw-Gr-c534_ewj2VVt_GDzvVf-_8YQ-jC-DjjLc-o0lguKIROkTtip_ZIm1ryRJGTjxLRdtZ-Q2KOc_BF-txPS0FYjBvRS-cKqSIw-ivIrqdeOZzrhPk0z84nX6Y5RUttmVcDo3nlJM-SlopOoQkQF6Jn3d3BoyYf2dh9kciFI4bt5O1XXSiDy_1zJs1R5_IwHe9BTJDbP60ihK3iF7Ityi5KgNt3J3TjK0Z6dDtbrxRfcHNDYSWGDJEwucWkUckwEsdh34qxoNC3ivSUKbqaPy3yU5YuZGsPzd1XyFvbRMrWYOhlwJkZgyvOIL7KSpL2yTWkFwW7MKPzLKf5lE0qYkhdrnIwJAshMl6eCa_0vBH2SWu8EOTCimjeMGLJYmgb6KYmNn_2nEBpgrUOBH_-_d3qevOmUWEUFxiCrfkmKS1aOgQjHkVlvAUmUFpx5VipnQKdfvxHBsAYjAre4OlcImsUWbGw3H_dv5aD18z-_1DqwaFexaBTbll9MocZko8pLbf67dXG_wVie-VY1S2lV_jfPzjvfokXF4r5hO02XtwGhUHEi-QRlv242YESEjuwcShPpoXi1UKSRqRZuep7_qV1g56LmMx7PNcnO9lvQ-ycvLyMN_GpOyt8wKL2FIewtmoh4HOTXJ65JkKo5lgsp_h_b-xx3_Dwj3azADKaIvxfOv9jTGWZKXBAfI6A_31jYOy0wNKklWM5AaxrVVZmLN-057Ld-XyWp68zxWP1ZhOXpJsG2Nb1t3i3Q-K3sA0tnDqDIrMpLaiS86R3xrCyB9UPFZHOvAEDmjaLcx4Rps4WzpCqSsPzwoOSNcERmcE3q7bnG4ILlkCx8ZuAlaJubiEXuJztDHC4zsH22jw6cvk5vdfnCzPjvZ6fTCPzlOMPvsDVCWD4_TCyIcS2avSX0ptot2PTZGc2-YTirQODPi4KjBOCRvq7fTzfUlkM725gl-Z0ozjZV_GJsjBu-x41iD6WxV9UjB-ykgj9JtSRDRrJTZi6avMlQJ6lw2qDZhG4iTFceK1uFgxQIKvlbS7TC7YieepXyXJd5sNJLDoCmmJCIUYnqxN1m5ScYIVtUVTAp_CAvLH81BHLy30Xkguy9aP9wRMJKZr9HjtEtNfI3kb18xa2-19E_PrCbFyCyNJtsADb1VyilPWkTgTw3aD5nwoR3K04r6Aa2pd5pPxllynPsnqTLDaOTuYNMVe3GyBCjU3A1V3YmwmgZxRdnZGD1kyQdSvnYBznGxznLBgdbQ_ypWU16D9xK_w3AplyvDqb8R-JPpJJstiv2uFdqB59aUjQ_sKSv4d98aVt49Gn6QbQPk8EOKzu-I2qXBjcFlioRTYNMwS0xG20XFsLOxgyIFJ6z8qBTwCcEFvxpaQ6xxrzoYsrc37CbDqeKbqzvMOE5B9h5E6lPyobrEfRrJY9-AQDcrwJvQ8mVq6Cl9l9B67L9TRktyzXPSRoP21y5cB_P1N8IgSB0zyIb0f9SAZq54ZdpY8YfmgYy7y0ZU_JJq_GRvvTeEDFlTl9g75V9oEjMx47UVdLOcabPg7rx0wn0vGb-fdROiNw52mkQUZVW9Mck5JknwbEWZfx4d4DCPBYHMs8Yeu4sUzZsym9mkdZ-FiFVG1V7IC_TvMG4QIYT8pSbFr0KYVhKiHkuCsorhleam6rqH_DNXuhfVvAyJZFXWx77qk_Co1KbvUZDG89K_kkSVXuVriRfGgyoV7ctcD0cjF5FTW49KEvWLxOnQVrqWdJRM5LaD3_p3-eclcwCD3jqG7VXS87pvM3b1F4xc2CW0MQVTgBbU-PGFB9t2LxZ6SMCcWm5N5E4_R1CBPLXCzNmBMj1mSwi_r8rcxjvnj8KYHeWNPWjTX91v7JXHqPtutSeHDXipc8pMIkDjnbLHTLw8zoFmjfN2vYv7GeVO0qJajVeRNWgpOVWwVKL4mDlU9PUGb4hY3J_vXA3QggpPmkzCfkT_LpupVpEgNmzXPzoSSQAaLYiYsOyBrCF9YJv3DQxrMjtc5zzSTVqCKHptTvMrzoJnbKVzxzB2V_8LivmnZf9rdzTTU1rLhLiec9uaIhAL1bEeoo4iFxqBS6v1RFi4b6rdT3NuYceJSyuGr5wtGorLWQE8uiPlROnFlaRKkIyIj6O9eWSQ8yHTx-Yugrky5cyWCyeFWAD6_UFPRCoORAdZ6VglEs27pJgvG3nyBqXnxtXQfc1fOTkjVjTgGNc4PhWTyNgNsuCzEtXTOQ3mHE01LOwvApkEZ1fuTaedqdSs3cWRMh4EQbtVYItWh-zeTX4Lagby15SbNR-YL8X-9zfD4gcdDewB7U3g4g8_7gZU7XSCzbUxcMWmFYcZYhU7sbGyd7uIPZ_JzzHQ7NV8Au1yiIJFvGd8QGBj-kXoFjOO055afKAoEWlFwnxSDBbWTFjRHI2mcfa31ublnyuSl7B70wGhMqBFOLsFxWXdbMJ4LmZUahtPfH69Kk8_gtBaZMuxsnnRfRkiK4LzuryS7Cbt_06fGUiPCjd9E5-7WodDLk2FH0m6BkZgJ6YyeqJsnkyFSmBRAuPhc6FVD3L8ROWjRZKAyMUjh7lxFQLz5CnbGiky7tX_9bOwjthwuU1FY4o9T1bE93IhvMn7oRhbcQjl6sSmxaJsPUC8O9VKdffBoVfzJ5c4qABslOEfMdt7q1G33AxPaiXAAFREoO34iHWk-hErWrKs8xH2pec230DxU5rA3LfBxX0MVzIGUOXwUC9O6PIcWiHxfc77VgI3ZjEmfxEui2KlQXztXJihHBhu6EIcWHcj-Sx_mUtwkONQIjd_HIDMOrpyHoF6S6wEmN7b16h05s8G__3M9Noqxa4KlLxWuMmNT213BOHJueZ7jWHhE8DcOdGM8IEBstLmD5Cct7ib9YBdFhRzqA67_uNdqAWoNNNMs1bi8WXqQ1fuZo3uUozKw-zZ5e8OJ7U2_PuqYvMKm3MQOhKn-lKwBCbIByjSALCem3uT1RzhDC7ET7LZkvvWtmgnfAmnI7TBC3okMDNedjQDiGJrs3AuwEqjRHGf8TgFMU5zn3KT6jOA9e7ei1K0s=",
+        "summary": []
+      },
+      {
+        "id": "msg_0e8a89c891a05aaa016ab81477685887d29baba9d547523aef",
+        "type": "message",
+        "status": "completed",
+        "content": [
+          {
+            "type": "output_text",
+            "annotations": [],
+            "logprobs": [],
+            "text": "## Security-relevant findings from the provided artifacts\n\n### 1. App has clipboard-monitoring indicators\n**Directly observed:**\n- Package name: `com.utility.clipboardmanagerpro`\n- Manifest component: `ClipboardMonitorService`\n- String artifact: `clipboard_watch_loop`\n\n**Supported inference:**\n- The app likely contains functionality to monitor clipboard contents.\n- The service name and string strongly suggest a clipboard-watching loop, but the artifacts do not show the actual implementation code or runtime clipboard reads.\n\n---\n\n### 2. App appears to target cryptocurrency addresses\n**Directly observed:**\n- Strings:\n  - `btc_address_regex`\n  - `eth_address_regex`\n\n**Supported inference:**\n- The app likely contains logic to identify Bitcoin and Ethereum wallet addresses in text, possibly clipboard text.\n- This is security-relevant because clipboard-monitoring malware commonly looks for cryptocurrency addresses to replace them with attacker-controlled addresses.\n\n**Not directly proven:**\n- The evidence does not include the regex patterns themselves.\n- The evidence does not prove any specific wallet address was detected, collected, or modified on this device.\n\n---\n\n### 3. App contains an apparent clipboard-replacement capability\n**Directly observed:**\n- String artifact: `clipboard_replace_content`\n\n**Supported inference:**\n- The app likely has functionality related to replacing clipboard contents.\n- Combined with clipboard-monitoring and cryptocurrency address regex strings, this is consistent with \u201cclipboard hijacker\u201d or \u201cclipper\u201d behavior.\n\n**Not directly proven:**\n- No clipboard history, memory capture, or runtime trace is provided showing that clipboard contents were actually replaced.\n- No replacement wallet address is present in the provided artifacts.\n\n---\n\n### 4. App has persistence-related behavior through boot launch\n**Directly observed:**\n- Manifest component: `ClipboardMonitorService`\n- Component description: `exported=false, launched by BootReceiver`\n\n**Supported inference:**\n- The app is designed to start its clipboard-monitoring service after device boot.\n- This suggests persistence behavior: the app may resume monitoring without user interaction after reboot.\n\n**Security significance:**\n- Boot-start behavior is common in legitimate utilities but is also useful for malware that needs continuous monitoring.\n\n---\n\n### 5. App has network capability and observed outbound communication\n**Directly observed:**\n- Manifest permission:\n  - `android.permission.INTERNET`\n- Network indicator:\n  - Domain: `addr-config.example.com`\n  - IP: `203.0.113.100`\n  - Source: `traffic_log`\n- Traffic log:\n  - Timestamp: `2026-03-01T18:45:00Z`\n  - Domain: `addr-config.example.com`\n  - Bytes: `300`\n\n**Supported inference:**\n- The app or device communicated with `addr-config.example.com` at the recorded time.\n- The small transfer size, domain name containing `addr-config`, and the app\u2019s clipboard/cryptocurrency indicators are consistent with the possibility that the app fetched address configuration, such as replacement wallet addresses.\n\n**Not directly proven:**\n- The content of the 300-byte transfer is not provided.\n- There is no proof that cryptocurrency addresses, clipboard contents, or user data were transmitted.\n- There is no proof that the contacted server was command-and-control, although it is suspicious in context.\n\n**Note:**\n- `203.0.113.0/24` is a documentation/test IP range. If this is from a real investigation, the IP may have been sanitized or substituted in the artifact set.\n\n---\n\n### 6. App is signed with a self-signed certificate with unknown identity\n**Directly observed:**\n- Certificate issuer: `CN=Unknown, O=Unknown, C=XX`\n- Self-signed: `true`\n- Validity: `2024-05-15 to 2044-05-15`\n\n**Supported inference:**\n- The app was not signed by a certificate chain identifying a known public organization.\n- The 20-year validity period and unknown self-signed identity may reduce trustworthiness.\n\n**Caveat:**\n- Android apps are commonly self-signed, including legitimate apps. This fact alone does not prove maliciousness.\n\n---\n\n### 7. Limited exported attack surface from the listed service\n**Directly observed:**\n- `ClipboardMonitorService` is `exported=false`.\n\n**Supported inference:**\n- That service is not intended to be directly invoked by other apps.\n- This slightly reduces inter-app attack surface for that component.\n\n**Caveat:**\n- This does not reduce concern about the app\u2019s own behavior once installed.\n\n---\n\n## Overall assessment\n\nThe artifacts are strongly suggestive of a cryptocurrency clipboard hijacker/clipper app.\n\n**Directly supported indicators include:**\n- Clipboard monitoring-related strings and service name.\n- Bitcoin and Ethereum address regex strings.\n- Clipboard replacement-related string.\n- Boot-launched background service.\n- Internet permission.\n- Observed outbound network contact to `addr-config.example.com`.\n\n**Reasonable inference:**\n- The app may monitor clipboard contents for cryptocurrency wallet addresses and replace them, potentially using network-fetched configuration.\n\n**Not proven by the provided evidence:**\n- Actual clipboard replacement occurred.\n- Any cryptocurrency was stolen.\n- Any specific replacement wallet address was used.\n- Clipboard contents were exfiltrated.\n- The network endpoint delivered malicious configuration.\n\n## Recommended follow-up artifacts to examine\n\n- Decompiled code for `ClipboardMonitorService` and `BootReceiver`.\n- Runtime logs showing clipboard read/write events.\n- SharedPreferences, SQLite databases, or files storing replacement addresses.\n- Full packet capture or TLS interception logs, if available.\n- Clipboard history artifacts, if present.\n- Installed app source, signing certificate reuse, and reputation checks for the package/certificate/domain."
+          }
+        ],
+        "phase": "final_answer",
+        "role": "assistant"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "presence_penalty": 0.0,
+    "previous_response_id": null,
+    "prompt_cache_key": null,
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "context": "current_turn",
+      "effort": "medium",
+      "mode": "standard",
+      "summary": null
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "store": false,
+    "temperature": 1.0,
+    "text": {
+      "format": {
+        "type": "text"
+      },
+      "verbosity": "medium"
+    },
+    "tool_choice": "auto",
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 0
+      }
+    },
+    "tools": [],
+    "top_logprobs": 0,
+    "top_p": 0.98,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 302,
+      "input_tokens_details": {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1634,
+      "output_tokens_details": {
+        "reasoning_tokens": 457
+      },
+      "total_tokens": 1936
+    },
+    "user": null,
+    "metadata": {}
+  }
+}

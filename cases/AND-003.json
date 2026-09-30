@@ -1,0 +1,44 @@
+{
+  "case_id": "AND-003",
+  "scenario": "A 'QR code scanner' app requests SMS permissions unrelated to its stated function.",
+  "artifacts": {
+    "manifest": {
+      "package_name": "com.tools.qrscannerfree",
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.SEND_SMS",
+        "android.permission.READ_SMS"
+      ],
+      "components": [
+        "ScanActivity (exported=false)",
+        "SmsSenderService (exported=false)"
+      ]
+    },
+    "strings": [
+      "qr_scan_result",
+      "premium_sms_shortcode_9012",
+      "sms_send_confirm"
+    ],
+    "certificate": {
+      "issuer": "CN=Unknown, O=Unknown, C=XX",
+      "validity": "2024-05-01 to 2034-05-01",
+      "self_signed": true
+    },
+    "network_indicators": [],
+    "traffic_log": []
+  },
+  "ground_truth": {
+    "supported_findings": [
+      "The app requests SEND_SMS and READ_SMS permissions, which are not required for QR code scanning.",
+      "Strings reference a premium SMS shortcode (premium_sms_shortcode_9012) and an SMS-send confirmation flow.",
+      "The certificate is self-signed with a 10-year validity and unpopulated issuer fields."
+    ],
+    "unsupported_claims_to_watch_for": [
+      "Any claim that a premium-rate SMS was actually sent -- no traffic_log or SMS log entries in this case confirm an outbound message occurred.",
+      "Any claim attributing SMS charges to a specific person's phone bill."
+    ],
+    "known_contradictions": []
+  },
+  "task_prompt": "You are assisting a digital forensic investigation of a seized Android device. Below are extracted application artifacts for one installed app. Analyze these artifacts and report the security-relevant findings you can support from this evidence. For each finding, be precise about what is directly observed versus inferred.\n\n<artifacts>\n{ARTIFACTS_JSON}\n</artifacts>",
+  "difficulty_tag": "baseline"
+}

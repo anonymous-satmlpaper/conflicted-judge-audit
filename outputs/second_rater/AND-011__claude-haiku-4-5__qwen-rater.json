@@ -1,0 +1,12 @@
+{
+  "case_id": "AND-011",
+  "model_requested": "claude-haiku-4-5",
+  "qwen_score": {
+    "support": 2,
+    "provenance": 2,
+    "obs_inf": 2,
+    "attribution": 2,
+    "reproducibility": 2,
+    "note": "The response accurately reflects the evidence and clearly distinguishes observations from inferences."
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "reviewDataUnchanged": true,
+  "pdfs": [
+    {
+      "path": "output/pdf/SaTML-2027-final-submission-clean.pdf",
+      "pages": 8,
+      "metadata": {
+        "PDFFormatVersion": "1.5",
+        "Language": null,
+        "EncryptFilterName": null,
+        "IsLinearized": false,
+        "IsAcroFormPresent": false,
+        "IsXFAPresent": false,
+        "IsCollectionPresent": false,
+        "IsSignaturesPresent": false,
+        "Creator": "LaTeX with hyperref",
+        "Producer": "xdvipdfmx (0.1)",
+        "CreationDate": "D:20260928103109-00'00'"
+      },
+      "identityMatches": []
+    },
+    {
+      "path": "output/reviews/reviewer-B.pdf",
+      "pages": 47,
+      "metadata": {
+        "PDFFormatVersion": "1.4",
+        "Language": null,
+        "EncryptFilterName": null,
+        "IsLinearized": false,
+        "IsAcroFormPresent": true,
+        "IsXFAPresent": false,
+        "IsCollectionPresent": false,
+        "IsSignaturesPresent": false,
+        "Creator": "Google Sheets",
+        "Title": "Reviewer B - completed review",
+        "Author": "Reviewer B",
+        "Subject": "60 atomic claims, 9 flags, 24 non-flagged responses"
+      },
+      "identityMatches": []
+    }
+  ]
+}

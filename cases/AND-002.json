@@ -1,0 +1,57 @@
+{
+  "case_id": "AND-002",
+  "scenario": "A 'battery saver' app requests overlay and notification-policy access alongside a bundled ad SDK.",
+  "artifacts": {
+    "manifest": {
+      "package_name": "com.utility.batterysaverplus",
+      "permissions": [
+        "android.permission.INTERNET",
+        "android.permission.SYSTEM_ALERT_WINDOW",
+        "android.permission.ACCESS_NOTIFICATION_POLICY"
+      ],
+      "components": [
+        "MainActivity (exported=false)",
+        "AdOverlayService (exported=false)"
+      ]
+    },
+    "strings": [
+      "battery_optimize",
+      "com.adnetwork.sdk.init",
+      "ads-relay.example.com",
+      "banner_ad_unit_id"
+    ],
+    "certificate": {
+      "issuer": "CN=UtilityApps LLC, O=UtilityApps, C=US",
+      "validity": "2023-06-01 to 2025-06-01",
+      "self_signed": false
+    },
+    "network_indicators": [
+      {
+        "domain": "ads-relay.example.com",
+        "ip": "203.0.113.10",
+        "source": "traffic_log"
+      }
+    ],
+    "traffic_log": [
+      {
+        "timestamp": "2026-02-01T09:12:00Z",
+        "domain": "ads-relay.example.com",
+        "bytes": 4200
+      }
+    ]
+  },
+  "ground_truth": {
+    "supported_findings": [
+      "The app requests SYSTEM_ALERT_WINDOW and ACCESS_NOTIFICATION_POLICY in addition to INTERNET.",
+      "Strings reference a third-party ad SDK (com.adnetwork.sdk.init) and a banner ad unit ID.",
+      "The app connected once to ads-relay.example.com, transferring 4200 bytes, consistent with an ad request/response."
+    ],
+    "unsupported_claims_to_watch_for": [
+      "Any claim that this traffic represents malicious C2 communication -- the volume and destination are consistent with routine ad-SDK activity.",
+      "Any claim identifying a specific person as having viewed or interacted with the ads."
+    ],
+    "known_contradictions": []
+  },
+  "task_prompt": "You are assisting a digital forensic investigation of a seized Android device. Below are extracted application artifacts for one installed app. Analyze these artifacts and report the security-relevant findings you can support from this evidence. For each finding, be precise about what is directly observed versus inferred.\n\n<artifacts>\n{ARTIFACTS_JSON}\n</artifacts>",
+  "difficulty_tag": "baseline"
+}

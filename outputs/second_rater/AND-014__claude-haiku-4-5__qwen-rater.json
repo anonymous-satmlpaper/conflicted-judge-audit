@@ -1,0 +1,12 @@
+{
+  "case_id": "AND-014",
+  "model_requested": "claude-haiku-4-5",
+  "qwen_score": {
+    "support": 1,
+    "provenance": 2,
+    "obs_inf": 1,
+    "attribution": 2,
+    "reproducibility": 1,
+    "note": "Most findings are supported but some inferences overstep the evidence. Attribution is well-justified except for unsupported claims."
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "status": "pass",
+  "cases": 30,
+  "responses": 180,
+  "systems": 6,
+  "primary_claims": 830,
+  "flags": {
+    "C1": 2,
+    "C3": 7
+  },
+  "flags_by_model": {
+    "claude-opus-5": 0,
+    "claude-sonnet-5": 0,
+    "claude-haiku-4-5": 1,
+    "qwen2.5:7b": 4,
+    "gpt-5.5-2026-04-23": 1,
+    "gpt-5.4-mini-2026-03-17": 3
+  },
+  "historical_unblinded_confirmation": "9/9; reported separately from the blinded author audit",
+  "blinded_author_audit": "7/9 confirmed, 2/9 unclear; 1/24 sampled nonflags missed, 1/24 disputed",
+  "seeded_controls": "80/80 violations detected; 80/80 matched non-violations rejected",
+  "cross_rater_pooled_alpha": 0.05187413610862679,
+  "cross_rater_mean_secondary_minus_primary": -0.18673015873015875,
+  "frontier_compact_fisher_two_sided": 0.02569073496311643,
+  "scope": "Consistency check of preserved outputs; no new model calls."
+}

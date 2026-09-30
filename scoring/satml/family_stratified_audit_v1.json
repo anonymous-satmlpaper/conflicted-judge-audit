@@ -1,0 +1,1520 @@
+{
+  "schema": "satml-family-stratified-audit-v1",
+  "definition": "judge_excess = primary-judge score minus mean of the two blinded author scores; positive values mean the primary judge is more lenient than the authors.",
+  "judge_model": "claude-sonnet-5",
+  "by_model": {
+    "claude-haiku-4-5": {
+      "n_claims": 15,
+      "n_responses": 15,
+      "support": {
+        "primary_mean": 1.3333333333333333,
+        "author_mean": 0.8333333333333334,
+        "judge_excess": 0.4999999999999999
+      },
+      "provenance": {
+        "primary_mean": 1.9333333333333333,
+        "author_mean": 2.0,
+        "judge_excess": -0.06666666666666665
+      },
+      "obs_inf": {
+        "primary_mean": 1.3333333333333333,
+        "author_mean": 1.0333333333333334,
+        "judge_excess": 0.2999999999999998
+      },
+      "attribution": {
+        "primary_mean": 2,
+        "author_mean": 1.5,
+        "judge_excess": 0.5
+      },
+      "reproducibility": {
+        "primary_mean": 1.3333333333333333,
+        "author_mean": 1.2333333333333334,
+        "judge_excess": 0.09999999999999987
+      },
+      "all_dims": {
+        "primary_mean": 1.5866666666666667,
+        "author_mean": 1.32,
+        "judge_excess": 0.26666666666666666
+      }
+    },
+    "claude-opus-5": {
+      "n_claims": 15,
+      "n_responses": 13,
+      "support": {
+        "primary_mean": 1.8,
+        "author_mean": 1.5333333333333334,
+        "judge_excess": 0.2666666666666666
+      },
+      "provenance": {
+        "primary_mean": 1.9333333333333333,
+        "author_mean": 2.0,
+        "judge_excess": -0.06666666666666665
+      },
+      "obs_inf": {
+        "primary_mean": 2,
+        "author_mean": 1.8333333333333333,
+        "judge_excess": 0.16666666666666674
+      },
+      "attribution": {
+        "primary_mean": 2,
+        "author_mean": 2.0,
+        "judge_excess": 0.0
+      },
+      "reproducibility": {
+        "primary_mean": 1.9333333333333333,
+        "author_mean": 1.8333333333333333,
+        "judge_excess": 0.10000000000000009
+      },
+      "all_dims": {
+        "primary_mean": 1.9333333333333333,
+        "author_mean": 1.84,
+        "judge_excess": 0.09333333333333334
+      }
+    },
+    "claude-sonnet-5": {
+      "n_claims": 15,
+      "n_responses": 13,
+      "support": {
+        "primary_mean": 1.7333333333333334,
+        "author_mean": 1.1,
+        "judge_excess": 0.6333333333333333
+      },
+      "provenance": {
+        "primary_mean": 2,
+        "author_mean": 2.0,
+        "judge_excess": 0.0
+      },
+      "obs_inf": {
+        "primary_mean": 2,
+        "author_mean": 1.6666666666666667,
+        "judge_excess": 0.33333333333333326
+      },
+      "attribution": {
+        "primary_mean": 2,
+        "author_mean": 2.0,
+        "judge_excess": 0.0
+      },
+      "reproducibility": {
+        "primary_mean": 2,
+        "author_mean": 1.7333333333333334,
+        "judge_excess": 0.2666666666666666
+      },
+      "all_dims": {
+        "primary_mean": 1.9466666666666668,
+        "author_mean": 1.7,
+        "judge_excess": 0.24666666666666667
+      }
+    },
+    "qwen2.5:7b": {
+      "n_claims": 15,
+      "n_responses": 15,
+      "support": {
+        "primary_mean": 1.4666666666666666,
+        "author_mean": 1.3,
+        "judge_excess": 0.16666666666666652
+      },
+      "provenance": {
+        "primary_mean": 1.4666666666666666,
+        "author_mean": 2.0,
+        "judge_excess": -0.5333333333333334
+      },
+      "obs_inf": {
+        "primary_mean": 1.4666666666666666,
+        "author_mean": 1.6666666666666667,
+        "judge_excess": -0.20000000000000018
+      },
+      "attribution": {
+        "primary_mean": 2,
+        "author_mean": 1.9333333333333333,
+        "judge_excess": 0.06666666666666665
+      },
+      "reproducibility": {
+        "primary_mean": 1.4666666666666666,
+        "author_mean": 1.5,
+        "judge_excess": -0.03333333333333344
+      },
+      "all_dims": {
+        "primary_mean": 1.5733333333333333,
+        "author_mean": 1.68,
+        "judge_excess": -0.10666666666666667
+      }
+    }
+  },
+  "by_family": {
+    "claude": {
+      "n_claims": 45,
+      "n_responses": 41,
+      "support": {
+        "primary_mean": 1.6222222222222222,
+        "author_mean": 1.1555555555555554,
+        "judge_excess": 0.4666666666666668
+      },
+      "provenance": {
+        "primary_mean": 1.9555555555555555,
+        "author_mean": 2.0,
+        "judge_excess": -0.04444444444444451
+      },
+      "obs_inf": {
+        "primary_mean": 1.7777777777777777,
+        "author_mean": 1.511111111111111,
+        "judge_excess": 0.2666666666666666
+      },
+      "attribution": {
+        "primary_mean": 2,
+        "author_mean": 1.8333333333333333,
+        "judge_excess": 0.16666666666666674
+      },
+      "reproducibility": {
+        "primary_mean": 1.7555555555555555,
+        "author_mean": 1.6,
+        "judge_excess": 0.15555555555555545
+      },
+      "all_dims": {
+        "primary_mean": 1.8222222222222222,
+        "author_mean": 1.62,
+        "judge_excess": 0.20222222222222222
+      }
+    },
+    "qwen": {
+      "n_claims": 15,
+      "n_responses": 15,
+      "support": {
+        "primary_mean": 1.4666666666666666,
+        "author_mean": 1.3,
+        "judge_excess": 0.16666666666666652
+      },
+      "provenance": {
+        "primary_mean": 1.4666666666666666,
+        "author_mean": 2.0,
+        "judge_excess": -0.5333333333333334
+      },
+      "obs_inf": {
+        "primary_mean": 1.4666666666666666,
+        "author_mean": 1.6666666666666667,
+        "judge_excess": -0.20000000000000018
+      },
+      "attribution": {
+        "primary_mean": 2,
+        "author_mean": 1.9333333333333333,
+        "judge_excess": 0.06666666666666665
+      },
+      "reproducibility": {
+        "primary_mean": 1.4666666666666666,
+        "author_mean": 1.5,
+        "judge_excess": -0.03333333333333344
+      },
+      "all_dims": {
+        "primary_mean": 1.5733333333333333,
+        "author_mean": 1.68,
+        "judge_excess": -0.10666666666666667
+      }
+    }
+  },
+  "tests": {
+    "claude_minus_qwen_excess_all_dims": {
+      "difference": 0.3088888888888889,
+      "p_two_sided": 0.0025498725063746812,
+      "n_responses": 56,
+      "n_permutations": 20000
+    },
+    "judge_self_minus_other_excess_all_dims": {
+      "difference": 0.1622222222222222,
+      "p_two_sided": 0.1385430728463577,
+      "n_responses": 56,
+      "n_permutations": 20000
+    },
+    "haiku_minus_qwen_excess_all_dims_scale_matched": {
+      "difference": 0.37333333333333335,
+      "p_two_sided": 0.011249437528123594,
+      "n_responses": 30,
+      "n_permutations": 20000
+    },
+    "claude_minus_qwen_excess_by_dimension": {
+      "support": {
+        "difference": 0.30000000000000004,
+        "p_two_sided": 0.0855957202139893,
+        "n_responses": 56,
+        "n_permutations": 20000
+      },
+      "obs_inf": {
+        "difference": 0.4666666666666667,
+        "p_two_sided": 0.016699165041747913,
+        "n_responses": 56,
+        "n_permutations": 20000
+      },
+      "reproducibility": {
+        "difference": 0.18888888888888888,
+        "p_two_sided": 0.22548872556372182,
+        "n_responses": 56,
+        "n_permutations": 20000
+      }
+    }
+  },
+  "claims": [
+    {
+      "sample_id": "C-8CD1327F",
+      "response_id": "R-5D1394F9",
+      "case_id": "AND-001",
+      "model": "claude-opus-5",
+      "primary": {
+        "support": 1,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": 0.0
+    },
+    {
+      "sample_id": "C-79CC81DE",
+      "response_id": "R-5D1394F9",
+      "case_id": "AND-001",
+      "model": "claude-opus-5",
+      "primary": {
+        "support": 1,
+        "provenance": 1,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 1
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": -0.4
+    },
+    {
+      "sample_id": "C-FF111440",
+      "response_id": "R-5D1394F9",
+      "case_id": "AND-001",
+      "model": "claude-opus-5",
+      "primary": {
+        "support": 1,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": 0.0
+    },
+    {
+      "sample_id": "C-7E426817",
+      "response_id": "R-36123B24",
+      "case_id": "AND-003",
+      "model": "claude-opus-5",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 2.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": 0.0
+    },
+    {
+      "sample_id": "C-601787DB",
+      "response_id": "R-3B7ECF93",
+      "case_id": "AND-025",
+      "model": "claude-opus-5",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 1.5,
+        "provenance": 2.0,
+        "obs_inf": 1.5,
+        "attribution": 2.0,
+        "reproducibility": 1.5
+      },
+      "excess": 0.3
+    },
+    {
+      "sample_id": "C-C37D54C0",
+      "response_id": "R-5B24C212",
+      "case_id": "AND-010",
+      "model": "claude-opus-5",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 2.0,
+        "provenance": 2.0,
+        "obs_inf": 1.5,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": 0.1
+    },
+    {
+      "sample_id": "C-2CB1C75C",
+      "response_id": "R-43ED9D99",
+      "case_id": "AND-028",
+      "model": "claude-opus-5",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 2.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": 0.0
+    },
+    {
+      "sample_id": "C-109B7262",
+      "response_id": "R-88AB0089",
+      "case_id": "AND-020",
+      "model": "claude-opus-5",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 2.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": 0.0
+    },
+    {
+      "sample_id": "C-52CC22A2",
+      "response_id": "R-EC9A4E48",
+      "case_id": "AND-019",
+      "model": "claude-opus-5",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 2.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": 0.0
+    },
+    {
+      "sample_id": "C-92A3A550",
+      "response_id": "R-B7D51A2C",
+      "case_id": "AND-014",
+      "model": "claude-opus-5",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 1.5,
+        "attribution": 2.0,
+        "reproducibility": 1.0
+      },
+      "excess": 0.5
+    },
+    {
+      "sample_id": "C-69A2AD42",
+      "response_id": "R-F47ED9E3",
+      "case_id": "AND-016",
+      "model": "claude-opus-5",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": 0.2
+    },
+    {
+      "sample_id": "C-A95FDABE",
+      "response_id": "R-381B08DC",
+      "case_id": "AND-009",
+      "model": "claude-opus-5",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 2.0,
+        "provenance": 2.0,
+        "obs_inf": 1.5,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": 0.1
+    },
+    {
+      "sample_id": "C-5CB7312D",
+      "response_id": "R-A5FF9EC7",
+      "case_id": "AND-013",
+      "model": "claude-opus-5",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 2.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": 0.0
+    },
+    {
+      "sample_id": "C-139F86CC",
+      "response_id": "R-B8E8C9DD",
+      "case_id": "AND-029",
+      "model": "claude-opus-5",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 1.5
+      },
+      "excess": 0.3
+    },
+    {
+      "sample_id": "C-A644A6F5",
+      "response_id": "R-D857D326",
+      "case_id": "AND-004",
+      "model": "claude-opus-5",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 1.5,
+        "provenance": 2.0,
+        "obs_inf": 1.5,
+        "attribution": 2.0,
+        "reproducibility": 1.5
+      },
+      "excess": 0.3
+    },
+    {
+      "sample_id": "C-E70C931F",
+      "response_id": "R-C727BD9B",
+      "case_id": "AND-001",
+      "model": "claude-sonnet-5",
+      "primary": {
+        "support": 1,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": 0.0
+    },
+    {
+      "sample_id": "C-53AD694F",
+      "response_id": "R-E354D227",
+      "case_id": "AND-003",
+      "model": "claude-sonnet-5",
+      "primary": {
+        "support": 1,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": 0.0
+    },
+    {
+      "sample_id": "C-6167DC1E",
+      "response_id": "R-C727BD9B",
+      "case_id": "AND-001",
+      "model": "claude-sonnet-5",
+      "primary": {
+        "support": 1,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": 0.0
+    },
+    {
+      "sample_id": "C-F2FFBCC8",
+      "response_id": "R-C727BD9B",
+      "case_id": "AND-001",
+      "model": "claude-sonnet-5",
+      "primary": {
+        "support": 1,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": 0.0
+    },
+    {
+      "sample_id": "C-85F0B2D5",
+      "response_id": "R-2408F8EF",
+      "case_id": "AND-009",
+      "model": "claude-sonnet-5",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 1.0,
+        "attribution": 2.0,
+        "reproducibility": 1.0
+      },
+      "excess": 0.6
+    },
+    {
+      "sample_id": "C-9451B821",
+      "response_id": "R-7235A37B",
+      "case_id": "AND-021",
+      "model": "claude-sonnet-5",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 2.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": 0.0
+    },
+    {
+      "sample_id": "C-6CF6C6D7",
+      "response_id": "R-F39B8E76",
+      "case_id": "AND-016",
+      "model": "claude-sonnet-5",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": 0.2
+    },
+    {
+      "sample_id": "C-56A9B053",
+      "response_id": "R-EA7C31EE",
+      "case_id": "AND-030",
+      "model": "claude-sonnet-5",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": 0.2
+    },
+    {
+      "sample_id": "C-6D2C50A9",
+      "response_id": "R-00400BF8",
+      "case_id": "AND-018",
+      "model": "claude-sonnet-5",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": 0.2
+    },
+    {
+      "sample_id": "C-49E7C255",
+      "response_id": "R-84741BE2",
+      "case_id": "AND-010",
+      "model": "claude-sonnet-5",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 1.0,
+        "attribution": 2.0,
+        "reproducibility": 1.0
+      },
+      "excess": 0.6
+    },
+    {
+      "sample_id": "C-A736162F",
+      "response_id": "R-AB04572A",
+      "case_id": "AND-020",
+      "model": "claude-sonnet-5",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": 0.2
+    },
+    {
+      "sample_id": "C-7609C7B0",
+      "response_id": "R-14897EAC",
+      "case_id": "AND-005",
+      "model": "claude-sonnet-5",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 0.5,
+        "provenance": 2.0,
+        "obs_inf": 0.0,
+        "attribution": 2.0,
+        "reproducibility": 1.0
+      },
+      "excess": 0.9
+    },
+    {
+      "sample_id": "C-966452F6",
+      "response_id": "R-606AD18A",
+      "case_id": "AND-012",
+      "model": "claude-sonnet-5",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": 0.2
+    },
+    {
+      "sample_id": "C-277E7228",
+      "response_id": "R-3C12F7C1",
+      "case_id": "AND-004",
+      "model": "claude-sonnet-5",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 1.0,
+        "attribution": 2.0,
+        "reproducibility": 1.0
+      },
+      "excess": 0.6
+    },
+    {
+      "sample_id": "C-989DBCEB",
+      "response_id": "R-8B6977EC",
+      "case_id": "AND-019",
+      "model": "claude-sonnet-5",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 2.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": 0.0
+    },
+    {
+      "sample_id": "C-E1F94668",
+      "response_id": "R-F84817C2",
+      "case_id": "AND-014",
+      "model": "claude-haiku-4-5",
+      "primary": {
+        "support": 0,
+        "provenance": 2,
+        "obs_inf": 0,
+        "attribution": 2,
+        "reproducibility": 0
+      },
+      "author": {
+        "support": 0.5,
+        "provenance": 2.0,
+        "obs_inf": 0.0,
+        "attribution": 0.5,
+        "reproducibility": 1.0
+      },
+      "excess": 0.0
+    },
+    {
+      "sample_id": "C-15EA5C2B",
+      "response_id": "R-32834152",
+      "case_id": "AND-022",
+      "model": "claude-haiku-4-5",
+      "primary": {
+        "support": 1,
+        "provenance": 2,
+        "obs_inf": 1,
+        "attribution": 2,
+        "reproducibility": 1
+      },
+      "author": {
+        "support": 0.0,
+        "provenance": 2.0,
+        "obs_inf": 0.0,
+        "attribution": 2.0,
+        "reproducibility": 1.0
+      },
+      "excess": 0.4
+    },
+    {
+      "sample_id": "C-ACD6FE3B",
+      "response_id": "R-43056BD9",
+      "case_id": "AND-016",
+      "model": "claude-haiku-4-5",
+      "primary": {
+        "support": 1,
+        "provenance": 2,
+        "obs_inf": 1,
+        "attribution": 2,
+        "reproducibility": 1
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 1.0
+      },
+      "excess": -0.2
+    },
+    {
+      "sample_id": "C-CD585F2D",
+      "response_id": "R-CC2FB5D8",
+      "case_id": "AND-017",
+      "model": "claude-haiku-4-5",
+      "primary": {
+        "support": 0,
+        "provenance": 2,
+        "obs_inf": 0,
+        "attribution": 2,
+        "reproducibility": 0
+      },
+      "author": {
+        "support": 0.5,
+        "provenance": 2.0,
+        "obs_inf": 0.0,
+        "attribution": 0.0,
+        "reproducibility": 1.0
+      },
+      "excess": 0.1
+    },
+    {
+      "sample_id": "C-8CB02764",
+      "response_id": "R-EAEFC793",
+      "case_id": "AND-027",
+      "model": "claude-haiku-4-5",
+      "primary": {
+        "support": 1,
+        "provenance": 2,
+        "obs_inf": 1,
+        "attribution": 2,
+        "reproducibility": 1
+      },
+      "author": {
+        "support": 0.0,
+        "provenance": 2.0,
+        "obs_inf": 0.0,
+        "attribution": 2.0,
+        "reproducibility": 1.0
+      },
+      "excess": 0.4
+    },
+    {
+      "sample_id": "C-9F525430",
+      "response_id": "R-23FDA9A3",
+      "case_id": "AND-005",
+      "model": "claude-haiku-4-5",
+      "primary": {
+        "support": 1,
+        "provenance": 1,
+        "obs_inf": 1,
+        "attribution": 2,
+        "reproducibility": 1
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 1.0
+      },
+      "excess": -0.4
+    },
+    {
+      "sample_id": "C-42E278B4",
+      "response_id": "R-61FA9E91",
+      "case_id": "AND-010",
+      "model": "claude-haiku-4-5",
+      "primary": {
+        "support": 1,
+        "provenance": 2,
+        "obs_inf": 1,
+        "attribution": 2,
+        "reproducibility": 1
+      },
+      "author": {
+        "support": 0.5,
+        "provenance": 2.0,
+        "obs_inf": 1.0,
+        "attribution": 1.0,
+        "reproducibility": 1.0
+      },
+      "excess": 0.3
+    },
+    {
+      "sample_id": "C-E2D0CF0B",
+      "response_id": "R-7C262E10",
+      "case_id": "AND-018",
+      "model": "claude-haiku-4-5",
+      "primary": {
+        "support": 1,
+        "provenance": 2,
+        "obs_inf": 1,
+        "attribution": 2,
+        "reproducibility": 1
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 1.0,
+        "attribution": 1.0,
+        "reproducibility": 1.0
+      },
+      "excess": 0.2
+    },
+    {
+      "sample_id": "C-733BAE41",
+      "response_id": "R-370C45CC",
+      "case_id": "AND-008",
+      "model": "claude-haiku-4-5",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": 0.2
+    },
+    {
+      "sample_id": "C-03F2E8A9",
+      "response_id": "R-97813B94",
+      "case_id": "AND-021",
+      "model": "claude-haiku-4-5",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 1.0,
+        "attribution": 1.0,
+        "reproducibility": 1.0
+      },
+      "excess": 0.8
+    },
+    {
+      "sample_id": "C-114FD914",
+      "response_id": "R-ED8CD8E4",
+      "case_id": "AND-013",
+      "model": "claude-haiku-4-5",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 2.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": 0.0
+    },
+    {
+      "sample_id": "C-0443D0E2",
+      "response_id": "R-9A4ADA83",
+      "case_id": "AND-002",
+      "model": "claude-haiku-4-5",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 1.0,
+        "attribution": 2.0,
+        "reproducibility": 1.0
+      },
+      "excess": 0.6
+    },
+    {
+      "sample_id": "C-C523D61A",
+      "response_id": "R-F2302075",
+      "case_id": "AND-029",
+      "model": "claude-haiku-4-5",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": 0.2
+    },
+    {
+      "sample_id": "C-B62C2353",
+      "response_id": "R-9544AECC",
+      "case_id": "AND-001",
+      "model": "claude-haiku-4-5",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 1.5,
+        "attribution": 2.0,
+        "reproducibility": 1.5
+      },
+      "excess": 0.4
+    },
+    {
+      "sample_id": "C-C334B3A3",
+      "response_id": "R-DA921B45",
+      "case_id": "AND-019",
+      "model": "claude-haiku-4-5",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 0.0,
+        "attribution": 1.0,
+        "reproducibility": 1.0
+      },
+      "excess": 1.0
+    },
+    {
+      "sample_id": "C-69EB6504",
+      "response_id": "R-033755AE",
+      "case_id": "AND-009",
+      "model": "qwen2.5:7b",
+      "primary": {
+        "support": 1,
+        "provenance": 1,
+        "obs_inf": 1,
+        "attribution": 2,
+        "reproducibility": 1
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 1.0
+      },
+      "excess": -0.4
+    },
+    {
+      "sample_id": "C-4CB479B8",
+      "response_id": "R-1D6689BD",
+      "case_id": "AND-008",
+      "model": "qwen2.5:7b",
+      "primary": {
+        "support": 1,
+        "provenance": 1,
+        "obs_inf": 1,
+        "attribution": 2,
+        "reproducibility": 1
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 1.0
+      },
+      "excess": -0.4
+    },
+    {
+      "sample_id": "C-60D4E884",
+      "response_id": "R-FC3621F0",
+      "case_id": "AND-010",
+      "model": "qwen2.5:7b",
+      "primary": {
+        "support": 1,
+        "provenance": 1,
+        "obs_inf": 1,
+        "attribution": 2,
+        "reproducibility": 1
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 1.0,
+        "attribution": 2.0,
+        "reproducibility": 1.0
+      },
+      "excess": -0.2
+    },
+    {
+      "sample_id": "C-84BAEB30",
+      "response_id": "R-6EDBBD17",
+      "case_id": "AND-002",
+      "model": "qwen2.5:7b",
+      "primary": {
+        "support": 1,
+        "provenance": 1,
+        "obs_inf": 1,
+        "attribution": 2,
+        "reproducibility": 1
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 1.0
+      },
+      "excess": -0.4
+    },
+    {
+      "sample_id": "C-58938166",
+      "response_id": "R-90E3D7B2",
+      "case_id": "AND-013",
+      "model": "qwen2.5:7b",
+      "primary": {
+        "support": 1,
+        "provenance": 1,
+        "obs_inf": 1,
+        "attribution": 2,
+        "reproducibility": 1
+      },
+      "author": {
+        "support": 2.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": -0.8
+    },
+    {
+      "sample_id": "C-CC41EAE4",
+      "response_id": "R-59BB0209",
+      "case_id": "AND-022",
+      "model": "qwen2.5:7b",
+      "primary": {
+        "support": 1,
+        "provenance": 1,
+        "obs_inf": 1,
+        "attribution": 2,
+        "reproducibility": 1
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 1.0,
+        "attribution": 2.0,
+        "reproducibility": 1.0
+      },
+      "excess": -0.2
+    },
+    {
+      "sample_id": "C-64A107BF",
+      "response_id": "R-1818155C",
+      "case_id": "AND-026",
+      "model": "qwen2.5:7b",
+      "primary": {
+        "support": 1,
+        "provenance": 1,
+        "obs_inf": 1,
+        "attribution": 2,
+        "reproducibility": 1
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": -0.6
+    },
+    {
+      "sample_id": "C-8BA9B461",
+      "response_id": "R-60A25623",
+      "case_id": "AND-017",
+      "model": "qwen2.5:7b",
+      "primary": {
+        "support": 1,
+        "provenance": 1,
+        "obs_inf": 1,
+        "attribution": 2,
+        "reproducibility": 1
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 1.0,
+        "attribution": 1.0,
+        "reproducibility": 1.0
+      },
+      "excess": 0.0
+    },
+    {
+      "sample_id": "C-1FC6E5DC",
+      "response_id": "R-6406F9F0",
+      "case_id": "AND-023",
+      "model": "qwen2.5:7b",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 2.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": 0.0
+    },
+    {
+      "sample_id": "C-1F494815",
+      "response_id": "R-966578D1",
+      "case_id": "AND-014",
+      "model": "qwen2.5:7b",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 1.0,
+        "attribution": 2.0,
+        "reproducibility": 1.5
+      },
+      "excess": 0.5
+    },
+    {
+      "sample_id": "C-369D8AE4",
+      "response_id": "R-D88B7FCB",
+      "case_id": "AND-019",
+      "model": "qwen2.5:7b",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 1.5,
+        "provenance": 2.0,
+        "obs_inf": 1.0,
+        "attribution": 2.0,
+        "reproducibility": 1.0
+      },
+      "excess": 0.5
+    },
+    {
+      "sample_id": "C-8CAD1257",
+      "response_id": "R-25275473",
+      "case_id": "AND-007",
+      "model": "qwen2.5:7b",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": 0.2
+    },
+    {
+      "sample_id": "C-3848D4A4",
+      "response_id": "R-82FBE8F9",
+      "case_id": "AND-018",
+      "model": "qwen2.5:7b",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 2.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": 0.0
+    },
+    {
+      "sample_id": "C-FF11ADA4",
+      "response_id": "R-B8EC7CF6",
+      "case_id": "AND-006",
+      "model": "qwen2.5:7b",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 1.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": 0.2
+    },
+    {
+      "sample_id": "C-29B88468",
+      "response_id": "R-39A54C3B",
+      "case_id": "AND-028",
+      "model": "qwen2.5:7b",
+      "primary": {
+        "support": 2,
+        "provenance": 2,
+        "obs_inf": 2,
+        "attribution": 2,
+        "reproducibility": 2
+      },
+      "author": {
+        "support": 2.0,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "excess": 0.0
+    }
+  ],
+  "caveats": [
+    "15 claims per system from few responses; the test has low power.",
+    "Author raters are not independent external validators.",
+    "Claims were sampled from the primary judge's own decomposition, so segmentation is judge-controlled."
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "case_id": "AND-004",
+  "model_requested": "claude-haiku-4-5",
+  "qwen_score": {
+    "support": 1,
+    "provenance": 2,
+    "obs_inf": 1,
+    "attribution": 2,
+    "reproducibility": 1,
+    "note": "Some findings are inferred beyond the evidence and unsupported claims are present."
+  }
+}

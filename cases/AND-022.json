@@ -1,0 +1,44 @@
+{
+  "case_id": "AND-022",
+  "scenario": "A permission is declared in the manifest but no other artifact references its use.",
+  "artifacts": {
+    "manifest": {
+      "package_name": "com.utility.voicememoapp",
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.INTERNET"
+      ],
+      "components": [
+        "MemoActivity (exported=false)"
+      ]
+    },
+    "strings": [
+      "memo_list_view",
+      "memo_delete",
+      "app_settings_screen"
+    ],
+    "certificate": {
+      "issuer": "CN=VoiceTools LLC, O=VoiceTools, C=US",
+      "validity": "2023-07-01 to 2025-07-01",
+      "self_signed": false
+    },
+    "network_indicators": [],
+    "traffic_log": []
+  },
+  "ground_truth": {
+    "supported_findings": [
+      "The manifest declares RECORD_AUDIO, but no string, component name, or log entry in this case's artifacts references audio recording, playback, or any recording-related function.",
+      "The visible strings (memo_list_view, memo_delete, app_settings_screen) describe list-management and settings functionality, not recording activity itself.",
+      "This is a declared-but-unevidenced-use pattern -- the permission exists, but this case's evidence does not show it exercised or referenced elsewhere."
+    ],
+    "unsupported_claims_to_watch_for": [
+      "Any claim that audio was recorded or that the RECORD_AUDIO permission was exercised -- no artifact in this case supports that beyond the bare manifest declaration.",
+      "Any claim that this is necessarily suspicious -- a memo app plausibly uses RECORD_AUDIO even if this particular artifact extraction didn't capture corroborating strings."
+    ],
+    "known_contradictions": [
+      "manifest declares RECORD_AUDIO; no other artifact (strings, components, traffic_log) references any audio-recording functionality."
+    ]
+  },
+  "task_prompt": "You are assisting a digital forensic investigation of a seized Android device. Below are extracted application artifacts for one installed app. Analyze these artifacts and report the security-relevant findings you can support from this evidence. For each finding, be precise about what is directly observed versus inferred.\n\n<artifacts>\n{ARTIFACTS_JSON}\n</artifacts>",
+  "difficulty_tag": "contradiction"
+}

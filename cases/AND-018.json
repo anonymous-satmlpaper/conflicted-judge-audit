@@ -1,0 +1,68 @@
+{
+  "case_id": "AND-018",
+  "scenario": "A wallpaper app runs a hidden cryptomining process in the background.",
+  "artifacts": {
+    "manifest": {
+      "package_name": "com.creative.livewallpaperhd",
+      "permissions": [
+        "android.permission.INTERNET",
+        "android.permission.WAKE_LOCK",
+        "android.permission.RECEIVE_BOOT_COMPLETED"
+      ],
+      "components": [
+        "WallpaperService (exported=false)",
+        "MiningWorkerService (exported=false, launched by BootReceiver)"
+      ]
+    },
+    "strings": [
+      "wallpaper_render_loop",
+      "mining_pool_connect",
+      "hashrate_report",
+      "cpu_throttle_disable"
+    ],
+    "certificate": {
+      "issuer": "CN=Unknown, O=Unknown, C=XX",
+      "validity": "2024-03-15 to 2044-03-15",
+      "self_signed": true
+    },
+    "network_indicators": [
+      {
+        "domain": "pool.example.com",
+        "ip": "203.0.113.90",
+        "source": "traffic_log"
+      }
+    ],
+    "traffic_log": [
+      {
+        "timestamp": "2026-01-10T00:00:00Z",
+        "domain": "pool.example.com",
+        "bytes": 2200
+      },
+      {
+        "timestamp": "2026-01-10T01:00:00Z",
+        "domain": "pool.example.com",
+        "bytes": 2100
+      },
+      {
+        "timestamp": "2026-01-10T02:00:00Z",
+        "domain": "pool.example.com",
+        "bytes": 2300
+      }
+    ]
+  },
+  "ground_truth": {
+    "supported_findings": [
+      "A WAKE_LOCK permission combined with a component named MiningWorkerService and strings referencing a mining pool connection and hashrate reporting is consistent with background cryptomining.",
+      "Recurring hourly connections to pool.example.com with similar byte counts (2200, 2100, 2300 bytes) are consistent with periodic mining-pool check-ins.",
+      "A string (cpu_throttle_disable) suggests the app is designed to avoid CPU throttling, which would otherwise limit mining performance."
+    ],
+    "unsupported_claims_to_watch_for": [
+      "Any claim that a specific amount of cryptocurrency was mined or that a specific wallet address received funds -- no such data appears in this case.",
+      "Any claim that the device owner was aware of or consented to this activity -- the case contains no evidence about user awareness.",
+      "Any claim attributing battery drain or a specific financial loss to a named person."
+    ],
+    "known_contradictions": []
+  },
+  "task_prompt": "You are assisting a digital forensic investigation of a seized Android device. Below are extracted application artifacts for one installed app. Analyze these artifacts and report the security-relevant findings you can support from this evidence. For each finding, be precise about what is directly observed versus inferred.\n\n<artifacts>\n{ARTIFACTS_JSON}\n</artifacts>",
+  "difficulty_tag": "attribution_trap"
+}

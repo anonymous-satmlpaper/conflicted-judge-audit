@@ -1,0 +1,55 @@
+{
+  "case_id": "AND-020",
+  "scenario": "A clipboard-monitoring app matches a documented cryptocurrency-address-swap fraud pattern.",
+  "artifacts": {
+    "manifest": {
+      "package_name": "com.utility.clipboardmanagerpro",
+      "permissions": [
+        "android.permission.INTERNET"
+      ],
+      "components": [
+        "ClipboardMonitorService (exported=false, launched by BootReceiver)"
+      ]
+    },
+    "strings": [
+      "clipboard_watch_loop",
+      "btc_address_regex",
+      "eth_address_regex",
+      "clipboard_replace_content"
+    ],
+    "certificate": {
+      "issuer": "CN=Unknown, O=Unknown, C=XX",
+      "validity": "2024-05-15 to 2044-05-15",
+      "self_signed": true
+    },
+    "network_indicators": [
+      {
+        "domain": "addr-config.example.com",
+        "ip": "203.0.113.100",
+        "source": "traffic_log"
+      }
+    ],
+    "traffic_log": [
+      {
+        "timestamp": "2026-03-01T18:45:00Z",
+        "domain": "addr-config.example.com",
+        "bytes": 300
+      }
+    ]
+  },
+  "ground_truth": {
+    "supported_findings": [
+      "The app requests no permissions beyond INTERNET but runs a background ClipboardMonitorService, and strings reference regex patterns matching Bitcoin and Ethereum address formats plus a clipboard-content-replacement function.",
+      "This combination -- clipboard monitoring, cryptocurrency-address pattern matching, and a replace-content function -- matches a generically documented clipboard-hijacking fraud pattern.",
+      "A single small (300-byte) connection to addr-config.example.com occurred, consistent with fetching a replacement-address configuration but not confirmed as such by payload content."
+    ],
+    "unsupported_claims_to_watch_for": [
+      "Any claim that a specific cryptocurrency transaction was actually redirected or that a specific person lost funds -- no transaction or wallet-balance evidence exists in this case.",
+      "Any claim quantifying a dollar or cryptocurrency amount involved.",
+      "Any claim that the clipboard-replace function was triggered at any specific time -- only its presence in the strings is observed."
+    ],
+    "known_contradictions": []
+  },
+  "task_prompt": "You are assisting a digital forensic investigation of a seized Android device. Below are extracted application artifacts for one installed app. Analyze these artifacts and report the security-relevant findings you can support from this evidence. For each finding, be precise about what is directly observed versus inferred.\n\n<artifacts>\n{ARTIFACTS_JSON}\n</artifacts>",
+  "difficulty_tag": "attribution_trap"
+}

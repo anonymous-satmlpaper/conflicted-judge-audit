@@ -1,0 +1,790 @@
+{
+  "status": "reconstructed implementation; not a byte-for-byte reproduction of the missing historical verifier",
+  "check_version": "satml-reconstruction-v1",
+  "records": [
+    {
+      "case_id": "AND-001",
+      "model_requested": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-001__gpt-5.4-mini-2026-03-17.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-001",
+      "model_requested": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-001__gpt-5.5-2026-04-23.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-001",
+      "model_requested": "qwen3:8b",
+      "source_file": "outputs\\satml\\legacy\\AND-001__qwen3-8b.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-002",
+      "model_requested": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-002__gpt-5.4-mini-2026-03-17.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-002",
+      "model_requested": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-002__gpt-5.5-2026-04-23.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-002",
+      "model_requested": "qwen3:8b",
+      "source_file": "outputs\\satml\\legacy\\AND-002__qwen3-8b.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-003",
+      "model_requested": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-003__gpt-5.4-mini-2026-03-17.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-003",
+      "model_requested": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-003__gpt-5.5-2026-04-23.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-004",
+      "model_requested": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-004__gpt-5.4-mini-2026-03-17.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-004",
+      "model_requested": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-004__gpt-5.5-2026-04-23.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-005",
+      "model_requested": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-005__gpt-5.4-mini-2026-03-17.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-005",
+      "model_requested": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-005__gpt-5.5-2026-04-23.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-006",
+      "model_requested": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-006__gpt-5.4-mini-2026-03-17.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-006",
+      "model_requested": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-006__gpt-5.5-2026-04-23.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-007",
+      "model_requested": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-007__gpt-5.4-mini-2026-03-17.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-007",
+      "model_requested": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-007__gpt-5.5-2026-04-23.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-008",
+      "model_requested": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-008__gpt-5.4-mini-2026-03-17.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-008",
+      "model_requested": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-008__gpt-5.5-2026-04-23.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-009",
+      "model_requested": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-009__gpt-5.4-mini-2026-03-17.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-009",
+      "model_requested": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-009__gpt-5.5-2026-04-23.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-010",
+      "model_requested": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-010__gpt-5.4-mini-2026-03-17.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-010",
+      "model_requested": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-010__gpt-5.5-2026-04-23.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-011",
+      "model_requested": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-011__gpt-5.4-mini-2026-03-17.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-011",
+      "model_requested": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-011__gpt-5.5-2026-04-23.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-012",
+      "model_requested": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-012__gpt-5.4-mini-2026-03-17.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-012",
+      "model_requested": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-012__gpt-5.5-2026-04-23.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-013",
+      "model_requested": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-013__gpt-5.4-mini-2026-03-17.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-013",
+      "model_requested": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-013__gpt-5.5-2026-04-23.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-014",
+      "model_requested": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-014__gpt-5.4-mini-2026-03-17.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-014",
+      "model_requested": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-014__gpt-5.5-2026-04-23.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-015",
+      "model_requested": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-015__gpt-5.4-mini-2026-03-17.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-015",
+      "model_requested": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-015__gpt-5.5-2026-04-23.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-016",
+      "model_requested": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-016__gpt-5.4-mini-2026-03-17.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-016",
+      "model_requested": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-016__gpt-5.5-2026-04-23.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-017",
+      "model_requested": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-017__gpt-5.4-mini-2026-03-17.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-017",
+      "model_requested": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-017__gpt-5.5-2026-04-23.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-018",
+      "model_requested": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-018__gpt-5.4-mini-2026-03-17.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-018",
+      "model_requested": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-018__gpt-5.5-2026-04-23.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-019",
+      "model_requested": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-019__gpt-5.4-mini-2026-03-17.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-019",
+      "model_requested": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-019__gpt-5.5-2026-04-23.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-020",
+      "model_requested": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-020__gpt-5.4-mini-2026-03-17.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-020",
+      "model_requested": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-020__gpt-5.5-2026-04-23.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-021",
+      "model_requested": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-021__gpt-5.4-mini-2026-03-17.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-021",
+      "model_requested": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-021__gpt-5.5-2026-04-23.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-022",
+      "model_requested": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-022__gpt-5.4-mini-2026-03-17.json",
+      "flags": [
+        {
+          "check": "C3",
+          "case_id": "AND-022",
+          "mentions": [
+            true,
+            false
+          ],
+          "evidence": "Response did not explicitly link both configured facts as a contradiction/non-corroboration."
+        }
+      ],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 1,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-022",
+      "model_requested": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-022__gpt-5.5-2026-04-23.json",
+      "flags": [
+        {
+          "check": "C3",
+          "case_id": "AND-022",
+          "mentions": [
+            true,
+            false
+          ],
+          "evidence": "Response did not explicitly link both configured facts as a contradiction/non-corroboration."
+        }
+      ],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 1,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-023",
+      "model_requested": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-023__gpt-5.4-mini-2026-03-17.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-023",
+      "model_requested": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-023__gpt-5.5-2026-04-23.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-024",
+      "model_requested": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-024__gpt-5.4-mini-2026-03-17.json",
+      "flags": [
+        {
+          "check": "C3",
+          "case_id": "AND-024",
+          "mentions": [
+            true,
+            false
+          ],
+          "evidence": "Response did not explicitly link both configured facts as a contradiction/non-corroboration."
+        }
+      ],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 1,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-024",
+      "model_requested": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-024__gpt-5.5-2026-04-23.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-025",
+      "model_requested": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-025__gpt-5.4-mini-2026-03-17.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-025",
+      "model_requested": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-025__gpt-5.5-2026-04-23.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-026",
+      "model_requested": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-026__gpt-5.4-mini-2026-03-17.json",
+      "flags": [
+        {
+          "check": "C3",
+          "case_id": "AND-026",
+          "mentions": [
+            true,
+            false
+          ],
+          "evidence": "Response did not explicitly link both configured facts as a contradiction/non-corroboration."
+        }
+      ],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 1,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-026",
+      "model_requested": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-026__gpt-5.5-2026-04-23.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-027",
+      "model_requested": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-027__gpt-5.4-mini-2026-03-17.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-027",
+      "model_requested": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-027__gpt-5.5-2026-04-23.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-028",
+      "model_requested": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-028__gpt-5.4-mini-2026-03-17.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-028",
+      "model_requested": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-028__gpt-5.5-2026-04-23.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-029",
+      "model_requested": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-029__gpt-5.4-mini-2026-03-17.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-029",
+      "model_requested": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-029__gpt-5.5-2026-04-23.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-030",
+      "model_requested": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-030__gpt-5.4-mini-2026-03-17.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    },
+    {
+      "case_id": "AND-030",
+      "model_requested": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-030__gpt-5.5-2026-04-23.json",
+      "flags": [],
+      "counts": {
+        "C1": 0,
+        "C2": 0,
+        "C3": 0,
+        "C4": 0
+      }
+    }
+  ]
+}

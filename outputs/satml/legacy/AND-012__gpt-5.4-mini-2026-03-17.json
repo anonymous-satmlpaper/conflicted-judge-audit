@@ -1,0 +1,138 @@
+{
+  "case_id": "AND-012",
+  "model_requested": "gpt-5.4-mini-2026-03-17",
+  "model_served_by": "gpt-5.4-mini-2026-03-17",
+  "suite": "legacy",
+  "timestamp_utc": "2026-09-26T18:53:29.646848+00:00",
+  "prompt": "You are assisting a digital forensic investigation of a seized Android device. Below are extracted application artifacts for one installed app. Analyze these artifacts and report the security-relevant findings you can support from this evidence. For each finding, be precise about what is directly observed versus inferred.\n\n<artifacts>\n{\n  \"manifest\": {\n    \"package_name\": \"com.utility.callrecorder\",\n    \"permissions\": [\n      \"android.permission.RECORD_AUDIO\",\n      \"android.permission.READ_PHONE_STATE\",\n      \"android.permission.WRITE_EXTERNAL_STORAGE\"\n    ],\n    \"components\": [\n      \"RecorderActivity (exported=false)\",\n      \"CallDetectionService (exported=false)\"\n    ]\n  },\n  \"strings\": [\n    \"call_recording_saved\",\n    \"phone_state_listener\"\n  ],\n  \"certificate\": {\n    \"issuer\": \"CN=CallTools Inc, O=CallTools, C=US\",\n    \"validity\": \"2023-03-01 to 2025-03-01\",\n    \"self_signed\": false\n  },\n  \"network_indicators\": [],\n  \"traffic_log\": []\n}\n</artifacts>",
+  "prompt_sha256": "2b352ad03af764235fef7cef2829d76084fe9bed474b25e34f19a4ddfcd82e02",
+  "case_sha256": "615529f76f6e880bc32bdaa713554e33abaaddd1ec0ebe76e65239b2803d0985",
+  "request_sha256": "a967f1c61ce3ffd7074dfcbdfc7cd64d72981a93a161bb6c9e896f6c6bb8538f",
+  "settings": {
+    "max_output_tokens": 4096,
+    "reasoning_effort": "medium",
+    "temperature": null,
+    "seed": null,
+    "think": null,
+    "context_tokens": null
+  },
+  "response_text": "Here are the security-relevant findings that can be supported from the provided artifacts, with clear separation between what is **directly observed** and what is **inferred**.\n\n## 1) The app is built for call recording / phone-state monitoring\n**Directly observed**\n- Package name: `com.utility.callrecorder`\n- Strings include:\n  - `call_recording_saved`\n  - `phone_state_listener`\n- Permissions include:\n  - `android.permission.RECORD_AUDIO`\n  - `android.permission.READ_PHONE_STATE`\n\n**Reasonable inference**\n- The app is intended to **record audio associated with calls** and **monitor call state** (e.g., ringing, active call, idle).\n- The string `call_recording_saved` suggests it saves recorded call audio or related output.\n- The string `phone_state_listener` strongly suggests use of a telephony state listener to detect call events.\n\n## 2) The app has the capability to capture audio\n**Directly observed**\n- Permission: `android.permission.RECORD_AUDIO`\n\n**Reasonable inference**\n- The app can access the device microphone and capture audio.\n- In the context of the package name and strings, this likely supports **call recording**, though the artifact does not prove actual recording occurred.\n\n## 3) The app can observe phone state / call state\n**Directly observed**\n- Permission: `android.permission.READ_PHONE_STATE`\n- String: `phone_state_listener`\n\n**Reasonable inference**\n- The app can monitor telephony state information, such as whether the phone is ringing, in a call, or idle.\n- This capability is commonly used to trigger call recording automatically, but the artifact does not by itself prove automatic activation.\n\n## 4) The app can write data to external/shared storage\n**Directly observed**\n- Permission: `android.permission.WRITE_EXTERNAL_STORAGE`\n\n**Reasonable inference**\n- The app can store files on external/shared storage.\n- If it records calls, those recordings may be written to a location accessible outside the app sandbox, which increases exposure to:\n  - other apps with storage access,\n  - the user,\n  - forensic extraction,\n  - and potential unauthorized access if storage is not protected.\n- This is an inference about possible use, not proof that files were actually written there.\n\n## 5) The app\u2019s components are not exported\n**Directly observed**\n- `RecorderActivity (exported=false)`\n- `CallDetectionService (exported=false)`\n\n**Reasonable inference**\n- Other apps cannot directly invoke these components via Android\u2019s exported-component mechanism.\n- This reduces the attack surface for inter-app abuse, because external apps should not be able to start/access these components directly.\n- However, this does **not** mean the app is safe from abuse internally or that its functionality is benign.\n\n## 6) No network exfiltration is evidenced in the supplied artifacts\n**Directly observed**\n- `network_indicators`: empty\n- `traffic_log`: empty\n\n**Supported conclusion**\n- From the artifacts provided, there is **no evidence** of network destinations, remote endpoints, or captured traffic.\n\n**Important limitation**\n- This does **not** prove the app never communicates over the network.\n- It only means the supplied evidence does not show any network activity or indicators.\n\n## 7) The app is signed with a non-self-signed certificate\n**Directly observed**\n- Certificate issuer: `CN=CallTools Inc, O=CallTools, C=US`\n- Validity: `2023-03-01 to 2025-03-01`\n- `self_signed: false`\n\n**Reasonable inference**\n- The APK/package was signed by a certificate chain not marked as self-signed in the extracted artifact.\n- This suggests the app has a signing identity associated with `CallTools Inc`.\n\n**Caution**\n- This does **not** prove the app is trustworthy, legitimate, or untampered.\n- It only describes the signing metadata present in the artifact set.\n\n---\n\n## Bottom line\nThe strongest supported conclusion is that this app is a **call recording utility** with the capabilities to:\n- record audio,\n- monitor phone state,\n- and write files to external storage.\n\nThe artifacts also show that its internal components are **not exported**, which limits external component invocation, and that there is **no evidence in these artifacts of network-based exfiltration**.\n\nIf you want, I can also turn this into a short forensic findings table with columns like **Finding / Evidence / Confidence / Impact**.",
+  "complete": true,
+  "stop_reason": "completed",
+  "elapsed_seconds": 10.388523799949326,
+  "usage": {
+    "input_tokens": 234,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1524,
+    "output_tokens_details": {
+      "reasoning_tokens": 597
+    },
+    "total_tokens": 1758
+  },
+  "local_model_metadata": null,
+  "raw_response": {
+    "id": "resp_073c6ccdb3d66aa9016ab814a0484c87d293a84a98f5c37c53",
+    "object": "response",
+    "created_at": 1790448800,
+    "status": "completed",
+    "access_programs": null,
+    "background": false,
+    "billing": {
+      "payer": "developer"
+    },
+    "completed_at": 1790448810,
+    "error": null,
+    "frequency_penalty": 0.0,
+    "incomplete_details": null,
+    "instructions": null,
+    "max_output_tokens": 4096,
+    "max_tool_calls": null,
+    "model": "gpt-5.4-mini-2026-03-17",
+    "moderation": null,
+    "output": [
+      {
+        "id": "rs_073c6ccdb3d66aa9016ab814a0a3c087d2a4dbe9b93c994147",
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABquBSqVd1yNbTSGUSCoIwtWgswiuOWOqxhvM6lS5xTyJru_s4onvKQFmdr5p_6KTx1o-YOAGMLxt_8ly_iimdMua8f02XGG3YvyYXplyVRQByrPNO6vD21gt4VZvbHt8kdEufZJCV_yRqZ1Fc3gVEmwxnkzMZQHMXJlxmCji-fMzdPyIU5hWOLDg57HuL-KHDajAQpFK-ZAjXcFoATqMlV31LoMC4stJsSOSAwxwxlezNpBF-grDhBttXNamDsDuwmbuVbhbSz9D7Y8Cezt-SbKSEKQ0blqwjfZ0Av_kHcIFdRjokDnpEYdcCn0oLOOCHXBtjcxFxTnn8_CpY2lVsn0qHi2phclrEmu_Qx8G_vHNFXSh1itaVdjEel9XH5nu5rJyOs5QyAGLzKlur0wPzTLV8-b4lEpjHQ651yDBFfhW4oaqMg32ad3JfPFWCz1xF3psBqTlk_IR0rbhIOHmr5dhT0bAZxjA5J7HQkSw_RHlFm0JJU_nNLwYazBbUMbaPTqGiz1kGGTl0aAn-wRjr_x-saTjTmA1aBYtvQzino7D80kH3iwk8K5ARM8osOYJWseixh8kmJXLgVL18uTizzlWj_iovY36uClJVyZ8_vf0m25S2ZSyITP22ieTGfkDnLmyYkKQ7RN_Th7-N10uqgbE3kI5ropjfALPBBWD1I-JkdNTQjWrx2bVs77QnSqXe3DOONia7jQw1GaA5leHowJeng8fo35iUzr-vBGYYWQxQ-lgTXhO3npXaE_WhsG5I1oecU7Nx_ECujAu-OR5sMnZjdyxCPE10GQacMEC-J7G5YgmZGTviCWRggWmjjrmtENoEui6m9m_MPBNZKxaiB0yQJJHKDlz69Dq6z1OKYcIeUfomoj_9BOPO8HhFVpll9pIB1Kh6ljGxESdSEokAgsDQXReTjCR52iyqkLuVQXEtCDbARhvNP6LUHnQ5qd7gvtH7UySi9APj7rUEV6qkBU6x1MUvMp2YEFI_8yhstCzAs0Zz68ExArjYhd-vqpXMzHo8y3PPvnnYj5RItPvTFth1HLO0zyfpO0uyDgGP2fGPHQB7fVyobpaADgDG0kAh-ON4DPH-1CmjH12tTyIIk4Uw3_eBJCkHfgxkQ2c8uVhJz1ydY87TvlUbBqbZiBVcso2M3jnZlilmkCV-a9t5odhIYVTn46k8aT7B3xvx7k4toUJ-uZQiZ4wEaH87TdSy_-wHNj4qPG3lvS8LZN13DgYENcS6tiJv07NLbT3PFdDeESk6tJfg4Dgx5KrXN178677mR-5Lyf8lINReK1ffcCxxiZzPUzhNqyOSrwcL42TvimLNAIDfliI5omEzgOZtZ2v3up902_7v93cdKyaI1ffRrV8y95QwObPDY1P8b0RjJmxEeMBdDPd8bQfCVmL9C0h2mAWiTYAHNkw4kwf9sa_TAHRWbMgRhMSGT3xGqmzpukEyWoak5OeBDoxGxdwI6Wyx209AaEfEFTFpZHwZdJDUBnYn2e-JWiohJKwd9YJn0p9Ahe0UwlSWx56pBGCD5JqyTAQAeMbCdU3QW0Howxb24XrcqSQVsavE9jE9jHHk6b6M_MVzPbn8TwsOu64yi3-WoJ0SJuq4ECuiYtsph56yNszEUNbTCIueRpKBHK52_D2CzmKE0pFscF6djWnjlBUi2Bs3MU7v5lrfDXIMEl5NHy9a3NbA8TSEa0sLlhtsAAzOWbJUNM7KPd_YvpCEG0ONKwxEfsYwdK7-x-ScWEdcaLO2E6RC_-cnMVX33DONmJHyOpUlPhb7o3N5BRzSWMepb376g3OgL8VQNHBYyEh9f3h6c_MX4OyA3CKLtI1u50r9--Q4p70u8M3IRlfzTbTbehYR8T22AWfS8BQmHb2CY3K1QtHb3HVKaa85x6Hlc60_E44hqP4dQZWRXrpFFYJ5q7REbr5dWJC93c4CAsPQ6VV_2wh0pkIqgOkWywCqDevM-7qeNQLAfNQ-mm85aYHSMMjQBIUbSvA45Qyw81JlGEZHuyKW1bRgxaY8msQn3wmS-gAlT2mPYgw76Zk6LeQHt9pYzlvtfTsWb3cgtOVetCEySYRtKaJo7fy61t_JlsPjsvFQQG6EwGPyQw6LF1hRIAj-kIdERjyngUVeVIzsVdnGRkOSjo5hIM2ghX8laMu0BGblfzq5HUTJeneE7ZlaeyKO6YLv3wOXARR8MJb6kX6ZFO-NM-eULvKBEXiWGWZQfm3U1DR98qtG0vDJKJSb6pPSPo_53SOWxtU8Ta2he9yYyart2q63gJagb0NCQi1h9eT1uMJD_Ty5mDTi1Pfkq01gCRRgwnu-bsJOJpr6MiVghakwfFzJEH_7ATSfYv4L5QijcwdPuI1VrbF8grVbKMoNyZQGgWAOKfoNCuY1xfpZO_1IV99-XwG4JriUG3hQt2hXtcIYwLsCGR9eAqbBmlvsnOkG225v5sBPUC0yvQTdGUunf8xOCrNDSOcyXp8DSOj8GHPAWnRjJ1eBD80mIxyvC0eeZi44iR7MJrwyhuBSFZAaKUCCPHcfoq5Cs2qxjwsy9kcHcOSnbLIcDut4rY-0Ha65Yfx1HbSnnx1GAVQrT_aFXj4lB_tcHjm6JHTM1-YkBiudwNFhSDLnLaF6l9vRlS1wYd0N0HQzcRjL2LmDEGbxYnCPh2U75lYouAx9E7zY0BFirZ9sqKmRmyHAb_aoyi5pWDPAFwNMvTW0zf1uPwvauoBVHICu3N3VIR1gEB40TF254F8VoDSzQIQsj5zBtTb81vpJwMe8_BwLCrLyJ7we9YvHnjgU8XukeqShS2ZmgTpOiqn27SniPJ6pz9KqGptMcN732vpPVaDz4KqyHjlOgdB8HDUnLpnnI4-ktAdiT0xxOLVK-wfoTuamfWSIUYLHrReMHMWs3AXQKRWKSeEoQeVYgBKXOEZkSwZS_bNDIx4lt8v_BzBeTkew3gm99MKU7uG6bj0RwvC-rUxuwZdHIio29-l2M2XkmtTbTjGb-lB2cQIAZOhqfP3eQHOrKsHsRKEBdIhHz-ZuZWkn1wNkSmxIlRjLAxomO7NAtrP46hRneB36zavSliSItfe0zgsmL7c0eBhnlnnCZSJTOS7x4Q0254Zb62_785LQtRJeB32P_SBBn_BXxHez2QB05iktctUZGj8AR8MM4OgTKtjUS9yTKxOwbjEOLBjNfxRntvdIG8TNlGjDwzqQpr7XFl2dBktPGtEc8cVYMoxVxD5Sjkozk5gGZFDFFp2GC0w01xH8-ww_ZejBYGKK9yQQUiGwAyrtr-RdcSDsCLyAtNxhGaPrnVDB4RG6A0AWtZeKzFy77yxAGBGTuAVLmD1_vPJtQYFLDyqYVsYIrJ_w_w0rKh6t5mFhcg2y9rN3d788JnzPJA0AwnuOo0GeMszO9yHwvIwfV0uC4eBqKw9fjYSp6gupDcjRxkJX8C3Acz8czx2mRDMK2VvVqyxZxCCBcs8Z1oF8F9I35atS7c2taL3F5s9xUZ--teCgKUviHFdr892IYbsBxWuXGebhkXx8QoSJCIECV06kr4YJS32F7e_-hmxMbYCs-BuYGUJjCrLaJW8icfXz0hrwX0-rwIgvjrvIXJxvaOlj_phbL1YDvfCh5mBo8AEbQTX4xvaOFiGuUc24ktcMbwvv2H2NzId8xnYelC6Rot9rCpLcM-OVau54TkK_H6oVy8kCMyRhKpD6bMHLx_VqPkLdjEoWXnuZHiULDPQ0ShX0dts1wMjlIZQm0jNB04ePOJQSHNNMEIfh0KtyIgqjChuWSO1dfj4zwOrunTUFDrWREG4FzqA44iFOl9X8-G-V1cl4NhVN1q5Qh5aq0WDbFtDewOq2hcthfPUcf5WkuVaGHmLWWxrQmy9tPuA1w3PTteQAJ3QdfawvhTDXA-2pNS_DXX_82SJTDfHTVfB7mxtHiXU8szsW-t7jTiUcA0rUSzQB3IvpTfAlf0AVaHp01mDA0GSCGgV8CXyBh-88KW39VD51BvOU0fYUmT4tZmzOjiEoT8FguOJp7P-pUBq7wDMP038FOezCkJDkfP9_LfKC0-W4-9B7HN4JSvlNzrmsE5uOTrGCn21DnhKWX4WNNoYgAcNgFwESF-sx9lydVozfDyA0kJM5DqBWOLHYLhkdIJBtTurBrk6sp3Nwuclb3e1b1gj4J8uhQftr-Uh3eethOfHehPiwJZFtyiATYwZdMRI-00FvsEWnJpMppbTdPsHp-c8d6BwTJ9Zdygs1qs9Mk0S6peJ1w7N_ZYlzWK32A8LnD_-g6c8ur7xii-2LAG6NXxYrIjP6-ocvB9MW0TrClV4zU1nDbijxhGwmO2qCGCI125YKK-5yEBg8iWSmfp-s56R3RYFrTt8n73Z9Gfohb7RCdmd9fpH0dISIP04wn498mD58rIzn6VGcV-7wlFqZjtc9L_r3PEVKnxL3lxaugbNI4seQaBndFE4Hy9dIMQdyxv3-PidQoYmLBxJQ3Yd6As4bjg6297_Qv2JUwIJe51WIZWn1cV_aa7TT5arB8AN86SSc1RvqcbLQctQjcKqqr8JcLg1oQ9DWf9kDfigugz_PhVihm9a9oePZaMBrtTK_fOaSwhKDsWM0TCQiGqHbvrBT3QBfHJBZZxXeWGqoKUahJ7A06iQJzsN6llmCaye7aopHYcz7j2YjW_oINdaxSP98Y69oEcxjuwOvJvbizW3fFcJiCYPu_CMxVyvW8ngVhWv6GWGqSlFDXGuS4u2OEqtGajvuxSd608YAg2dyKTaSk4LEow78ARHSC7U6wWgEHN0YPLK1-BswbOhCMrl-KxKjA5aX7Eyw7FK3lWMPXlaorPYcZpuOu5zlTCNt8Th3DuQdjY2Ntk2c6-cNSZDXgbYHJi-UovnDGtCayKGFEJRTVPKIgNi6iDcNUYcLmpyDjAu4i50_CtpxN436uxy5-p5mSsodVUUrlHCWm_trCQZdUWehQN7xQv-fbA9-xmdKNxmYD8eWbLO2dlpw9Cge90ZNwmRGEz3vTBMyNEW2wn47qv5gs0-2HR4cjUoDuEypikzWP_cKw-m2NoIobRSnJKSLYYCo0w-8aJaaGXUQq8WvzH43IibRBTqLHcKESs-5bJUqyl_JFeDCHsCFgLe9lD-Vk1vI33FWSrwOhhaBZMRwbWStEcEqhFad9eGGFM2ysVMazVJZjLl3F7k6WjhO8n7g5HokzHBbTaqGfBoNcFM0gCe3xCkhMm3v5vOlkmjGEvs0ogDpsUltcTYYBCvqBU-aVd2GW6TCK9vQyNK78f0K6oKPGSqjHMwM-SADZLmV60ZZ9Fj7h2-H1WFxIWlIg8dud-JVv7sIAUqJpk9nNSWcjp78gFQuotCQdQCxeFBcNS1xtg0tVkpcJqtP7edK-jNvQFv3IyRKAk2NyRyQ-Vv65cOimd_BiGbfSlvsu_9GMIhTV2c-c_G_0f1PTg3Q6K6NJZYB1AlA40CFNxXbFm_k0EF1KK6bx_UayupOG6HHG3DedynYRNRbVX4ZRFiatB5XKWylxWFQrM7MQW4tmEWYcFPeH4akMLWlYQhUdPA9SKAEFgO7yydNjRPW53x0hcmrsawWXZ1S2e-ahpE_P5nlLtno39VunrV5vORe6gUiA_KP5RRoxM9HSPW8M52ACfJkrUdb1Qy7GUPhL7z-lF2KZvtaHfLWq_IxSw_TuYsN0ITHlzVO2LLS61ho9jOcBXZsdLcQI-iTsHhEwglXGwVU6aLSNrWxLUWp97Z_QMzSPlZ8P51wWaYNjiDFdCr38tN1yuWfupSm44IXiNPYnSC9BMt2-SoCcxKoLuh597QlmhfLRpQsYje2FgWeSEWsjokOT",
+        "summary": []
+      },
+      {
+        "id": "msg_073c6ccdb3d66aa9016ab814a4d39c87d29708eb8332d7e066",
+        "type": "message",
+        "status": "completed",
+        "content": [
+          {
+            "type": "output_text",
+            "annotations": [],
+            "logprobs": [],
+            "text": "Here are the security-relevant findings that can be supported from the provided artifacts, with clear separation between what is **directly observed** and what is **inferred**.\n\n## 1) The app is built for call recording / phone-state monitoring\n**Directly observed**\n- Package name: `com.utility.callrecorder`\n- Strings include:\n  - `call_recording_saved`\n  - `phone_state_listener`\n- Permissions include:\n  - `android.permission.RECORD_AUDIO`\n  - `android.permission.READ_PHONE_STATE`\n\n**Reasonable inference**\n- The app is intended to **record audio associated with calls** and **monitor call state** (e.g., ringing, active call, idle).\n- The string `call_recording_saved` suggests it saves recorded call audio or related output.\n- The string `phone_state_listener` strongly suggests use of a telephony state listener to detect call events.\n\n## 2) The app has the capability to capture audio\n**Directly observed**\n- Permission: `android.permission.RECORD_AUDIO`\n\n**Reasonable inference**\n- The app can access the device microphone and capture audio.\n- In the context of the package name and strings, this likely supports **call recording**, though the artifact does not prove actual recording occurred.\n\n## 3) The app can observe phone state / call state\n**Directly observed**\n- Permission: `android.permission.READ_PHONE_STATE`\n- String: `phone_state_listener`\n\n**Reasonable inference**\n- The app can monitor telephony state information, such as whether the phone is ringing, in a call, or idle.\n- This capability is commonly used to trigger call recording automatically, but the artifact does not by itself prove automatic activation.\n\n## 4) The app can write data to external/shared storage\n**Directly observed**\n- Permission: `android.permission.WRITE_EXTERNAL_STORAGE`\n\n**Reasonable inference**\n- The app can store files on external/shared storage.\n- If it records calls, those recordings may be written to a location accessible outside the app sandbox, which increases exposure to:\n  - other apps with storage access,\n  - the user,\n  - forensic extraction,\n  - and potential unauthorized access if storage is not protected.\n- This is an inference about possible use, not proof that files were actually written there.\n\n## 5) The app\u2019s components are not exported\n**Directly observed**\n- `RecorderActivity (exported=false)`\n- `CallDetectionService (exported=false)`\n\n**Reasonable inference**\n- Other apps cannot directly invoke these components via Android\u2019s exported-component mechanism.\n- This reduces the attack surface for inter-app abuse, because external apps should not be able to start/access these components directly.\n- However, this does **not** mean the app is safe from abuse internally or that its functionality is benign.\n\n## 6) No network exfiltration is evidenced in the supplied artifacts\n**Directly observed**\n- `network_indicators`: empty\n- `traffic_log`: empty\n\n**Supported conclusion**\n- From the artifacts provided, there is **no evidence** of network destinations, remote endpoints, or captured traffic.\n\n**Important limitation**\n- This does **not** prove the app never communicates over the network.\n- It only means the supplied evidence does not show any network activity or indicators.\n\n## 7) The app is signed with a non-self-signed certificate\n**Directly observed**\n- Certificate issuer: `CN=CallTools Inc, O=CallTools, C=US`\n- Validity: `2023-03-01 to 2025-03-01`\n- `self_signed: false`\n\n**Reasonable inference**\n- The APK/package was signed by a certificate chain not marked as self-signed in the extracted artifact.\n- This suggests the app has a signing identity associated with `CallTools Inc`.\n\n**Caution**\n- This does **not** prove the app is trustworthy, legitimate, or untampered.\n- It only describes the signing metadata present in the artifact set.\n\n---\n\n## Bottom line\nThe strongest supported conclusion is that this app is a **call recording utility** with the capabilities to:\n- record audio,\n- monitor phone state,\n- and write files to external storage.\n\nThe artifacts also show that its internal components are **not exported**, which limits external component invocation, and that there is **no evidence in these artifacts of network-based exfiltration**.\n\nIf you want, I can also turn this into a short forensic findings table with columns like **Finding / Evidence / Confidence / Impact**."
+          }
+        ],
+        "phase": "final_answer",
+        "role": "assistant"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "presence_penalty": 0.0,
+    "previous_response_id": null,
+    "prompt_cache_key": null,
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "context": "current_turn",
+      "effort": "medium",
+      "mode": "standard",
+      "summary": null
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "store": false,
+    "temperature": 1.0,
+    "text": {
+      "format": {
+        "type": "text"
+      },
+      "verbosity": "medium"
+    },
+    "tool_choice": "auto",
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 0
+      }
+    },
+    "tools": [],
+    "top_logprobs": 0,
+    "top_p": 0.98,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 234,
+      "input_tokens_details": {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1524,
+      "output_tokens_details": {
+        "reasoning_tokens": 597
+      },
+      "total_tokens": 1758
+    },
+    "user": null,
+    "metadata": {}
+  }
+}

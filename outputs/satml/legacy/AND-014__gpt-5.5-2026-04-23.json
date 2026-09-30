@@ -1,0 +1,138 @@
+{
+  "case_id": "AND-014",
+  "model_requested": "gpt-5.5-2026-04-23",
+  "model_served_by": "gpt-5.5-2026-04-23",
+  "suite": "legacy",
+  "timestamp_utc": "2026-09-26T18:52:32.790860+00:00",
+  "prompt": "You are assisting a digital forensic investigation of a seized Android device. Below are extracted application artifacts for one installed app. Analyze these artifacts and report the security-relevant findings you can support from this evidence. For each finding, be precise about what is directly observed versus inferred.\n\n<artifacts>\n{\n  \"manifest\": {\n    \"package_name\": \"com.utility.systemhelperservice\",\n    \"permissions\": [\n      \"android.permission.INTERNET\",\n      \"android.permission.SYSTEM_ALERT_WINDOW\",\n      \"android.permission.BIND_ACCESSIBILITY_SERVICE\"\n    ],\n    \"components\": [\n      \"HelperActivity (exported=false)\",\n      \"OverlayAccessibilityService (exported=false)\"\n    ]\n  },\n  \"strings\": [\n    \"overlay_render\",\n    \"target_package_com.examplebank.app\",\n    \"credential_capture_field\"\n  ],\n  \"certificate\": {\n    \"issuer\": \"CN=Unknown, O=Unknown, C=XX\",\n    \"validity\": \"2024-02-01 to 2044-02-01\",\n    \"self_signed\": true\n  },\n  \"network_indicators\": [\n    {\n      \"domain\": \"collect.example.com\",\n      \"ip\": \"203.0.113.60\",\n      \"source\": \"traffic_log\"\n    }\n  ],\n  \"traffic_log\": [\n    {\n      \"timestamp\": \"2026-03-05T16:00:00Z\",\n      \"domain\": \"collect.example.com\",\n      \"bytes\": 900\n    }\n  ]\n}\n</artifacts>",
+  "prompt_sha256": "c998419587afd00501869e00f0eb2c028391b226e7f3a533cd24294d640ee8a1",
+  "case_sha256": "5b9aaa25eb31a2e5d2876127066e8514edb9d3052c6f7b09948a9148b9aa85a4",
+  "request_sha256": "37afc172306f6c836b987fdec0dce676cb4f54276312721a24bf68a5314e5e20",
+  "settings": {
+    "max_output_tokens": 4096,
+    "reasoning_effort": "medium",
+    "temperature": null,
+    "seed": null,
+    "think": null,
+    "context_tokens": null
+  },
+  "response_text": "## Security-relevant findings from the provided artifacts\n\n### 1. App has capabilities commonly abused for credential phishing / UI manipulation\n\n**Directly observed**\n- Package name: `com.utility.systemhelperservice`\n- Declared permissions:\n  - `android.permission.INTERNET`\n  - `android.permission.SYSTEM_ALERT_WINDOW`\n  - `android.permission.BIND_ACCESSIBILITY_SERVICE`\n- Components:\n  - `HelperActivity`, `exported=false`\n  - `OverlayAccessibilityService`, `exported=false`\n- String artifact: `overlay_render`\n\n**Inference**\n- The combination of an accessibility service and overlay capability is security-sensitive.\n- `SYSTEM_ALERT_WINDOW` can allow the app to draw over other apps if the permission is granted.\n- An accessibility service can observe and interact with UI content if the user enables it.\n- The component name `OverlayAccessibilityService` and string `overlay_render` suggest the app may implement overlay functionality, though the artifacts do not show the actual code or runtime behavior.\n\n**Limitations**\n- The evidence does not prove that the overlay permission was granted or that the accessibility service was enabled on the device.\n- The evidence does not show actual screen capture, input capture, or UI manipulation occurring.\n\n---\n\n### 2. Artifacts suggest targeting of a banking application\n\n**Directly observed**\n- String artifact: `target_package_com.examplebank.app`\n\n**Inference**\n- The string appears to reference a specific target package: `com.examplebank.app`.\n- Given the surrounding artifacts \u2014 overlay-related strings, accessibility service, and credential-related string \u2014 this suggests the app may be designed to interact with or monitor the banking app `com.examplebank.app`.\n\n**Limitations**\n- The evidence does not prove that `com.examplebank.app` was installed on the device.\n- The evidence does not prove the app successfully launched, monitored, overlaid, or attacked that banking app.\n\n---\n\n### 3. String evidence is consistent with credential capture functionality\n\n**Directly observed**\n- String artifact: `credential_capture_field`\n\n**Inference**\n- The string is strongly suggestive of code or UI logic related to capturing credentials.\n- In combination with:\n  - accessibility service declaration,\n  - overlay capability,\n  - `overlay_render`,\n  - and a target banking package string,\n  \n  this supports a suspicion that the app may be intended for credential harvesting or phishing.\n\n**Limitations**\n- No actual captured credentials are present in the provided artifacts.\n- No code path, database, file, or log showing credential collection was provided.\n- The string alone does not prove credential theft occurred.\n\n---\n\n### 4. Network communication to an external collection domain was observed\n\n**Directly observed**\n- Network indicator:\n  - Domain: `collect.example.com`\n  - IP: `203.0.113.60`\n  - Source: `traffic_log`\n- Traffic log entry:\n  - Timestamp: `2026-03-05T16:00:00Z`\n  - Domain: `collect.example.com`\n  - Bytes transferred: `900`\n\n**Inference**\n- The app communicated with or generated network traffic to `collect.example.com`.\n- The domain name `collect.example.com` is suggestive of data collection, but the name alone is not conclusive.\n- Given the credential-related and overlay/accessibility artifacts, this network activity may represent telemetry, command-and-control, or possible exfiltration.\n\n**Limitations**\n- The traffic log only shows 900 bytes transferred; it does not show payload contents.\n- There is no evidence in the provided artifacts that credentials or sensitive banking data were transmitted.\n- The direction of traffic is not specified; \u201cbytes\u201d may represent sent, received, or total bytes depending on the logging source.\n\n---\n\n### 5. The app uses an unknown self-signed certificate\n\n**Directly observed**\n- Certificate issuer: `CN=Unknown, O=Unknown, C=XX`\n- Validity: `2024-02-01 to 2044-02-01`\n- Self-signed: `true`\n\n**Inference**\n- The APK is signed with a self-signed certificate using non-identifying issuer information.\n- The 20-year validity period and unknown issuer are consistent with many non-enterprise or unofficial APKs.\n- This may indicate the app is not attributable to a well-known developer based on the certificate metadata alone.\n\n**Limitations**\n- Android APKs are commonly signed with self-signed certificates; this is not inherently malicious.\n- Certificate metadata alone cannot determine whether the app came from an official app store or a sideloaded source.\n- No reputation or hash-based intelligence is provided.\n\n---\n\n### 6. Components are not exported, reducing direct external app invocation risk\n\n**Directly observed**\n- `HelperActivity` is `exported=false`\n- `OverlayAccessibilityService` is `exported=false`\n\n**Inference**\n- Other apps generally should not be able to directly invoke these components through explicit external intents unless special conditions apply.\n- This reduces one class of attack surface from other local apps.\n\n**Limitations**\n- Non-exported components do not make the app benign.\n- The app can still execute its own components internally.\n- Accessibility and overlay behavior, if enabled, can still affect other apps without components being exported.\n\n---\n\n## Overall assessment\n\nThe artifacts are highly suspicious from a security perspective.\n\n**Direct evidence shows:**\n- An Android app with internet access.\n- Overlay-related and accessibility-service capabilities.\n- Strings referencing:\n  - overlay rendering,\n  - a specific banking app package,\n  - credential capture.\n- Network traffic to `collect.example.com`.\n- A self-signed certificate with unknown issuer details.\n\n**Reasonable inference:**\n- The app may be designed to target `com.examplebank.app` using overlay and/or accessibility techniques to capture credentials and potentially transmit data externally.\n\n**Not proven by the provided evidence:**\n- That the user granted overlay permission.\n- That the accessibility service was enabled.\n- That the banking app was installed or accessed.\n- That credentials were actually captured.\n- That any sensitive data was exfiltrated in the 900-byte network event.",
+  "complete": true,
+  "stop_reason": "completed",
+  "elapsed_seconds": 17.199001600034535,
+  "usage": {
+    "input_tokens": 317,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1626,
+    "output_tokens_details": {
+      "reasoning_tokens": 378
+    },
+    "total_tokens": 1943
+  },
+  "local_model_metadata": null,
+  "raw_response": {
+    "id": "resp_092bf3fa40b5a606016ab81460cbe087d2bf4ac5c4cc400eab",
+    "object": "response",
+    "created_at": 1790448736,
+    "status": "completed",
+    "access_programs": null,
+    "background": false,
+    "billing": {
+      "payer": "developer"
+    },
+    "completed_at": 1790448752,
+    "error": null,
+    "frequency_penalty": 0.0,
+    "incomplete_details": null,
+    "instructions": null,
+    "max_output_tokens": 4096,
+    "max_tool_calls": null,
+    "model": "gpt-5.5-2026-04-23",
+    "moderation": null,
+    "output": [
+      {
+        "id": "rs_092bf3fa40b5a606016ab814613efc87d28e22b31178398dc9",
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABquBRw-LGTXGQweWkXvefXLx-_RjLgY2mevNJweHXzg_eeqHW-XBo0XEDk-zO3ZtauA6U5HbFaXIE5VIbO1phJN6ycboXrwDqm6uPdRnwpY7kE_dy83NHy0ZGG8suWEwCK0lbwiAdUN8wKdG_HLc6I8kuTs4_wPzU3yTQEWIdPTp4BCRx1R6fbKq_KzJbmO9AYbbrpe5u3iKOV-2KEI99t_tVPcfNL-lRP6xu6CXam5BNsUGxJgqipmtsWQ0BGHTgBeJv5AFz1gaxHDclSbQAvkGCHAjtSgE0zmJ1J4q6gZDFdOI1jHUxCCNlaMwagbCxqQCskjctAErdi0ejSwCIkdNV4yIU_QyObLNG8uayC1mBCBVTstSyioZo6BAKW5AVahyCz-9pKONeo3s1qMW-UmsyJvA2P1X0p8TeNTKsG5b_ykA3Iyhpsm66m6EtlHgFd_SKQ0h_C-_nw2LIcZmbRyqt_i7I7jpHBw1YUlp5Ch6AtDSbCypnVfhsRTWe-PZyNT9Y85TJStKfe3NCIDRco_DJgXpmUjl-rPfTXoBLW-vNDcLDPOQHt7TOqW9O9OnUKfWhJPMXtMOoW5b0vDnKsnI1E25VSX5H_NRaBc2XpBuuTH6chcPLkUZ-rg8jYcUMia7os8b-cRtJXdapQWu8kTSCu2TyfwsGa90etPqHJBJHASFY7NPVDFO41FKbHg3ZhTPIRgSyFPJjom1VUpqo1soaGI5Ss1rmez7sVgrT08tqGZDeyXpdsnhf8X-Eh1iK4Cdy1E8U8xcl3difgo4B7RgZsi8oOO-8mjL0cl9zJ7JZer0pui5HjSuVdzgL-WyhD41CtOu9BJ0Hsn8k9yBHQqCFftKds8cy9SqXDXnS73saJLlkbsxTObWUPYLg_4Re_J_syrPCT03fheblfuoM_jl9hq51c9Kd4UE4cHTHoMkRniammW0Nv1NsfApQWwW-j0g2njwZw2vK2hReIxmm-xIOP1GONlATWHcIZkla31wLrBxLMlqgvXOXu2bx9BOtKj24KITlmWovPeiKGGlZDVDcq-KoG1xdIE1-8XviTQ_m8JUEpDr2PsWn7-Bdu9j8NVhH4IKjHSgD95lr5NXakptrpZHm9mNoEt8TKE8PMG0ELYvADndpu2TkRTkWVW1sxxcUF0gJjzzt7IqK0KB8WgP61BlRbGvg0Xvh6fmBpm8r0VGOCmzqLw_0JbsN-WKGPjI0vseB8xayKQS3z7qQYit547n7cXw0Dw5otgmhyw8gp-qBPzw0qmXDPNWDkFlp7udGNfYRZWYfXpUWQKjpG-7KuVWgOtcj1ZyqcifBTllMIa7pCXmwRVmJsJ71myuCTjOJ7GoxY47Px1ZJhgNzvodaPChh0eIRPup7Go8AG_uLigqmM2zsnzOnD1WF4H2e01pBocFCiA6bsY3Viprf8zmg4m71OWyoyAfDAL6QayfkoNEjpaMGjGk3YJjUbyOX1RyxpOo_6i2ul6HTkxlwJafPZ6AwlM-8x1MjgMl-s4a_NzY5NFeGNeMyqdujfi6Ec3P21sl5Vdf75No_KJ9csP5utjmp1ibkoZJN01EyedC6t5OONkxx--tYe299s4qulUIZdmnlzCSDxbzAtWL61pgIUeHVbpytU3UOj49cpIa6i4dN6qn-8tCF9PxsLQHfZt6d08fClSGGEQMXqbm3Jwrz_1QFZ72a2YThfwmn8bvZjoqE2vseRKCnUWpTHg-SNbV6HqenQUb8l8vLDs-mxb0NgBb_Y4X2YUqRp3_YGNx1TEFh3iDGQQDBPmyPxyGf7pSJFcmwQgwqY4KsfQYsA8sb_6Md94yJv-IWOYXZEQFLCxoKqzzz29WCuxBzq3VLqfXEltM_tBy5HUGhQMfnyFu6GnwwtUrIhzm2sCZmUq-M0BbkAZe0edSarFNi4TaqAb5CyxbKTyH8K3lnphYhRHvnDbjX4hKkh1eIhjDmekh2z-vr-ThA5wYsByZm4pMkRtTD49XlustAaisAk9bQDfqdQtDR10affnYtOp6D-wOdlrJzYsohtyY5v6gr-jA8Vt-NvNLcLkVp8BhdxBfsrEr3SxA79Qbz_C3b7wYqfwO3bET_aaf22R5wD7KX9TdoCqEaO-nz7keIlUz5gcUcRSSwSVMnN0Bs6gsN2oAfpWR-eHKSsEukrDHHCkLyFT0a2cwMvNX0nN1gT_D8lz2HUYXOudBrVEOBhDpwM5q5DU97RXnM2NGg31_-WN2w9KHPRvn0Ws_ByyxZNcXf-ByFz0AZHEzm3jbXZOKnR-EQp1a4oQFRaXQK_s_eeLEds2uIm5MxKohijlWmybDddhpCY3CtbbWvs7wNvGpO86m2EZ3aER_5x9v9GtKos5_4gRKCD0uN668gI7Fw0TNG_B-TKLK26qJNBjxMmVs2rSTcwuAkPx67xoZs80do60fQT2q_sCp4X9o4A3Xx6SdIenRU05IV7_GDAMmzEMMoMizqPWwiSqj07RatQob91-odM5x5IV0uo2e1tefB1C7AuUmJ7n7HADn9WvIp8BW3jYT8lbg2LkWIWG5Jh4V4oPDctkp4MWBuu6hLmf2hk7nsZBkFg3-hEg1JrSwLPt5NkHPXQ5A7_fL-Ol3FhUBjMlD19dOGwHZJrXz1M6q1irVhTctbHdDb3f5QAAeIlxhd-el6zulOgiWS0XLzbBncvSvU8F7XDgw5Pd9L2RETzmuflgnaCIfYgQne67-y6EY43wvmYCXR26Ixuk-CbSUzeNDAERYnu6ILucrfjtJPU59bbxWs7KGG62rr9WuaZkC2DDOVCyUke7ubfOcg4ZPtYVlliSUi_rwqiPzW58M73UpDYGoXDEgs3ZlnYXpgsmA7p_MLY-m-1nEmlAutN4znNadLN3ElDs8tFkQOOQ-KWKA82LVumKZMpDUCocswhOtf3cMSdzrmLH1jWAFyFaG83VYsxgRaOTFwVtJqQ_ues4Dv-AGlm23VQCAdnMG-Q9bfXBt76v6jmMvOKT3XSHeGEGKslPJ9JocicNFRiGfxu_23GqqT9UXgkXUhW4VoUO7zajLPBx2nyOyaJn7O-Uq4y277uL6CD5iStE179lNu62VJcFfYXyu_WmjRQwr-0wfJl2MDxWzg33Pv95Mly1KYTofwTGMncTvIPPLsjZn2BQYRaN2zsKkckzhEs8mfZQP23FGJteP1-D-B3B5wOu3xgCQmE3yjNj2ZAR6e9YTBIJrNI97Qk04AqHM6TeGZxVThtmcSYsns4rIBB2U2NZpoS0WXMA8Q2kvBdMf59cwzKZR8c8u7h07YYHIooDO1by0SiX8vjcWlF537rqo5qxGuZbqr_x9ExPEYD_3MzlAR7n3Az1x67bc40DNRn_E2RA9imSdnNGqdoX8qxHgg7QqYNxQjOvcvirzTdXibVcW0tzNfOa4P2VZNp7udwSJxfsNKseBoY-mFnua6lgq1thc-8a3g4IW_pbf8dJNkrZorVHTtQOKT5HqQEF1bfes-uWDxOPxBMEe3Ytyh-BQslzAEhDXGxJzE7OL-B06Sfg_J1QSTsoxWANHGXcjjHb7Bhm8w4Dc2UveJqI1u71ZpB_OlNqup_GK1F-n6gN0ljcC5uujATGgra4N1T9D2uJ5CgxRejnMOsBHKg5OIPf0iTc8hHit_GGKEirP2ESY-SvzIOUmGgHslk1pieZ_GslyKnpr5kWNTdDeCNh3zVcpVSPpUtXwlA68TpVqnu-QFNXrWZ0BrR_YQjFM9Dilu7U5oZ14gs21ak2BewgKiCYZ2Twn5HdBworJTetLCOH4daq6M08cFWjq0RkNVkmxbaKGFIKEtJGMeSWcZ6ZPpML2VVHlbyNSeA8c-Z307e243NC43r4fjiPHBsD8HxHF3tF0X1VP2cVawPyR2j2LtRHkaSHsLmQSCMdos0kYSUUFLotB3ID9OUFIDDtC9Reg==",
+        "summary": []
+      },
+      {
+        "id": "msg_092bf3fa40b5a606016ab8146574bc87d288b454017db3f2fa",
+        "type": "message",
+        "status": "completed",
+        "content": [
+          {
+            "type": "output_text",
+            "annotations": [],
+            "logprobs": [],
+            "text": "## Security-relevant findings from the provided artifacts\n\n### 1. App has capabilities commonly abused for credential phishing / UI manipulation\n\n**Directly observed**\n- Package name: `com.utility.systemhelperservice`\n- Declared permissions:\n  - `android.permission.INTERNET`\n  - `android.permission.SYSTEM_ALERT_WINDOW`\n  - `android.permission.BIND_ACCESSIBILITY_SERVICE`\n- Components:\n  - `HelperActivity`, `exported=false`\n  - `OverlayAccessibilityService`, `exported=false`\n- String artifact: `overlay_render`\n\n**Inference**\n- The combination of an accessibility service and overlay capability is security-sensitive.\n- `SYSTEM_ALERT_WINDOW` can allow the app to draw over other apps if the permission is granted.\n- An accessibility service can observe and interact with UI content if the user enables it.\n- The component name `OverlayAccessibilityService` and string `overlay_render` suggest the app may implement overlay functionality, though the artifacts do not show the actual code or runtime behavior.\n\n**Limitations**\n- The evidence does not prove that the overlay permission was granted or that the accessibility service was enabled on the device.\n- The evidence does not show actual screen capture, input capture, or UI manipulation occurring.\n\n---\n\n### 2. Artifacts suggest targeting of a banking application\n\n**Directly observed**\n- String artifact: `target_package_com.examplebank.app`\n\n**Inference**\n- The string appears to reference a specific target package: `com.examplebank.app`.\n- Given the surrounding artifacts \u2014 overlay-related strings, accessibility service, and credential-related string \u2014 this suggests the app may be designed to interact with or monitor the banking app `com.examplebank.app`.\n\n**Limitations**\n- The evidence does not prove that `com.examplebank.app` was installed on the device.\n- The evidence does not prove the app successfully launched, monitored, overlaid, or attacked that banking app.\n\n---\n\n### 3. String evidence is consistent with credential capture functionality\n\n**Directly observed**\n- String artifact: `credential_capture_field`\n\n**Inference**\n- The string is strongly suggestive of code or UI logic related to capturing credentials.\n- In combination with:\n  - accessibility service declaration,\n  - overlay capability,\n  - `overlay_render`,\n  - and a target banking package string,\n  \n  this supports a suspicion that the app may be intended for credential harvesting or phishing.\n\n**Limitations**\n- No actual captured credentials are present in the provided artifacts.\n- No code path, database, file, or log showing credential collection was provided.\n- The string alone does not prove credential theft occurred.\n\n---\n\n### 4. Network communication to an external collection domain was observed\n\n**Directly observed**\n- Network indicator:\n  - Domain: `collect.example.com`\n  - IP: `203.0.113.60`\n  - Source: `traffic_log`\n- Traffic log entry:\n  - Timestamp: `2026-03-05T16:00:00Z`\n  - Domain: `collect.example.com`\n  - Bytes transferred: `900`\n\n**Inference**\n- The app communicated with or generated network traffic to `collect.example.com`.\n- The domain name `collect.example.com` is suggestive of data collection, but the name alone is not conclusive.\n- Given the credential-related and overlay/accessibility artifacts, this network activity may represent telemetry, command-and-control, or possible exfiltration.\n\n**Limitations**\n- The traffic log only shows 900 bytes transferred; it does not show payload contents.\n- There is no evidence in the provided artifacts that credentials or sensitive banking data were transmitted.\n- The direction of traffic is not specified; \u201cbytes\u201d may represent sent, received, or total bytes depending on the logging source.\n\n---\n\n### 5. The app uses an unknown self-signed certificate\n\n**Directly observed**\n- Certificate issuer: `CN=Unknown, O=Unknown, C=XX`\n- Validity: `2024-02-01 to 2044-02-01`\n- Self-signed: `true`\n\n**Inference**\n- The APK is signed with a self-signed certificate using non-identifying issuer information.\n- The 20-year validity period and unknown issuer are consistent with many non-enterprise or unofficial APKs.\n- This may indicate the app is not attributable to a well-known developer based on the certificate metadata alone.\n\n**Limitations**\n- Android APKs are commonly signed with self-signed certificates; this is not inherently malicious.\n- Certificate metadata alone cannot determine whether the app came from an official app store or a sideloaded source.\n- No reputation or hash-based intelligence is provided.\n\n---\n\n### 6. Components are not exported, reducing direct external app invocation risk\n\n**Directly observed**\n- `HelperActivity` is `exported=false`\n- `OverlayAccessibilityService` is `exported=false`\n\n**Inference**\n- Other apps generally should not be able to directly invoke these components through explicit external intents unless special conditions apply.\n- This reduces one class of attack surface from other local apps.\n\n**Limitations**\n- Non-exported components do not make the app benign.\n- The app can still execute its own components internally.\n- Accessibility and overlay behavior, if enabled, can still affect other apps without components being exported.\n\n---\n\n## Overall assessment\n\nThe artifacts are highly suspicious from a security perspective.\n\n**Direct evidence shows:**\n- An Android app with internet access.\n- Overlay-related and accessibility-service capabilities.\n- Strings referencing:\n  - overlay rendering,\n  - a specific banking app package,\n  - credential capture.\n- Network traffic to `collect.example.com`.\n- A self-signed certificate with unknown issuer details.\n\n**Reasonable inference:**\n- The app may be designed to target `com.examplebank.app` using overlay and/or accessibility techniques to capture credentials and potentially transmit data externally.\n\n**Not proven by the provided evidence:**\n- That the user granted overlay permission.\n- That the accessibility service was enabled.\n- That the banking app was installed or accessed.\n- That credentials were actually captured.\n- That any sensitive data was exfiltrated in the 900-byte network event."
+          }
+        ],
+        "phase": "final_answer",
+        "role": "assistant"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "presence_penalty": 0.0,
+    "previous_response_id": null,
+    "prompt_cache_key": null,
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "context": "current_turn",
+      "effort": "medium",
+      "mode": "standard",
+      "summary": null
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "store": false,
+    "temperature": 1.0,
+    "text": {
+      "format": {
+        "type": "text"
+      },
+      "verbosity": "medium"
+    },
+    "tool_choice": "auto",
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 0
+      }
+    },
+    "tools": [],
+    "top_logprobs": 0,
+    "top_p": 0.98,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 317,
+      "input_tokens_details": {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1626,
+      "output_tokens_details": {
+        "reasoning_tokens": 378
+      },
+      "total_tokens": 1943
+    },
+    "user": null,
+    "metadata": {}
+  }
+}

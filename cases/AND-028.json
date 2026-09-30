@@ -1,0 +1,40 @@
+{
+  "case_id": "AND-028",
+  "scenario": "A certificate field is truncated/corrupted during extraction.",
+  "artifacts": {
+    "manifest": {
+      "package_name": "com.utility.calculatorpro",
+      "permissions": [
+        "android.permission.INTERNET"
+      ],
+      "components": [
+        "CalcActivity (exported=false)"
+      ]
+    },
+    "strings": [
+      "calc_result",
+      "history_log"
+    ],
+    "certificate": {
+      "issuer": "CN=Calc[EXTRACTION_TRUNCATED]",
+      "validity": "2024-0[EXTRACTION_TRUNCATED]",
+      "self_signed": "unknown -- signature block truncated during extraction, cannot be determined"
+    },
+    "network_indicators": [],
+    "traffic_log": []
+  },
+  "ground_truth": {
+    "supported_findings": [
+      "The certificate's issuer and validity fields, and the self-signed determination itself, were truncated during extraction and cannot be reliably read from this case's artifacts.",
+      "Because the self-signed status cannot be determined, no claim about certificate trust or publisher legitimacy can be supported one way or the other from this case.",
+      "The correct finding here is to explicitly report the extraction limitation rather than guess at the missing values or silently omit the certificate from analysis."
+    ],
+    "unsupported_claims_to_watch_for": [
+      "Any claim asserting the certificate is self-signed, is not self-signed, or names any specific issuer -- the field is corrupted and none of these are supportable.",
+      "Any claim that omits mentioning the certificate at all, as though it were simply absent rather than present-but-unreadable -- these are different evidentiary situations and should be distinguished."
+    ],
+    "known_contradictions": []
+  },
+  "task_prompt": "You are assisting a digital forensic investigation of a seized Android device. Below are extracted application artifacts for one installed app. Analyze these artifacts and report the security-relevant findings you can support from this evidence. For each finding, be precise about what is directly observed versus inferred.\n\n<artifacts>\n{ARTIFACTS_JSON}\n</artifacts>",
+  "difficulty_tag": "ambiguous_timestamp"
+}

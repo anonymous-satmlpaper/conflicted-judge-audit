@@ -1,0 +1,67 @@
+{
+  "n_responses": 30,
+  "per_dimension": {
+    "support": {
+      "exact_agreement": 0.4,
+      "mean_abs_diff": 0.5706349206349206,
+      "pearson_r": 0.20069836507880334,
+      "pearson_p": 0.2875878790512769,
+      "krippendorff_alpha": -0.2703349282296652
+    },
+    "provenance": {
+      "exact_agreement": 1.0,
+      "mean_abs_diff": 0.040833333333333326,
+      "pearson_r": NaN,
+      "pearson_p": NaN,
+      "krippendorff_alpha": NaN
+    },
+    "obs_inf": {
+      "exact_agreement": 0.9,
+      "mean_abs_diff": 0.1323015873015873,
+      "pearson_r": 0.5801295316425212,
+      "pearson_p": 0.0007783470876698641,
+      "krippendorff_alpha": 0.35636363636363644
+    },
+    "attribution": {
+      "exact_agreement": 1.0,
+      "mean_abs_diff": 0,
+      "pearson_r": NaN,
+      "pearson_p": NaN,
+      "krippendorff_alpha": NaN
+    },
+    "reproducibility": {
+      "exact_agreement": 0.4,
+      "mean_abs_diff": 0.5636904761904762,
+      "pearson_r": 0.26132574607125164,
+      "pearson_p": 0.16304671405730528,
+      "krippendorff_alpha": -0.2703349282296652
+    }
+  },
+  "overall": {
+    "exact_agreement": 0.74,
+    "krippendorff_alpha": 0.05187413610862679,
+    "n_scored_pairs": 150
+  },
+  "per_model_comparison": {
+    "claude-haiku-4-5": {
+      "primary_mean": 1.721857142857143,
+      "qwen_mean": 1.62,
+      "n": 10
+    },
+    "claude-opus-5": {
+      "primary_mean": 1.9875,
+      "qwen_mean": 1.72,
+      "n": 10
+    },
+    "claude-sonnet-5": {
+      "primary_mean": 1.9908333333333332,
+      "qwen_mean": 1.8,
+      "n": 10
+    }
+  },
+  "primary_vs_qwen_paired_wilcoxon": {
+    "W": 27.5,
+    "p": 0.00039990792823558233,
+    "mean_diff_qwen_minus_primary": -0.1867301587301587
+  }
+}

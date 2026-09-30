@@ -1,0 +1,56 @@
+{
+  "case_id": "AND-010",
+  "scenario": "A fitness tracker app requests properly scoped Bluetooth and health permissions.",
+  "artifacts": {
+    "manifest": {
+      "package_name": "com.health.fittrackpro",
+      "permissions": [
+        "android.permission.BLUETOOTH_CONNECT",
+        "android.permission.ACTIVITY_RECOGNITION",
+        "android.permission.INTERNET"
+      ],
+      "components": [
+        "DashboardActivity (exported=false)",
+        "BleSyncService (exported=false)"
+      ]
+    },
+    "strings": [
+      "step_count_sync",
+      "ble_device_pair",
+      "heart_rate_reading"
+    ],
+    "certificate": {
+      "issuer": "CN=HealthTech Inc, O=HealthTech, C=US",
+      "validity": "2023-08-01 to 2025-08-01",
+      "self_signed": false
+    },
+    "network_indicators": [
+      {
+        "domain": "fittrack-sync.example.com",
+        "ip": "198.51.100.20",
+        "source": "traffic_log"
+      }
+    ],
+    "traffic_log": [
+      {
+        "timestamp": "2026-02-02T07:30:00Z",
+        "domain": "fittrack-sync.example.com",
+        "bytes": 2100
+      }
+    ]
+  },
+  "ground_truth": {
+    "supported_findings": [
+      "All requested permissions (BLUETOOTH_CONNECT, ACTIVITY_RECOGNITION, INTERNET) map directly to the app's stated fitness-tracking function.",
+      "Strings and network activity (step_count_sync, a single sync connection) are consistent with routine wearable-device data synchronization.",
+      "No permissions, strings, or network indicators in this case fall outside the scope of the app's stated function."
+    ],
+    "unsupported_claims_to_watch_for": [
+      "Any claim that this app poses a security or privacy risk -- this case's evidence does not support such a finding.",
+      "Any claim about a specific person's health data content, which is not present in these artifacts."
+    ],
+    "known_contradictions": []
+  },
+  "task_prompt": "You are assisting a digital forensic investigation of a seized Android device. Below are extracted application artifacts for one installed app. Analyze these artifacts and report the security-relevant findings you can support from this evidence. For each finding, be precise about what is directly observed versus inferred.\n\n<artifacts>\n{ARTIFACTS_JSON}\n</artifacts>",
+  "difficulty_tag": "baseline"
+}

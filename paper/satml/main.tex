@@ -1,0 +1,866 @@
+\documentclass[conference]{IEEEtran}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\model}[1]{\texttt{#1}}
+\newcommand{\checkc}[1]{\textsc{#1}}
+
+\title{Auditing a Conflicted Judge: Hybrid Verification for an\\
+LLM-Scored Forensic Reliability Benchmark}
+\author{Anonymous submission}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Generative-model benchmarks increasingly use another generative model as the
+judge, and that judge may be related to the systems it scores. We study this
+problem using Android forensics as a case study. Thirty synthetic cases and six systems yield 180 evidence-grounded
+reports. A five-dimension claim rubric measures support, provenance,
+observation--inference separation, attribution, and reproducibility, but its
+primary rater belongs to the same model family as three evaluated systems. A
+cross-family diagnostic does not resolve the conflict: pooled Krippendorff's
+$\alpha$ is 0.052, although differing rating units confound that estimate. A
+direct same-unit test is more informative: on 60 claims scored blind by two
+authors, the primary judge exceeds the authors by $+0.20$ points on
+Claude-authored claims and by $-0.11$ on Qwen-authored claims (difference
+0.31, response-clustered permutation $p=0.003$), and the gap persists between
+the two compact systems ($p=0.011$). We
+therefore introduce a hybrid benchmark architecture: interpretive constructs
+remain rubric-rated, while machine-decidable properties are checked against
+structured case facts. Four versioned checks flag nine responses across the six
+systems. Two model-blinded author raters separately confirm seven flags and mark
+two as unclear. In a stratified sample of 24 nonflagged responses, they agree on
+one missed violation and 22 nonviolations, and disagree on one additional C3
+case; this sample does
+not estimate full-system recall. A conformance suite containing 20 seeded violations
+and 20 matched non-violations per check detects all 80 positives and rejects all
+80 negatives. These fixtures validate implementation behavior rather than
+natural prevalence or recall. The resulting benchmark reports which conclusions
+depend on the conflicted judge and which can be recomputed without it.
+\end{abstract}
+
+\section{Introduction}
+When one generative model judges another, the resulting score may combine
+output quality, evaluator preference, presentation style, and family affinity.
+A benchmark built on such scores can look precise while its measurement is
+affected by the same kind of model behavior it is meant to evaluate. Treating
+the scores as ground truth can make an uncertain measurement look like a stable
+leaderboard.
+
+Forensic reporting is a useful setting for studying this problem. An evidentiary
+statement can be fluent and still be unreliable. A forensic assistant may
+accurately report that a domain appears in an application's strings, then
+overstate that the application contacted that domain. It may describe activity
+observed on a device as an action by a particular person. In both examples, the
+failure concerns the relationship between a claim and its evidence, which
+lexical similarity to a reference answer does not measure.
+
+Claim-level evaluation offers a better starting point. Long responses can be
+decomposed into atomic findings and each finding scored for support and
+traceability~\cite{factscore,safe}. Yet this approach creates a measurement
+problem when another LLM assigns the scores. Model judges exhibit self-preference
+and presentation effects~\cite{panickssery2024,zheng2023}. If the judge belongs
+to the same family as systems under test, a high score can reflect system
+quality, judge affinity, or both.
+
+We examine the broader measurement problem through a controlled
+Android-forensics benchmark. Thirty synthetic cases combine manifest entries,
+extracted strings, certificate metadata, network indicators, and traffic logs.
+Six systems from three providers produce one report per case. Four systems also
+have claim-level scores from a primary LLM rater. We treat those scores as
+measurements produced by a conflicted instrument, then ask which conclusions
+require interpretation and which can be decided directly from structured facts.
+
+This paper contributes: (1) a hybrid benchmark architecture that assigns
+interpretive and machine-decidable properties to different measurement
+instruments; (2) a 30-case benchmark and five-dimension rubric for forensic
+report reliability; (3) a direct, family-stratified audit of the conflicted
+judge against blinded author scores on identical claims, which finds leniency
+concentrated on same-family outputs; (4) a deterministic verifier with four inspectable checks, witnesses,
+  and a 160-fixture conformance suite; and (5) a six-system audit spanning
+  Anthropic, OpenAI, and a local Qwen model, supplemented by a blinded two-author
+  audit. Deterministic checks support specific
+statements about explicit failure modes. They neither validate the full rubric
+nor convert a conflicted score table into ground truth.
+
+We organize the study around four questions. \textbf{RQ1:} What result does the
+original model-rated instrument produce, and how sensitive is that measurement
+to a cross-family diagnostic? \textbf{RQ2:} Which pre-specified reliability
+failures can be decided without a generative rater? \textbf{RQ3:} Does the
+executable verifier behave correctly on seeded positive and matched negative
+controls? \textbf{RQ4:} What does a model-blinded two-author audit reveal about
+the rubric ratings, the judge's family affinity, and verifier coverage? Keeping
+these questions separate avoids merging agreement statistics, detector behavior,
+and natural model errors into a single accuracy figure.
+
+\section{Related Work}
+\subsection{Forensic evaluation}
+Studiawan \emph{et al.} study standardized evaluation for LLM-assisted forensic
+timelines and include BLEU and ROUGE~\cite{studiawan2025}. AutoDFBench evaluates
+generated forensic code~\cite{autodfbench}. Our target is whether each
+natural-language finding remains within what the supplied artifacts justify.
+
+FActScore introduced atomic factual precision~\cite{factscore}. SAFE uses a
+search-augmented model evaluator~\cite{safe}, while ALCE and attribution-scoring
+work evaluate whether cited evidence supports generated text~\cite{alce,attrscore}.
+For forensic reporting, source support must be combined with provenance,
+epistemic status, attribution restraint, and reconstructable reasoning.
+
+\subsection{Model judges and benchmark validity}
+Model-based judges scale beyond human panels but inherit systematic biases.
+They may favor their own generations~\cite{panickssery2024}, and outcomes can
+change with answer order or style~\cite{zheng2023,faireval}. G-Eval and
+Prometheus show the promise of rubric-guided model evaluation, including strong
+correlation with human ratings in their studied settings~\cite{geval,prometheus},
+but neither result makes a new judge ground truth for a domain-specific
+evidentiary task. Agreement coefficients are useful only when raters measure the
+same units and constructs; values below 0.667 do not support even tentative
+conclusions under commonly used guidance~\cite{krippendorff}. We respond by
+separating model-rated measurements from properties that executable checks can
+decide.
+
+\subsection{Positioning and novelty}
+Prior work supplies three adjacent components: benchmarks for forensic tasks,
+research on bias and instability in model judges, and factuality or attribution
+methods that decompose long answers into supported claims. These components do
+not by themselves specify how to publish a forensic benchmark whose rating
+instrument is acknowledged to be conflicted. Our contribution is an explicit
+measurement boundary. The benchmark declares which constructs need
+interpretation, compiles selected case facts into executable conformance
+properties, publishes witnesses and applicability sets, and reports the two
+evidence streams separately. The design remains useful even when no model judge
+is demonstrably unbiased.
+We do not claim that executable checks are new: unit tests in code generation,
+CheckList-style behavioral tests~\cite{checklist}, and citation checkers already
+apply them where ground truth permits. Our claim is narrower. We apply them to
+\emph{audit} a specific conflicted judge, and we measure that judge's family
+affinity directly on identical claims. We then report which results hold
+without the judge.
+
+\section{Hybrid Measurement Architecture}
+The architecture separates a benchmark into an \emph{interpretive layer} and
+an \emph{executable layer}. The interpretive layer covers constructs such as
+whether reasoning is sufficiently traceable or whether uncertainty is expressed
+appropriately. Human or model raters can apply anchored rubrics to these
+constructs, and their agreement must be measured. The executable layer covers
+properties that structured ground truth decides, such as whether a named domain
+appears in any supplied artifact or whether an asserted network contact appears
+in the traffic log. These properties are evaluated by deterministic code.
+
+The benchmark as a whole still depends on raters, but a defined subset of its
+conclusions does not, and the benchmark identifies that subset. Table
+\ref{tab:architecture} maps each measurement target to its instrument, evidence,
+and principal unresolved risk.
+
+\begin{table*}[t]
+\centering
+\caption{Measurement boundary in the hybrid benchmark.}
+\label{tab:architecture}
+\small
+\begin{tabular}{p{0.18\textwidth}p{0.18\textwidth}p{0.27\textwidth}p{0.25\textwidth}}
+\toprule
+Target & Instrument & Evidence produced & Principal limitation \\
+\midrule
+Support, provenance, epistemic status, attribution, reproducibility & Anchored claim rubric & Per-claim ordinal score and rationale & Rater bias, construct interpretation, and claim segmentation \\
+Explicit domain contact, person attribution, configured cross-artifact relation, absent domain & Deterministic checks C1--C4 & Applicability decision, violation bit, and textual witness & Narrow coverage and unknown natural-output recall \\
+Verifier implementation behavior & Seeded conformance suite & Expected and observed result for positive and matched negative fixtures & Synthetic controls do not estimate prevalence \\
+Overall evidentiary quality & Human examiner & Contextual judgment over claims, response, and case & Cost, expertise, and residual disagreement \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Four design rules follow. First, every executable check declares an
+applicability set; a non-applicable case cannot be counted as a success. Second,
+every positive decision stores a witness so a reviewer can reproduce it. Third,
+zero-hit checks must be exercised by seeded positive and negative controls.
+Fourth, aggregate scores must not silently combine rubric ratings with
+executable violations, because the instruments answer different questions.
+This use of controlled expected behavior is related to behavioral testing in
+CheckList~\cite{checklist}; here, expectations are compiled from each forensic
+case's structured evidence and applied to complete generated reports.
+
+\section{Benchmark}
+\subsection{Cases and task}
+The benchmark contains 30 version-controlled JSON cases: 12 baseline cases,
+eight attribution traps, six planted contradiction or non-corroboration cases,
+and four ambiguous-timestamp cases. Each case supplies an Android manifest,
+extracted strings, certificate metadata, network indicators, a traffic log, and
+structured ground-truth fields. Domains and IP addresses use reserved
+documentation ranges. No malware sample, personal record, or operational
+infrastructure is included.
+
+Every system receives the same single-turn instruction and the case JSON
+verbatim. The requested output is a short forensic assessment that distinguishes
+observations from inferences, cites the relevant artifact and field, avoids
+person-level attribution without evidence, and states what additional evidence
+would be required. The prompt does not expose ground truth.
+
+Android signing semantics require care. Long-lived and self-signed application
+signing certificates are common and are distinct from TLS server certificates;
+Android recommends sufficiently long key validity for the expected lifetime of
+an application~\cite{androidsigning}. The benchmark therefore does not treat
+those properties alone as proof of maliciousness, compromise, or a broken
+network trust chain.
+
+\subsection{Case construction and controls}
+Cases were designed around errors in evidentiary reasoning rather than malware
+family recognition. A case can contain individually suspicious artifacts while
+withholding the link needed for a stronger conclusion. A manifest permission
+establishes capability, a string establishes static presence, and a traffic
+record establishes an observed connection; none is substituted for another.
+Attribution traps include device activity without evidence identifying the
+operator. Contradiction cases place two true fields in tension and require the
+report to state their relationship rather than list each field in isolation.
+
+Each JSON object separates the scenario description, artifacts, and structured
+ground-truth fields. The response harness exposes only the scenario and
+artifacts. Reserved domains and addresses prevent accidental contact with live
+infrastructure and make exact-domain checks reproducible. Case identifiers,
+prompts, and responses are hashed so later analysis can detect accidental
+changes. The synthetic design permits controlled counterfactual relations and
+artifact-level disclosure without personal or operational data. Its external
+validity is correspondingly narrower than a corpus of real case files.
+
+The case distribution was fixed before adding the two OpenAI endpoints. Those
+endpoints received the same serialized case objects and task instruction as the
+original four systems. No model-specific prompt tuning was performed. We retain
+complete outputs rather than extracting only matched phrases, allowing every
+flag and rating to be traced to the original report.
+
+\subsection{Reliability rubric}
+The primary instrument assigns 0, 1, or 2 to each atomic finding along five
+dimensions. \emph{Evidence support} asks whether an artifact directly supports
+the finding. \emph{Provenance} asks whether the response identifies a specific
+artifact and field. \emph{Observation--inference separation} asks whether the
+response marks epistemic status correctly. \emph{Attribution} penalizes an
+unsupported action attributed to a person or entity. \emph{Reproducibility}
+asks whether another examiner could reconstruct the reasoning from supplied
+artifacts. Table~\ref{tab:rubric} gives the full anchors.
+
+\begin{table*}[t]
+\centering
+\caption{Claim-level forensic reliability rubric.}
+\label{tab:rubric}
+\small
+\begin{tabular}{p{0.16\textwidth}p{0.25\textwidth}p{0.52\textwidth}}
+\toprule
+Dimension & Question & Score anchors \\
+\midrule
+Evidence support & Is the finding supported by a supplied artifact? & 0: unsupported or fabricated; 1: plausible but indirect; 2: directly supported.\\
+Provenance & Can the finding be mapped to its source? & 0: no traceable source; 1: artifact type only; 2: specific artifact and field/value.\\
+Observation/inference & Is epistemic status explicit and correct? & 0: inference stated as fact; 1: ambiguous; 2: observation and inference are clearly separated.\\
+Attribution & Is an attributed act justified? & 0: unjustified person/entity attribution; 1: weak justification; 2: justified, qualified, or no attribution claim.\\
+Reproducibility & Can another examiner reconstruct the reasoning? & 0: reasoning absent; 1: partly reconstructable; 2: reconstructable from supplied artifacts.\\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{Systems}
+Table~\ref{tab:systems} lists the six evaluated endpoints. Each produced all 30
+responses. The local Qwen model is a 7.6B Q4\_K\_M build served by Ollama. For
+the two OpenAI endpoints, the harness records the requested and served snapshot,
+reasoning setting, output limit, usage, case hash, prompt hash, and request
+fingerprint. All 60 requests were served by the requested snapshot. The Opus
+endpoint is labelled as a mixture because provider routing served 18 requests
+with \model{claude-opus-4-8} and 12 with \model{claude-opus-5}; it cannot
+support a version-specific conclusion.
+
+\begin{table*}[t]
+\centering
+\caption{Evaluated systems. Every endpoint completed 30 cases.}
+\label{tab:systems}
+\scriptsize
+\begin{tabular}{lll}
+\toprule
+Reported name & Provider/runtime & Scale group \\
+\midrule
+Claude Opus endpoint & Anthropic API & Frontier \\
+Claude Sonnet 5 & Anthropic API & Frontier \\
+Claude Haiku 4.5 & Anthropic API & Compact \\
+Qwen2.5 7B & Local Ollama & Compact \\
+GPT-5.5 (2026-04-23) & OpenAI API & Frontier \\
+GPT-5.4 Mini (2026-03-17) & OpenAI API & Compact \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\section{Evaluation Design}
+\subsection{Primary and cross-family raters}
+The primary rater, Claude Sonnet 5, decomposed responses from the four original
+endpoints into findings and scored all five dimensions with short rationales.
+This produced 830 annotated claims from 120 responses. Model identity was
+visible. Because the rater is identical to one evaluated system and belongs to
+the same family as two others, these values describe the instrument's output;
+they are not independent ground truth.
+
+A local Qwen2.5 7B rater blindly re-scored a fixed stratified sample of 30
+Claude-authored responses, ten per Claude endpoint. It assigned one score per
+dimension to the whole response. We compare it with rounded response-level
+means of primary claim scores using ordinal Krippendorff's $\alpha$. This is a
+diagnostic because the units differ: primary scores are averaged over findings,
+while secondary scores are holistic. The sample contains 21 unique cases, so we
+also aggregate by case before a paired Wilcoxon test.
+
+\subsection{Deterministic verifier}
+The verifier operates on response text and structured case facts. It emits at
+most one response-level violation per check and stores a witness sentence or
+the missing fact pair. The checks are: \checkc{C1}, assertion of contact with a
+domain found only in static strings and absent from traffic; \checkc{C2}, a
+concrete person-action attribution without qualification; \checkc{C3}, failure
+on one of six configured cases to mention and relate two facts that form a
+contradiction or non-corroboration pattern; and \checkc{C4}, a reserved domain
+absent from every supplied artifact.
+
+The domain parser is restricted to the benchmark's reserved
+\texttt{example.com} namespace so Java package names and filenames are not
+mistaken for network indicators. Negation, capability statements, and
+prospective recommendations are excluded from \checkc{C1}. Applicability per
+model is 4 cases for \checkc{C1}, 30 for \checkc{C2}, 6 for \checkc{C3}, and 30
+for \checkc{C4}.
+
+For a response $r$ and case $x$, let $D_r$ be reserved domains extracted from
+assertive response sentences, $D_s(x)$ domains occurring in static artifacts,
+and $D_t(x)$ domains in observed traffic. \checkc{C1} fires when an assertion
+maps to $d\in D_s(x)\setminus D_t(x)$ and does not fall under the negation,
+capability, or recommendation exclusions. \checkc{C4} instead fires for
+$d\in D_r\setminus D_a(x)$, where $D_a(x)$ is the union of all case-artifact
+domains. \checkc{C2} searches for a concrete person-action construction and
+then rejects qualified or explicitly uncertain language. \checkc{C3} is
+applicable only to six cases. It requires lexical evidence for each member of a
+configured fact pair and relation language that marks contradiction,
+non-corroboration, or temporal inconsistency. The implementation returns the
+triggering sentence for C1, C2, and C4, and the missing relation for C3.
+
+\begin{table*}[t]
+\centering
+\caption{Executable properties and their scope. Counts are per evaluated system.}
+\label{tab:checks}
+\small
+\begin{tabular}{p{0.06\textwidth}p{0.38\textwidth}p{0.10\textwidth}p{0.33\textwidth}}
+\toprule
+Check & Violation property & Applicable cases & Main safeguards \\
+\midrule
+C1 & Asserts communication with a domain present only in static strings & 4 & Exact reserved domain; traffic absence; negation, capability, and prospective-language exclusions \\
+C2 & Attributes a concrete action to a person without evidence or qualification & 30 & Action construction plus uncertainty and qualification exclusions \\
+C3 & Omits the configured relation between two contradiction or non-corroboration facts & 6 & Both facts and accepted relation terms are case-configured \\
+C4 & Names a reserved domain absent from every supplied artifact & 30 & Exact reserved-domain extraction and artifact-wide set comparison \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Every verifier flag and sampled nonflag was subsequently reviewed against the
+complete response and case evidence under the model-blinded author-audit
+protocol below. The verifier was specified after the initial model-scored
+analysis; its results are an audit on this dataset rather than performance of a
+preregistered detector.
+
+\subsection{Seeded conformance suite}
+Natural outputs provide no positive examples for C2 or C4. A zero count could
+therefore reflect robust model behavior or a detector that never fires. We test
+implementation behavior using 20 seeded positive and 20 matched negative
+fixtures for each check. C1 controls vary affirmative contact claims against
+negation, capability, and future recommendations. C2 contrasts unsupported
+person-action statements with qualified interpretations. C3 pairs reports that
+state both facts and their required relation with reports that omit the
+relation. C4 inserts absent reserved domains and matches them with domains
+present in the artifacts.
+
+The 160 fixtures call the same verifier functions used for model outputs; they
+are not a separate reimplementation. A fixture passes only when its expected
+violation set exactly matches the observed set. These controls test parser and
+rule behavior at known boundaries. Because the language is deliberately seeded,
+they do not measure recall over naturally occurring paraphrases, error
+prevalence, or generalization to new case schemas.
+
+\subsection{Model-blinded author-audit protocol}
+We prepared a fixed packet for two authors with security and ML-evaluation
+backgrounds. The authors report completing it separately without seeing model
+identity, primary scores, the coordinator key, or each other's review. The
+packet samples 60 atomic claims, 15 from each of the four systems with primary
+claim ratings; presents all nine verifier flags; and samples 24 nonflagged
+responses, four per system. For every item it includes the case artifacts and
+complete response. Reviewers apply the five rubric dimensions, judge each flag
+as valid, invalid, or unclear, and inspect nonflags for missed C1--C4 violations.
+
+We report exact agreement and quadratic-weighted Cohen's $\kappa$ for each
+ordinal dimension, agreement with the primary judge, and exact agreement for
+flag and miss decisions. We retain unclear decisions without adjudication. The
+reviews were completed by authors rather than external examiners. The authors
+report that all scores and decisions were selected and filled manually. They
+consulted ordinary websites and reference material; any LLM use was limited to
+editorial phrasing after the judgments. We therefore treat these results as an
+author audit, not independent human validation.
+
+\emph{Family-stratified judge audit.} Because the 60 claims are balanced over
+the four primary-scored systems and scored on identical units by the judge and
+both authors, they permit a direct affinity test. For each claim we define
+\emph{judge excess} as the primary score minus the mean author score, averaged
+over the five dimensions. A lenient but unbiased judge would show similar
+excess across systems. We compare Claude-authored claims with Qwen-authored
+claims, the judge's own endpoint (Sonnet) with all others, and the two compact
+systems (Haiku and Qwen), which holds scale approximately fixed. Inference uses
+a two-sided permutation test with 20{,}000 permutations. System labels are
+permuted at the response level (56 responses) so that claims from one response
+move together. This analysis was specified after the audit data were collected
+and is therefore post hoc.
+
+\subsection{Statistical analysis}
+For the primary rater, we average within case and then across 30 cases. Pairwise
+differences use paired Wilcoxon tests with Holm correction. Cross-rater
+agreement uses ordinal $\alpha$ and paired Wilcoxon tests at response and
+case-aggregated levels. For deterministic checks, we report counts rather than
+an aggregate accuracy. An exploratory comparison groups the three frontier
+endpoints and the three compact endpoints. Each endpoint has ten applicable
+\checkc{C1}+\checkc{C3} case-checks, giving 30 observations per group, and we
+apply a two-sided Fisher exact test. Repeated cases and heterogeneous checks
+limit this test; it is supporting evidence only.
+
+\section{Results}
+\subsection{The model-rated result}
+Table~\ref{tab:judge} shows case-weighted means from the 830 claim annotations.
+The primary rater assigns near-ceiling values to the Opus endpoint and Sonnet,
+and lower values to Haiku and Qwen2.5. Paired tests separate Opus and Sonnet
+from Haiku and Qwen2.5 after Holm correction
+($p_{\mathrm{Holm}}\leq1.5\times10^{-5}$). Opus and Sonnet are not separated
+($p_{\mathrm{Holm}}=0.655$), nor are Haiku and Qwen2.5
+($p_{\mathrm{Holm}}=0.369$). These comparisons remain judge-dependent.
+
+\begin{table}[t]
+\centering
+\caption{Primary-rater means (0--2), averaged within case and then across 30 cases.}
+\label{tab:judge}
+\scriptsize
+\begin{tabular}{lccccc}
+\toprule
+Model & Supp. & Prov. & O/I & Attr. & Repro.\\
+\midrule
+Opus endpoint & 1.988 & 1.996 & 2.000 & 2.000 & 1.996\\
+Claude Sonnet & 1.985 & 2.000 & 2.000 & 2.000 & 2.000\\
+Claude Haiku & 1.598 & 1.892 & 1.595 & 2.000 & 1.602\\
+Qwen2.5 7B & 1.758 & 1.771 & 1.790 & 2.000 & 1.728\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{The cross-rater diagnostic does not reproduce the primary result}
+Pooled agreement over 150 dimension scores is $\alpha=0.052$. Evidence support
+and reproducibility each yield $\alpha=-0.270$; observation--inference yields
+$\alpha=0.356$. Provenance and attribution have insufficient variance for a
+defined coefficient. The secondary rater is 0.187 points stricter on average.
+The difference is significant at the response level ($p=0.00034$) and after
+aggregation by unique case ($p=0.00205$). These results show that the original
+measurement is not reproduced under this cross-family protocol. They do not
+isolate evaluator family as the cause: changing both the rater and the unit of
+analysis prevents interpreting either score set as correct.
+
+\subsection{The author audit does not validate the primary judge}
+Reviewer A and Reviewer B independently completed model-blinded manual reviews.
+Each completed all 300 requested ordinal scores and all 33 response-level
+decisions. Table~\ref{tab:human} shows the claim results.
+Exact author--author agreement ranges from 88.3\% to 100\%; quadratic-weighted
+$\kappa$ ranges from 0.798 to 0.951 where defined. Provenance agreement is
+undefined because both authors assign the constant score 2. High agreement here
+should not be read as independent external replication because both raters are
+authors.
+
+Against the primary judge, exact agreement ranges from 55.0\% for support to
+88.3\% for attribution. Quadratic-weighted $\kappa$ ranges from 0 to 0.503.
+The zero values for provenance and attribution arise when one rater is constant,
+so the corresponding high exact agreement does not imply chance-corrected
+agreement. The audit therefore supplies a reproducible sensitivity check, not
+ground truth for the five-dimension rubric.
+
+\begin{table*}[t]
+\centering
+\caption{Model-blinded author audit of 60 sampled claims. A and B are the two
+authors; P is the primary judge. ``Exact'' is percent exact agreement and
+$\kappa_w$ is quadratic-weighted Cohen's $\kappa$.}
+\label{tab:human}
+\scriptsize
+\begin{tabular}{lcccccc}
+\toprule
+Dimension & A mean & B mean & A--B exact & A--B $\kappa_w$ & A--P exact; $\kappa_w$ & B--P exact; $\kappa_w$ \\
+\midrule
+Support & 1.17 & 1.22 & 88.3 & 0.798 & 55.0; 0.404 & 55.0; 0.331 \\
+Provenance & 2.00 & 2.00 & 100.0 & undef. & 83.3; 0.000 & 83.3; 0.000 \\
+Obs./inference & 1.55 & 1.55 & 90.0 & 0.888 & 65.0; 0.397 & 65.0; 0.397 \\
+Attribution & 1.87 & 1.85 & 98.3 & 0.951 & 88.3; 0.000 & 88.3; 0.000 \\
+Reproducibility & 1.58 & 1.57 & 91.7 & 0.830 & 73.3; 0.503 & 71.7; 0.477 \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{The judge is more lenient toward same-family outputs}
+Table~\ref{tab:family} directly tests the affinity that motivates this paper.
+On the same 60 claims, the primary judge exceeds the blinded author mean by
+$+0.202$ points for Claude-authored claims and by $-0.107$ for Qwen-authored
+claims. The difference of 0.309 is significant under the response-clustered
+permutation test ($p=0.0025$). Scale does not explain the gap. The judge gives
+Haiku and Qwen nearly identical means (1.587 and 1.573), but the authors rate
+Haiku lower (1.320 and 1.680). The resulting excess difference is 0.373
+($p=0.011$). The judge's own endpoint does not differ detectably from the other
+three systems ($+0.162$, $p=0.139$). Thus the evidence points to family-level
+leniency rather than strict self-preference. By dimension, the Claude--Qwen gap
+is largest for observation--inference separation ($+0.47$, $p=0.017$), followed
+by support ($+0.30$, $p=0.086$) and reproducibility ($+0.19$, $p=0.23$).
+
+This result partly attributes the leniency visible in
+Table~\ref{tab:human}: the authors' mean support score of about 1.2 against the
+judge's 1.58 is concentrated in same-family outputs. The result has several
+limits. There are 15 claims per system. The judge controlled claim segmentation. The
+authors saw no model identity but could, in principle, recognize family style.
+The reference scores come from authors rather than external examiners. The
+analysis is also post hoc. The test cannot separate family affinity from a
+preference for a presentation style that Claude endpoints share. The self-preference literature
+itself links these mechanisms~\cite{panickssery2024}. Within these limits,
+family-level leniency is measured on this sample rather than assumed.
+
+\begin{table}[t]
+\centering
+\caption{Judge excess on the 60 audited claims (primary score minus the mean of
+the two author scores, averaged over dimensions). $p$ values are two-sided
+response-clustered permutation tests.}
+\label{tab:family}
+\scriptsize
+\begin{tabular}{lccccc}
+\toprule
+Source & Claims & Resp. & Primary & Authors & Excess \\
+\midrule
+Opus endpoint & 15 & 13 & 1.933 & 1.840 & $+0.093$ \\
+Sonnet (judge) & 15 & 13 & 1.947 & 1.700 & $+0.247$ \\
+Claude Haiku & 15 & 15 & 1.587 & 1.320 & $+0.267$ \\
+Qwen2.5 7B & 15 & 15 & 1.573 & 1.680 & $-0.107$ \\
+\midrule
+Claude (pooled) & 45 & 41 & 1.822 & 1.620 & $+0.202$ \\
+\midrule
+\multicolumn{4}{l}{Contrast} & $p$ & Excess diff. \\
+\midrule
+\multicolumn{4}{l}{Claude $-$ Qwen} & 0.003 & $+0.309$ \\
+\multicolumn{4}{l}{Haiku $-$ Qwen (scale-matched)} & 0.011 & $+0.373$ \\
+\multicolumn{4}{l}{Sonnet $-$ other three (self)} & 0.139 & $+0.162$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Rater-free checks across six models}
+Table~\ref{tab:det} reports the deterministic audit. Nine flags occur among 180
+responses. Both author raters confirm seven, mark none invalid, and mark two
+\checkc{C3} flags on case AND-022 unclear because the review packet does
+not expose the exact configured fact pair. We therefore do not report a 9/9
+precision estimate. Zero \checkc{C2} or \checkc{C4} flags means only that the
+specified detector found no matching errors.
+
+\begin{table}[t]
+\centering
+\caption{Response-level verifier flags before author review. Applicability per model is C1: 4, C2: 30, C3: 6, C4: 30.}
+\label{tab:det}
+\scriptsize
+\begin{tabular}{lccccc}
+\toprule
+Model & C1 & C2 & C3 & C4 & Total \\
+\midrule
+Opus endpoint & 0 & 0 & 0 & 0 & 0\\
+Claude Sonnet & 0 & 0 & 0 & 0 & 0\\
+Claude Haiku & 0 & 0 & 1 & 0 & 1\\
+Qwen2.5 7B & 2 & 0 & 2 & 0 & 4\\
+GPT-5.5 & 0 & 0 & 1 & 0 & 1\\
+GPT-5.4 Mini & 0 & 0 & 3 & 0 & 3\\
+\midrule
+All models & 2 & 0 & 7 & 0 & 9\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The nonflag sample contains one natural-output miss. Both authors identify the
+Qwen2.5 response for AND-021 as violating \checkc{C1} and \checkc{C3}: it says
+the app communicates through a domain present only in static artifacts and does
+not report that the traffic log names a different domain. They agree that 22 of
+the remaining responses contain no missed C1--C4 violation. For one AND-022
+response, Reviewer B records a C3 miss while Reviewer A records Unclear; this
+item remains unresolved without adjudication. Thus the confirmed sampled
+miss proportion is 1/24, or 4.2\% (exact 95\% binomial interval [0.1\%, 21.1\%]),
+with one additional disputed item. The stratified sample is too small to
+support a system-wide recall estimate.
+
+\subsection{All seeded verifier controls pass}
+Table~\ref{tab:fixtures} answers RQ3. Every seeded positive is detected and
+every matched negative is rejected. The negative controls are important because
+several exclusions reverse the expected outcome while retaining most lexical
+content. For example, ``contacted'' should trigger C1 in an affirmative sentence,
+while ``did not contact,'' ``could contact,'' and ``monitor for future contact''
+should not. Likewise, a C4 absent-domain hallucination is paired with a sentence
+naming a domain actually present in the case.
+
+\begin{table}[t]
+\centering
+\caption{Conformance-suite results. ``Pos.'' is seeded violations detected;
+``Neg.'' is matched non-violations correctly rejected.}
+\label{tab:fixtures}
+\small
+\begin{tabular}{lccc}
+\toprule
+Check & Pos. & Neg. & Natural flags \\
+\midrule
+C1 & 20/20 & 20/20 & 2 \\
+C2 & 20/20 & 20/20 & 0 \\
+C3 & 20/20 & 20/20 & 7 \\
+C4 & 20/20 & 20/20 & 0 \\
+\midrule
+Total & 80/80 & 80/80 & 9 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This result removes one ambiguity around zero-hit checks: C2 and C4 can fire on
+their seeded violation classes and reject their matched controls. It does not
+show that the rules cover all natural phrasings or that the evaluated systems
+made no C2/C4 errors outside those rule boundaries.
+
+\subsection{Exploratory system-group contrast}
+The frontier group has 1 verifier flag in 30 applicable \checkc{C1}+\checkc{C3}
+case-checks; the compact group has 8 in 30. The two-sided Fisher result is
+$p=0.0257$. We do not treat this as a headline ranking. The comparison combines
+two checks, reuses cases across systems, and changes scale, provider, and serving
+conditions simultaneously. It is a descriptive consistency check showing that
+auditable failures are not confined to the original four-system evaluation.
+
+\subsection{Observed failure modes}
+The two \checkc{C1} flags both come from Qwen2.5. In one case the report turns a
+domain present only in extracted strings into observed communication; in the
+other, a heading and accompanying prose imply traffic despite the lack of a
+traffic-log entry. The seven \checkc{C3} flags are omissions of a required
+cross-artifact relation. Examples include reporting the \texttt{RECORD\_AUDIO}
+permission without noting that no other supplied artifact corroborates recording
+functionality, and reporting a traffic timestamp without contrasting it with a
+later component \texttt{first\_seen} value. The individual facts may be copied
+correctly while the evidentiary relationship that changes their interpretation
+is lost.
+
+The attribution results help explain why neither the rubric nor the verifier
+registers attribution errors. The primary judge assigns 2 to every attribution
+score, and \checkc{C2} never fires, although eight cases are attribution traps.
+In the author audit, at least one author scores 7 of the 60 claims below 2 on
+attribution. Five of these come from attribution-trap cases. They include ``direct evidence of malware
+infrastructure'' and ``location data is being collected and transmitted'' stated
+as fact. These are entity- and intent-level overattributions rather than the
+concrete person--action constructions that \checkc{C2} targets, and the judge
+did not penalize them. On this small sample the traps did elicit errors, but
+\checkc{C2} is too narrow to detect them and the judge did not penalize them.
+The evidence does not suggest that the traps are too easy.
+
+The \checkc{C3} results also expose a configuration weakness. Both unclear flags
+and the one disputed nonflag come from AND-022. Its configured fact pair and
+accepted non-corroboration phrasings live in verifier code, not in the case
+record, so the review packet did not expose them. Three uncertain decisions in
+one case suggest that its relation is under-specified.
+Section~\ref{sec:design} describes the schema change that addresses it.
+
+The stronger GPT endpoint receives one \checkc{C3} flag and the compact GPT
+endpoint receives three; one flag in each endpoint is unresolved in the author
+audit. The raw verifier pattern is consistent with the frontier--compact
+contrast, while the small number of applicable cases prevents
+a stable within-provider claim (two-sided Fisher $p=0.582$ for 1/10 versus
+3/10). The deterministic results support failure-mode analysis more strongly
+than fine-grained model ranking.
+
+\section{Discussion}
+\subsection{Evidence that does not depend on the judge}
+The evaluation yields three layers of evidence. First, the claim-level table is
+useful for locating candidate differences but remains conditional on a
+same-family judge. The family-stratified audit shows that this condition
+matters: on identical claims, the judge's leniency relative to blinded authors
+is concentrated in Claude-authored outputs. On the audited sample the authors
+rate Qwen2.5 well above Haiku (1.680 versus 1.320). The judge does not register
+this gap (1.573 versus 1.587). Comparisons across families in Table~\ref{tab:judge} should
+therefore not be read as system rankings. Second, the cross-family rater exposes the instability of
+that measurement and does not provide replacement ground truth. Third, the
+deterministic checks produce nine reproducible flags without consulting either
+rater; the subsequent audit confirms seven, leaves two unresolved, and finds
+one missed response in a 24-response nonflag sample.
+
+The third layer is strongest because each decision is tied to structured case
+facts and an inspectable witness. Its scope is also the narrowest. The verifier
+directly covers fabricated or overstated network contact and missed
+cross-artifact relationships, which intersect evidence support and
+observation--inference separation. It does not measure writing quality,
+completeness, usefulness to an examiner, or all ways provenance and attribution
+can fail.
+
+\subsection{Implications for benchmark design}\label{sec:design}
+A benchmark release should therefore have two parts. A rubric can retain human
+or model judgment for constructs that require interpretation. Alongside it, a
+versioned conformance suite should target properties that structured ground
+truth can decide. Each rule should publish its applicable set, positive and
+negative fixtures, evidence snippets, and version identifier. Rules that never
+fire need seeded positive controls; otherwise zero findings conflate good model
+behavior with weak detector recall.
+
+The case schema should encode relations directly. Network provenance is cheap
+to verify because observed and string-only domains occupy distinct fields.
+Contradiction detection is harder because the verifier maps each of six cases
+to two textual patterns and acceptable relation language. A stronger schema
+would store \texttt{fact\_a}, \texttt{fact\_b}, the expected relation, and
+permissible reporting variants as first-class data.
+
+This architecture also changes how negative findings are interpreted. A zero
+violation count has three possible explanations: the system avoided the error,
+the check did not apply, or the implementation failed to recognize it. Explicit
+applicability separates the second explanation, while seeded controls provide
+evidence against simple implementation failure. Only a held-out natural sample
+with independent review can address broader detector coverage. Reporting all
+three stages prevents ``no flags'' from being presented as ``no errors.''
+
+The same pattern transfers beyond forensics when a task has structured state.
+In code generation, executable properties can cover compilation, tests, and
+forbidden API calls while reviewers assess maintainability. In grounded question
+answering, exact citation presence and source identifiers can be checked while
+humans assess whether the cited passage entails the claim. In incident response,
+timeline order and indicator membership can be executable while causal analysis
+remains interpretive. The approach does not require complete formalization,
+only a clear statement of which conclusions have been formalized.
+
+\subsection{Trust boundary and operational use}
+The verifier is part of the benchmark measurement system, not a replacement for
+a forensic examiner. It assumes that the case JSON is complete for the property
+being checked, that reserved-domain extraction is correct, and that case-specific
+C3 relations are encoded faithfully. A corrupted or incomplete case can make a
+deterministic decision reproducible but wrong. The artifact therefore includes
+case records, rule source, witnesses, fixtures, version identifiers, and hashes
+as one audit unit.
+
+Operationally, a flag should be read as a review trigger with a reproducible
+reason. It should not be converted into a claim about maliciousness, intent, or
+legal responsibility. This distinction is especially important for Android
+signing and permissions, where common platform behavior may look suspicious
+without additional corroboration. The benchmark evaluates evidentiary restraint
+under supplied facts; it does not certify an endpoint for autonomous casework.
+
+\section{Limitations}
+The model-blinded review was completed by the two authors, not external forensic
+examiners. They report selecting and filling all scores and decisions manually.
+They consulted ordinary websites and reference material; any LLM use was limited
+to editorial phrasing after the judgments. The review files were completed
+separately. Claim-score exact agreement ranges from 88.3\% to 100\%, flag
+decisions agree 9/9, and miss decisions agree 23/24. This audit may share
+assumptions with the rubric and verifier design and cannot establish independent
+construct validity.
+The primary rater is same-family, sees model identity, and covers only four of
+six systems.
+The secondary rater is a compact local model, uses a different unit of analysis,
+and covers 30 responses from 21 unique cases. Its low agreement cannot be
+attributed specifically to family bias. The family-stratified author audit
+provides that attribution on identical units, but only for 60 claims and with
+author reference scores. No rubric scores exist for the two GPT endpoints, so
+six-system conclusions rest on the verifier alone. A same-unit rescoring of all
+atomic claims from all six systems by a strong non-Anthropic judge and
+independent human ratings are the appropriate next tests.
+The structured primary and secondary rating files are preserved, but raw
+primary-rater API objects and per-run secondary-rater transcripts were not;
+their score aggregation is reproducible while historical execution provenance
+is weaker than for the 60 OpenAI extension responses.
+
+The verifier covers four narrow error patterns. Its 160 fixtures exercise known
+boundaries, including zero-hit C2 and C4, but seeded text is easier than the full
+distribution of natural paraphrases. Because the fixtures were written by the
+verifier's authors after the rules were specified, a 160/160 pass shows that
+the code implements its intended rules. It cannot show that those rules detect
+errors the authors did not anticipate. The \checkc{C3} patterns are
+hand-configured for six cases seen during development and partly encode the
+expected answers. The audit leaves two of nine flags
+unresolved, identifies one definite miss, and leaves one of 24 sampled nonflags
+disputed between authors. The
+sample is too small for a stable recall estimate. The verifier was developed after the
+initial model-rated analysis. A stronger evaluation would freeze version 1 and
+apply it without modification to newly authored cases and newly generated
+responses.
+
+The 30 cases are synthetic and small; several rubric dimensions exhibit ceiling
+effects. The Opus row mixes two served versions. The exploratory
+frontier--compact comparison treats repeated case-checks as independent and
+groups heterogeneous providers, scales, and serving conditions. It should not
+be interpreted as a general model-class effect. None of the results establishes
+that any system is suitable for unsupervised evidentiary use.
+
+\section{Conclusion}
+An LLM judge related to the systems it scores can produce a leaderboard that
+looks precise but has no independent basis for its ordering. In our Android-forensics case study, a
+cross-family diagnostic fails to reproduce the primary measurement cleanly. A
+direct audit on identical claims shows that the judge's leniency relative to
+blinded authors is concentrated in same-family outputs. Meanwhile, four
+deterministic checks produce nine auditable flags across six systems.
+A model-blinded two-author audit confirms seven, leaves two unresolved, and
+finds one miss in 24 sampled nonflags. All 160 seeded conformance fixtures behave as expected, including
+positive controls for two checks with no natural flags. These results establish
+implementation behavior, specific natural violations, and a measured
+same-family leniency on a small audited sample. They do not establish the
+validity of the full rubric. A hybrid benchmark that publishes structured
+ground truth, applicability sets, witnesses, fixtures, and versioned verifiers
+makes that boundary explicit and lets reviewers recompute part of the result
+without trusting another generative model.
+
+\section*{Open Science}
+The anonymous artifact is available at
+\url{https://anonymous.4open.science/r/conflicted-judge-audit-5C2E}. It contains the 30 case JSON files, prompts, 180 response
+records, 830 claim annotations for the four primary-scored systems, the
+cross-rater sample, verifier source, statistical audit, 160 seeded conformance
+fixtures, the blinded author-review packet, the two anonymized completed
+author-review records, derived
+agreement results, the family-stratified judge-audit script and output,
+coordinator key, execution-provenance audit, SHA-256
+manifests, and build source.
+All 180 response records identify the requested and served model. The 60 OpenAI
+extension records additionally preserve unique provider response identifiers,
+completion status, timestamps, token usage, and request fingerprints; the 120
+legacy records do not preserve provider request identifiers or token usage. API
+secrets and provider credentials are excluded. The repository will remain
+available throughout review, and a permanent archival identifier will be added
+upon publication.
+
+\section*{LLM Usage Considerations}
+Language models are the systems under evaluation and two model families also
+serve as raters, as described in the evaluation design. Their outputs are
+preserved as data rather than accepted as ground truth. The evaluation contains
+180 task responses; the bounded design was chosen to compare complete outputs
+across fixed cases while limiting unnecessary API and local compute. The local
+7.6B Qwen model used a Q4\_K\_M build on an NVIDIA RTX 4050 with 6~GB VRAM; other
+systems were accessed through recorded API endpoints. LLMs were used for
+editorial purposes in this manuscript, and all outputs were inspected by the
+authors to ensure accuracy and originality. During the model-blinded author
+audit, the reviewers consulted ordinary websites and reference material. The
+authors report that no AI was used to choose or fill review scores or decisions;
+any LLM assistance was limited to editorial phrasing after the judgments. We report that exercise
+as an author audit because both reviewers are authors. The authors checked
+numerical claims against machine-readable outputs and remain responsible for
+the text, code, citations, and conclusions.
+
+\section*{Ethical Considerations}
+The benchmark is fully synthetic and uses reserved network identifiers. It does
+not contain personal data, malware binaries, or operational targets. Forensic
+model output can influence investigations, so the benchmark must not be read as
+authorization for automated legal or evidentiary decisions. Human examiners
+remain responsible for source verification, alternative explanations, and
+chain-of-custody requirements.
+
+\begin{thebibliography}{10}
+\bibitem{studiawan2025} H. Studiawan, F. Breitinger, and M. Scanlon, ``Towards a standardized methodology and dataset for evaluating LLM-based digital forensic timeline analysis,'' \emph{Forensic Science International: Digital Investigation}, vol. 54, suppl., Art. no. 301982, 2025, doi: 10.1016/j.fsidi.2025.301982.
+\bibitem{autodfbench} A. Wickramasekara, A. Densmore, F. Breitinger, H. Studiawan, and M. Scanlon, ``AutoDFBench: A framework for AI generated digital forensic code and tool testing and evaluation,'' in \emph{Proc. Digital Forensics Doctoral Symposium}, 2025, doi: 10.1145/3712716.3712718.
+\bibitem{factscore} S. Min \emph{et al.}, ``FActScore: Fine-grained atomic evaluation of factual precision in long form text generation,'' in \emph{Proc. Conference on Empirical Methods in Natural Language Processing}, 2023, pp. 12076--12100, doi: 10.18653/v1/2023.emnlp-main.741.
+\bibitem{safe} J. Wei \emph{et al.}, ``Long-form factuality in large language models,'' in \emph{Advances in Neural Information Processing Systems}, vol. 37, 2024, doi: 10.52202/079017-2567.
+\bibitem{alce} T. Gao, H. Yen, J. Yu, and D. Chen, ``Enabling large language models to generate text with citations,'' in \emph{Proc. Conference on Empirical Methods in Natural Language Processing}, 2023, pp. 6465--6488, doi: 10.18653/v1/2023.emnlp-main.398.
+\bibitem{attrscore} X. Yue, B. Wang, Z. Chen, K. Zhang, Y. Su, and H. Sun, ``Automatic evaluation of attribution by large language models,'' in \emph{Findings of the Association for Computational Linguistics: EMNLP}, 2023, pp. 4615--4635, doi: 10.18653/v1/2023.findings-emnlp.307.
+\bibitem{panickssery2024} A. Panickssery, S. R. Bowman, and S. Feng, ``LLM evaluators recognize and favor their own generations,'' in \emph{Advances in Neural Information Processing Systems}, vol. 37, 2024, doi: 10.52202/079017-2197.
+\bibitem{zheng2023} L. Zheng \emph{et al.}, ``Judging LLM-as-a-judge with MT-Bench and Chatbot Arena,'' in \emph{Advances in Neural Information Processing Systems}, vol. 36, pp. 46595--46623, 2023, doi: 10.52202/075280-2020.
+\bibitem{faireval} P. Wang \emph{et al.}, ``Large language models are not fair evaluators,'' in \emph{Proc. 62nd Annual Meeting of the Association for Computational Linguistics}, 2024, pp. 9440--9450, doi: 10.18653/v1/2024.acl-long.511.
+\bibitem{geval} Y. Liu, D. Iter, Y. Xu, S. Wang, R. Xu, and C. Zhu, ``G-Eval: NLG evaluation using GPT-4 with better human alignment,'' in \emph{Proc. Conference on Empirical Methods in Natural Language Processing}, 2023, pp. 2511--2522, doi: 10.18653/v1/2023.emnlp-main.153.
+\bibitem{prometheus} S. Kim \emph{et al.}, ``Prometheus: Inducing fine-grained evaluation capability in language models,'' in \emph{Proc. International Conference on Learning Representations}, 2024. [Online]. Available: \url{https://openreview.net/forum?id=8euJaTveKw}.
+\bibitem{checklist} M. T. Ribeiro, T. Wu, C. Guestrin, and S. Singh, ``Beyond accuracy: Behavioral testing of NLP models with CheckList,'' in \emph{Proc. Annual Meeting of the Association for Computational Linguistics}, 2020, pp. 4902--4912, doi: 10.18653/v1/2020.acl-main.442.
+\bibitem{krippendorff} K. Krippendorff, \emph{Content Analysis: An Introduction to Its Methodology}, 2nd ed. Thousand Oaks, CA, USA: Sage, 2004.
+\bibitem{androidsigning} Android Developers, ``Sign your app.'' [Online]. Available: \url{https://developer.android.com/studio/publish/app-signing}. Accessed: Sep. 27, 2026.
+\end{thebibliography}
+
+\end{document}

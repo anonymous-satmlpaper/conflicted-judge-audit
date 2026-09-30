@@ -1,0 +1,12 @@
+{
+  "case_id": "AND-004",
+  "model_requested": "claude-opus-5",
+  "qwen_score": {
+    "support": 1,
+    "provenance": 2,
+    "obs_inf": 2,
+    "attribution": 2,
+    "reproducibility": 1,
+    "note": "The response makes inferences beyond the direct evidence and includes unsupported claims."
+  }
+}

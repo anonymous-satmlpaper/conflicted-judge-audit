@@ -1,0 +1,421 @@
+{
+  "schema": "satml-human-validation-results-v1",
+  "generated_at": "2026-09-28T10:31:01.923Z",
+  "inputs": {
+    "reviewer_a": {
+      "file": "reviews/reviewer-A-completed.xlsx",
+      "sha256": "4EDD971EEB4DFA725FC56FA487F60262BCE4C1447F54E14B6FC1CBAA43236FCA",
+      "metadata": {
+        "Reviewer ID": "A",
+        "Draft prepared": "28 September 2026",
+        "Relevant background": "Withheld for blinded comparison"
+      }
+    },
+    "reviewer_b": {
+      "file": "reviews/reviewer-B-completed.pdf",
+      "sha256": "C11B40074EF8111A21AE338D7E23858D835735972034FA3C953AEC3A6096EE09",
+      "field_extract_sha256": "5A2922A7A0419B158C752D9881EA2D8CCA6BFA6E8D961C1ACB08E209DE02541C",
+      "metadata": {
+        "Reviewer ID": "B",
+        "Draft prepared": "28 September 2026",
+        "Relevant background": "Withheld for blinded comparison"
+      }
+    },
+    "review_key": {
+      "file": "scoring\\satml\\human_review_key_v1.json",
+      "sha256": "94C4E8111378412547A40DF7C140FC1EAB1EE02035C428D9060FAF0AA96BACCF"
+    }
+  },
+  "completeness": {
+    "claim_rows_per_reviewer": 60,
+    "claim_scores_per_reviewer": 300,
+    "flag_rows_per_reviewer": 9,
+    "miss_rows_per_reviewer": 24,
+    "valid_and_complete": true
+  },
+  "claim_ratings": {
+    "support": {
+      "label": "Evidence support",
+      "reviewer_a_mean": 1.1666666666666667,
+      "reviewer_b_mean": 1.2166666666666666,
+      "primary_mean": 1.5833333333333333,
+      "author_author_exact": {
+        "matches": 53,
+        "n": 60,
+        "proportion": 0.8833333333333333
+      },
+      "author_author_quadratic_weighted_kappa": 0.798076923076923,
+      "reviewer_a_vs_primary_exact": {
+        "matches": 33,
+        "n": 60,
+        "proportion": 0.55
+      },
+      "reviewer_a_vs_primary_quadratic_weighted_kappa": 0.40441176470588225,
+      "reviewer_b_vs_primary_exact": {
+        "matches": 33,
+        "n": 60,
+        "proportion": 0.55
+      },
+      "reviewer_b_vs_primary_quadratic_weighted_kappa": 0.33085501858736066
+    },
+    "provenance": {
+      "label": "Provenance",
+      "reviewer_a_mean": 2,
+      "reviewer_b_mean": 2,
+      "primary_mean": 1.8333333333333333,
+      "author_author_exact": {
+        "matches": 60,
+        "n": 60,
+        "proportion": 1
+      },
+      "author_author_quadratic_weighted_kappa": null,
+      "reviewer_a_vs_primary_exact": {
+        "matches": 50,
+        "n": 60,
+        "proportion": 0.8333333333333334
+      },
+      "reviewer_a_vs_primary_quadratic_weighted_kappa": 0,
+      "reviewer_b_vs_primary_exact": {
+        "matches": 50,
+        "n": 60,
+        "proportion": 0.8333333333333334
+      },
+      "reviewer_b_vs_primary_quadratic_weighted_kappa": 0
+    },
+    "obs_inf": {
+      "label": "Observation/inference",
+      "reviewer_a_mean": 1.55,
+      "reviewer_b_mean": 1.55,
+      "primary_mean": 1.7,
+      "author_author_exact": {
+        "matches": 54,
+        "n": 60,
+        "proportion": 0.9
+      },
+      "author_author_quadratic_weighted_kappa": 0.888268156424581,
+      "reviewer_a_vs_primary_exact": {
+        "matches": 39,
+        "n": 60,
+        "proportion": 0.65
+      },
+      "reviewer_a_vs_primary_quadratic_weighted_kappa": 0.3973214285714286,
+      "reviewer_b_vs_primary_exact": {
+        "matches": 39,
+        "n": 60,
+        "proportion": 0.65
+      },
+      "reviewer_b_vs_primary_quadratic_weighted_kappa": 0.3973214285714286
+    },
+    "attribution": {
+      "label": "Attribution",
+      "reviewer_a_mean": 1.8666666666666667,
+      "reviewer_b_mean": 1.85,
+      "primary_mean": 2,
+      "author_author_exact": {
+        "matches": 59,
+        "n": 60,
+        "proportion": 0.9833333333333333
+      },
+      "author_author_quadratic_weighted_kappa": 0.9514563106796117,
+      "reviewer_a_vs_primary_exact": {
+        "matches": 53,
+        "n": 60,
+        "proportion": 0.8833333333333333
+      },
+      "reviewer_a_vs_primary_quadratic_weighted_kappa": 0,
+      "reviewer_b_vs_primary_exact": {
+        "matches": 53,
+        "n": 60,
+        "proportion": 0.8833333333333333
+      },
+      "reviewer_b_vs_primary_quadratic_weighted_kappa": 0
+    },
+    "reproducibility": {
+      "label": "Reproducibility",
+      "reviewer_a_mean": 1.5833333333333333,
+      "reviewer_b_mean": 1.5666666666666667,
+      "primary_mean": 1.6833333333333333,
+      "author_author_exact": {
+        "matches": 55,
+        "n": 60,
+        "proportion": 0.9166666666666666
+      },
+      "author_author_quadratic_weighted_kappa": 0.8295454545454546,
+      "reviewer_a_vs_primary_exact": {
+        "matches": 44,
+        "n": 60,
+        "proportion": 0.7333333333333333
+      },
+      "reviewer_a_vs_primary_quadratic_weighted_kappa": 0.5025906735751295,
+      "reviewer_b_vs_primary_exact": {
+        "matches": 43,
+        "n": 60,
+        "proportion": 0.7166666666666667
+      },
+      "reviewer_b_vs_primary_quadratic_weighted_kappa": 0.47745901639344257
+    }
+  },
+  "flag_review": {
+    "reviewer_a_counts": {
+      "Yes": 7,
+      "No": 0,
+      "Unclear": 2
+    },
+    "reviewer_b_counts": {
+      "Yes": 7,
+      "No": 0,
+      "Unclear": 2
+    },
+    "exact_agreement": {
+      "matches": 9,
+      "n": 9,
+      "proportion": 1
+    },
+    "unweighted_kappa": 1,
+    "consensus_counts": {
+      "Yes": 7,
+      "No": 0,
+      "Unclear": 2,
+      "Disagreement": 0
+    },
+    "rows": [
+      {
+        "id": "F-01",
+        "reviewer_a": "Yes",
+        "reviewer_b": "Yes",
+        "consensus": "Yes"
+      },
+      {
+        "id": "F-02",
+        "reviewer_a": "Yes",
+        "reviewer_b": "Yes",
+        "consensus": "Yes"
+      },
+      {
+        "id": "F-03",
+        "reviewer_a": "Yes",
+        "reviewer_b": "Yes",
+        "consensus": "Yes"
+      },
+      {
+        "id": "F-04",
+        "reviewer_a": "Yes",
+        "reviewer_b": "Yes",
+        "consensus": "Yes"
+      },
+      {
+        "id": "F-05",
+        "reviewer_a": "Yes",
+        "reviewer_b": "Yes",
+        "consensus": "Yes"
+      },
+      {
+        "id": "F-06",
+        "reviewer_a": "Unclear",
+        "reviewer_b": "Unclear",
+        "consensus": "Unclear"
+      },
+      {
+        "id": "F-07",
+        "reviewer_a": "Unclear",
+        "reviewer_b": "Unclear",
+        "consensus": "Unclear"
+      },
+      {
+        "id": "F-08",
+        "reviewer_a": "Yes",
+        "reviewer_b": "Yes",
+        "consensus": "Yes"
+      },
+      {
+        "id": "F-09",
+        "reviewer_a": "Yes",
+        "reviewer_b": "Yes",
+        "consensus": "Yes"
+      }
+    ]
+  },
+  "miss_review": {
+    "reviewer_a_counts": {
+      "Yes": 1,
+      "No": 22,
+      "Unclear": 1
+    },
+    "reviewer_b_counts": {
+      "Yes": 2,
+      "No": 22,
+      "Unclear": 0
+    },
+    "exact_agreement": {
+      "matches": 23,
+      "n": 24,
+      "proportion": 0.9583333333333334
+    },
+    "unweighted_kappa": 0.7333333333333337,
+    "consensus_counts": {
+      "Yes": 1,
+      "No": 22,
+      "Unclear": 0,
+      "Disagreement": 1
+    },
+    "rows": [
+      {
+        "id": "M-01",
+        "reviewer_a": "No",
+        "reviewer_b": "No",
+        "consensus": "No"
+      },
+      {
+        "id": "M-02",
+        "reviewer_a": "Unclear",
+        "reviewer_b": "Yes",
+        "consensus": "Disagreement"
+      },
+      {
+        "id": "M-03",
+        "reviewer_a": "No",
+        "reviewer_b": "No",
+        "consensus": "No"
+      },
+      {
+        "id": "M-04",
+        "reviewer_a": "No",
+        "reviewer_b": "No",
+        "consensus": "No"
+      },
+      {
+        "id": "M-05",
+        "reviewer_a": "No",
+        "reviewer_b": "No",
+        "consensus": "No"
+      },
+      {
+        "id": "M-06",
+        "reviewer_a": "No",
+        "reviewer_b": "No",
+        "consensus": "No"
+      },
+      {
+        "id": "M-07",
+        "reviewer_a": "No",
+        "reviewer_b": "No",
+        "consensus": "No"
+      },
+      {
+        "id": "M-08",
+        "reviewer_a": "No",
+        "reviewer_b": "No",
+        "consensus": "No"
+      },
+      {
+        "id": "M-09",
+        "reviewer_a": "No",
+        "reviewer_b": "No",
+        "consensus": "No"
+      },
+      {
+        "id": "M-10",
+        "reviewer_a": "No",
+        "reviewer_b": "No",
+        "consensus": "No"
+      },
+      {
+        "id": "M-11",
+        "reviewer_a": "No",
+        "reviewer_b": "No",
+        "consensus": "No"
+      },
+      {
+        "id": "M-12",
+        "reviewer_a": "No",
+        "reviewer_b": "No",
+        "consensus": "No"
+      },
+      {
+        "id": "M-13",
+        "reviewer_a": "No",
+        "reviewer_b": "No",
+        "consensus": "No"
+      },
+      {
+        "id": "M-14",
+        "reviewer_a": "No",
+        "reviewer_b": "No",
+        "consensus": "No"
+      },
+      {
+        "id": "M-15",
+        "reviewer_a": "No",
+        "reviewer_b": "No",
+        "consensus": "No"
+      },
+      {
+        "id": "M-16",
+        "reviewer_a": "No",
+        "reviewer_b": "No",
+        "consensus": "No"
+      },
+      {
+        "id": "M-17",
+        "reviewer_a": "No",
+        "reviewer_b": "No",
+        "consensus": "No"
+      },
+      {
+        "id": "M-18",
+        "reviewer_a": "No",
+        "reviewer_b": "No",
+        "consensus": "No"
+      },
+      {
+        "id": "M-19",
+        "reviewer_a": "No",
+        "reviewer_b": "No",
+        "consensus": "No"
+      },
+      {
+        "id": "M-20",
+        "reviewer_a": "No",
+        "reviewer_b": "No",
+        "consensus": "No"
+      },
+      {
+        "id": "M-21",
+        "reviewer_a": "Yes",
+        "reviewer_b": "Yes",
+        "consensus": "Yes"
+      },
+      {
+        "id": "M-22",
+        "reviewer_a": "No",
+        "reviewer_b": "No",
+        "consensus": "No"
+      },
+      {
+        "id": "M-23",
+        "reviewer_a": "No",
+        "reviewer_b": "No",
+        "consensus": "No"
+      },
+      {
+        "id": "M-24",
+        "reviewer_a": "No",
+        "reviewer_b": "No",
+        "consensus": "No"
+      }
+    ],
+    "confirmed_miss_binomial_interval_treating_unresolved_as_not_confirmed": {
+      "successes": 1,
+      "n": 24,
+      "proportion": 0.041666666666666664,
+      "confidence": 0.95,
+      "lower": 0.0010543524454697528,
+      "upper": 0.21120168345697315
+    }
+  },
+  "interpretation_limits": [
+    "Both reviewers are paper authors; this is an author audit rather than independent external validation.",
+    "The authors report that all scores and decisions were selected and filled manually. Ordinary websites and reference material were consulted; any LLM use was limited to editorial phrasing after the judgments.",
+    "No adjudication was performed. Unclear and disagreement outcomes remain unresolved."
+  ]
+}

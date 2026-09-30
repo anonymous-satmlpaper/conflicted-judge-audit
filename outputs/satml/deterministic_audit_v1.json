@@ -1,0 +1,2592 @@
+﻿{
+    "status":  "deterministic verifier v1",
+    "check_version":  "satml-deterministic-v1",
+    "records":  [
+                    {
+                        "case_id":  "AND-001",
+                        "model_requested":  "claude-haiku-4-5",
+                        "source_file":  "outputs\\harness\\AND-001__claude-haiku-4-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-001",
+                        "model_requested":  "claude-opus-5",
+                        "source_file":  "outputs\\harness\\AND-001__claude-opus-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-001",
+                        "model_requested":  "claude-sonnet-5",
+                        "source_file":  "outputs\\harness\\AND-001__claude-sonnet-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-001",
+                        "model_requested":  "qwen2.5:7b",
+                        "source_file":  "outputs\\harness\\AND-001__qwen2.5-7b.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-002",
+                        "model_requested":  "claude-haiku-4-5",
+                        "source_file":  "outputs\\harness\\AND-002__claude-haiku-4-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-002",
+                        "model_requested":  "claude-opus-5",
+                        "source_file":  "outputs\\harness\\AND-002__claude-opus-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-002",
+                        "model_requested":  "claude-sonnet-5",
+                        "source_file":  "outputs\\harness\\AND-002__claude-sonnet-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-002",
+                        "model_requested":  "qwen2.5:7b",
+                        "source_file":  "outputs\\harness\\AND-002__qwen2.5-7b.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-003",
+                        "model_requested":  "claude-haiku-4-5",
+                        "source_file":  "outputs\\harness\\AND-003__claude-haiku-4-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-003",
+                        "model_requested":  "claude-opus-5",
+                        "source_file":  "outputs\\harness\\AND-003__claude-opus-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-003",
+                        "model_requested":  "claude-sonnet-5",
+                        "source_file":  "outputs\\harness\\AND-003__claude-sonnet-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-003",
+                        "model_requested":  "qwen2.5:7b",
+                        "source_file":  "outputs\\harness\\AND-003__qwen2.5-7b.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-004",
+                        "model_requested":  "claude-haiku-4-5",
+                        "source_file":  "outputs\\harness\\AND-004__claude-haiku-4-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-004",
+                        "model_requested":  "claude-opus-5",
+                        "source_file":  "outputs\\harness\\AND-004__claude-opus-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-004",
+                        "model_requested":  "claude-sonnet-5",
+                        "source_file":  "outputs\\harness\\AND-004__claude-sonnet-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-004",
+                        "model_requested":  "qwen2.5:7b",
+                        "source_file":  "outputs\\harness\\AND-004__qwen2.5-7b.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-005",
+                        "model_requested":  "claude-haiku-4-5",
+                        "source_file":  "outputs\\harness\\AND-005__claude-haiku-4-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-005",
+                        "model_requested":  "claude-opus-5",
+                        "source_file":  "outputs\\harness\\AND-005__claude-opus-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-005",
+                        "model_requested":  "claude-sonnet-5",
+                        "source_file":  "outputs\\harness\\AND-005__claude-sonnet-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-005",
+                        "model_requested":  "qwen2.5:7b",
+                        "source_file":  "outputs\\harness\\AND-005__qwen2.5-7b.json",
+                        "flags":  [
+                                      {
+                                          "check":  "C1",
+                                          "case_id":  "AND-005",
+                                          "domain":  "update-check.example.com",
+                                          "evidence":  "- Monitor network traffic logs for actual communication patterns with `update-check.example.com`."
+                                      }
+                                  ],
+                        "counts":  {
+                                       "C1":  1,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-006",
+                        "model_requested":  "claude-haiku-4-5",
+                        "source_file":  "outputs\\harness\\AND-006__claude-haiku-4-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-006",
+                        "model_requested":  "claude-opus-5",
+                        "source_file":  "outputs\\harness\\AND-006__claude-opus-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-006",
+                        "model_requested":  "claude-sonnet-5",
+                        "source_file":  "outputs\\harness\\AND-006__claude-sonnet-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-006",
+                        "model_requested":  "qwen2.5:7b",
+                        "source_file":  "outputs\\harness\\AND-006__qwen2.5-7b.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-007",
+                        "model_requested":  "claude-haiku-4-5",
+                        "source_file":  "outputs\\harness\\AND-007__claude-haiku-4-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-007",
+                        "model_requested":  "claude-opus-5",
+                        "source_file":  "outputs\\harness\\AND-007__claude-opus-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-007",
+                        "model_requested":  "claude-sonnet-5",
+                        "source_file":  "outputs\\harness\\AND-007__claude-sonnet-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-007",
+                        "model_requested":  "qwen2.5:7b",
+                        "source_file":  "outputs\\harness\\AND-007__qwen2.5-7b.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-008",
+                        "model_requested":  "claude-haiku-4-5",
+                        "source_file":  "outputs\\harness\\AND-008__claude-haiku-4-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-008",
+                        "model_requested":  "claude-opus-5",
+                        "source_file":  "outputs\\harness\\AND-008__claude-opus-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-008",
+                        "model_requested":  "claude-sonnet-5",
+                        "source_file":  "outputs\\harness\\AND-008__claude-sonnet-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-008",
+                        "model_requested":  "qwen2.5:7b",
+                        "source_file":  "outputs\\harness\\AND-008__qwen2.5-7b.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-009",
+                        "model_requested":  "claude-haiku-4-5",
+                        "source_file":  "outputs\\harness\\AND-009__claude-haiku-4-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-009",
+                        "model_requested":  "claude-opus-5",
+                        "source_file":  "outputs\\harness\\AND-009__claude-opus-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-009",
+                        "model_requested":  "claude-sonnet-5",
+                        "source_file":  "outputs\\harness\\AND-009__claude-sonnet-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-009",
+                        "model_requested":  "qwen2.5:7b",
+                        "source_file":  "outputs\\harness\\AND-009__qwen2.5-7b.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-010",
+                        "model_requested":  "claude-haiku-4-5",
+                        "source_file":  "outputs\\harness\\AND-010__claude-haiku-4-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-010",
+                        "model_requested":  "claude-opus-5",
+                        "source_file":  "outputs\\harness\\AND-010__claude-opus-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-010",
+                        "model_requested":  "claude-sonnet-5",
+                        "source_file":  "outputs\\harness\\AND-010__claude-sonnet-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-010",
+                        "model_requested":  "qwen2.5:7b",
+                        "source_file":  "outputs\\harness\\AND-010__qwen2.5-7b.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-011",
+                        "model_requested":  "claude-haiku-4-5",
+                        "source_file":  "outputs\\harness\\AND-011__claude-haiku-4-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-011",
+                        "model_requested":  "claude-opus-5",
+                        "source_file":  "outputs\\harness\\AND-011__claude-opus-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-011",
+                        "model_requested":  "claude-sonnet-5",
+                        "source_file":  "outputs\\harness\\AND-011__claude-sonnet-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-011",
+                        "model_requested":  "qwen2.5:7b",
+                        "source_file":  "outputs\\harness\\AND-011__qwen2.5-7b.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-012",
+                        "model_requested":  "claude-haiku-4-5",
+                        "source_file":  "outputs\\harness\\AND-012__claude-haiku-4-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-012",
+                        "model_requested":  "claude-opus-5",
+                        "source_file":  "outputs\\harness\\AND-012__claude-opus-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-012",
+                        "model_requested":  "claude-sonnet-5",
+                        "source_file":  "outputs\\harness\\AND-012__claude-sonnet-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-012",
+                        "model_requested":  "qwen2.5:7b",
+                        "source_file":  "outputs\\harness\\AND-012__qwen2.5-7b.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-013",
+                        "model_requested":  "claude-haiku-4-5",
+                        "source_file":  "outputs\\harness\\AND-013__claude-haiku-4-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-013",
+                        "model_requested":  "claude-opus-5",
+                        "source_file":  "outputs\\harness\\AND-013__claude-opus-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-013",
+                        "model_requested":  "claude-sonnet-5",
+                        "source_file":  "outputs\\harness\\AND-013__claude-sonnet-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-013",
+                        "model_requested":  "qwen2.5:7b",
+                        "source_file":  "outputs\\harness\\AND-013__qwen2.5-7b.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-014",
+                        "model_requested":  "claude-haiku-4-5",
+                        "source_file":  "outputs\\harness\\AND-014__claude-haiku-4-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-014",
+                        "model_requested":  "claude-opus-5",
+                        "source_file":  "outputs\\harness\\AND-014__claude-opus-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-014",
+                        "model_requested":  "claude-sonnet-5",
+                        "source_file":  "outputs\\harness\\AND-014__claude-sonnet-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-014",
+                        "model_requested":  "qwen2.5:7b",
+                        "source_file":  "outputs\\harness\\AND-014__qwen2.5-7b.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-015",
+                        "model_requested":  "claude-haiku-4-5",
+                        "source_file":  "outputs\\harness\\AND-015__claude-haiku-4-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-015",
+                        "model_requested":  "claude-opus-5",
+                        "source_file":  "outputs\\harness\\AND-015__claude-opus-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-015",
+                        "model_requested":  "claude-sonnet-5",
+                        "source_file":  "outputs\\harness\\AND-015__claude-sonnet-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-015",
+                        "model_requested":  "qwen2.5:7b",
+                        "source_file":  "outputs\\harness\\AND-015__qwen2.5-7b.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-016",
+                        "model_requested":  "claude-haiku-4-5",
+                        "source_file":  "outputs\\harness\\AND-016__claude-haiku-4-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-016",
+                        "model_requested":  "claude-opus-5",
+                        "source_file":  "outputs\\harness\\AND-016__claude-opus-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-016",
+                        "model_requested":  "claude-sonnet-5",
+                        "source_file":  "outputs\\harness\\AND-016__claude-sonnet-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-016",
+                        "model_requested":  "qwen2.5:7b",
+                        "source_file":  "outputs\\harness\\AND-016__qwen2.5-7b.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-017",
+                        "model_requested":  "claude-haiku-4-5",
+                        "source_file":  "outputs\\harness\\AND-017__claude-haiku-4-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-017",
+                        "model_requested":  "claude-opus-5",
+                        "source_file":  "outputs\\harness\\AND-017__claude-opus-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-017",
+                        "model_requested":  "claude-sonnet-5",
+                        "source_file":  "outputs\\harness\\AND-017__claude-sonnet-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-017",
+                        "model_requested":  "qwen2.5:7b",
+                        "source_file":  "outputs\\harness\\AND-017__qwen2.5-7b.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-018",
+                        "model_requested":  "claude-haiku-4-5",
+                        "source_file":  "outputs\\harness\\AND-018__claude-haiku-4-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-018",
+                        "model_requested":  "claude-opus-5",
+                        "source_file":  "outputs\\harness\\AND-018__claude-opus-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-018",
+                        "model_requested":  "claude-sonnet-5",
+                        "source_file":  "outputs\\harness\\AND-018__claude-sonnet-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-018",
+                        "model_requested":  "qwen2.5:7b",
+                        "source_file":  "outputs\\harness\\AND-018__qwen2.5-7b.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-019",
+                        "model_requested":  "claude-haiku-4-5",
+                        "source_file":  "outputs\\harness\\AND-019__claude-haiku-4-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-019",
+                        "model_requested":  "claude-opus-5",
+                        "source_file":  "outputs\\harness\\AND-019__claude-opus-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-019",
+                        "model_requested":  "claude-sonnet-5",
+                        "source_file":  "outputs\\harness\\AND-019__claude-sonnet-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-019",
+                        "model_requested":  "qwen2.5:7b",
+                        "source_file":  "outputs\\harness\\AND-019__qwen2.5-7b.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-020",
+                        "model_requested":  "claude-haiku-4-5",
+                        "source_file":  "outputs\\harness\\AND-020__claude-haiku-4-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-020",
+                        "model_requested":  "claude-opus-5",
+                        "source_file":  "outputs\\harness\\AND-020__claude-opus-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-020",
+                        "model_requested":  "claude-sonnet-5",
+                        "source_file":  "outputs\\harness\\AND-020__claude-sonnet-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-020",
+                        "model_requested":  "qwen2.5:7b",
+                        "source_file":  "outputs\\harness\\AND-020__qwen2.5-7b.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-021",
+                        "model_requested":  "claude-haiku-4-5",
+                        "source_file":  "outputs\\harness\\AND-021__claude-haiku-4-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-021",
+                        "model_requested":  "claude-opus-5",
+                        "source_file":  "outputs\\harness\\AND-021__claude-opus-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-021",
+                        "model_requested":  "claude-sonnet-5",
+                        "source_file":  "outputs\\harness\\AND-021__claude-sonnet-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-021",
+                        "model_requested":  "qwen2.5:7b",
+                        "source_file":  "outputs\\harness\\AND-021__qwen2.5-7b.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-022",
+                        "model_requested":  "claude-haiku-4-5",
+                        "source_file":  "outputs\\harness\\AND-022__claude-haiku-4-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-022",
+                        "model_requested":  "claude-opus-5",
+                        "source_file":  "outputs\\harness\\AND-022__claude-opus-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-022",
+                        "model_requested":  "claude-sonnet-5",
+                        "source_file":  "outputs\\harness\\AND-022__claude-sonnet-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-022",
+                        "model_requested":  "qwen2.5:7b",
+                        "source_file":  "outputs\\harness\\AND-022__qwen2.5-7b.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-023",
+                        "model_requested":  "claude-haiku-4-5",
+                        "source_file":  "outputs\\harness\\AND-023__claude-haiku-4-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-023",
+                        "model_requested":  "claude-opus-5",
+                        "source_file":  "outputs\\harness\\AND-023__claude-opus-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-023",
+                        "model_requested":  "claude-sonnet-5",
+                        "source_file":  "outputs\\harness\\AND-023__claude-sonnet-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-023",
+                        "model_requested":  "qwen2.5:7b",
+                        "source_file":  "outputs\\harness\\AND-023__qwen2.5-7b.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-024",
+                        "model_requested":  "claude-haiku-4-5",
+                        "source_file":  "outputs\\harness\\AND-024__claude-haiku-4-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-024",
+                        "model_requested":  "claude-opus-5",
+                        "source_file":  "outputs\\harness\\AND-024__claude-opus-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-024",
+                        "model_requested":  "claude-sonnet-5",
+                        "source_file":  "outputs\\harness\\AND-024__claude-sonnet-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-024",
+                        "model_requested":  "qwen2.5:7b",
+                        "source_file":  "outputs\\harness\\AND-024__qwen2.5-7b.json",
+                        "flags":  [
+                                      {
+                                          "check":  "C3",
+                                          "case_id":  "AND-024",
+                                          "mentions":  [
+                                                           true,
+                                                           false
+                                                       ],
+                                          "evidence":  "Response did not explicitly link both configured facts as a contradiction/non-corroboration."
+                                      }
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  1,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-025",
+                        "model_requested":  "claude-haiku-4-5",
+                        "source_file":  "outputs\\harness\\AND-025__claude-haiku-4-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-025",
+                        "model_requested":  "claude-opus-5",
+                        "source_file":  "outputs\\harness\\AND-025__claude-opus-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-025",
+                        "model_requested":  "claude-sonnet-5",
+                        "source_file":  "outputs\\harness\\AND-025__claude-sonnet-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-025",
+                        "model_requested":  "qwen2.5:7b",
+                        "source_file":  "outputs\\harness\\AND-025__qwen2.5-7b.json",
+                        "flags":  [
+                                      {
+                                          "check":  "C1",
+                                          "case_id":  "AND-025",
+                                          "domain":  "suspicious-relay.example.com",
+                                          "evidence":  "- **Traffic to `suspicious-relay.example.com`**:"
+                                      }
+                                  ],
+                        "counts":  {
+                                       "C1":  1,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-026",
+                        "model_requested":  "claude-haiku-4-5",
+                        "source_file":  "outputs\\harness\\AND-026__claude-haiku-4-5.json",
+                        "flags":  [
+                                      {
+                                          "check":  "C3",
+                                          "case_id":  "AND-026",
+                                          "mentions":  [
+                                                           true,
+                                                           false
+                                                       ],
+                                          "evidence":  "Response did not explicitly link both configured facts as a contradiction/non-corroboration."
+                                      }
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  1,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-026",
+                        "model_requested":  "claude-opus-5",
+                        "source_file":  "outputs\\harness\\AND-026__claude-opus-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-026",
+                        "model_requested":  "claude-sonnet-5",
+                        "source_file":  "outputs\\harness\\AND-026__claude-sonnet-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-026",
+                        "model_requested":  "qwen2.5:7b",
+                        "source_file":  "outputs\\harness\\AND-026__qwen2.5-7b.json",
+                        "flags":  [
+                                      {
+                                          "check":  "C3",
+                                          "case_id":  "AND-026",
+                                          "mentions":  [
+                                                           true,
+                                                           false
+                                                       ],
+                                          "evidence":  "Response did not explicitly link both configured facts as a contradiction/non-corroboration."
+                                      }
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  1,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-027",
+                        "model_requested":  "claude-haiku-4-5",
+                        "source_file":  "outputs\\harness\\AND-027__claude-haiku-4-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-027",
+                        "model_requested":  "claude-opus-5",
+                        "source_file":  "outputs\\harness\\AND-027__claude-opus-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-027",
+                        "model_requested":  "claude-sonnet-5",
+                        "source_file":  "outputs\\harness\\AND-027__claude-sonnet-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-027",
+                        "model_requested":  "qwen2.5:7b",
+                        "source_file":  "outputs\\harness\\AND-027__qwen2.5-7b.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-028",
+                        "model_requested":  "claude-haiku-4-5",
+                        "source_file":  "outputs\\harness\\AND-028__claude-haiku-4-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-028",
+                        "model_requested":  "claude-opus-5",
+                        "source_file":  "outputs\\harness\\AND-028__claude-opus-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-028",
+                        "model_requested":  "claude-sonnet-5",
+                        "source_file":  "outputs\\harness\\AND-028__claude-sonnet-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-028",
+                        "model_requested":  "qwen2.5:7b",
+                        "source_file":  "outputs\\harness\\AND-028__qwen2.5-7b.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-029",
+                        "model_requested":  "claude-haiku-4-5",
+                        "source_file":  "outputs\\harness\\AND-029__claude-haiku-4-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-029",
+                        "model_requested":  "claude-opus-5",
+                        "source_file":  "outputs\\harness\\AND-029__claude-opus-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-029",
+                        "model_requested":  "claude-sonnet-5",
+                        "source_file":  "outputs\\harness\\AND-029__claude-sonnet-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-029",
+                        "model_requested":  "qwen2.5:7b",
+                        "source_file":  "outputs\\harness\\AND-029__qwen2.5-7b.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-030",
+                        "model_requested":  "claude-haiku-4-5",
+                        "source_file":  "outputs\\harness\\AND-030__claude-haiku-4-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-030",
+                        "model_requested":  "claude-opus-5",
+                        "source_file":  "outputs\\harness\\AND-030__claude-opus-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-030",
+                        "model_requested":  "claude-sonnet-5",
+                        "source_file":  "outputs\\harness\\AND-030__claude-sonnet-5.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-030",
+                        "model_requested":  "qwen2.5:7b",
+                        "source_file":  "outputs\\harness\\AND-030__qwen2.5-7b.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-001",
+                        "model_requested":  "gpt-5.4-mini-2026-03-17",
+                        "source_file":  "outputs\\satml\\legacy\\AND-001__gpt-5.4-mini-2026-03-17.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-001",
+                        "model_requested":  "gpt-5.5-2026-04-23",
+                        "source_file":  "outputs\\satml\\legacy\\AND-001__gpt-5.5-2026-04-23.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-002",
+                        "model_requested":  "gpt-5.4-mini-2026-03-17",
+                        "source_file":  "outputs\\satml\\legacy\\AND-002__gpt-5.4-mini-2026-03-17.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-002",
+                        "model_requested":  "gpt-5.5-2026-04-23",
+                        "source_file":  "outputs\\satml\\legacy\\AND-002__gpt-5.5-2026-04-23.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-003",
+                        "model_requested":  "gpt-5.4-mini-2026-03-17",
+                        "source_file":  "outputs\\satml\\legacy\\AND-003__gpt-5.4-mini-2026-03-17.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-003",
+                        "model_requested":  "gpt-5.5-2026-04-23",
+                        "source_file":  "outputs\\satml\\legacy\\AND-003__gpt-5.5-2026-04-23.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-004",
+                        "model_requested":  "gpt-5.4-mini-2026-03-17",
+                        "source_file":  "outputs\\satml\\legacy\\AND-004__gpt-5.4-mini-2026-03-17.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-004",
+                        "model_requested":  "gpt-5.5-2026-04-23",
+                        "source_file":  "outputs\\satml\\legacy\\AND-004__gpt-5.5-2026-04-23.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-005",
+                        "model_requested":  "gpt-5.4-mini-2026-03-17",
+                        "source_file":  "outputs\\satml\\legacy\\AND-005__gpt-5.4-mini-2026-03-17.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-005",
+                        "model_requested":  "gpt-5.5-2026-04-23",
+                        "source_file":  "outputs\\satml\\legacy\\AND-005__gpt-5.5-2026-04-23.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-006",
+                        "model_requested":  "gpt-5.4-mini-2026-03-17",
+                        "source_file":  "outputs\\satml\\legacy\\AND-006__gpt-5.4-mini-2026-03-17.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-006",
+                        "model_requested":  "gpt-5.5-2026-04-23",
+                        "source_file":  "outputs\\satml\\legacy\\AND-006__gpt-5.5-2026-04-23.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-007",
+                        "model_requested":  "gpt-5.4-mini-2026-03-17",
+                        "source_file":  "outputs\\satml\\legacy\\AND-007__gpt-5.4-mini-2026-03-17.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-007",
+                        "model_requested":  "gpt-5.5-2026-04-23",
+                        "source_file":  "outputs\\satml\\legacy\\AND-007__gpt-5.5-2026-04-23.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-008",
+                        "model_requested":  "gpt-5.4-mini-2026-03-17",
+                        "source_file":  "outputs\\satml\\legacy\\AND-008__gpt-5.4-mini-2026-03-17.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-008",
+                        "model_requested":  "gpt-5.5-2026-04-23",
+                        "source_file":  "outputs\\satml\\legacy\\AND-008__gpt-5.5-2026-04-23.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-009",
+                        "model_requested":  "gpt-5.4-mini-2026-03-17",
+                        "source_file":  "outputs\\satml\\legacy\\AND-009__gpt-5.4-mini-2026-03-17.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-009",
+                        "model_requested":  "gpt-5.5-2026-04-23",
+                        "source_file":  "outputs\\satml\\legacy\\AND-009__gpt-5.5-2026-04-23.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-010",
+                        "model_requested":  "gpt-5.4-mini-2026-03-17",
+                        "source_file":  "outputs\\satml\\legacy\\AND-010__gpt-5.4-mini-2026-03-17.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-010",
+                        "model_requested":  "gpt-5.5-2026-04-23",
+                        "source_file":  "outputs\\satml\\legacy\\AND-010__gpt-5.5-2026-04-23.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-011",
+                        "model_requested":  "gpt-5.4-mini-2026-03-17",
+                        "source_file":  "outputs\\satml\\legacy\\AND-011__gpt-5.4-mini-2026-03-17.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-011",
+                        "model_requested":  "gpt-5.5-2026-04-23",
+                        "source_file":  "outputs\\satml\\legacy\\AND-011__gpt-5.5-2026-04-23.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-012",
+                        "model_requested":  "gpt-5.4-mini-2026-03-17",
+                        "source_file":  "outputs\\satml\\legacy\\AND-012__gpt-5.4-mini-2026-03-17.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-012",
+                        "model_requested":  "gpt-5.5-2026-04-23",
+                        "source_file":  "outputs\\satml\\legacy\\AND-012__gpt-5.5-2026-04-23.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-013",
+                        "model_requested":  "gpt-5.4-mini-2026-03-17",
+                        "source_file":  "outputs\\satml\\legacy\\AND-013__gpt-5.4-mini-2026-03-17.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-013",
+                        "model_requested":  "gpt-5.5-2026-04-23",
+                        "source_file":  "outputs\\satml\\legacy\\AND-013__gpt-5.5-2026-04-23.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-014",
+                        "model_requested":  "gpt-5.4-mini-2026-03-17",
+                        "source_file":  "outputs\\satml\\legacy\\AND-014__gpt-5.4-mini-2026-03-17.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-014",
+                        "model_requested":  "gpt-5.5-2026-04-23",
+                        "source_file":  "outputs\\satml\\legacy\\AND-014__gpt-5.5-2026-04-23.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-015",
+                        "model_requested":  "gpt-5.4-mini-2026-03-17",
+                        "source_file":  "outputs\\satml\\legacy\\AND-015__gpt-5.4-mini-2026-03-17.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-015",
+                        "model_requested":  "gpt-5.5-2026-04-23",
+                        "source_file":  "outputs\\satml\\legacy\\AND-015__gpt-5.5-2026-04-23.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-016",
+                        "model_requested":  "gpt-5.4-mini-2026-03-17",
+                        "source_file":  "outputs\\satml\\legacy\\AND-016__gpt-5.4-mini-2026-03-17.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-016",
+                        "model_requested":  "gpt-5.5-2026-04-23",
+                        "source_file":  "outputs\\satml\\legacy\\AND-016__gpt-5.5-2026-04-23.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-017",
+                        "model_requested":  "gpt-5.4-mini-2026-03-17",
+                        "source_file":  "outputs\\satml\\legacy\\AND-017__gpt-5.4-mini-2026-03-17.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-017",
+                        "model_requested":  "gpt-5.5-2026-04-23",
+                        "source_file":  "outputs\\satml\\legacy\\AND-017__gpt-5.5-2026-04-23.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-018",
+                        "model_requested":  "gpt-5.4-mini-2026-03-17",
+                        "source_file":  "outputs\\satml\\legacy\\AND-018__gpt-5.4-mini-2026-03-17.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-018",
+                        "model_requested":  "gpt-5.5-2026-04-23",
+                        "source_file":  "outputs\\satml\\legacy\\AND-018__gpt-5.5-2026-04-23.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-019",
+                        "model_requested":  "gpt-5.4-mini-2026-03-17",
+                        "source_file":  "outputs\\satml\\legacy\\AND-019__gpt-5.4-mini-2026-03-17.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-019",
+                        "model_requested":  "gpt-5.5-2026-04-23",
+                        "source_file":  "outputs\\satml\\legacy\\AND-019__gpt-5.5-2026-04-23.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-020",
+                        "model_requested":  "gpt-5.4-mini-2026-03-17",
+                        "source_file":  "outputs\\satml\\legacy\\AND-020__gpt-5.4-mini-2026-03-17.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-020",
+                        "model_requested":  "gpt-5.5-2026-04-23",
+                        "source_file":  "outputs\\satml\\legacy\\AND-020__gpt-5.5-2026-04-23.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-021",
+                        "model_requested":  "gpt-5.4-mini-2026-03-17",
+                        "source_file":  "outputs\\satml\\legacy\\AND-021__gpt-5.4-mini-2026-03-17.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-021",
+                        "model_requested":  "gpt-5.5-2026-04-23",
+                        "source_file":  "outputs\\satml\\legacy\\AND-021__gpt-5.5-2026-04-23.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-022",
+                        "model_requested":  "gpt-5.4-mini-2026-03-17",
+                        "source_file":  "outputs\\satml\\legacy\\AND-022__gpt-5.4-mini-2026-03-17.json",
+                        "flags":  [
+                                      {
+                                          "check":  "C3",
+                                          "case_id":  "AND-022",
+                                          "mentions":  [
+                                                           true,
+                                                           false
+                                                       ],
+                                          "evidence":  "Response did not explicitly link both configured facts as a contradiction/non-corroboration."
+                                      }
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  1,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-022",
+                        "model_requested":  "gpt-5.5-2026-04-23",
+                        "source_file":  "outputs\\satml\\legacy\\AND-022__gpt-5.5-2026-04-23.json",
+                        "flags":  [
+                                      {
+                                          "check":  "C3",
+                                          "case_id":  "AND-022",
+                                          "mentions":  [
+                                                           true,
+                                                           false
+                                                       ],
+                                          "evidence":  "Response did not explicitly link both configured facts as a contradiction/non-corroboration."
+                                      }
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  1,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-023",
+                        "model_requested":  "gpt-5.4-mini-2026-03-17",
+                        "source_file":  "outputs\\satml\\legacy\\AND-023__gpt-5.4-mini-2026-03-17.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-023",
+                        "model_requested":  "gpt-5.5-2026-04-23",
+                        "source_file":  "outputs\\satml\\legacy\\AND-023__gpt-5.5-2026-04-23.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-024",
+                        "model_requested":  "gpt-5.4-mini-2026-03-17",
+                        "source_file":  "outputs\\satml\\legacy\\AND-024__gpt-5.4-mini-2026-03-17.json",
+                        "flags":  [
+                                      {
+                                          "check":  "C3",
+                                          "case_id":  "AND-024",
+                                          "mentions":  [
+                                                           true,
+                                                           false
+                                                       ],
+                                          "evidence":  "Response did not explicitly link both configured facts as a contradiction/non-corroboration."
+                                      }
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  1,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-024",
+                        "model_requested":  "gpt-5.5-2026-04-23",
+                        "source_file":  "outputs\\satml\\legacy\\AND-024__gpt-5.5-2026-04-23.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-025",
+                        "model_requested":  "gpt-5.4-mini-2026-03-17",
+                        "source_file":  "outputs\\satml\\legacy\\AND-025__gpt-5.4-mini-2026-03-17.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-025",
+                        "model_requested":  "gpt-5.5-2026-04-23",
+                        "source_file":  "outputs\\satml\\legacy\\AND-025__gpt-5.5-2026-04-23.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-026",
+                        "model_requested":  "gpt-5.4-mini-2026-03-17",
+                        "source_file":  "outputs\\satml\\legacy\\AND-026__gpt-5.4-mini-2026-03-17.json",
+                        "flags":  [
+                                      {
+                                          "check":  "C3",
+                                          "case_id":  "AND-026",
+                                          "mentions":  [
+                                                           true,
+                                                           false
+                                                       ],
+                                          "evidence":  "Response did not explicitly link both configured facts as a contradiction/non-corroboration."
+                                      }
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  1,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-026",
+                        "model_requested":  "gpt-5.5-2026-04-23",
+                        "source_file":  "outputs\\satml\\legacy\\AND-026__gpt-5.5-2026-04-23.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-027",
+                        "model_requested":  "gpt-5.4-mini-2026-03-17",
+                        "source_file":  "outputs\\satml\\legacy\\AND-027__gpt-5.4-mini-2026-03-17.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-027",
+                        "model_requested":  "gpt-5.5-2026-04-23",
+                        "source_file":  "outputs\\satml\\legacy\\AND-027__gpt-5.5-2026-04-23.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-028",
+                        "model_requested":  "gpt-5.4-mini-2026-03-17",
+                        "source_file":  "outputs\\satml\\legacy\\AND-028__gpt-5.4-mini-2026-03-17.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-028",
+                        "model_requested":  "gpt-5.5-2026-04-23",
+                        "source_file":  "outputs\\satml\\legacy\\AND-028__gpt-5.5-2026-04-23.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-029",
+                        "model_requested":  "gpt-5.4-mini-2026-03-17",
+                        "source_file":  "outputs\\satml\\legacy\\AND-029__gpt-5.4-mini-2026-03-17.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-029",
+                        "model_requested":  "gpt-5.5-2026-04-23",
+                        "source_file":  "outputs\\satml\\legacy\\AND-029__gpt-5.5-2026-04-23.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-030",
+                        "model_requested":  "gpt-5.4-mini-2026-03-17",
+                        "source_file":  "outputs\\satml\\legacy\\AND-030__gpt-5.4-mini-2026-03-17.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    },
+                    {
+                        "case_id":  "AND-030",
+                        "model_requested":  "gpt-5.5-2026-04-23",
+                        "source_file":  "outputs\\satml\\legacy\\AND-030__gpt-5.5-2026-04-23.json",
+                        "flags":  [
+
+                                  ],
+                        "counts":  {
+                                       "C1":  0,
+                                       "C2":  0,
+                                       "C3":  0,
+                                       "C4":  0
+                                   }
+                    }
+                ]
+}

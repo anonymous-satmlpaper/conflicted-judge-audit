@@ -1,0 +1,68 @@
+﻿{
+    "protocol":  "Author manual review of every response-level flag raised by deterministic verifier v1. The reviewer inspected the complete response and case JSON. This review was not blinded and does not estimate recall.",
+    "decisions":  [
+                      {
+                          "case_id":  "AND-005",
+                          "model_requested":  "qwen2.5:7b",
+                          "check":  "C1",
+                          "valid":  true,
+                          "rationale":  "The response concludes that communication attempts are observed even though update-check.example.com occurs only in static indicators and has no traffic-log entry."
+                      },
+                      {
+                          "case_id":  "AND-024",
+                          "model_requested":  "qwen2.5:7b",
+                          "check":  "C3",
+                          "valid":  true,
+                          "rationale":  "The response never mentions the component first_seen value and therefore cannot link it to the earlier traffic timestamp."
+                      },
+                      {
+                          "case_id":  "AND-025",
+                          "model_requested":  "qwen2.5:7b",
+                          "check":  "C1",
+                          "valid":  true,
+                          "rationale":  "A Traffic to suspicious-relay.example.com heading and later prose imply communication, while the domain appears only in strings."
+                      },
+                      {
+                          "case_id":  "AND-026",
+                          "model_requested":  "claude-haiku-4-5",
+                          "check":  "C3",
+                          "valid":  true,
+                          "rationale":  "The response treats CAMERA as consistent with video calling and does not identify the configured lack of corroborating camera artifacts."
+                      },
+                      {
+                          "case_id":  "AND-026",
+                          "model_requested":  "qwen2.5:7b",
+                          "check":  "C3",
+                          "valid":  true,
+                          "rationale":  "The response lists CAMERA and RECORD_AUDIO but does not contrast CAMERA\u0027s lack of corroboration with audio_call_start."
+                      },
+                      {
+                          "case_id":  "AND-022",
+                          "model_requested":  "gpt-5.4-mini-2026-03-17",
+                          "check":  "C3",
+                          "valid":  true,
+                          "rationale":  "The response reports RECORD_AUDIO but does not identify that no other supplied artifact corroborates recording functionality."
+                      },
+                      {
+                          "case_id":  "AND-022",
+                          "model_requested":  "gpt-5.5-2026-04-23",
+                          "check":  "C3",
+                          "valid":  true,
+                          "rationale":  "The response carefully avoids claiming recording occurred, but it does not state the configured cross-artifact non-corroboration."
+                      },
+                      {
+                          "case_id":  "AND-024",
+                          "model_requested":  "gpt-5.4-mini-2026-03-17",
+                          "check":  "C3",
+                          "valid":  true,
+                          "rationale":  "The response mentions traffic on January 15 but omits the February 1 component first_seen value and their temporal inconsistency."
+                      },
+                      {
+                          "case_id":  "AND-026",
+                          "model_requested":  "gpt-5.4-mini-2026-03-17",
+                          "check":  "C3",
+                          "valid":  true,
+                          "rationale":  "The response reports CAMERA capability but does not compare its absent corroboration with RECORD_AUDIO\u0027s audio_call_start string."
+                      }
+                  ]
+}

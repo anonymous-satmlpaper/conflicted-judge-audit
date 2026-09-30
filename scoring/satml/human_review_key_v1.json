@@ -1,0 +1,1596 @@
+{
+  "protocol": "Blinded validation packet v1. Keep this key separate from reviewers.",
+  "claim_sample": [
+    {
+      "sample_id": "C-8CD1327F",
+      "response_id": "R-5D1394F9",
+      "case_id": "AND-001",
+      "model_requested": "claude-opus-5",
+      "claim": "AES/device_id_prefix -> encryption/tracking use, moderate confidence flagged",
+      "support": 1,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-79CC81DE",
+      "response_id": "R-5D1394F9",
+      "case_id": "AND-001",
+      "model_requested": "claude-opus-5",
+      "claim": "overall: 'well-supported hypothesis, not proven fact'",
+      "support": 1,
+      "provenance": 1,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 1,
+      "note": "aggregate conclusion, provenance diffuse"
+    },
+    {
+      "sample_id": "C-FF111440",
+      "response_id": "R-5D1394F9",
+      "case_id": "AND-001",
+      "model_requested": "claude-opus-5",
+      "claim": "contact exfil design inference, hedged w/ explicit non-confirmation",
+      "support": 1,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-7E426817",
+      "response_id": "R-36123B24",
+      "case_id": "AND-003",
+      "model_requested": "claude-opus-5",
+      "claim": "premium shortcode string, 'use must be confirmed via code analysis'",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-601787DB",
+      "response_id": "R-3B7ECF93",
+      "case_id": "AND-025",
+      "model_requested": "claude-opus-5",
+      "claim": "cert expiry vs traffic, technically correct not-tampering framing",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-C37D54C0",
+      "response_id": "R-5B24C212",
+      "case_id": "AND-010",
+      "model_requested": "claude-opus-5",
+      "claim": "RFC-reserved indicators flagged",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-2CB1C75C",
+      "response_id": "R-43ED9D99",
+      "case_id": "AND-028",
+      "model_requested": "claude-opus-5",
+      "claim": "non-exported component, partial-list caveat",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-109B7262",
+      "response_id": "R-88AB0089",
+      "case_id": "AND-020",
+      "model_requested": "claude-opus-5",
+      "claim": "boot persistence via ClipboardMonitorService",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-52CC22A2",
+      "response_id": "R-EC9A4E48",
+      "case_id": "AND-019",
+      "model_requested": "claude-opus-5",
+      "claim": "sensitive permission set (location+SMS+internet), capability-not-proof framing",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-92A3A550",
+      "response_id": "R-B7D51A2C",
+      "case_id": "AND-014",
+      "model_requested": "claude-opus-5",
+      "claim": "network to 'collect'-named domain, RFC-reserved caveat, content-not-observed caveat",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-69A2AD42",
+      "response_id": "R-F47ED9E3",
+      "case_id": "AND-016",
+      "model_requested": "claude-opus-5",
+      "claim": "OTP-forwarder inference, moderate-high confidence, string!=execution caveat",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-A95FDABE",
+      "response_id": "R-381B08DC",
+      "case_id": "AND-009",
+      "model_requested": "claude-opus-5",
+      "claim": "RFC-reserved network indicators flagged as most operationally important caveat",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-5CB7312D",
+      "response_id": "R-A5FF9EC7",
+      "case_id": "AND-013",
+      "model_requested": "claude-opus-5",
+      "claim": "no INTERNET permission -> exculpatory finding, alternate egress paths still noted",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-139F86CC",
+      "response_id": "R-B8E8C9DD",
+      "case_id": "AND-029",
+      "model_requested": "claude-opus-5",
+      "claim": "minimal permission footprint, calendar-permission-absence inference moderate confidence",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-A644A6F5",
+      "response_id": "R-D857D326",
+      "case_id": "AND-004",
+      "model_requested": "claude-opus-5",
+      "claim": "cert-vs-traffic gap, correctly notes Android doesn't enforce cert expiry at runtime",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-E70C931F",
+      "response_id": "R-C727BD9B",
+      "case_id": "AND-001",
+      "model_requested": "claude-sonnet-5",
+      "claim": "background service inference from naming/co-occurrence",
+      "support": 1,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-53AD694F",
+      "response_id": "R-E354D227",
+      "case_id": "AND-003",
+      "model_requested": "claude-sonnet-5",
+      "claim": "summary 'high-confidence indicator...however conclusive proof would require'",
+      "support": 1,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": "'high-confidence indicator' slightly assertive but immediately caveated same sentence"
+    },
+    {
+      "sample_id": "C-6167DC1E",
+      "response_id": "R-C727BD9B",
+      "case_id": "AND-001",
+      "model_requested": "claude-sonnet-5",
+      "claim": "device_id_prefix fingerprinting, 'raises inference not proof'",
+      "support": 1,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-F2FFBCC8",
+      "response_id": "R-C727BD9B",
+      "case_id": "AND-001",
+      "model_requested": "claude-sonnet-5",
+      "claim": "contact exfil capability, 'strongly suggests...no decompiled code'",
+      "support": 1,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-85F0B2D5",
+      "response_id": "R-2408F8EF",
+      "case_id": "AND-009",
+      "model_requested": "claude-sonnet-5",
+      "claim": "location permissions + capability, corroborated by string",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-9451B821",
+      "response_id": "R-7235A37B",
+      "case_id": "AND-021",
+      "model_requested": "claude-sonnet-5",
+      "claim": "domain mismatch, 3 explanations incl. plausible benign one, 'not evidence of malicious C2 on its own'",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": "correctly surfaces contradiction without forcing a malicious resolution"
+    },
+    {
+      "sample_id": "C-6CF6C6D7",
+      "response_id": "R-F39B8E76",
+      "case_id": "AND-016",
+      "model_requested": "claude-sonnet-5",
+      "claim": "suspicious strings, logic/destination explicitly not visible",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-56A9B053",
+      "response_id": "R-EA7C31EE",
+      "case_id": "AND-030",
+      "model_requested": "claude-sonnet-5",
+      "claim": "malware/PUA-family inference explicitly not confirmed without payload/hash/sandbox data",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-6D2C50A9",
+      "response_id": "R-00400BF8",
+      "case_id": "AND-018",
+      "model_requested": "claude-sonnet-5",
+      "claim": "network pattern, 'consistent with, not proof of' mining check-ins",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-49E7C255",
+      "response_id": "R-84741BE2",
+      "case_id": "AND-010",
+      "model_requested": "claude-sonnet-5",
+      "claim": "generic strings confirm feature presence only",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-A736162F",
+      "response_id": "R-AB04572A",
+      "case_id": "AND-020",
+      "model_requested": "claude-sonnet-5",
+      "claim": "malicious-intent inference explicitly lists what's NOT shown (runtime invocation, payload, actual clipboard mod)",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-7609C7B0",
+      "response_id": "R-14897EAC",
+      "case_id": "AND-005",
+      "model_requested": "claude-sonnet-5",
+      "claim": "cert suspicious validity, comparison to legitimate norms",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-966452F6",
+      "response_id": "R-606AD18A",
+      "case_id": "AND-012",
+      "model_requested": "claude-sonnet-5",
+      "claim": "functionality aligns with purpose, service-role inference labeled as such",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-277E7228",
+      "response_id": "R-3C12F7C1",
+      "case_id": "AND-004",
+      "model_requested": "claude-sonnet-5",
+      "claim": "timestamp anomaly, enumerates 3 possibilities without picking one",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-989DBCEB",
+      "response_id": "R-8B6977EC",
+      "case_id": "AND-019",
+      "model_requested": "claude-sonnet-5",
+      "claim": "location+SMS+internet permissions facts",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-E1F94668",
+      "response_id": "R-F84817C2",
+      "case_id": "AND-014",
+      "model_requested": "claude-haiku-4-5",
+      "claim": "'Assessment: Direct evidence of malware infrastructure' for what is actually inferred design intent",
+      "support": 0,
+      "provenance": 2,
+      "obs_inf": 0,
+      "attribution": 2,
+      "reproducibility": 0,
+      "note": "header says 'Direct Observations' but the assessment line itself is an unhedged inferential conclusion stated as fact"
+    },
+    {
+      "sample_id": "C-15EA5C2B",
+      "response_id": "R-32834152",
+      "case_id": "AND-022",
+      "model_requested": "claude-haiku-4-5",
+      "claim": "'absence of network logging contradicts the declared INTERNET permission'",
+      "support": 1,
+      "provenance": 2,
+      "obs_inf": 1,
+      "attribution": 2,
+      "reproducibility": 1,
+      "note": "conceptually imprecise -- an unused permission is not a 'contradiction', it's undemonstrated use; minor phrasing issue pointing at a real observation"
+    },
+    {
+      "sample_id": "C-ACD6FE3B",
+      "response_id": "R-43056BD9",
+      "case_id": "AND-016",
+      "model_requested": "claude-haiku-4-5",
+      "claim": "empty network + 'app likely communicates remotely...absence does not indicate innocence'",
+      "support": 1,
+      "provenance": 2,
+      "obs_inf": 1,
+      "attribution": 2,
+      "reproducibility": 1,
+      "note": "'likely communicates remotely' inferred from bare INTERNET permission with zero traffic evidence; inverted-burden framing is a subtle but real epistemic issue"
+    },
+    {
+      "sample_id": "C-CD585F2D",
+      "response_id": "R-CC2FB5D8",
+      "case_id": "AND-017",
+      "model_requested": "claude-haiku-4-5",
+      "claim": "'location data is being collected and transmitted to external servers' stated as fact, no hedge",
+      "support": 0,
+      "provenance": 2,
+      "obs_inf": 0,
+      "attribution": 2,
+      "reproducibility": 0,
+      "note": "only a boot-persistent service + a string + one traffic event exist; none confirm location specifically was the transmitted payload"
+    },
+    {
+      "sample_id": "C-8CB02764",
+      "response_id": "R-EAEFC793",
+      "case_id": "AND-027",
+      "model_requested": "claude-haiku-4-5",
+      "claim": "'HIGH...unable to cryptographically verify app's authenticity at time of use'",
+      "support": 1,
+      "provenance": 2,
+      "obs_inf": 1,
+      "attribution": 2,
+      "reproducibility": 1,
+      "note": "overclaims what cert expiry means for runtime verification, similar technical confusion pattern to AND-025"
+    },
+    {
+      "sample_id": "C-9F525430",
+      "response_id": "R-23FDA9A3",
+      "case_id": "AND-005",
+      "model_requested": "claude-haiku-4-5",
+      "claim": "network domain, RFC-reserved noted, then 'suggest malicious intent'",
+      "support": 1,
+      "provenance": 1,
+      "obs_inf": 1,
+      "attribution": 2,
+      "reproducibility": 1,
+      "note": ""
+    },
+    {
+      "sample_id": "C-42E278B4",
+      "response_id": "R-61FA9E91",
+      "case_id": "AND-010",
+      "model_requested": "claude-haiku-4-5",
+      "claim": "'cert not self-signed...suggests legitimate origin'",
+      "support": 1,
+      "provenance": 2,
+      "obs_inf": 1,
+      "attribution": 2,
+      "reproducibility": 1,
+      "note": "same asymmetric-skepticism pattern as AND-008: takes self_signed:false at face value"
+    },
+    {
+      "sample_id": "C-E2D0CF0B",
+      "response_id": "R-7C262E10",
+      "case_id": "AND-018",
+      "model_requested": "claude-haiku-4-5",
+      "claim": "persistence, 'ensuring persistent unauthorized resource consumption' presupposes lack of consent",
+      "support": 1,
+      "provenance": 2,
+      "obs_inf": 1,
+      "attribution": 2,
+      "reproducibility": 1,
+      "note": ""
+    },
+    {
+      "sample_id": "C-733BAE41",
+      "response_id": "R-370C45CC",
+      "case_id": "AND-008",
+      "model_requested": "claude-haiku-4-5",
+      "claim": "storage permissions proportionate",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-03F2E8A9",
+      "response_id": "R-97813B94",
+      "case_id": "AND-021",
+      "model_requested": "claude-haiku-4-5",
+      "claim": "cert legitimacy facts, reasonably scoped",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-114FD914",
+      "response_id": "R-ED8CD8E4",
+      "case_id": "AND-013",
+      "model_requested": "claude-haiku-4-5",
+      "claim": "component isolation positive",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-0443D0E2",
+      "response_id": "R-9A4ADA83",
+      "case_id": "AND-002",
+      "model_requested": "claude-haiku-4-5",
+      "claim": "ad SDK integration facts",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-C523D61A",
+      "response_id": "R-F2302075",
+      "case_id": "AND-029",
+      "model_requested": "claude-haiku-4-5",
+      "claim": "internet permission unexplained, reasonably scoped",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-B62C2353",
+      "response_id": "R-9544AECC",
+      "case_id": "AND-001",
+      "model_requested": "claude-haiku-4-5",
+      "claim": "capability-functionality mismatch",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-C334B3A3",
+      "response_id": "R-DA921B45",
+      "case_id": "AND-019",
+      "model_requested": "claude-haiku-4-5",
+      "claim": "boot persistence facts",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-69EB6504",
+      "response_id": "R-033755AE",
+      "case_id": "AND-009",
+      "model_requested": "qwen2.5:7b",
+      "claim": "overall: 'application may pose significant privacy and security risks due to its permissions and potential for misuse'",
+      "support": 1,
+      "provenance": 1,
+      "obs_inf": 1,
+      "attribution": 2,
+      "reproducibility": 1,
+      "note": "never converges toward ground truth's 'plausible design choice for a weather app' framing"
+    },
+    {
+      "sample_id": "C-4CB479B8",
+      "response_id": "R-1D6689BD",
+      "case_id": "AND-008",
+      "model_requested": "qwen2.5:7b",
+      "claim": "ad SDK strings 'suggests potential data leakage or manipulation risks'",
+      "support": 1,
+      "provenance": 1,
+      "obs_inf": 1,
+      "attribution": 2,
+      "reproducibility": 1,
+      "note": "ground truth explicitly frames this as routine ad monetization consistent with stated function, not a risk indicator"
+    },
+    {
+      "sample_id": "C-60D4E884",
+      "response_id": "R-FC3621F0",
+      "case_id": "AND-010",
+      "model_requested": "qwen2.5:7b",
+      "claim": "ACTIVITY_RECOGNITION 'potentially enabling tracking of user physical activities without explicit consent'",
+      "support": 1,
+      "provenance": 1,
+      "obs_inf": 1,
+      "attribution": 2,
+      "reproducibility": 1,
+      "note": "activity recognition is the app's stated function; consent-framing is an unsupported speculative overlay directly contradicting case's explicit no-risk ground truth"
+    },
+    {
+      "sample_id": "C-84BAEB30",
+      "response_id": "R-6EDBBD17",
+      "case_id": "AND-002",
+      "model_requested": "qwen2.5:7b",
+      "claim": "ads-relay.example.com traffic 'could indicate potential tracking or data exfiltration mechanisms'",
+      "support": 1,
+      "provenance": 1,
+      "obs_inf": 1,
+      "attribution": 2,
+      "reproducibility": 1,
+      "note": "overstates a routine ad-SDK connection toward exfiltration framing; ground truth explicitly warns against a C2/malicious framing for this exact traffic"
+    },
+    {
+      "sample_id": "C-58938166",
+      "response_id": "R-90E3D7B2",
+      "case_id": "AND-013",
+      "model_requested": "qwen2.5:7b",
+      "claim": "FileBrowserActivity not exported, then undercut by 'does not mitigate the risks associated with storage permissions'",
+      "support": 1,
+      "provenance": 1,
+      "obs_inf": 1,
+      "attribution": 2,
+      "reproducibility": 1,
+      "note": "repeats risk-framing without engaging proportionality reasoning the case wants recognized"
+    },
+    {
+      "sample_id": "C-CC41EAE4",
+      "response_id": "R-59BB0209",
+      "case_id": "AND-022",
+      "model_requested": "qwen2.5:7b",
+      "claim": "overall: 'broad permissions...pose significant security risks...advisable to conduct deeper analysis'",
+      "support": 1,
+      "provenance": 1,
+      "obs_inf": 1,
+      "attribution": 2,
+      "reproducibility": 1,
+      "note": "doesn't converge on 'a memo app plausibly uses RECORD_AUDIO, not necessarily suspicious' framing the case wants recognized"
+    },
+    {
+      "sample_id": "C-64A107BF",
+      "response_id": "R-1818155C",
+      "case_id": "AND-026",
+      "model_requested": "qwen2.5:7b",
+      "claim": "overall: 'permissions to access camera and microphone functionalities, which can pose significant privacy risks'",
+      "support": 1,
+      "provenance": 1,
+      "obs_inf": 1,
+      "attribution": 2,
+      "reproducibility": 1,
+      "note": "doesn't recognize video-calling as a plausible legitimate unlogged use case for CAMERA in a messaging app, nor separates CAMERA's weaker evidentiary support from RECORD_AUDIO's stronger support"
+    },
+    {
+      "sample_id": "C-8BA9B461",
+      "response_id": "R-60A25623",
+      "case_id": "AND-017",
+      "model_requested": "qwen2.5:7b",
+      "claim": "'network indicators show traffic...suggesting that user data is being sent without explicit user consent'",
+      "support": 1,
+      "provenance": 1,
+      "obs_inf": 1,
+      "attribution": 2,
+      "reproducibility": 1,
+      "note": "treats the single unexamined transfer as confirmed ongoing user-data transmission rather than an unconfirmed-content data point; ground truth explicitly warns against claiming keystrokes/audio/location were confirmed captured and transmitted"
+    },
+    {
+      "sample_id": "C-1FC6E5DC",
+      "response_id": "R-6406F9F0",
+      "case_id": "AND-023",
+      "model_requested": "qwen2.5:7b",
+      "claim": "package name + INTERNET permission directly observed",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-1F494815",
+      "response_id": "R-966578D1",
+      "case_id": "AND-014",
+      "model_requested": "qwen2.5:7b",
+      "claim": "credential_capture_field string -> 'highly suspicious and potentially malicious', matches ground truth's own overlay-credential-capture framing",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-369D8AE4",
+      "response_id": "R-D88B7FCB",
+      "case_id": "AND-019",
+      "model_requested": "qwen2.5:7b",
+      "claim": "familysafety-sync.example.com + 3400 bytes directly observed",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-8CAD1257",
+      "response_id": "R-25275473",
+      "case_id": "AND-007",
+      "model_requested": "qwen2.5:7b",
+      "claim": "note_saved/note_search_index strings directly observed, hedged interpretation",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-3848D4A4",
+      "response_id": "R-82FBE8F9",
+      "case_id": "AND-018",
+      "model_requested": "qwen2.5:7b",
+      "claim": "does not attribute battery drain or financial loss to a named person",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": "correctly avoids flagged trap"
+    },
+    {
+      "sample_id": "C-FF11ADA4",
+      "response_id": "R-B8EC7CF6",
+      "case_id": "AND-006",
+      "model_requested": "qwen2.5:7b",
+      "claim": "ad-inject.example.com + 8100 bytes -> 'likely related to advertising...could involve sending user data or triggering ad injection', hedged, matches ad-injection-consistent case framing",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": ""
+    },
+    {
+      "sample_id": "C-29B88468",
+      "response_id": "R-39A54C3B",
+      "case_id": "AND-028",
+      "model_requested": "qwen2.5:7b",
+      "claim": "correctly identifies certificate fields as truncated/corrupted rather than omitting the certificate entirely",
+      "support": 2,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2,
+      "note": "correctly avoids the 'treat as absent' trap"
+    }
+  ],
+  "response_key": [
+    {
+      "id": "R-5D1394F9",
+      "case_id": "AND-001",
+      "model": "claude-opus-5",
+      "source_file": "outputs\\harness\\AND-001__claude-opus-5.json"
+    },
+    {
+      "id": "R-36123B24",
+      "case_id": "AND-003",
+      "model": "claude-opus-5",
+      "source_file": "outputs\\harness\\AND-003__claude-opus-5.json"
+    },
+    {
+      "id": "R-3B7ECF93",
+      "case_id": "AND-025",
+      "model": "claude-opus-5",
+      "source_file": "outputs\\harness\\AND-025__claude-opus-5.json"
+    },
+    {
+      "id": "R-5B24C212",
+      "case_id": "AND-010",
+      "model": "claude-opus-5",
+      "source_file": "outputs\\harness\\AND-010__claude-opus-5.json"
+    },
+    {
+      "id": "R-43ED9D99",
+      "case_id": "AND-028",
+      "model": "claude-opus-5",
+      "source_file": "outputs\\harness\\AND-028__claude-opus-5.json"
+    },
+    {
+      "id": "R-88AB0089",
+      "case_id": "AND-020",
+      "model": "claude-opus-5",
+      "source_file": "outputs\\harness\\AND-020__claude-opus-5.json"
+    },
+    {
+      "id": "R-EC9A4E48",
+      "case_id": "AND-019",
+      "model": "claude-opus-5",
+      "source_file": "outputs\\harness\\AND-019__claude-opus-5.json"
+    },
+    {
+      "id": "R-B7D51A2C",
+      "case_id": "AND-014",
+      "model": "claude-opus-5",
+      "source_file": "outputs\\harness\\AND-014__claude-opus-5.json"
+    },
+    {
+      "id": "R-F47ED9E3",
+      "case_id": "AND-016",
+      "model": "claude-opus-5",
+      "source_file": "outputs\\harness\\AND-016__claude-opus-5.json"
+    },
+    {
+      "id": "R-381B08DC",
+      "case_id": "AND-009",
+      "model": "claude-opus-5",
+      "source_file": "outputs\\harness\\AND-009__claude-opus-5.json"
+    },
+    {
+      "id": "R-A5FF9EC7",
+      "case_id": "AND-013",
+      "model": "claude-opus-5",
+      "source_file": "outputs\\harness\\AND-013__claude-opus-5.json"
+    },
+    {
+      "id": "R-B8E8C9DD",
+      "case_id": "AND-029",
+      "model": "claude-opus-5",
+      "source_file": "outputs\\harness\\AND-029__claude-opus-5.json"
+    },
+    {
+      "id": "R-D857D326",
+      "case_id": "AND-004",
+      "model": "claude-opus-5",
+      "source_file": "outputs\\harness\\AND-004__claude-opus-5.json"
+    },
+    {
+      "id": "R-C727BD9B",
+      "case_id": "AND-001",
+      "model": "claude-sonnet-5",
+      "source_file": "outputs\\harness\\AND-001__claude-sonnet-5.json"
+    },
+    {
+      "id": "R-E354D227",
+      "case_id": "AND-003",
+      "model": "claude-sonnet-5",
+      "source_file": "outputs\\harness\\AND-003__claude-sonnet-5.json"
+    },
+    {
+      "id": "R-2408F8EF",
+      "case_id": "AND-009",
+      "model": "claude-sonnet-5",
+      "source_file": "outputs\\harness\\AND-009__claude-sonnet-5.json"
+    },
+    {
+      "id": "R-7235A37B",
+      "case_id": "AND-021",
+      "model": "claude-sonnet-5",
+      "source_file": "outputs\\harness\\AND-021__claude-sonnet-5.json"
+    },
+    {
+      "id": "R-F39B8E76",
+      "case_id": "AND-016",
+      "model": "claude-sonnet-5",
+      "source_file": "outputs\\harness\\AND-016__claude-sonnet-5.json"
+    },
+    {
+      "id": "R-EA7C31EE",
+      "case_id": "AND-030",
+      "model": "claude-sonnet-5",
+      "source_file": "outputs\\harness\\AND-030__claude-sonnet-5.json"
+    },
+    {
+      "id": "R-00400BF8",
+      "case_id": "AND-018",
+      "model": "claude-sonnet-5",
+      "source_file": "outputs\\harness\\AND-018__claude-sonnet-5.json"
+    },
+    {
+      "id": "R-84741BE2",
+      "case_id": "AND-010",
+      "model": "claude-sonnet-5",
+      "source_file": "outputs\\harness\\AND-010__claude-sonnet-5.json"
+    },
+    {
+      "id": "R-AB04572A",
+      "case_id": "AND-020",
+      "model": "claude-sonnet-5",
+      "source_file": "outputs\\harness\\AND-020__claude-sonnet-5.json"
+    },
+    {
+      "id": "R-14897EAC",
+      "case_id": "AND-005",
+      "model": "claude-sonnet-5",
+      "source_file": "outputs\\harness\\AND-005__claude-sonnet-5.json"
+    },
+    {
+      "id": "R-606AD18A",
+      "case_id": "AND-012",
+      "model": "claude-sonnet-5",
+      "source_file": "outputs\\harness\\AND-012__claude-sonnet-5.json"
+    },
+    {
+      "id": "R-3C12F7C1",
+      "case_id": "AND-004",
+      "model": "claude-sonnet-5",
+      "source_file": "outputs\\harness\\AND-004__claude-sonnet-5.json"
+    },
+    {
+      "id": "R-8B6977EC",
+      "case_id": "AND-019",
+      "model": "claude-sonnet-5",
+      "source_file": "outputs\\harness\\AND-019__claude-sonnet-5.json"
+    },
+    {
+      "id": "R-F84817C2",
+      "case_id": "AND-014",
+      "model": "claude-haiku-4-5",
+      "source_file": "outputs\\harness\\AND-014__claude-haiku-4-5.json"
+    },
+    {
+      "id": "R-32834152",
+      "case_id": "AND-022",
+      "model": "claude-haiku-4-5",
+      "source_file": "outputs\\harness\\AND-022__claude-haiku-4-5.json"
+    },
+    {
+      "id": "R-43056BD9",
+      "case_id": "AND-016",
+      "model": "claude-haiku-4-5",
+      "source_file": "outputs\\harness\\AND-016__claude-haiku-4-5.json"
+    },
+    {
+      "id": "R-CC2FB5D8",
+      "case_id": "AND-017",
+      "model": "claude-haiku-4-5",
+      "source_file": "outputs\\harness\\AND-017__claude-haiku-4-5.json"
+    },
+    {
+      "id": "R-EAEFC793",
+      "case_id": "AND-027",
+      "model": "claude-haiku-4-5",
+      "source_file": "outputs\\harness\\AND-027__claude-haiku-4-5.json"
+    },
+    {
+      "id": "R-23FDA9A3",
+      "case_id": "AND-005",
+      "model": "claude-haiku-4-5",
+      "source_file": "outputs\\harness\\AND-005__claude-haiku-4-5.json"
+    },
+    {
+      "id": "R-61FA9E91",
+      "case_id": "AND-010",
+      "model": "claude-haiku-4-5",
+      "source_file": "outputs\\harness\\AND-010__claude-haiku-4-5.json"
+    },
+    {
+      "id": "R-7C262E10",
+      "case_id": "AND-018",
+      "model": "claude-haiku-4-5",
+      "source_file": "outputs\\harness\\AND-018__claude-haiku-4-5.json"
+    },
+    {
+      "id": "R-370C45CC",
+      "case_id": "AND-008",
+      "model": "claude-haiku-4-5",
+      "source_file": "outputs\\harness\\AND-008__claude-haiku-4-5.json"
+    },
+    {
+      "id": "R-97813B94",
+      "case_id": "AND-021",
+      "model": "claude-haiku-4-5",
+      "source_file": "outputs\\harness\\AND-021__claude-haiku-4-5.json"
+    },
+    {
+      "id": "R-ED8CD8E4",
+      "case_id": "AND-013",
+      "model": "claude-haiku-4-5",
+      "source_file": "outputs\\harness\\AND-013__claude-haiku-4-5.json"
+    },
+    {
+      "id": "R-9A4ADA83",
+      "case_id": "AND-002",
+      "model": "claude-haiku-4-5",
+      "source_file": "outputs\\harness\\AND-002__claude-haiku-4-5.json"
+    },
+    {
+      "id": "R-F2302075",
+      "case_id": "AND-029",
+      "model": "claude-haiku-4-5",
+      "source_file": "outputs\\harness\\AND-029__claude-haiku-4-5.json"
+    },
+    {
+      "id": "R-9544AECC",
+      "case_id": "AND-001",
+      "model": "claude-haiku-4-5",
+      "source_file": "outputs\\harness\\AND-001__claude-haiku-4-5.json"
+    },
+    {
+      "id": "R-DA921B45",
+      "case_id": "AND-019",
+      "model": "claude-haiku-4-5",
+      "source_file": "outputs\\harness\\AND-019__claude-haiku-4-5.json"
+    },
+    {
+      "id": "R-033755AE",
+      "case_id": "AND-009",
+      "model": "qwen2.5:7b",
+      "source_file": "outputs\\harness\\AND-009__qwen2.5-7b.json"
+    },
+    {
+      "id": "R-1D6689BD",
+      "case_id": "AND-008",
+      "model": "qwen2.5:7b",
+      "source_file": "outputs\\harness\\AND-008__qwen2.5-7b.json"
+    },
+    {
+      "id": "R-FC3621F0",
+      "case_id": "AND-010",
+      "model": "qwen2.5:7b",
+      "source_file": "outputs\\harness\\AND-010__qwen2.5-7b.json"
+    },
+    {
+      "id": "R-6EDBBD17",
+      "case_id": "AND-002",
+      "model": "qwen2.5:7b",
+      "source_file": "outputs\\harness\\AND-002__qwen2.5-7b.json"
+    },
+    {
+      "id": "R-90E3D7B2",
+      "case_id": "AND-013",
+      "model": "qwen2.5:7b",
+      "source_file": "outputs\\harness\\AND-013__qwen2.5-7b.json"
+    },
+    {
+      "id": "R-59BB0209",
+      "case_id": "AND-022",
+      "model": "qwen2.5:7b",
+      "source_file": "outputs\\harness\\AND-022__qwen2.5-7b.json"
+    },
+    {
+      "id": "R-1818155C",
+      "case_id": "AND-026",
+      "model": "qwen2.5:7b",
+      "source_file": "outputs\\harness\\AND-026__qwen2.5-7b.json"
+    },
+    {
+      "id": "R-60A25623",
+      "case_id": "AND-017",
+      "model": "qwen2.5:7b",
+      "source_file": "outputs\\harness\\AND-017__qwen2.5-7b.json"
+    },
+    {
+      "id": "R-6406F9F0",
+      "case_id": "AND-023",
+      "model": "qwen2.5:7b",
+      "source_file": "outputs\\harness\\AND-023__qwen2.5-7b.json"
+    },
+    {
+      "id": "R-966578D1",
+      "case_id": "AND-014",
+      "model": "qwen2.5:7b",
+      "source_file": "outputs\\harness\\AND-014__qwen2.5-7b.json"
+    },
+    {
+      "id": "R-D88B7FCB",
+      "case_id": "AND-019",
+      "model": "qwen2.5:7b",
+      "source_file": "outputs\\harness\\AND-019__qwen2.5-7b.json"
+    },
+    {
+      "id": "R-25275473",
+      "case_id": "AND-007",
+      "model": "qwen2.5:7b",
+      "source_file": "outputs\\harness\\AND-007__qwen2.5-7b.json"
+    },
+    {
+      "id": "R-82FBE8F9",
+      "case_id": "AND-018",
+      "model": "qwen2.5:7b",
+      "source_file": "outputs\\harness\\AND-018__qwen2.5-7b.json"
+    },
+    {
+      "id": "R-B8EC7CF6",
+      "case_id": "AND-006",
+      "model": "qwen2.5:7b",
+      "source_file": "outputs\\harness\\AND-006__qwen2.5-7b.json"
+    },
+    {
+      "id": "R-39A54C3B",
+      "case_id": "AND-028",
+      "model": "qwen2.5:7b",
+      "source_file": "outputs\\harness\\AND-028__qwen2.5-7b.json"
+    },
+    {
+      "id": "R-C52F3513",
+      "case_id": "AND-005",
+      "model": "qwen2.5:7b",
+      "source_file": "outputs\\harness\\AND-005__qwen2.5-7b.json"
+    },
+    {
+      "id": "R-DAFE5892",
+      "case_id": "AND-024",
+      "model": "qwen2.5:7b",
+      "source_file": "outputs\\harness\\AND-024__qwen2.5-7b.json"
+    },
+    {
+      "id": "R-C6D76AF4",
+      "case_id": "AND-025",
+      "model": "qwen2.5:7b",
+      "source_file": "outputs\\harness\\AND-025__qwen2.5-7b.json"
+    },
+    {
+      "id": "R-941B0366",
+      "case_id": "AND-026",
+      "model": "claude-haiku-4-5",
+      "source_file": "outputs\\harness\\AND-026__claude-haiku-4-5.json"
+    },
+    {
+      "id": "R-E9C1FA73",
+      "case_id": "AND-022",
+      "model": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-022__gpt-5.4-mini-2026-03-17.json"
+    },
+    {
+      "id": "R-7098B81F",
+      "case_id": "AND-022",
+      "model": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-022__gpt-5.5-2026-04-23.json"
+    },
+    {
+      "id": "R-B73F9D33",
+      "case_id": "AND-024",
+      "model": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-024__gpt-5.4-mini-2026-03-17.json"
+    },
+    {
+      "id": "R-EA760131",
+      "case_id": "AND-026",
+      "model": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-026__gpt-5.4-mini-2026-03-17.json"
+    },
+    {
+      "id": "R-10BB81A3",
+      "case_id": "AND-028",
+      "model": "claude-haiku-4-5",
+      "source_file": "outputs\\harness\\AND-028__claude-haiku-4-5.json"
+    },
+    {
+      "id": "R-25552207",
+      "case_id": "AND-004",
+      "model": "claude-haiku-4-5",
+      "source_file": "outputs\\harness\\AND-004__claude-haiku-4-5.json"
+    },
+    {
+      "id": "R-059262D5",
+      "case_id": "AND-023",
+      "model": "claude-opus-5",
+      "source_file": "outputs\\harness\\AND-023__claude-opus-5.json"
+    },
+    {
+      "id": "R-09A4EDB9",
+      "case_id": "AND-017",
+      "model": "claude-opus-5",
+      "source_file": "outputs\\harness\\AND-017__claude-opus-5.json"
+    },
+    {
+      "id": "R-1669A6BF",
+      "case_id": "AND-007",
+      "model": "claude-opus-5",
+      "source_file": "outputs\\harness\\AND-007__claude-opus-5.json"
+    },
+    {
+      "id": "R-0D2194C8",
+      "case_id": "AND-015",
+      "model": "claude-sonnet-5",
+      "source_file": "outputs\\harness\\AND-015__claude-sonnet-5.json"
+    },
+    {
+      "id": "R-14DD2BD2",
+      "case_id": "AND-008",
+      "model": "claude-sonnet-5",
+      "source_file": "outputs\\harness\\AND-008__claude-sonnet-5.json"
+    },
+    {
+      "id": "R-04FB6B56",
+      "case_id": "AND-025",
+      "model": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-025__gpt-5.4-mini-2026-03-17.json"
+    },
+    {
+      "id": "R-054C5DF3",
+      "case_id": "AND-015",
+      "model": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-015__gpt-5.4-mini-2026-03-17.json"
+    },
+    {
+      "id": "R-129372EC",
+      "case_id": "AND-017",
+      "model": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-017__gpt-5.4-mini-2026-03-17.json"
+    },
+    {
+      "id": "R-1533F62F",
+      "case_id": "AND-012",
+      "model": "gpt-5.4-mini-2026-03-17",
+      "source_file": "outputs\\satml\\legacy\\AND-012__gpt-5.4-mini-2026-03-17.json"
+    },
+    {
+      "id": "R-325EBE54",
+      "case_id": "AND-015",
+      "model": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-015__gpt-5.5-2026-04-23.json"
+    },
+    {
+      "id": "R-3FE285FD",
+      "case_id": "AND-025",
+      "model": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-025__gpt-5.5-2026-04-23.json"
+    },
+    {
+      "id": "R-00BE14ED",
+      "case_id": "AND-008",
+      "model": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-008__gpt-5.5-2026-04-23.json"
+    },
+    {
+      "id": "R-011416DC",
+      "case_id": "AND-002",
+      "model": "gpt-5.5-2026-04-23",
+      "source_file": "outputs\\satml\\legacy\\AND-002__gpt-5.5-2026-04-23.json"
+    },
+    {
+      "id": "R-0828B43E",
+      "case_id": "AND-021",
+      "model": "qwen2.5:7b",
+      "source_file": "outputs\\harness\\AND-021__qwen2.5-7b.json"
+    },
+    {
+      "id": "R-2BEB4295",
+      "case_id": "AND-015",
+      "model": "qwen2.5:7b",
+      "source_file": "outputs\\harness\\AND-015__qwen2.5-7b.json"
+    }
+  ],
+  "flag_sample": [
+    {
+      "sample_id": "F-01",
+      "response_id": "R-C52F3513",
+      "case_id": "AND-005",
+      "model": "qwen2.5:7b",
+      "check": "C1"
+    },
+    {
+      "sample_id": "F-02",
+      "response_id": "R-DAFE5892",
+      "case_id": "AND-024",
+      "model": "qwen2.5:7b",
+      "check": "C3"
+    },
+    {
+      "sample_id": "F-03",
+      "response_id": "R-C6D76AF4",
+      "case_id": "AND-025",
+      "model": "qwen2.5:7b",
+      "check": "C1"
+    },
+    {
+      "sample_id": "F-04",
+      "response_id": "R-941B0366",
+      "case_id": "AND-026",
+      "model": "claude-haiku-4-5",
+      "check": "C3"
+    },
+    {
+      "sample_id": "F-05",
+      "response_id": "R-1818155C",
+      "case_id": "AND-026",
+      "model": "qwen2.5:7b",
+      "check": "C3"
+    },
+    {
+      "sample_id": "F-06",
+      "response_id": "R-E9C1FA73",
+      "case_id": "AND-022",
+      "model": "gpt-5.4-mini-2026-03-17",
+      "check": "C3"
+    },
+    {
+      "sample_id": "F-07",
+      "response_id": "R-7098B81F",
+      "case_id": "AND-022",
+      "model": "gpt-5.5-2026-04-23",
+      "check": "C3"
+    },
+    {
+      "sample_id": "F-08",
+      "response_id": "R-B73F9D33",
+      "case_id": "AND-024",
+      "model": "gpt-5.4-mini-2026-03-17",
+      "check": "C3"
+    },
+    {
+      "sample_id": "F-09",
+      "response_id": "R-EA760131",
+      "case_id": "AND-026",
+      "model": "gpt-5.4-mini-2026-03-17",
+      "check": "C3"
+    }
+  ],
+  "miss_sample": [
+    {
+      "sample_id": "M-01",
+      "response_id": "R-23FDA9A3",
+      "case_id": "AND-005",
+      "model": "claude-haiku-4-5",
+      "applicable_checks": [
+        "C1",
+        "C2",
+        "C4"
+      ]
+    },
+    {
+      "sample_id": "M-02",
+      "response_id": "R-32834152",
+      "case_id": "AND-022",
+      "model": "claude-haiku-4-5",
+      "applicable_checks": [
+        "C2",
+        "C4",
+        "C3"
+      ]
+    },
+    {
+      "sample_id": "M-03",
+      "response_id": "R-10BB81A3",
+      "case_id": "AND-028",
+      "model": "claude-haiku-4-5",
+      "applicable_checks": [
+        "C2",
+        "C4"
+      ]
+    },
+    {
+      "sample_id": "M-04",
+      "response_id": "R-25552207",
+      "case_id": "AND-004",
+      "model": "claude-haiku-4-5",
+      "applicable_checks": [
+        "C2",
+        "C4"
+      ]
+    },
+    {
+      "sample_id": "M-05",
+      "response_id": "R-059262D5",
+      "case_id": "AND-023",
+      "model": "claude-opus-5",
+      "applicable_checks": [
+        "C2",
+        "C4",
+        "C3"
+      ]
+    },
+    {
+      "sample_id": "M-06",
+      "response_id": "R-3B7ECF93",
+      "case_id": "AND-025",
+      "model": "claude-opus-5",
+      "applicable_checks": [
+        "C1",
+        "C2",
+        "C4",
+        "C3"
+      ]
+    },
+    {
+      "sample_id": "M-07",
+      "response_id": "R-09A4EDB9",
+      "case_id": "AND-017",
+      "model": "claude-opus-5",
+      "applicable_checks": [
+        "C2",
+        "C4"
+      ]
+    },
+    {
+      "sample_id": "M-08",
+      "response_id": "R-1669A6BF",
+      "case_id": "AND-007",
+      "model": "claude-opus-5",
+      "applicable_checks": [
+        "C2",
+        "C4"
+      ]
+    },
+    {
+      "sample_id": "M-09",
+      "response_id": "R-0D2194C8",
+      "case_id": "AND-015",
+      "model": "claude-sonnet-5",
+      "applicable_checks": [
+        "C1",
+        "C2",
+        "C4"
+      ]
+    },
+    {
+      "sample_id": "M-10",
+      "response_id": "R-14897EAC",
+      "case_id": "AND-005",
+      "model": "claude-sonnet-5",
+      "applicable_checks": [
+        "C1",
+        "C2",
+        "C4"
+      ]
+    },
+    {
+      "sample_id": "M-11",
+      "response_id": "R-00400BF8",
+      "case_id": "AND-018",
+      "model": "claude-sonnet-5",
+      "applicable_checks": [
+        "C2",
+        "C4"
+      ]
+    },
+    {
+      "sample_id": "M-12",
+      "response_id": "R-14DD2BD2",
+      "case_id": "AND-008",
+      "model": "claude-sonnet-5",
+      "applicable_checks": [
+        "C2",
+        "C4"
+      ]
+    },
+    {
+      "sample_id": "M-13",
+      "response_id": "R-04FB6B56",
+      "case_id": "AND-025",
+      "model": "gpt-5.4-mini-2026-03-17",
+      "applicable_checks": [
+        "C1",
+        "C2",
+        "C4",
+        "C3"
+      ]
+    },
+    {
+      "sample_id": "M-14",
+      "response_id": "R-054C5DF3",
+      "case_id": "AND-015",
+      "model": "gpt-5.4-mini-2026-03-17",
+      "applicable_checks": [
+        "C1",
+        "C2",
+        "C4"
+      ]
+    },
+    {
+      "sample_id": "M-15",
+      "response_id": "R-129372EC",
+      "case_id": "AND-017",
+      "model": "gpt-5.4-mini-2026-03-17",
+      "applicable_checks": [
+        "C2",
+        "C4"
+      ]
+    },
+    {
+      "sample_id": "M-16",
+      "response_id": "R-1533F62F",
+      "case_id": "AND-012",
+      "model": "gpt-5.4-mini-2026-03-17",
+      "applicable_checks": [
+        "C2",
+        "C4"
+      ]
+    },
+    {
+      "sample_id": "M-17",
+      "response_id": "R-325EBE54",
+      "case_id": "AND-015",
+      "model": "gpt-5.5-2026-04-23",
+      "applicable_checks": [
+        "C1",
+        "C2",
+        "C4"
+      ]
+    },
+    {
+      "sample_id": "M-18",
+      "response_id": "R-3FE285FD",
+      "case_id": "AND-025",
+      "model": "gpt-5.5-2026-04-23",
+      "applicable_checks": [
+        "C1",
+        "C2",
+        "C4",
+        "C3"
+      ]
+    },
+    {
+      "sample_id": "M-19",
+      "response_id": "R-00BE14ED",
+      "case_id": "AND-008",
+      "model": "gpt-5.5-2026-04-23",
+      "applicable_checks": [
+        "C2",
+        "C4"
+      ]
+    },
+    {
+      "sample_id": "M-20",
+      "response_id": "R-011416DC",
+      "case_id": "AND-002",
+      "model": "gpt-5.5-2026-04-23",
+      "applicable_checks": [
+        "C2",
+        "C4"
+      ]
+    },
+    {
+      "sample_id": "M-21",
+      "response_id": "R-0828B43E",
+      "case_id": "AND-021",
+      "model": "qwen2.5:7b",
+      "applicable_checks": [
+        "C1",
+        "C2",
+        "C4",
+        "C3"
+      ]
+    },
+    {
+      "sample_id": "M-22",
+      "response_id": "R-2BEB4295",
+      "case_id": "AND-015",
+      "model": "qwen2.5:7b",
+      "applicable_checks": [
+        "C1",
+        "C2",
+        "C4"
+      ]
+    },
+    {
+      "sample_id": "M-23",
+      "response_id": "R-033755AE",
+      "case_id": "AND-009",
+      "model": "qwen2.5:7b",
+      "applicable_checks": [
+        "C2",
+        "C4"
+      ]
+    },
+    {
+      "sample_id": "M-24",
+      "response_id": "R-1D6689BD",
+      "case_id": "AND-008",
+      "model": "qwen2.5:7b",
+      "applicable_checks": [
+        "C2",
+        "C4"
+      ]
+    }
+  ]
+}

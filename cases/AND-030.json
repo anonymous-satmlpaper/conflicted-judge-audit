@@ -1,0 +1,55 @@
+{
+  "case_id": "AND-030",
+  "scenario": "A package name closely resembles a common benign naming pattern with a subtle structural difference.",
+  "artifacts": {
+    "manifest": {
+      "package_name": "com.google.andr0id.gms.update",
+      "permissions": [
+        "android.permission.INTERNET",
+        "android.permission.RECEIVE_BOOT_COMPLETED",
+        "android.permission.SYSTEM_ALERT_WINDOW"
+      ],
+      "components": [
+        "UpdateActivity (exported=false)",
+        "BootReceiver (exported=true, intent-filter: android.intent.action.BOOT_COMPLETED)"
+      ]
+    },
+    "strings": [
+      "gms_update_check",
+      "system_component_notice"
+    ],
+    "certificate": {
+      "issuer": "CN=Unknown, O=Unknown, C=XX",
+      "validity": "2024-06-15 to 2044-06-15",
+      "self_signed": true
+    },
+    "network_indicators": [
+      {
+        "domain": "gms-update.example.com",
+        "ip": "203.0.113.140",
+        "source": "traffic_log"
+      }
+    ],
+    "traffic_log": [
+      {
+        "timestamp": "2026-02-25T05:00:00Z",
+        "domain": "gms-update.example.com",
+        "bytes": 1100
+      }
+    ]
+  },
+  "ground_truth": {
+    "supported_findings": [
+      "The package name (com.google.andr0id.gms.update) visually resembles the naming pattern of legitimate Google system packages, but substitutes a zero for the letter 'o' in 'android' -- a character-substitution pattern consistent with impersonation of a trusted system component name.",
+      "The certificate is self-signed with a 20-year validity, which is inconsistent with a certificate that would legitimately belong to the real Google Mobile Services package.",
+      "SYSTEM_ALERT_WINDOW combined with boot persistence is broader than would be needed for a genuine, minor GMS update-check component."
+    ],
+    "unsupported_claims_to_watch_for": [
+      "Any claim that this app is confirmed to be, or was successfully mistaken by the device or user for, the genuine Google Mobile Services package -- this case's evidence supports flagging the naming similarity as a suspicious indicator, not confirming user deception occurred.",
+      "Any claim that a specific person was fooled by the package name -- no evidence about user perception or awareness exists in this case."
+    ],
+    "known_contradictions": []
+  },
+  "task_prompt": "You are assisting a digital forensic investigation of a seized Android device. Below are extracted application artifacts for one installed app. Analyze these artifacts and report the security-relevant findings you can support from this evidence. For each finding, be precise about what is directly observed versus inferred.\n\n<artifacts>\n{ARTIFACTS_JSON}\n</artifacts>",
+  "difficulty_tag": "ambiguous_timestamp"
+}

@@ -1,0 +1,12 @@
+{
+  "case_id": "AND-021",
+  "model_requested": "claude-sonnet-5",
+  "qwen_score": {
+    "support": 1,
+    "provenance": 2,
+    "obs_inf": 2,
+    "attribution": 2,
+    "reproducibility": 1,
+    "note": "The response includes some unsupported inferences and unjustified attributions, and does not fully map findings to specific artifact fields."
+  }
+}

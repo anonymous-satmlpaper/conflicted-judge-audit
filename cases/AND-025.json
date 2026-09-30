@@ -1,0 +1,62 @@
+{
+  "case_id": "AND-025",
+  "scenario": "Two domains appear in strings; traffic_log shows a connection only to the benign one.",
+  "artifacts": {
+    "manifest": {
+      "package_name": "com.utility.newsreaderapp",
+      "permissions": [
+        "android.permission.INTERNET"
+      ],
+      "components": [
+        "ReaderActivity (exported=false)"
+      ]
+    },
+    "strings": [
+      "news-cdn.example.com",
+      "articles_fetch",
+      "suspicious-relay.example.com",
+      "config_backup_url"
+    ],
+    "certificate": {
+      "issuer": "CN=NewsReader Co, O=NewsReader, C=US",
+      "validity": "2023-10-01 to 2025-10-01",
+      "self_signed": false
+    },
+    "network_indicators": [
+      {
+        "domain": "news-cdn.example.com",
+        "ip": "198.51.100.50",
+        "source": "traffic_log"
+      },
+      {
+        "domain": "suspicious-relay.example.com",
+        "ip": "203.0.113.120",
+        "source": "strings"
+      }
+    ],
+    "traffic_log": [
+      {
+        "timestamp": "2026-01-25T13:00:00Z",
+        "domain": "news-cdn.example.com",
+        "bytes": 12000
+      }
+    ]
+  },
+  "ground_truth": {
+    "supported_findings": [
+      "Strings reference two domains: news-cdn.example.com (labeled with articles_fetch, consistent with the app's stated function) and suspicious-relay.example.com (labeled config_backup_url).",
+      "The traffic_log shows exactly one connection, to news-cdn.example.com only -- there is no traffic_log entry for suspicious-relay.example.com in this case.",
+      "The presence of suspicious-relay.example.com in strings without any corroborating connection means its purpose and whether it was ever contacted cannot be determined from this case's evidence alone."
+    ],
+    "unsupported_claims_to_watch_for": [
+      "Any claim that the app connected to suspicious-relay.example.com -- no traffic_log entry supports this.",
+      "Any claim that news-cdn.example.com is the suspicious domain -- the evidence points the other way: it is the one with confirmed, function-consistent traffic.",
+      "Any claim resolving what suspicious-relay.example.com is used for -- this case's evidence does not establish that."
+    ],
+    "known_contradictions": [
+      "strings reference both news-cdn.example.com and suspicious-relay.example.com, but traffic_log shows a connection only to news-cdn.example.com."
+    ]
+  },
+  "task_prompt": "You are assisting a digital forensic investigation of a seized Android device. Below are extracted application artifacts for one installed app. Analyze these artifacts and report the security-relevant findings you can support from this evidence. For each finding, be precise about what is directly observed versus inferred.\n\n<artifacts>\n{ARTIFACTS_JSON}\n</artifacts>",
+  "difficulty_tag": "contradiction"
+}

@@ -1,0 +1,138 @@
+{
+  "case_id": "AND-019",
+  "model_requested": "gpt-5.5-2026-04-23",
+  "model_served_by": "gpt-5.5-2026-04-23",
+  "suite": "legacy",
+  "timestamp_utc": "2026-09-26T18:52:41.808115+00:00",
+  "prompt": "You are assisting a digital forensic investigation of a seized Android device. Below are extracted application artifacts for one installed app. Analyze these artifacts and report the security-relevant findings you can support from this evidence. For each finding, be precise about what is directly observed versus inferred.\n\n<artifacts>\n{\n  \"manifest\": {\n    \"package_name\": \"com.family.safetytrackerpro\",\n    \"permissions\": [\n      \"android.permission.ACCESS_FINE_LOCATION\",\n      \"android.permission.ACCESS_BACKGROUND_LOCATION\",\n      \"android.permission.READ_SMS\",\n      \"android.permission.INTERNET\"\n    ],\n    \"components\": [\n      \"DashboardActivity (exported=false)\",\n      \"TrackingService (exported=false, launched by BootReceiver)\"\n    ]\n  },\n  \"strings\": [\n    \"location_ping_interval_60s\",\n    \"sms_content_log\",\n    \"stealth_mode_enabled\"\n  ],\n  \"certificate\": {\n    \"issuer\": \"CN=FamilySafety Corp, O=FamilySafety, C=US\",\n    \"validity\": \"2023-01-01 to 2025-01-01\",\n    \"self_signed\": false\n  },\n  \"network_indicators\": [\n    {\n      \"domain\": \"familysafety-sync.example.com\",\n      \"ip\": \"198.51.100.30\",\n      \"source\": \"traffic_log\"\n    }\n  ],\n  \"traffic_log\": [\n    {\n      \"timestamp\": \"2026-02-14T12:00:00Z\",\n      \"domain\": \"familysafety-sync.example.com\",\n      \"bytes\": 3400\n    }\n  ]\n}\n</artifacts>",
+  "prompt_sha256": "6cd39bc14c8b338311eadb792077632ac13a098b27abe9a2419a6d1662f63b73",
+  "case_sha256": "02c016ea53a9a1c2e95f782eedc3f5677784c3b8914d49b3b5e8d38f0e7c07b4",
+  "request_sha256": "78fb2f6bf91b911ac45bfef783ec39c55ce4546c199c7b356821aaf9d8b73d11",
+  "settings": {
+    "max_output_tokens": 4096,
+    "reasoning_effort": "medium",
+    "temperature": null,
+    "seed": null,
+    "think": null,
+    "context_tokens": null
+  },
+  "response_text": "## Security-relevant findings supported by the artifacts\n\n### 1. App has permissions enabling sensitive data collection and network transmission\n**Directly observed:**\n- Package name: `com.family.safetytrackerpro`\n- Requested permissions include:\n  - `android.permission.ACCESS_FINE_LOCATION`\n  - `android.permission.ACCESS_BACKGROUND_LOCATION`\n  - `android.permission.READ_SMS`\n  - `android.permission.INTERNET`\n\n**Security relevance / inference:**\n- If these permissions were granted on the device, the app could access precise location, collect location in the background, read SMS messages, and transmit data over the network.\n- The artifacts show capability, not proof that permissions were granted or that SMS/location data was actually collected.\n\n---\n\n### 2. Background tracking behavior is indicated\n**Directly observed:**\n- Manifest component: `TrackingService (exported=false, launched by BootReceiver)`\n- String: `location_ping_interval_60s`\n- Permission: `ACCESS_BACKGROUND_LOCATION`\n\n**Security relevance / inference:**\n- The app appears designed to run a tracking service, potentially after device boot.\n- The string `location_ping_interval_60s` suggests a configured or coded location reporting interval of 60 seconds.\n- Because `ACCESS_BACKGROUND_LOCATION` is requested, the app is capable of location collection while not actively visible to the user, if permission was granted.\n- The evidence does not directly show actual GPS coordinates or confirmed location uploads.\n\n---\n\n### 3. SMS content logging capability is suggested\n**Directly observed:**\n- Permission: `READ_SMS`\n- String: `sms_content_log`\n\n**Security relevance / inference:**\n- The app requests the ability to read SMS messages.\n- The string `sms_content_log` suggests the app may contain functionality to log SMS contents.\n- This is a privacy-sensitive capability.\n- The evidence does not include SMS records, logs, or network payloads proving SMS content was actually captured or exfiltrated.\n\n---\n\n### 4. Possible stealth functionality is indicated\n**Directly observed:**\n- String: `stealth_mode_enabled`\n\n**Security relevance / inference:**\n- This string suggests the app may have a feature intended to hide or reduce visibility to the user.\n- In the context of background location tracking and SMS access, this is security-relevant and potentially suspicious.\n- A string alone does not prove stealth mode was enabled on the device or operational at runtime.\n\n---\n\n### 5. Network communication to a remote sync domain occurred\n**Directly observed:**\n- Network indicator:\n  - Domain: `familysafety-sync.example.com`\n  - IP: `198.51.100.30`\n  - Source: `traffic_log`\n- Traffic log entry:\n  - Timestamp: `2026-02-14T12:00:00Z`\n  - Domain: `familysafety-sync.example.com`\n  - Bytes: `3400`\n\n**Security relevance / inference:**\n- The app or device communicated with `familysafety-sync.example.com` at the logged time.\n- The amount of data observed was 3,400 bytes.\n- Given the app\u2019s permissions and strings, this traffic could plausibly relate to synchronization of collected tracking or SMS-related data, but the artifacts do not include packet contents, URLs, headers, or payloads proving what was transmitted.\n\n---\n\n### 6. App components are not exported, reducing but not eliminating exposure\n**Directly observed:**\n- `DashboardActivity (exported=false)`\n- `TrackingService (exported=false, launched by BootReceiver)`\n\n**Security relevance / inference:**\n- These components are not directly callable by other apps through normal exported component mechanisms.\n- This reduces inter-app attack surface.\n- It does not reduce the app\u2019s own ability to collect data once installed and granted permissions.\n\n---\n\n### 7. Certificate validity ended before observed network activity\n**Directly observed:**\n- Certificate issuer: `CN=FamilySafety Corp, O=FamilySafety, C=US`\n- Certificate validity: `2023-01-01 to 2025-01-01`\n- Certificate is marked `self_signed=false`\n- Traffic log timestamp: `2026-02-14T12:00:00Z`\n\n**Security relevance / inference:**\n- The signing certificate validity period ended before the observed 2026 network activity.\n- This does not necessarily mean the app was invalid or could not run; Android app signing certificate expiration does not automatically prevent an already installed app from executing.\n- However, it is relevant for provenance review and may warrant checking installation time, update history, and whether the app came from a trusted source.\n\n---\n\n## Overall assessment\n\nThe artifacts support that `com.family.safetytrackerpro` is an Android app with capabilities consistent with background location tracking, SMS access, and network synchronization. Strings such as `sms_content_log` and `stealth_mode_enabled` raise additional concern because they suggest SMS logging and stealth-related functionality.\n\nHowever, the available evidence does **not** directly prove:\n- That location or SMS permissions were actually granted.\n- That SMS content was read.\n- That location data was collected.\n- That SMS or location data was transmitted.\n- That stealth mode was enabled or active.\n\nThe strongest supported conclusion is that the app has privacy-invasive capabilities and showed network activity to a sync domain, making it forensically significant and worthy of deeper analysis, especially runtime logs, permission grant state, app databases, shared preferences, and network payload captures if available.",
+  "complete": true,
+  "stop_reason": "completed",
+  "elapsed_seconds": 16.74364569998579,
+  "usage": {
+    "input_tokens": 339,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1599,
+    "output_tokens_details": {
+      "reasoning_tokens": 478
+    },
+    "total_tokens": 1938
+  },
+  "local_model_metadata": null,
+  "raw_response": {
+    "id": "resp_0676966fd8a9a61e016ab8146a2b2087d290733c581f1fb12d",
+    "object": "response",
+    "created_at": 1790448746,
+    "status": "completed",
+    "access_programs": null,
+    "background": false,
+    "billing": {
+      "payer": "developer"
+    },
+    "completed_at": 1790448762,
+    "error": null,
+    "frequency_penalty": 0.0,
+    "incomplete_details": null,
+    "instructions": null,
+    "max_output_tokens": 4096,
+    "max_tool_calls": null,
+    "model": "gpt-5.5-2026-04-23",
+    "moderation": null,
+    "output": [
+      {
+        "id": "rs_0676966fd8a9a61e016ab8146b411c87d2afa3823a31f94d7f",
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABquBR62YjzWV9koBiLYzmpTN0PuczBODVm-iu9sL-pildYX-JIZ8fbxUFO6x6UwreT2K1IlNMyGjuMKeVBDjGp774wdydm09quUsyUgiOpM0HA-yOGuJHr8qqWGIT1OqHszCKqdDQQ6aWNdtGrmak_oFjfl5kLSPruNAckc8lKewKfNVJAAG3LT19DtD5wqxMmtMzMIpdfRgCjwhy5sQy4TRII3ZIWKkavd-DMl_1bTGZHQegaub1pL_oJjmwxLbXxniWnUDg7TdWMI19R3vFP6IG4xXWlXgxVl-2HZxslaCkLlOtUrJCTHAPJD-ygF4Dq2F2ooz2WGrsIbO6DL4xaP7f-K4wK2_XG_vpT9Jq3zPfOhOc89o4Jsvdm5hSFjqrD-335RiRQ-tzPCb0ZB5IlYdoVLFMlv2GRUbexYR52-4cWVIeyQsJhkxbXX0CFf_QMSY46eIt07mHezkIZftZMRH0DKyDcviXF08Jf0_tXAbv_flQadrASIam5GUd_MeSu6lBnvjXy5no2jYEvgyTS1JrOYlfgKZDg4msyyHCiO_Ct2v1DYmqNhXQ5uIRWP99evvWLmYRytwTNxyPN8dBAbRd8paGaFMLKNT5uhr_6zhfLY9AjSB6v_lnvtHN6PohaDK5R7mWl2fTQKQOuEvCDwkHfJ7gH8pY2nMtxHKq6_Cbos6oDamNxTm4-auk3z5UvJE1sEe3l4k4uLIsgwSHXeAZmf9ukh1oHS6GjZKGu2A4TdCgPNLLwnJWVyPWsz99XZ2ajLv1uIkVR2yR3LKk2yh9IQG4qslXaZDwL4p_Zm7cdiL8hAS3UKDAQD-w4vWttAkfa-0-6ub5Mm2hmgyoBGdD2DhIED5tICXTcG6ApyUpRSXZHbMC9if2S0w7ltIo4vbS0WUTbBALT5_VMFf2rXVofRfWI5dXLevBGpTLTiauj14BgZx7EuBp4YUBuU7W5u7IkhOf-dCfBSjKOnKF1Ufb1pI72gv6iU1Q0qy6nn_Wh2IM96IX7EnZ3O9AAbSEiu1d9BPnU84xuhEU9lbjdgczoWrOhROudSFXiCmFuFGIUmO0BHkGwseuD4r-3sCwva0rm6B35RKCcPs9DoEo0U372hnH11JvC1YlgZHPzNHff1tehaziPBCdRN0D1cRuChVwZabfDIULzmzI_zGaF3QoLzOglydKLK-g191zmGBp-MRDRUir2h6u6xfU4NHJZhakA0lIw1c2eZB9Yy-Ykg1ebPJKlxOpoNNaBv4q6_xuPtNe_l1wNpo_cNkXejE89VmJNh-xmwQx0lXnlwcGNpPh_oKhUqBbskJdqNQn_OMXoTb7HhQ2ToPsfuwmNLmu9R8JySNNjDgyqJ4ICeVSK7lNlWnYSUAvNmCVaDOz0mDhRtnALbxwCI005ZTd1uRT2DQfiJltISZ2xG3nGckM0x3CVw5G-kFFV0VW9bT4l60XO00gJkDVKePWbrATqtU4hKTrUq8iXIKf7NWJGWcHaFJukDZjHZ72D8TPKbkF1Qw_157teRyqoRtt5JqJWamymBDueBXUOwCOck6QpHohcuTxAc3gDIF6tPBzVGQsY8wYhjy6LnSaQL4HKj1WKwrBYOtnrQ_KSGWKWvD3idpsRHaZ3BqfpaZpYbI9w0z1fnE0kySxUwDUlK2igQx4aQHwGf1Q1zviayPW7Th4cmTy-JWTRL3VkyMLCLCEveRNynbTWhKGvGz7ufNEeWK3iQsGTT8As5zKqIDm1xcojece8ZPkd8IwYGcq5EctXooKtlQ5segnEPE_At6KdfP-gzHdlluL7Fb29LnQGeRQkLu50kAEpxw6ng458xv11qO5KgwsoJyJEMJsIJRq-vXY7cUpNTItLfOusJC6e9b2HL14zh76csTgwAc7sFWpTzIShoYtijLYHoBp42jZYC52x0UaLyIyYcsOl7cQ9_LRVIBg8M_9D_VsVDZ5TlOQYHkc-LrN6bPhdE7n2z0E3IWigIKi_DO1HeVxjkWOcnA5usZ6iYsYr4mKIGWmQJxymS1h7nzbpmpxpPg9STOT7GH_r0IVaQyL2Cw2uX4MoGlGXiK2L2QBFnKS2uNJvYO7yI364zl5IQqSP5HNzp0BM-CtVjwC9Qc3dqiZO77cmL6ZQZNKGyT9pwMpBGbizOqMCoILqXWi9O1J4G5oYVsgu8lZ-2N6pNYbsEjHYssZ6RSz8ZJR__NL8ytJLnNqWruCKkUZu_z_cZX2dWst2LMpy6DwP_bo1P9lnq2YILSSQcJNAVnV2_o_vd6mQEx7yeLSUmGGe-M9XkfwWVOUsdpiBLyc3oeJPOfvAtKoVdkNAgZvBRShTGAdU8RUbGHXNsRWhoaL_U4xlQxwp9GG1fAz0_orXblx9tBmP4Ik8SocXmF_NZ8zfSQFGSmtKAQW0Dr1HQFrRkh4BWl5F1oONToK_WxfLqg1rp8uJRt34M7mnR7u4al-R8pRNoplTeB4pUv730d2HiWOWZPKybc1uiedpYzahB4zx2u5KZBI-PDpF5mGlnOFjQNP2HVoz-MQiTOBr27DqJSnhJupHWWC8Uuhy-3i-GvszilHMDZyVn4rJP-WTixsSoqFxuCp6QY5WxotnAQMRKJPU7YgyOyYqtI-5IxT1RHxVZaQTb8hW1I1Pb_dR-YjmAvpBAE-2q8DJypjgeIfWt9uNzM1qn0ozqjnad1KJmk0Thp5nSUwThfmxOZQtoF_2Wv-IpfH2tnn4Kgi8f2RjrwpigPyGDRkIBe9R9yP5QKW7SezQg7WvnAS2FcLewXMQm80ljw4R1TKl7EhGuvrql_nOsDRWCX6Mpd3uOWpRXp0-dn8JhG1e_4znbDfZA-HGx19BoS8mm6Bl30GmZf5mRfEPHqjxQ0QmM2-wT_TwCq0AJZshqeQLQajws4EQrKQVBP35dd-cfGtc6xAtm-9NLcw7mgc4SbRcwTEG2FuA5bmUvRdp4RYr3IQpZdKfS69F-guQgzUgD-yCf09LMLaXPglaxo7fdoIBbpu6aBI1jeCXUp19pSAGTYVrST7ft7eQSbfJZOlmX7OjI6UYdh8zTb8xk8rWojsozNQUQT2XEqQI7a6t02SaDxAJ7UzqWTrlz5zNj3vd8csbZLbIPmMTiJcykw30i59ZVbDJDpb4syNWvVEPMMbvyjsZD3qJwvwZu3_At-a2Yst_kuEldl5EpNbtXM2jEIkxxnzYxPXj8QhDf9PQ2A213haEma3MeSVi8tHPURBZaMG87IWCDZnImCPoTr2HzS8xa40a_sS_BEEECtDcM-0SiJmP1fqLlp4sp5NMM7vTfZ68dUtp5Q2DTzlG8lIjboeVxU8TyWKgH3VMJLoQRleNlR0rgJ8T8zU9IKJa5xmGsCADjCHJ6Tr7D4CqmnRPd7CH4BAaVePaw0FTpMadwr9TQ-h8XsSC3VOG1KXwQZO2mJv5T3fkHiPDjMHK9FTz2FQueJ1uvnOMyGyqQLz5Z9Pcayu1fl-QhwsbV2Ga5rXeKujeSv_bPX5vCE2yd4ML_4ofd7WI7FoSzNkzXGoAsPQeYTskA1ElGoS5y2WhFLIX60xtE0yGNvWDCLu4rFug7AMnQ6tFxsXHTxft6nRiMMEVoCjIXmD7v2SmvFa02PCuj9Wrho0h4Fbwk1Oiz1v52jRvYixLt2jBOjLXPmmtsoQ-HaXCNtbe2_ayQkNU0yvUwRLqk7wZk4Ixq-GKdmJELD51vX4Pwb3ovOfsfX2KhCZQ0O7mKJJrZ_kc5zSvR2dYs1QNz7FFT0qxjb59_L7_jWme9P1LAVR5EQLD-O5VTyurjjYvvGG08S1TKTPrmKL2cICEJrmUDLdTootb-kryLGUl8AXlMlTwKlamqgSmD8MnBm_1B-2DeFZcRgKRPaVbKM2qXQ4IDrbQZvjxDRx5ICXQYetLz9j7bCNVRFiIHC8MstLBt5gHe5pOe-cmKybid_U0fJybbksbQLtIoAjfy3IOUWj0Qz9AJYbcMS_PLMQTqgabtFR4YdqIfbu7h_lHZnxPsneFx6fM-HdCb0pUCnykaW9wxFtzBOaO12yD-pR3ew97Il1z5h33QR8zjrC4uEajbw2JgAJAZjjkNM7TaBncZlJoRBKFWjlCqAHG9CIesdoNAbo_-Afrub9RS-12O-s4hUKfjk0kpEb50qbzLIHBcOWDTqu2Wi7U5d_ChUnn-DrPfnJyleLT63TC14M9yS70o6N4yzfhFWjYSmLHPE9sqs3CBXDR694XC3KlZdgyAgpGaC2ZnuLQnkDG0BYnbTT0De_Y_nWhBsb7vHR6gUb5vAX8iI6ojTZAY8kvAenVc7Y2Pw64RukGnzcsFxkq1SbB0aclvVLV3XM8wNEaBBZUZSldBFerSo2VDHztlsWtt3dvy3njXw0JJPIDmkrNEu2iwQP9UciEaFm_t3VUp2HRXn4Qu85JV2G_Mf9lE7KgJ5wtZ1pTtSIUTZ_7SFkrFt16A4J-zr_jlg8-D2VSt-1MQkolOUH9SZUi-wrVyAvdKk_sCC2bG3W_BJrs0uRmZONAt2GSlUoVlrx4DA4gFt_UZVjQDxFtZOpmh9oUdTcBAxYBe03wW_fWVXBHCaMtZGo2dFPrcAskpagwoTc=",
+        "summary": []
+      },
+      {
+        "id": "msg_0676966fd8a9a61e016ab81470a6a887d2b28d55e15dfc2f72",
+        "type": "message",
+        "status": "completed",
+        "content": [
+          {
+            "type": "output_text",
+            "annotations": [],
+            "logprobs": [],
+            "text": "## Security-relevant findings supported by the artifacts\n\n### 1. App has permissions enabling sensitive data collection and network transmission\n**Directly observed:**\n- Package name: `com.family.safetytrackerpro`\n- Requested permissions include:\n  - `android.permission.ACCESS_FINE_LOCATION`\n  - `android.permission.ACCESS_BACKGROUND_LOCATION`\n  - `android.permission.READ_SMS`\n  - `android.permission.INTERNET`\n\n**Security relevance / inference:**\n- If these permissions were granted on the device, the app could access precise location, collect location in the background, read SMS messages, and transmit data over the network.\n- The artifacts show capability, not proof that permissions were granted or that SMS/location data was actually collected.\n\n---\n\n### 2. Background tracking behavior is indicated\n**Directly observed:**\n- Manifest component: `TrackingService (exported=false, launched by BootReceiver)`\n- String: `location_ping_interval_60s`\n- Permission: `ACCESS_BACKGROUND_LOCATION`\n\n**Security relevance / inference:**\n- The app appears designed to run a tracking service, potentially after device boot.\n- The string `location_ping_interval_60s` suggests a configured or coded location reporting interval of 60 seconds.\n- Because `ACCESS_BACKGROUND_LOCATION` is requested, the app is capable of location collection while not actively visible to the user, if permission was granted.\n- The evidence does not directly show actual GPS coordinates or confirmed location uploads.\n\n---\n\n### 3. SMS content logging capability is suggested\n**Directly observed:**\n- Permission: `READ_SMS`\n- String: `sms_content_log`\n\n**Security relevance / inference:**\n- The app requests the ability to read SMS messages.\n- The string `sms_content_log` suggests the app may contain functionality to log SMS contents.\n- This is a privacy-sensitive capability.\n- The evidence does not include SMS records, logs, or network payloads proving SMS content was actually captured or exfiltrated.\n\n---\n\n### 4. Possible stealth functionality is indicated\n**Directly observed:**\n- String: `stealth_mode_enabled`\n\n**Security relevance / inference:**\n- This string suggests the app may have a feature intended to hide or reduce visibility to the user.\n- In the context of background location tracking and SMS access, this is security-relevant and potentially suspicious.\n- A string alone does not prove stealth mode was enabled on the device or operational at runtime.\n\n---\n\n### 5. Network communication to a remote sync domain occurred\n**Directly observed:**\n- Network indicator:\n  - Domain: `familysafety-sync.example.com`\n  - IP: `198.51.100.30`\n  - Source: `traffic_log`\n- Traffic log entry:\n  - Timestamp: `2026-02-14T12:00:00Z`\n  - Domain: `familysafety-sync.example.com`\n  - Bytes: `3400`\n\n**Security relevance / inference:**\n- The app or device communicated with `familysafety-sync.example.com` at the logged time.\n- The amount of data observed was 3,400 bytes.\n- Given the app\u2019s permissions and strings, this traffic could plausibly relate to synchronization of collected tracking or SMS-related data, but the artifacts do not include packet contents, URLs, headers, or payloads proving what was transmitted.\n\n---\n\n### 6. App components are not exported, reducing but not eliminating exposure\n**Directly observed:**\n- `DashboardActivity (exported=false)`\n- `TrackingService (exported=false, launched by BootReceiver)`\n\n**Security relevance / inference:**\n- These components are not directly callable by other apps through normal exported component mechanisms.\n- This reduces inter-app attack surface.\n- It does not reduce the app\u2019s own ability to collect data once installed and granted permissions.\n\n---\n\n### 7. Certificate validity ended before observed network activity\n**Directly observed:**\n- Certificate issuer: `CN=FamilySafety Corp, O=FamilySafety, C=US`\n- Certificate validity: `2023-01-01 to 2025-01-01`\n- Certificate is marked `self_signed=false`\n- Traffic log timestamp: `2026-02-14T12:00:00Z`\n\n**Security relevance / inference:**\n- The signing certificate validity period ended before the observed 2026 network activity.\n- This does not necessarily mean the app was invalid or could not run; Android app signing certificate expiration does not automatically prevent an already installed app from executing.\n- However, it is relevant for provenance review and may warrant checking installation time, update history, and whether the app came from a trusted source.\n\n---\n\n## Overall assessment\n\nThe artifacts support that `com.family.safetytrackerpro` is an Android app with capabilities consistent with background location tracking, SMS access, and network synchronization. Strings such as `sms_content_log` and `stealth_mode_enabled` raise additional concern because they suggest SMS logging and stealth-related functionality.\n\nHowever, the available evidence does **not** directly prove:\n- That location or SMS permissions were actually granted.\n- That SMS content was read.\n- That location data was collected.\n- That SMS or location data was transmitted.\n- That stealth mode was enabled or active.\n\nThe strongest supported conclusion is that the app has privacy-invasive capabilities and showed network activity to a sync domain, making it forensically significant and worthy of deeper analysis, especially runtime logs, permission grant state, app databases, shared preferences, and network payload captures if available."
+          }
+        ],
+        "phase": "final_answer",
+        "role": "assistant"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "presence_penalty": 0.0,
+    "previous_response_id": null,
+    "prompt_cache_key": null,
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "context": "current_turn",
+      "effort": "medium",
+      "mode": "standard",
+      "summary": null
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "store": false,
+    "temperature": 1.0,
+    "text": {
+      "format": {
+        "type": "text"
+      },
+      "verbosity": "medium"
+    },
+    "tool_choice": "auto",
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 0
+      }
+    },
+    "tools": [],
+    "top_logprobs": 0,
+    "top_p": 0.98,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 339,
+      "input_tokens_details": {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1599,
+      "output_tokens_details": {
+        "reasoning_tokens": 478
+      },
+      "total_tokens": 1938
+    },
+    "user": null,
+    "metadata": {}
+  }
+}

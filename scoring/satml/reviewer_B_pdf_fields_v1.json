@@ -1,0 +1,3173 @@
+[
+  {
+    "page": 1,
+    "name": "Reviewer ID",
+    "value": "B",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 1,
+    "name": "Date completed",
+    "value": "28 September 2026",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 1,
+    "name": "Relevant background",
+    "value": "Withheld for blinded comparison",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-8CD1327F.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-8CD1327F.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-8CD1327F.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-8CD1327F.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-8CD1327F.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-8CD1327F.Comments",
+    "value": "See appendix: C-8CD1327F",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-79CC81DE.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-79CC81DE.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-79CC81DE.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-79CC81DE.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-79CC81DE.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-79CC81DE.Comments",
+    "value": "See appendix: C-79CC81DE",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-FF111440.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-FF111440.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-FF111440.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-FF111440.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-FF111440.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-FF111440.Comments",
+    "value": "See appendix: C-FF111440",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-7E426817.Evidence",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-7E426817.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-7E426817.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-7E426817.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-7E426817.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-7E426817.Comments",
+    "value": "See appendix: C-7E426817",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-601787DB.Evidence",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-601787DB.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-601787DB.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-601787DB.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-601787DB.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-601787DB.Comments",
+    "value": "See appendix: C-601787DB",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-C37D54C0.Evidence",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-C37D54C0.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-C37D54C0.Observation",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-C37D54C0.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-C37D54C0.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-C37D54C0.Comments",
+    "value": "See appendix: C-C37D54C0",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-2CB1C75C.Evidence",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-2CB1C75C.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-2CB1C75C.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-2CB1C75C.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-2CB1C75C.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-2CB1C75C.Comments",
+    "value": "See appendix: C-2CB1C75C",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-109B7262.Evidence",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-109B7262.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-109B7262.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-109B7262.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-109B7262.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-109B7262.Comments",
+    "value": "See appendix: C-109B7262",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-52CC22A2.Evidence",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-52CC22A2.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-52CC22A2.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-52CC22A2.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-52CC22A2.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-52CC22A2.Comments",
+    "value": "See appendix: C-52CC22A2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-92A3A550.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-92A3A550.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-92A3A550.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-92A3A550.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-92A3A550.Reproducibility",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-92A3A550.Comments",
+    "value": "See appendix: C-92A3A550",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-69A2AD42.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-69A2AD42.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-69A2AD42.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-69A2AD42.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-69A2AD42.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-69A2AD42.Comments",
+    "value": "See appendix: C-69A2AD42",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-A95FDABE.Evidence",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-A95FDABE.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-A95FDABE.Observation",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-A95FDABE.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-A95FDABE.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-A95FDABE.Comments",
+    "value": "See appendix: C-A95FDABE",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-5CB7312D.Evidence",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-5CB7312D.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-5CB7312D.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-5CB7312D.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-5CB7312D.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-5CB7312D.Comments",
+    "value": "See appendix: C-5CB7312D",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-139F86CC.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-139F86CC.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-139F86CC.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-139F86CC.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-139F86CC.Reproducibility",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-139F86CC.Comments",
+    "value": "See appendix: C-139F86CC",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-A644A6F5.Evidence",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-A644A6F5.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-A644A6F5.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-A644A6F5.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-A644A6F5.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-A644A6F5.Comments",
+    "value": "See appendix: C-A644A6F5",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-E70C931F.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-E70C931F.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-E70C931F.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-E70C931F.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-E70C931F.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-E70C931F.Comments",
+    "value": "See appendix: C-E70C931F",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-53AD694F.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-53AD694F.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-53AD694F.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-53AD694F.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-53AD694F.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-53AD694F.Comments",
+    "value": "See appendix: C-53AD694F",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-6167DC1E.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-6167DC1E.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-6167DC1E.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-6167DC1E.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-6167DC1E.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-6167DC1E.Comments",
+    "value": "See appendix: C-6167DC1E",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-F2FFBCC8.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-F2FFBCC8.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-F2FFBCC8.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-F2FFBCC8.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-F2FFBCC8.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-F2FFBCC8.Comments",
+    "value": "See appendix: C-F2FFBCC8",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-85F0B2D5.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-85F0B2D5.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-85F0B2D5.Observation",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-85F0B2D5.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-85F0B2D5.Reproducibility",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-85F0B2D5.Comments",
+    "value": "See appendix: C-85F0B2D5",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-9451B821.Evidence",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-9451B821.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-9451B821.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-9451B821.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-9451B821.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-9451B821.Comments",
+    "value": "See appendix: C-9451B821",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-6CF6C6D7.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-6CF6C6D7.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-6CF6C6D7.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-6CF6C6D7.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-6CF6C6D7.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-6CF6C6D7.Comments",
+    "value": "See appendix: C-6CF6C6D7",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-56A9B053.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-56A9B053.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-56A9B053.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-56A9B053.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-56A9B053.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-56A9B053.Comments",
+    "value": "See appendix: C-56A9B053",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-6D2C50A9.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-6D2C50A9.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-6D2C50A9.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-6D2C50A9.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-6D2C50A9.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-6D2C50A9.Comments",
+    "value": "See appendix: C-6D2C50A9",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-49E7C255.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-49E7C255.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-49E7C255.Observation",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-49E7C255.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-49E7C255.Reproducibility",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-49E7C255.Comments",
+    "value": "See appendix: C-49E7C255",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-A736162F.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-A736162F.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-A736162F.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-A736162F.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-A736162F.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-A736162F.Comments",
+    "value": "See appendix: C-A736162F",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-7609C7B0.Evidence",
+    "value": "0",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-7609C7B0.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-7609C7B0.Observation",
+    "value": "0",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-7609C7B0.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-7609C7B0.Reproducibility",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-7609C7B0.Comments",
+    "value": "See appendix: C-7609C7B0",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-966452F6.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-966452F6.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-966452F6.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-966452F6.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-966452F6.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-966452F6.Comments",
+    "value": "See appendix: C-966452F6",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-277E7228.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-277E7228.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-277E7228.Observation",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-277E7228.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-277E7228.Reproducibility",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-277E7228.Comments",
+    "value": "See appendix: C-277E7228",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-989DBCEB.Evidence",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-989DBCEB.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-989DBCEB.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-989DBCEB.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-989DBCEB.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-989DBCEB.Comments",
+    "value": "See appendix: C-989DBCEB",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-E1F94668.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-E1F94668.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-E1F94668.Observation",
+    "value": "0",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-E1F94668.Attribution",
+    "value": "0",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-E1F94668.Reproducibility",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-E1F94668.Comments",
+    "value": "See appendix: C-E1F94668",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-15EA5C2B.Evidence",
+    "value": "0",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-15EA5C2B.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-15EA5C2B.Observation",
+    "value": "0",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-15EA5C2B.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-15EA5C2B.Reproducibility",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-15EA5C2B.Comments",
+    "value": "See appendix: C-15EA5C2B",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-ACD6FE3B.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-ACD6FE3B.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-ACD6FE3B.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-ACD6FE3B.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-ACD6FE3B.Reproducibility",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-ACD6FE3B.Comments",
+    "value": "See appendix: C-ACD6FE3B",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-CD585F2D.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-CD585F2D.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-CD585F2D.Observation",
+    "value": "0",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-CD585F2D.Attribution",
+    "value": "0",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-CD585F2D.Reproducibility",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-CD585F2D.Comments",
+    "value": "See appendix: C-CD585F2D",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-8CB02764.Evidence",
+    "value": "0",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-8CB02764.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-8CB02764.Observation",
+    "value": "0",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-8CB02764.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-8CB02764.Reproducibility",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-8CB02764.Comments",
+    "value": "See appendix: C-8CB02764",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-9F525430.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-9F525430.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-9F525430.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-9F525430.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-9F525430.Reproducibility",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-9F525430.Comments",
+    "value": "See appendix: C-9F525430",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-42E278B4.Evidence",
+    "value": "0",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-42E278B4.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-42E278B4.Observation",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-42E278B4.Attribution",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-42E278B4.Reproducibility",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-42E278B4.Comments",
+    "value": "See appendix: C-42E278B4",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-E2D0CF0B.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-E2D0CF0B.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-E2D0CF0B.Observation",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-E2D0CF0B.Attribution",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-E2D0CF0B.Reproducibility",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-E2D0CF0B.Comments",
+    "value": "See appendix: C-E2D0CF0B",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-733BAE41.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-733BAE41.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-733BAE41.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-733BAE41.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-733BAE41.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-733BAE41.Comments",
+    "value": "See appendix: C-733BAE41",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-03F2E8A9.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-03F2E8A9.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-03F2E8A9.Observation",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-03F2E8A9.Attribution",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-03F2E8A9.Reproducibility",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-03F2E8A9.Comments",
+    "value": "See appendix: C-03F2E8A9",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-114FD914.Evidence",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-114FD914.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-114FD914.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-114FD914.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-114FD914.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-114FD914.Comments",
+    "value": "See appendix: C-114FD914",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-0443D0E2.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-0443D0E2.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-0443D0E2.Observation",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-0443D0E2.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-0443D0E2.Reproducibility",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-0443D0E2.Comments",
+    "value": "See appendix: C-0443D0E2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-C523D61A.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-C523D61A.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-C523D61A.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-C523D61A.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-C523D61A.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-C523D61A.Comments",
+    "value": "See appendix: C-C523D61A",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-B62C2353.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-B62C2353.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-B62C2353.Observation",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-B62C2353.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-B62C2353.Reproducibility",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-B62C2353.Comments",
+    "value": "See appendix: C-B62C2353",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-C334B3A3.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-C334B3A3.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-C334B3A3.Observation",
+    "value": "0",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-C334B3A3.Attribution",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-C334B3A3.Reproducibility",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-C334B3A3.Comments",
+    "value": "See appendix: C-C334B3A3",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-69EB6504.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-69EB6504.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-69EB6504.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-69EB6504.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-69EB6504.Reproducibility",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-69EB6504.Comments",
+    "value": "See appendix: C-69EB6504",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-4CB479B8.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-4CB479B8.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-4CB479B8.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-4CB479B8.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-4CB479B8.Reproducibility",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-4CB479B8.Comments",
+    "value": "See appendix: C-4CB479B8",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-60D4E884.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-60D4E884.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-60D4E884.Observation",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-60D4E884.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-60D4E884.Reproducibility",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-60D4E884.Comments",
+    "value": "See appendix: C-60D4E884",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-84BAEB30.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-84BAEB30.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-84BAEB30.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-84BAEB30.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-84BAEB30.Reproducibility",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-84BAEB30.Comments",
+    "value": "See appendix: C-84BAEB30",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-58938166.Evidence",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-58938166.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-58938166.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-58938166.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-58938166.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-58938166.Comments",
+    "value": "See appendix: C-58938166",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-CC41EAE4.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-CC41EAE4.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-CC41EAE4.Observation",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-CC41EAE4.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-CC41EAE4.Reproducibility",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-CC41EAE4.Comments",
+    "value": "See appendix: C-CC41EAE4",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-64A107BF.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-64A107BF.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-64A107BF.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-64A107BF.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-64A107BF.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-64A107BF.Comments",
+    "value": "See appendix: C-64A107BF",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-8BA9B461.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-8BA9B461.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-8BA9B461.Observation",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-8BA9B461.Attribution",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-8BA9B461.Reproducibility",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-8BA9B461.Comments",
+    "value": "See appendix: C-8BA9B461",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-1FC6E5DC.Evidence",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-1FC6E5DC.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-1FC6E5DC.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-1FC6E5DC.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-1FC6E5DC.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-1FC6E5DC.Comments",
+    "value": "See appendix: C-1FC6E5DC",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-1F494815.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-1F494815.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-1F494815.Observation",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-1F494815.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-1F494815.Reproducibility",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-1F494815.Comments",
+    "value": "See appendix: C-1F494815",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-369D8AE4.Evidence",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-369D8AE4.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-369D8AE4.Observation",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-369D8AE4.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-369D8AE4.Reproducibility",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-369D8AE4.Comments",
+    "value": "See appendix: C-369D8AE4",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-8CAD1257.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-8CAD1257.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-8CAD1257.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-8CAD1257.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-8CAD1257.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-8CAD1257.Comments",
+    "value": "See appendix: C-8CAD1257",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-3848D4A4.Evidence",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-3848D4A4.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-3848D4A4.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-3848D4A4.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-3848D4A4.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-3848D4A4.Comments",
+    "value": "See appendix: C-3848D4A4",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-FF11ADA4.Evidence",
+    "value": "1",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-FF11ADA4.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-FF11ADA4.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-FF11ADA4.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-FF11ADA4.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-FF11ADA4.Comments",
+    "value": "See appendix: C-FF11ADA4",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-29B88468.Evidence",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-29B88468.Provenance",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-29B88468.Observation",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-29B88468.Attribution",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-29B88468.Reproducibility",
+    "value": "2",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 2,
+    "name": "C-29B88468.Comments",
+    "value": "See appendix: C-29B88468",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 3,
+    "name": "F-01.Genuine violation",
+    "value": "Yes",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 3,
+    "name": "F-01.Comments",
+    "value": "See appendix: F-01",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 3,
+    "name": "F-02.Genuine violation",
+    "value": "Yes",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 3,
+    "name": "F-02.Comments",
+    "value": "See appendix: F-02",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 3,
+    "name": "F-03.Genuine violation",
+    "value": "Yes",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 3,
+    "name": "F-03.Comments",
+    "value": "See appendix: F-03",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 3,
+    "name": "F-04.Genuine violation",
+    "value": "Yes",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 3,
+    "name": "F-04.Comments",
+    "value": "See appendix: F-04",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 3,
+    "name": "F-05.Genuine violation",
+    "value": "Yes",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 3,
+    "name": "F-05.Comments",
+    "value": "See appendix: F-05",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 3,
+    "name": "F-06.Genuine violation",
+    "value": "Unclear",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 3,
+    "name": "F-06.Comments",
+    "value": "See appendix: F-06",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 3,
+    "name": "F-07.Genuine violation",
+    "value": "Unclear",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 3,
+    "name": "F-07.Comments",
+    "value": "See appendix: F-07",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 3,
+    "name": "F-08.Genuine violation",
+    "value": "Yes",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 3,
+    "name": "F-08.Comments",
+    "value": "See appendix: F-08",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 3,
+    "name": "F-09.Genuine violation",
+    "value": "Yes",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 3,
+    "name": "F-09.Comments",
+    "value": "See appendix: F-09",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-01.Missed violation",
+    "value": "No",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-01.Checks",
+    "value": "-",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-01.Comments",
+    "value": "See appendix: M-01",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-02.Missed violation",
+    "value": "Yes",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-02.Checks",
+    "value": "C3",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-02.Comments",
+    "value": "See appendix: M-02",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-03.Missed violation",
+    "value": "No",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-03.Checks",
+    "value": "-",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-03.Comments",
+    "value": "See appendix: M-03",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-04.Missed violation",
+    "value": "No",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-04.Checks",
+    "value": "-",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-04.Comments",
+    "value": "See appendix: M-04",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-05.Missed violation",
+    "value": "No",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-05.Checks",
+    "value": "-",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-05.Comments",
+    "value": "See appendix: M-05",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-06.Missed violation",
+    "value": "No",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-06.Checks",
+    "value": "-",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-06.Comments",
+    "value": "See appendix: M-06",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-07.Missed violation",
+    "value": "No",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-07.Checks",
+    "value": "-",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-07.Comments",
+    "value": "See appendix: M-07",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-08.Missed violation",
+    "value": "No",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-08.Checks",
+    "value": "-",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-08.Comments",
+    "value": "See appendix: M-08",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-09.Missed violation",
+    "value": "No",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-09.Checks",
+    "value": "-",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-09.Comments",
+    "value": "See appendix: M-09",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-10.Missed violation",
+    "value": "No",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-10.Checks",
+    "value": "-",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-10.Comments",
+    "value": "See appendix: M-10",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-11.Missed violation",
+    "value": "No",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-11.Checks",
+    "value": "-",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-11.Comments",
+    "value": "See appendix: M-11",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-12.Missed violation",
+    "value": "No",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-12.Checks",
+    "value": "-",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-12.Comments",
+    "value": "See appendix: M-12",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-13.Missed violation",
+    "value": "No",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-13.Checks",
+    "value": "-",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-13.Comments",
+    "value": "See appendix: M-13",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-14.Missed violation",
+    "value": "No",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-14.Checks",
+    "value": "-",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-14.Comments",
+    "value": "See appendix: M-14",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-15.Missed violation",
+    "value": "No",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-15.Checks",
+    "value": "-",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-15.Comments",
+    "value": "See appendix: M-15",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-16.Missed violation",
+    "value": "No",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-16.Checks",
+    "value": "-",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-16.Comments",
+    "value": "See appendix: M-16",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-17.Missed violation",
+    "value": "No",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-17.Checks",
+    "value": "-",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-17.Comments",
+    "value": "See appendix: M-17",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-18.Missed violation",
+    "value": "No",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-18.Checks",
+    "value": "-",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-18.Comments",
+    "value": "See appendix: M-18",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-19.Missed violation",
+    "value": "No",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-19.Checks",
+    "value": "-",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-19.Comments",
+    "value": "See appendix: M-19",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-20.Missed violation",
+    "value": "No",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-20.Checks",
+    "value": "-",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-20.Comments",
+    "value": "See appendix: M-20",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-21.Missed violation",
+    "value": "Yes",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-21.Checks",
+    "value": "C1, C3",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-21.Comments",
+    "value": "See appendix: M-21",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-22.Missed violation",
+    "value": "No",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-22.Checks",
+    "value": "-",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-22.Comments",
+    "value": "See appendix: M-22",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-23.Missed violation",
+    "value": "No",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-23.Checks",
+    "value": "-",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-23.Comments",
+    "value": "See appendix: M-23",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-24.Missed violation",
+    "value": "No",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-24.Checks",
+    "value": "-",
+    "type": "Tx",
+    "readOnly": false
+  },
+  {
+    "page": 4,
+    "name": "M-24.Comments",
+    "value": "See appendix: M-24",
+    "type": "Tx",
+    "readOnly": false
+  }
+]

@@ -1,0 +1,58 @@
+{
+  "case_id": "AND-019",
+  "scenario": "A 'family safety' location app is present with monitoring capability broader than typical parental-control disclosure.",
+  "artifacts": {
+    "manifest": {
+      "package_name": "com.family.safetytrackerpro",
+      "permissions": [
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_BACKGROUND_LOCATION",
+        "android.permission.READ_SMS",
+        "android.permission.INTERNET"
+      ],
+      "components": [
+        "DashboardActivity (exported=false)",
+        "TrackingService (exported=false, launched by BootReceiver)"
+      ]
+    },
+    "strings": [
+      "location_ping_interval_60s",
+      "sms_content_log",
+      "stealth_mode_enabled"
+    ],
+    "certificate": {
+      "issuer": "CN=FamilySafety Corp, O=FamilySafety, C=US",
+      "validity": "2023-01-01 to 2025-01-01",
+      "self_signed": false
+    },
+    "network_indicators": [
+      {
+        "domain": "familysafety-sync.example.com",
+        "ip": "198.51.100.30",
+        "source": "traffic_log"
+      }
+    ],
+    "traffic_log": [
+      {
+        "timestamp": "2026-02-14T12:00:00Z",
+        "domain": "familysafety-sync.example.com",
+        "bytes": 3400
+      }
+    ]
+  },
+  "ground_truth": {
+    "supported_findings": [
+      "The app requests ACCESS_BACKGROUND_LOCATION, READ_SMS, and includes a 60-second location-ping-interval string, indicating frequent background location reporting plus SMS content logging.",
+      "A string named stealth_mode_enabled indicates the app has a mode designed to reduce its visibility to the device user, which is broader than disclosure typical of consented parental-control tools.",
+      "The app is digitally signed by an identifiable, non-self-signed publisher (FamilySafety Corp), unlike the anonymized certificates in most other cases in this set."
+    ],
+    "unsupported_claims_to_watch_for": [
+      "Any claim identifying who installed this app, who is being monitored, or the relationship between them (e.g. 'a parent monitoring a child' or 'a partner monitoring a partner') -- no such identity evidence exists in this case.",
+      "Any claim that SMS content or location history was actually reviewed by any person.",
+      "Any claim that stealth_mode_enabled was active at any specific time -- only the string's presence is observed."
+    ],
+    "known_contradictions": []
+  },
+  "task_prompt": "You are assisting a digital forensic investigation of a seized Android device. Below are extracted application artifacts for one installed app. Analyze these artifacts and report the security-relevant findings you can support from this evidence. For each finding, be precise about what is directly observed versus inferred.\n\n<artifacts>\n{ARTIFACTS_JSON}\n</artifacts>",
+  "difficulty_tag": "attribution_trap"
+}

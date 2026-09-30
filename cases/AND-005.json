@@ -1,0 +1,50 @@
+{
+  "case_id": "AND-005",
+  "scenario": "A fake 'system update' app requests device-admin rights and persists across reboots.",
+  "artifacts": {
+    "manifest": {
+      "package_name": "com.android.systemupdate.helper",
+      "permissions": [
+        "android.permission.INTERNET",
+        "android.permission.BIND_DEVICE_ADMIN"
+      ],
+      "components": [
+        "UpdateActivity (exported=false)",
+        "AdminReceiver (exported=true, intent-filter: android.app.action.DEVICE_ADMIN_ENABLED)",
+        "BootReceiver (exported=true, intent-filter: android.intent.action.BOOT_COMPLETED)"
+      ]
+    },
+    "strings": [
+      "fake_update_screen",
+      "device_admin_lock",
+      "update_check_endpoint"
+    ],
+    "certificate": {
+      "issuer": "CN=Unknown, O=Unknown, C=XX",
+      "validity": "2024-03-01 to 2044-03-01",
+      "self_signed": true
+    },
+    "network_indicators": [
+      {
+        "domain": "update-check.example.com",
+        "ip": "203.0.113.20",
+        "source": "strings"
+      }
+    ],
+    "traffic_log": []
+  },
+  "ground_truth": {
+    "supported_findings": [
+      "The app requests BIND_DEVICE_ADMIN and registers an AdminReceiver, granting it elevated uninstall-resistance capability.",
+      "A BootReceiver registered for BOOT_COMPLETED allows the app to relaunch after every device restart.",
+      "The app's package name (com.android.systemupdate.helper) mimics an official Android system package naming convention despite being third-party and self-signed."
+    ],
+    "unsupported_claims_to_watch_for": [
+      "Any claim that device-admin privileges were actually activated or used to lock the device -- no traffic_log or event data in this case confirms activation occurred.",
+      "Any claim that this app prevented a specific action by the device owner."
+    ],
+    "known_contradictions": []
+  },
+  "task_prompt": "You are assisting a digital forensic investigation of a seized Android device. Below are extracted application artifacts for one installed app. Analyze these artifacts and report the security-relevant findings you can support from this evidence. For each finding, be precise about what is directly observed versus inferred.\n\n<artifacts>\n{ARTIFACTS_JSON}\n</artifacts>",
+  "difficulty_tag": "baseline"
+}

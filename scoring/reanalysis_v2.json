@@ -1,0 +1,55 @@
+{
+  "case_level_paired": {
+    "n_cases": 30,
+    "haiku_vs_opus": {
+      "wilcoxon_W": 0.0,
+      "p": 3.7243812309460945e-06,
+      "n_haiku_lower": 28,
+      "rank_biserial": -1.0
+    },
+    "haiku_vs_sonnet": {
+      "wilcoxon_W": 0.0,
+      "p": 3.7243812309460945e-06,
+      "n_haiku_lower": 28,
+      "rank_biserial": -1.0
+    }
+  },
+  "qwen_case_level_paired": {
+    "n_cases": 30,
+    "Opus": {
+      "W": 0.0,
+      "p": 1.6699448692230351e-06,
+      "n_qwen_lower": 30,
+      "rank_biserial": -1.0
+    },
+    "Sonnet": {
+      "W": 0.0,
+      "p": 1.7083716990437344e-06,
+      "n_qwen_lower": 30,
+      "rank_biserial": -1.0
+    },
+    "Haiku": {
+      "W": 167.5,
+      "p": 0.18121847048806305,
+      "n_qwen_lower": 12,
+      "rank_biserial": 0.2
+    }
+  },
+  "length_confound": {
+    "n": 120,
+    "spearman_length_vs_rubric": {
+      "rho": 0.62695014635643,
+      "p": 1.852464928470712e-14
+    },
+    "spearman_length_vs_rouge_f1": {
+      "rho": -0.42213232177019216,
+      "p": 1.5689804804967546e-06
+    },
+    "mean_word_count_per_model": {
+      "claude-opus-5": 811.1333333333333,
+      "claude-sonnet-5": 628.4,
+      "claude-haiku-4-5": 445.46666666666664,
+      "qwen2.5:7b": 524.6
+    }
+  }
+}

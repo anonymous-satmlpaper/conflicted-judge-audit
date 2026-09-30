@@ -1,0 +1,138 @@
+{
+  "case_id": "AND-011",
+  "model_requested": "gpt-5.5-2026-04-23",
+  "model_served_by": "gpt-5.5-2026-04-23",
+  "suite": "legacy",
+  "timestamp_utc": "2026-09-26T18:52:21.212683+00:00",
+  "prompt": "You are assisting a digital forensic investigation of a seized Android device. Below are extracted application artifacts for one installed app. Analyze these artifacts and report the security-relevant findings you can support from this evidence. For each finding, be precise about what is directly observed versus inferred.\n\n<artifacts>\n{\n  \"manifest\": {\n    \"package_name\": \"com.utility.pdfreaderlite\",\n    \"permissions\": [\n      \"android.permission.INTERNET\",\n      \"android.permission.READ_EXTERNAL_STORAGE\"\n    ],\n    \"components\": [\n      \"ViewerActivity (exported=false)\"\n    ]\n  },\n  \"strings\": [\n    \"pdf_open\",\n    \"com.adnetwork.sdk\",\n    \"com.otherads.sdk\",\n    \"com.thirdads.mediation\"\n  ],\n  \"certificate\": {\n    \"issuer\": \"CN=Unknown, O=Unknown, C=XX\",\n    \"validity\": \"2024-01-01 to 2026-01-01\",\n    \"self_signed\": true\n  },\n  \"network_indicators\": [\n    {\n      \"domain\": \"ad-mediation.example.com\",\n      \"ip\": \"203.0.113.50\",\n      \"source\": \"traffic_log\"\n    }\n  ],\n  \"traffic_log\": [\n    {\n      \"timestamp\": \"2026-01-08T10:00:00Z\",\n      \"domain\": \"ad-mediation.example.com\",\n      \"bytes\": 3300\n    }\n  ]\n}\n</artifacts>",
+  "prompt_sha256": "6f2109f064784897fe7d8c072c495735415a8485d3accdac4fd670c443be6e09",
+  "case_sha256": "2b4697f71aa5d0bb7b3ebc7638002fff9fce6305573fcced05bac7516662281b",
+  "request_sha256": "fc894e94c433821aeab59e642ee522ea2a442b533a6970f64a672bb82a53f2ba",
+  "settings": {
+    "max_output_tokens": 4096,
+    "reasoning_effort": "medium",
+    "temperature": null,
+    "seed": null,
+    "think": null,
+    "context_tokens": null
+  },
+  "response_text": "## Security-relevant findings from the provided artifacts\n\n### 1. App identity and apparent purpose\n**Directly observed**\n- Package name: `com.utility.pdfreaderlite`\n- Manifest component: `ViewerActivity`\n- String present: `pdf_open`\n\n**Supported inference**\n- The app appears to present itself as a lightweight PDF reader/viewer.\n- The presence of `pdf_open` and `ViewerActivity` is consistent with PDF viewing functionality, but the artifacts do not prove what files were opened or viewed.\n\n---\n\n### 2. Network capability and observed outbound traffic\n**Directly observed**\n- The app requests `android.permission.INTERNET`.\n- A traffic log records communication to:\n  - Domain: `ad-mediation.example.com`\n  - IP: `203.0.113.50`\n  - Timestamp: `2026-01-08T10:00:00Z`\n  - Bytes transferred: `3300`\n\n**Supported inference**\n- The app had permission to access the network and did make at least one outbound network connection to `ad-mediation.example.com`.\n- The small traffic volume, 3300 bytes, indicates some data was exchanged, but the artifact does not show payload contents.\n\n**Limitations**\n- The evidence does not establish that sensitive data was transmitted.\n- The evidence does not establish command-and-control activity, malware behavior, or exfiltration.\n- The domain name suggests advertising mediation, but that conclusion is contextual and not proven solely by the traffic record.\n\n---\n\n### 3. Advertising / mediation SDK indicators\n**Directly observed**\nThe extracted strings include:\n- `com.adnetwork.sdk`\n- `com.otherads.sdk`\n- `com.thirdads.mediation`\n\n**Supported inference**\n- The app likely includes or references advertising and/or ad mediation SDK components.\n- This is consistent with the observed network contact to `ad-mediation.example.com`.\n\n**Limitations**\n- String presence alone does not prove that these SDKs were executed.\n- The artifacts do not show which SDK generated the network traffic.\n- No conclusion can be made from these artifacts alone about whether the ad SDKs behaved maliciously.\n\n---\n\n### 4. External storage access\n**Directly observed**\n- The app requests `android.permission.READ_EXTERNAL_STORAGE`.\n\n**Supported inference**\n- If granted on the device, the app could read files from shared/external storage, subject to Android version and scoped storage behavior.\n- For a PDF reader, this permission is plausibly used to locate or open PDF files.\n\n**Security relevance**\n- This permission can expose user documents or downloaded files to the app.\n- Combined with `INTERNET`, the app has the technical capability to read files and communicate over the network.\n\n**Limitations**\n- The artifact does not show whether the permission was granted by the user or OS.\n- The artifact does not show that the app actually read any files.\n- The artifact does not show that any file contents were transmitted.\n\n---\n\n### 5. Limited exported component exposure\n**Directly observed**\n- `ViewerActivity` is listed as `exported=false`.\n\n**Supported inference**\n- This activity is not directly launchable by other apps via standard exported-component mechanisms.\n- This reduces one category of inter-app attack surface.\n\n**Limitations**\n- Only one component is listed in the provided artifact. The evidence does not prove there are no other components unless the artifact is complete.\n- `exported=false` does not address risks from internal app logic, embedded SDKs, or network behavior.\n\n---\n\n### 6. Self-signed certificate with unknown issuer information\n**Directly observed**\n- Certificate issuer: `CN=Unknown, O=Unknown, C=XX`\n- Certificate is self-signed.\n- Validity: `2024-01-01 to 2026-01-01`\n\n**Supported inference**\n- The APK was signed with a self-signed certificate that does not provide meaningful publisher attribution.\n- This is common for Android APK signing, but from a forensic standpoint it provides limited identity assurance.\n\n**Additional date observation**\n- The recorded traffic occurred on `2026-01-08`, which is after the certificate validity end date of `2026-01-01`.\n\n**Limitations**\n- Android APK signing certificates being self-signed is not inherently malicious.\n- The artifacts do not show when the app was installed.\n- Certificate expiry after installation does not by itself prove the app was invalid, tampered with, or malicious.\n\n---\n\n### 7. Permissions are relatively limited but still security-relevant\n**Directly observed**\nRequested permissions:\n- `android.permission.INTERNET`\n- `android.permission.READ_EXTERNAL_STORAGE`\n\n**Supported inference**\n- The app does not appear, from the provided manifest data, to request higher-risk permissions such as SMS, contacts, call logs, microphone, camera, location, accessibility, notification listener, or device admin.\n\n**Security relevance**\n- The combination of storage-read access and internet access is still important because it can support data collection or upload if abused.\n\n**Limitations**\n- Absence of permissions in the provided artifact does not prove the app cannot access data through other mechanisms, such as user-selected files, content providers, WebViews, or SDK behavior.\n- The provided artifacts do not include code analysis or full runtime behavior.\n\n---\n\n## Overall assessment supported by the evidence\n\nThe app `com.utility.pdfreaderlite` appears to be a PDF reader-type Android app that requests internet and external storage read permissions. It contains indicators of advertising or ad mediation SDKs and was observed making network traffic to `ad-mediation.example.com`. Its signing certificate is self-signed with non-attributable issuer fields and was expired by the time of the observed traffic.\n\nThe evidence supports concern about privacy exposure because the app has the potential combination of file-read capability and network access, and it appears to include ad-related components. However, the provided artifacts do **not** prove malware activity, data exfiltration, credential theft, command-and-control behavior, or unauthorized file access.",
+  "complete": true,
+  "stop_reason": "completed",
+  "elapsed_seconds": 16.986615200003143,
+  "usage": {
+    "input_tokens": 310,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 1656,
+    "output_tokens_details": {
+      "reasoning_tokens": 426
+    },
+    "total_tokens": 1966
+  },
+  "local_model_metadata": null,
+  "raw_response": {
+    "id": "resp_07aaf245fdeb1107016ab814553e6087d2a3d7166855b473f6",
+    "object": "response",
+    "created_at": 1790448725,
+    "status": "completed",
+    "access_programs": null,
+    "background": false,
+    "billing": {
+      "payer": "developer"
+    },
+    "completed_at": 1790448741,
+    "error": null,
+    "frequency_penalty": 0.0,
+    "incomplete_details": null,
+    "instructions": null,
+    "max_output_tokens": 4096,
+    "max_tool_calls": null,
+    "model": "gpt-5.5-2026-04-23",
+    "moderation": null,
+    "output": [
+      {
+        "id": "rs_07aaf245fdeb1107016ab81455f2c487d290edc7a73108820f",
+        "type": "reasoning",
+        "content": [],
+        "encrypted_content": "gAAAAABquBRlbLSWOF4ncl-crT38zBWWHFVpMtD5_XdURUydRt9LrML9JWnO3cILsaFEeDbWALv204utLlLql7iIcIahgr2QGKUN_xCP3seivZmbFxiRWaQktb_Xga0LBm5GuUN_JKYGN4dfbNUdfFz-GvT_JgoGa8jLHb9bydDA1j-pc9k1EOVfOeuo57YKng_96y4A6dF42SXPrECHim6B2XoZvBDsSuE6DMWMjWQhPTNB_fYvEUUIqyJvUbqXR4BrKMFRi4ZfAMVP2PoAuEMtRLDd3FiUFylMsD2I4f3p_HVxQJZQZjuBb4ynvpNWqzf5M03lymyBBHs9zv4f3kopXhamr3LWT1UpYlBAV4PjxtbdizUiG08uAlsEzqh4qcvtQC-au2uxfEhn8zHVtR9p4bxcRpXshKPU-AEk0Rgd-7Yj5efxgADLoIpNxAoJoBA4DRIIEKxe6TBvcDJLnVM1lPFVDhXe4J8TGXMDKFFxvb94J_Idn09CBJD8Gl7kiEDB3bLDQKGNgWENZlPEzwM8rXhw-897UwSWWmnAhlvhoLdpxZC9L-kE1LXlZxfhVUoeKgwFBiw61IDu3eAtuubPCsSFa7PoJ90gxDIrFPX-LVb5LL6L8TCFqEBuTlJH9E1ysPs7vNMshxJl7hVpd5Hqko-iHg4Bxyxn5LSY9yb9qQLH4nRO980CZ7x_yZ5HjfPQ74z_GlENRvbcwNAMdYMpQVhAKr_6TRjJqdL5K-UzrePhvOzLYt88ZM90TPC7Z_7H1fboCLHI_xG9OhFlt38QU2MknLshSPzgCusYwf66m92OH8VC8pVIxrpCi6VIaQ3fCvCQ8EyQ0-eDPScnO_k2W4sDwr8gZ8W7ZyU26r_l0bvLQ8xqAIrlm_k4S4oITt0fxPY2SISQN0lpG4XrA0oIWsMfjR7v-d7q-KiKQAyHNTVzal40ruPbLnUGq2XzMeCxg5NFQO5ro3TQ07OU9KLo7xnKbbbU1VQt-_m-64uwjk_RpKRLAGrUUz7a1qcOFEupTDNA3RmZPT67yB_ni2xvU4AoAoN4GHvZzb71qKaoydDTxpY9MfXtBylpG2olg8RSlI-Vw4vHJSWtKjP_D5swr08Jfr82SrrkBwJ7D9ieK8PyRVOrqcqCSuA2HQ-2JgVd4ShUMldLDz_77ugKUpMaTpy0XH0bGYkXDATLOxpA0H-EN7v2caz5DB5K_UFuRzegWKsewi80OpwL3pHfjNxroLCwpvX0pViliEJR6c6tpkrWF9gZlN9RWbF0oSAUhDvl7H6ouWpejYUa_qVbgE2OZt2Ti7t-s-9oK_eCJqE6KkpwIDjk9wwPc_D7JvscLH6H0I54KwrtUjys8lFE5U3nBYawm7j1s9TvxAC9TAoVR1-LZFHk-iahExTYxBn-v4O1mVEcMJj4OzkQHkxMEp_Ept-LSDKP0r4nURUEGKn7-vv1ImwLl6nmcrfpMePZV9YQDGnF6FG7FY6EbqD1gwwlv-t0J3Czkk2unDCLT9YB_bDRn7yoq1M8rOtfYxvBIHJX0z0vcK8wNvFVjucxrqkliqsbqRdHA6EeWhOKiti-plUZrPVy1299hlL7nm6Nb87-vCScsk3xRbS50yCZdGWUUf02PPvio7_WXSTxz60HuV38HvpAT8Kc9bQ0LhPkMSkfhJda7ohgCLrH8s_lGBdFC9Ucq1fPLBq9KCieBf1U5xRln_5TmJZxnjl28vfy8qq6UksL12oz9qVBLeJ5SptbuEkxBFbjTGzUnAPhdZsdZveHV1Nf5uXi_yJh-jciE-fPesR0YRpEpa9YznJiDXX49ZBrgBO8SDtwrx8qkW8_VSvgoMpbUe3lcPeO0d7kx5LLIGnYhBL-bu8BBI97Il9f5AgpY-5aXA8N4ck6RTI5sKul2ndFfpaGxQbK0qai7BX2OikosoflijFoWVrXKKUnkLgm81IFCSvhxcVYFg0C6Y_7lJNfIA2pIlU0m7Y57EGb21lKRmfS9gKCuwmDi3nyXn9UuyLYP6g4bJNBlFdlxFrj5dujX71GX-YpEQpLV0L8vmFck3jA2ZjGKq-iMsoRDrSWhNBnsXJI50dVvJtSbPmBLWcg1HxX5n02SMy0fOjLFHV2lXVOPQW2-cXdI_ZxavJgEVUIvqrGlMXL8K_8pCRGoXhyy2w3wwOPJclfrXknN0VT1MjStY3h5hAXepThg5cEGjtDg1Yd2xpeKpXCUtEyD4lwpF5pu8aymuk6aAH-fARgZGbVBOkqIJNbcwAVN5fzSQxL6mUpQzStIcBOEyAN9cchs__3WJGTHKnl44aIs743AXTeL6UMBmQucbRNarwGe-HYSANP36XOa2oEJXYBhv3Qju808oaDCmR6cjN8dHEziSgwqc0BvIGRpq5cLVrmIJxITL63Zd_o6maO_VuwurgaZCmfNAfQSr0gmiFg1juyTHkw5_l6_YczfJ-dPGoJKqPFCopyr4QZgC10jnocfsNXAkza0oCOgaMMwAFHTkpxiVxUJj9F6Nz7yIKupzPJWYQijruuaR6Z7vELyN-ehNkmDlnPQDEl6tFt-h6H3LV4QtBA8Q2OtaVdaJZx1YVyTBCT447x4bM0-oSDIgCjJC-YT9DDjPs0-fZ2vnvG2BOqmITqgQxw7z7DPZHN0cymMLvvMLxIkos9NWMBy72KZaBE701DUoomyJVQdYiKeghh7h_zAgtTbTxVcb_5amasOqbRsO92vE022uGZ2k9RS_KGo7uXRm8iO4wWdiQ1V8Kk1DV1Im8_JmmMBRZHLYxRD3MkIDJaR0DOSK38FVpBbjaSr5Ikkns2O1LK7VQTGRUJQRhV6YQrVq8ONyigSImcmR40EjHdXQU47CXbgWgx5Zz_ySqRmZnntDtXSj1OHbz1HE2EdPF5Y1tBiQlJv4l404U8RmnOg6JfOtAvDwAKmjazl5XlUyeAlV0r6ppIN2TlnBt8gitkLISA2-i0Jdas91ub6OR7ee29YZRB3zfNlywuQRYxozd2GJ88telszf3IRvdf0TESmw6Knb7rauSN9sMMLueUffXb0T7wkKjZM4fklM1WFaVU2YOCsNgbtRs4NU5GldNJTHFixh0spXvAm7jgCYl9nE1VVKJe3Qzg7fTK6lVdUki1NeURFhjJhC13Zr8SE542kJNosL36qS1gLY4dxx35s-DBIc9xmiIg7Q9eSTR5dzVpmtMUMy3RFgOs1ibJ1Id2rN4WuYahdJWDwb-OXO_huy7Og62gCL7rZsT4JRsJTeByBew4RbpyaIy0Hrs_r0rAkJO4ClkZJbEACxn21lZd-XXxiCrFEqVD84pSJNdqzmKiGRJRwYTS4VPoqZV2jRSJf6uNSZjdLrsqV0EIRXjFfXo9yfkzV1iJ6JZ_VnAZ1DghNoG7GUpu01UHQmvNCIHk502EliGA2mKGPvlM5oOgIzb0JoFWGCpZi35gUYPYkheDPZ3rOND2xC9to1nTkTZHuZlRlXvUAEqDwj8_BvHcxI7sU_9oH57eir7OOzvGp4RRM1MCmaW64pdLZSfnOkam8mHindkp_jO3hOnvLCNY77VBhIVPyIf46ZxKZodo8aOIW1LuphlS-csn2dT9X7OKrApsbRzy4sbBo9zr5Gg9nhdCraTNxMZWyKRrY5obBioENWpnLMb53jPfiyoOBU5Y3NnL10jpRwdXEmg3f2ezUjXg7sCry9PFKrKR_PfCV3qi3d7-UB6e0nDv49FNTnzZBI3zWgtPV00_t46rJHaS344ZO8O3-LFYYRPkjzWfZGRpGAcYuOPYHmXxUwXdQMP9abBD3rzTC6pa0RU1AdqcYj37YqeBH-kyawTIOV9Ke8UZVRhLJ5TnJV3BrrGB54oxkfepnQq9wfZK0_BrqUYKqpy7_Zn08eSZp2cVt8KagYdGYKiQ_ZfRHuc6nQtrR14w08tJcJ6Ez5EGtZGZn8N9_yj3NHWCSeUTmL3qAQfZDKryDNz-Fo2do4sqBUIAkEsGLmJ3up49gJ8_nwWnla21XUE5D73ZnIkGhVhW_cFuNHjy-piF7TA0PumKnXC5posz8fI5gOO3U7LTJwdMJR2SQfUhHL_4OvgcX-9_AZc=",
+        "summary": []
+      },
+      {
+        "id": "msg_07aaf245fdeb1107016ab8145a75fc87d2859183142c44860c",
+        "type": "message",
+        "status": "completed",
+        "content": [
+          {
+            "type": "output_text",
+            "annotations": [],
+            "logprobs": [],
+            "text": "## Security-relevant findings from the provided artifacts\n\n### 1. App identity and apparent purpose\n**Directly observed**\n- Package name: `com.utility.pdfreaderlite`\n- Manifest component: `ViewerActivity`\n- String present: `pdf_open`\n\n**Supported inference**\n- The app appears to present itself as a lightweight PDF reader/viewer.\n- The presence of `pdf_open` and `ViewerActivity` is consistent with PDF viewing functionality, but the artifacts do not prove what files were opened or viewed.\n\n---\n\n### 2. Network capability and observed outbound traffic\n**Directly observed**\n- The app requests `android.permission.INTERNET`.\n- A traffic log records communication to:\n  - Domain: `ad-mediation.example.com`\n  - IP: `203.0.113.50`\n  - Timestamp: `2026-01-08T10:00:00Z`\n  - Bytes transferred: `3300`\n\n**Supported inference**\n- The app had permission to access the network and did make at least one outbound network connection to `ad-mediation.example.com`.\n- The small traffic volume, 3300 bytes, indicates some data was exchanged, but the artifact does not show payload contents.\n\n**Limitations**\n- The evidence does not establish that sensitive data was transmitted.\n- The evidence does not establish command-and-control activity, malware behavior, or exfiltration.\n- The domain name suggests advertising mediation, but that conclusion is contextual and not proven solely by the traffic record.\n\n---\n\n### 3. Advertising / mediation SDK indicators\n**Directly observed**\nThe extracted strings include:\n- `com.adnetwork.sdk`\n- `com.otherads.sdk`\n- `com.thirdads.mediation`\n\n**Supported inference**\n- The app likely includes or references advertising and/or ad mediation SDK components.\n- This is consistent with the observed network contact to `ad-mediation.example.com`.\n\n**Limitations**\n- String presence alone does not prove that these SDKs were executed.\n- The artifacts do not show which SDK generated the network traffic.\n- No conclusion can be made from these artifacts alone about whether the ad SDKs behaved maliciously.\n\n---\n\n### 4. External storage access\n**Directly observed**\n- The app requests `android.permission.READ_EXTERNAL_STORAGE`.\n\n**Supported inference**\n- If granted on the device, the app could read files from shared/external storage, subject to Android version and scoped storage behavior.\n- For a PDF reader, this permission is plausibly used to locate or open PDF files.\n\n**Security relevance**\n- This permission can expose user documents or downloaded files to the app.\n- Combined with `INTERNET`, the app has the technical capability to read files and communicate over the network.\n\n**Limitations**\n- The artifact does not show whether the permission was granted by the user or OS.\n- The artifact does not show that the app actually read any files.\n- The artifact does not show that any file contents were transmitted.\n\n---\n\n### 5. Limited exported component exposure\n**Directly observed**\n- `ViewerActivity` is listed as `exported=false`.\n\n**Supported inference**\n- This activity is not directly launchable by other apps via standard exported-component mechanisms.\n- This reduces one category of inter-app attack surface.\n\n**Limitations**\n- Only one component is listed in the provided artifact. The evidence does not prove there are no other components unless the artifact is complete.\n- `exported=false` does not address risks from internal app logic, embedded SDKs, or network behavior.\n\n---\n\n### 6. Self-signed certificate with unknown issuer information\n**Directly observed**\n- Certificate issuer: `CN=Unknown, O=Unknown, C=XX`\n- Certificate is self-signed.\n- Validity: `2024-01-01 to 2026-01-01`\n\n**Supported inference**\n- The APK was signed with a self-signed certificate that does not provide meaningful publisher attribution.\n- This is common for Android APK signing, but from a forensic standpoint it provides limited identity assurance.\n\n**Additional date observation**\n- The recorded traffic occurred on `2026-01-08`, which is after the certificate validity end date of `2026-01-01`.\n\n**Limitations**\n- Android APK signing certificates being self-signed is not inherently malicious.\n- The artifacts do not show when the app was installed.\n- Certificate expiry after installation does not by itself prove the app was invalid, tampered with, or malicious.\n\n---\n\n### 7. Permissions are relatively limited but still security-relevant\n**Directly observed**\nRequested permissions:\n- `android.permission.INTERNET`\n- `android.permission.READ_EXTERNAL_STORAGE`\n\n**Supported inference**\n- The app does not appear, from the provided manifest data, to request higher-risk permissions such as SMS, contacts, call logs, microphone, camera, location, accessibility, notification listener, or device admin.\n\n**Security relevance**\n- The combination of storage-read access and internet access is still important because it can support data collection or upload if abused.\n\n**Limitations**\n- Absence of permissions in the provided artifact does not prove the app cannot access data through other mechanisms, such as user-selected files, content providers, WebViews, or SDK behavior.\n- The provided artifacts do not include code analysis or full runtime behavior.\n\n---\n\n## Overall assessment supported by the evidence\n\nThe app `com.utility.pdfreaderlite` appears to be a PDF reader-type Android app that requests internet and external storage read permissions. It contains indicators of advertising or ad mediation SDKs and was observed making network traffic to `ad-mediation.example.com`. Its signing certificate is self-signed with non-attributable issuer fields and was expired by the time of the observed traffic.\n\nThe evidence supports concern about privacy exposure because the app has the potential combination of file-read capability and network access, and it appears to include ad-related components. However, the provided artifacts do **not** prove malware activity, data exfiltration, credential theft, command-and-control behavior, or unauthorized file access."
+          }
+        ],
+        "phase": "final_answer",
+        "role": "assistant"
+      }
+    ],
+    "parallel_tool_calls": true,
+    "presence_penalty": 0.0,
+    "previous_response_id": null,
+    "prompt_cache_key": null,
+    "prompt_cache_retention": "24h",
+    "reasoning": {
+      "context": "current_turn",
+      "effort": "medium",
+      "mode": "standard",
+      "summary": null
+    },
+    "safety_identifier": null,
+    "service_tier": "default",
+    "store": false,
+    "temperature": 1.0,
+    "text": {
+      "format": {
+        "type": "text"
+      },
+      "verbosity": "medium"
+    },
+    "tool_choice": "auto",
+    "tool_usage": {
+      "image_gen": {
+        "input_tokens": 0,
+        "input_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "output_tokens": 0,
+        "output_tokens_details": {
+          "image_tokens": 0,
+          "text_tokens": 0
+        },
+        "total_tokens": 0
+      },
+      "web_search": {
+        "num_requests": 0
+      }
+    },
+    "tools": [],
+    "top_logprobs": 0,
+    "top_p": 0.98,
+    "truncation": "disabled",
+    "usage": {
+      "input_tokens": 310,
+      "input_tokens_details": {
+        "cache_write_tokens": 0,
+        "cached_tokens": 0
+      },
+      "output_tokens": 1656,
+      "output_tokens_details": {
+        "reasoning_tokens": 426
+      },
+      "total_tokens": 1966
+    },
+    "user": null,
+    "metadata": {}
+  }
+}

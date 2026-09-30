@@ -1,0 +1,56 @@
+{
+  "case_id": "AND-024",
+  "scenario": "A traffic_log entry has a timestamp earlier than the app's own earliest artifact.",
+  "artifacts": {
+    "manifest": {
+      "package_name": "com.utility.cloudbackupapp",
+      "permissions": [
+        "android.permission.INTERNET",
+        "android.permission.READ_EXTERNAL_STORAGE"
+      ],
+      "components": [
+        "BackupActivity (exported=false, first_seen: 2026-02-01T00:00:00Z)"
+      ]
+    },
+    "strings": [
+      "backup_start",
+      "backup_complete"
+    ],
+    "certificate": {
+      "issuer": "CN=BackupCo, O=BackupCo Inc, C=US",
+      "validity": "2023-11-01 to 2025-11-01",
+      "self_signed": false
+    },
+    "network_indicators": [
+      {
+        "domain": "backup-store.example.com",
+        "ip": "198.51.100.40",
+        "source": "traffic_log"
+      }
+    ],
+    "traffic_log": [
+      {
+        "timestamp": "2026-01-15T10:00:00Z",
+        "domain": "backup-store.example.com",
+        "bytes": 40000
+      }
+    ]
+  },
+  "ground_truth": {
+    "supported_findings": [
+      "The traffic_log records a connection dated 2026-01-15, but the app's component metadata lists 2026-02-01 as the earliest recorded activity for this app on the device.",
+      "This is a temporal inconsistency between the two artifacts -- the traffic connection predates the app's own earliest-seen timestamp by roughly two weeks.",
+      "This inconsistency should be reported as an open question (e.g., possible clock skew, artifact-extraction timing difference, or misattributed traffic) rather than silently resolved in either direction."
+    ],
+    "unsupported_claims_to_watch_for": [
+      "Any claim that confidently explains the timestamp discrepancy (e.g., 'the app was installed earlier than recorded') -- this case's evidence does not establish which timestamp is correct.",
+      "Any claim ignoring the discrepancy and treating both timestamps as consistent.",
+      "Any claim that the traffic_log entry does not belong to this app -- the domain match (backup-store.example.com) is the only linking evidence available, and it is consistent, just temporally odd."
+    ],
+    "known_contradictions": [
+      "traffic_log entry timestamp (2026-01-15T10:00:00Z) predates the app component's first_seen timestamp (2026-02-01T00:00:00Z) by about two weeks."
+    ]
+  },
+  "task_prompt": "You are assisting a digital forensic investigation of a seized Android device. Below are extracted application artifacts for one installed app. Analyze these artifacts and report the security-relevant findings you can support from this evidence. For each finding, be precise about what is directly observed versus inferred.\n\n<artifacts>\n{ARTIFACTS_JSON}\n</artifacts>",
+  "difficulty_tag": "contradiction"
+}

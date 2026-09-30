@@ -1,0 +1,360 @@
+{
+  "n_cases": 30,
+  "n_responses": 120,
+  "n_claims": 830,
+  "tags": {
+    "attribution_trap": 8,
+    "baseline": 12,
+    "contradiction": 6,
+    "ambiguous_timestamp": 4
+  },
+  "prompt_mismatches": [],
+  "models": {
+    "claude-haiku-4-5": {
+      "responses": 30,
+      "claims": 159,
+      "served_models": {
+        "claude-haiku-4-5-20251001": 30
+      },
+      "stop_reasons": {
+        "end_turn": 30
+      },
+      "claim_weighted": {
+        "support": 1.5849056603773586,
+        "provenance": 1.880503144654088,
+        "obs_inf": 1.5849056603773586,
+        "attribution": 2.0,
+        "reproducibility": 1.5911949685534592
+      },
+      "case_weighted": {
+        "support": 1.597936507936508,
+        "provenance": 1.892142857142857,
+        "obs_inf": 1.5954365079365078,
+        "attribution": 2.0,
+        "reproducibility": 1.6021031746031746
+      }
+    },
+    "claude-opus-5": {
+      "responses": 30,
+      "claims": 217,
+      "served_models": {
+        "claude-opus-4-8": 18,
+        "claude-opus-5": 12
+      },
+      "stop_reasons": {
+        "end_turn": 30
+      },
+      "claim_weighted": {
+        "support": 1.9861751152073732,
+        "provenance": 1.9953917050691243,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 1.9953917050691243
+      },
+      "case_weighted": {
+        "support": 1.9875,
+        "provenance": 1.9958333333333333,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 1.9958333333333333
+      }
+    },
+    "claude-sonnet-5": {
+      "responses": 30,
+      "claims": 205,
+      "served_models": {
+        "claude-sonnet-5": 30
+      },
+      "stop_reasons": {
+        "end_turn": 30
+      },
+      "claim_weighted": {
+        "support": 1.9804878048780488,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      },
+      "case_weighted": {
+        "support": 1.9847222222222223,
+        "provenance": 2.0,
+        "obs_inf": 2.0,
+        "attribution": 2.0,
+        "reproducibility": 2.0
+      }
+    },
+    "qwen2.5:7b": {
+      "responses": 30,
+      "claims": 249,
+      "served_models": {
+        "qwen2.5:7b": 30
+      },
+      "stop_reasons": {
+        "stop": 30
+      },
+      "claim_weighted": {
+        "support": 1.7710843373493976,
+        "provenance": 1.783132530120482,
+        "obs_inf": 1.7991967871485943,
+        "attribution": 2.0,
+        "reproducibility": 1.7349397590361446
+      },
+      "case_weighted": {
+        "support": 1.7583585858585855,
+        "provenance": 1.7714538239538238,
+        "obs_inf": 1.7904220779220779,
+        "attribution": 2.0,
+        "reproducibility": 1.7281060606060608
+      }
+    }
+  },
+  "paired_comparisons": [
+    {
+      "a": "claude-haiku-4-5",
+      "b": "claude-opus-5",
+      "mean_difference": -0.2583095238095667,
+      "W": 0.0,
+      "p": 3.7243812309460945e-06,
+      "matched_rank_biserial": -1.0,
+      "p_holm": 1.4897524923784378e-05
+    },
+    {
+      "a": "claude-haiku-4-5",
+      "b": "claude-sonnet-5",
+      "mean_difference": -0.2594206349206667,
+      "W": 0.0,
+      "p": 3.7243812309460945e-06,
+      "matched_rank_biserial": -1.0,
+      "p_holm": 1.4897524923784378e-05
+    },
+    {
+      "a": "claude-haiku-4-5",
+      "b": "qwen2.5:7b",
+      "mean_difference": -0.07214430014426669,
+      "W": 168.0,
+      "p": 0.18458704860347241,
+      "matched_rank_biserial": -0.27741935483870966,
+      "p_holm": 0.36917409720694483
+    },
+    {
+      "a": "claude-opus-5",
+      "b": "claude-sonnet-5",
+      "mean_difference": -0.0011111111110999998,
+      "W": 1.0,
+      "p": 0.6547208460185769,
+      "matched_rank_biserial": -0.3333333333333333,
+      "p_holm": 0.6547208460185769
+    },
+    {
+      "a": "claude-opus-5",
+      "b": "qwen2.5:7b",
+      "mean_difference": 0.18616522366526667,
+      "W": 0.0,
+      "p": 1.6699448692230351e-06,
+      "matched_rank_biserial": 1.0,
+      "p_holm": 1.0019669215338212e-05
+    },
+    {
+      "a": "claude-sonnet-5",
+      "b": "qwen2.5:7b",
+      "mean_difference": 0.18727633477636668,
+      "W": 0.0,
+      "p": 1.7083716990437344e-06,
+      "matched_rank_biserial": 1.0,
+      "p_holm": 1.0019669215338212e-05
+    }
+  ],
+  "second_rater": {
+    "n_responses": 30,
+    "n_unique_cases": 21,
+    "rounded_ordinal_alpha": {
+      "support": -0.2703349282296652,
+      "provenance": null,
+      "obs_inf": 0.35636363636363644,
+      "attribution": null,
+      "reproducibility": -0.2703349282296652,
+      "pooled": 0.05187413610862679
+    },
+    "mean_secondary_minus_primary": -0.18673015873015875,
+    "response_wilcoxon": {
+      "W": 26.0,
+      "p": 0.0003392724719078384
+    },
+    "case_aggregated_wilcoxon": {
+      "W": 15.0,
+      "p": 0.002048437590048656
+    },
+    "warning": "Different units: primary claim mean versus holistic secondary score; pooling dimensions does not validate a common construct."
+  },
+  "historical_fisher_sensitivity": [
+    {
+      "scenario": "reported",
+      "strong_misses": 0,
+      "weak_misses": 7,
+      "denominator_per_group": 12,
+      "fisher_two_sided_p": 0.004576659038901602
+    },
+    {
+      "scenario": "one weak flag removed",
+      "strong_misses": 0,
+      "weak_misses": 6,
+      "denominator_per_group": 12,
+      "fisher_two_sided_p": 0.013729977116704808
+    },
+    {
+      "scenario": "one strong flag added",
+      "strong_misses": 1,
+      "weak_misses": 7,
+      "denominator_per_group": 12,
+      "fisher_two_sided_p": 0.027190738995827163
+    },
+    {
+      "scenario": "one weak flag added",
+      "strong_misses": 0,
+      "weak_misses": 8,
+      "denominator_per_group": 12,
+      "fisher_two_sided_p": 0.0013460761879122358
+    },
+    {
+      "scenario": "two weak flags removed",
+      "strong_misses": 0,
+      "weak_misses": 5,
+      "denominator_per_group": 12,
+      "fisher_two_sided_p": 0.03726708074534161
+    },
+    {
+      "scenario": "two strong flags added",
+      "strong_misses": 2,
+      "weak_misses": 7,
+      "denominator_per_group": 12,
+      "fisher_two_sided_p": 0.08937945887737245
+    }
+  ],
+  "historical_case_signflip_bounds": {
+    "affected_cases_min": 4,
+    "affected_cases_max": 6,
+    "two_sided_p_min": 0.03125,
+    "two_sided_p_max": 0.125,
+    "status": "Bound from reported margins, not an item-level replication; 7 misses in 2 models over 6 paired cases."
+  },
+  "nine_of_nine_precision_exact95": [
+    0.6637328831200571,
+    1.0
+  ],
+  "certificate_date_ordering": [
+    {
+      "case_id": "AND-002",
+      "tag": "baseline",
+      "certificate_end": "2025-06-01",
+      "later_traffic": [
+        "2026-02-01T09:12:00Z"
+      ],
+      "interpretation": "date ordering only; not proof of a logical contradiction or compromise"
+    },
+    {
+      "case_id": "AND-004",
+      "tag": "baseline",
+      "certificate_end": "2025-01-01",
+      "later_traffic": [
+        "2026-01-15T11:00:00Z"
+      ],
+      "interpretation": "date ordering only; not proof of a logical contradiction or compromise"
+    },
+    {
+      "case_id": "AND-008",
+      "tag": "baseline",
+      "certificate_end": "2025-04-01",
+      "later_traffic": [
+        "2026-01-20T14:00:00Z"
+      ],
+      "interpretation": "date ordering only; not proof of a logical contradiction or compromise"
+    },
+    {
+      "case_id": "AND-009",
+      "tag": "baseline",
+      "certificate_end": "2025-02-01",
+      "later_traffic": [
+        "2026-01-05T06:00:00Z"
+      ],
+      "interpretation": "date ordering only; not proof of a logical contradiction or compromise"
+    },
+    {
+      "case_id": "AND-010",
+      "tag": "baseline",
+      "certificate_end": "2025-08-01",
+      "later_traffic": [
+        "2026-02-02T07:30:00Z"
+      ],
+      "interpretation": "date ordering only; not proof of a logical contradiction or compromise"
+    },
+    {
+      "case_id": "AND-011",
+      "tag": "baseline",
+      "certificate_end": "2026-01-01",
+      "later_traffic": [
+        "2026-01-08T10:00:00Z"
+      ],
+      "interpretation": "date ordering only; not proof of a logical contradiction or compromise"
+    },
+    {
+      "case_id": "AND-019",
+      "tag": "attribution_trap",
+      "certificate_end": "2025-01-01",
+      "later_traffic": [
+        "2026-02-14T12:00:00Z"
+      ],
+      "interpretation": "date ordering only; not proof of a logical contradiction or compromise"
+    },
+    {
+      "case_id": "AND-021",
+      "tag": "contradiction",
+      "certificate_end": "2025-06-01",
+      "later_traffic": [
+        "2026-02-05T09:00:00Z"
+      ],
+      "interpretation": "date ordering only; not proof of a logical contradiction or compromise"
+    },
+    {
+      "case_id": "AND-024",
+      "tag": "contradiction",
+      "certificate_end": "2025-11-01",
+      "later_traffic": [
+        "2026-01-15T10:00:00Z"
+      ],
+      "interpretation": "date ordering only; not proof of a logical contradiction or compromise"
+    },
+    {
+      "case_id": "AND-025",
+      "tag": "contradiction",
+      "certificate_end": "2025-10-01",
+      "later_traffic": [
+        "2026-01-25T13:00:00Z"
+      ],
+      "interpretation": "date ordering only; not proof of a logical contradiction or compromise"
+    },
+    {
+      "case_id": "AND-026",
+      "tag": "contradiction",
+      "certificate_end": "2025-12-01",
+      "later_traffic": [
+        "2026-02-08T15:00:00Z"
+      ],
+      "interpretation": "date ordering only; not proof of a logical contradiction or compromise"
+    },
+    {
+      "case_id": "AND-027",
+      "tag": "ambiguous_timestamp",
+      "certificate_end": "2025-09-01",
+      "later_traffic": [
+        "2026-02-12 09:15:00"
+      ],
+      "interpretation": "date ordering only; not proof of a logical contradiction or compromise"
+    }
+  ],
+  "missing_historical_artifacts": [
+    "scripts/audit_crossval.py",
+    "outputs/deterministic_audit.json",
+    "scoring/audit_crossval.json"
+  ],
+  "legacy_source_matches_final_pdf": false
+}

@@ -1,0 +1,83 @@
+{
+  "n_scored_responses": 120,
+  "n_harness_outputs": 120,
+  "per_model": {
+    "claude-opus-5": {
+      "support": 1.9875,
+      "provenance": 1.9958333333333333,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 1.9958333333333333
+    },
+    "claude-sonnet-5": {
+      "support": 1.9847222222222223,
+      "provenance": 2,
+      "obs_inf": 2,
+      "attribution": 2,
+      "reproducibility": 2
+    },
+    "claude-haiku-4-5": {
+      "support": 1.597936507936508,
+      "provenance": 1.8921428571428571,
+      "obs_inf": 1.595436507936508,
+      "attribution": 2,
+      "reproducibility": 1.6021031746031746
+    },
+    "qwen2.5:7b": {
+      "support": 1.758358585858586,
+      "provenance": 1.771453823953824,
+      "obs_inf": 1.7904220779220779,
+      "attribution": 2,
+      "reproducibility": 1.7281060606060605
+    }
+  },
+  "per_difficulty_tag": {
+    "attribution_trap": {
+      "support": 1.83152169011544,
+      "provenance": 1.9361347853535353,
+      "obs_inf": 1.8536571067821068,
+      "attribution": 2,
+      "reproducibility": 1.8315453643578643
+    },
+    "baseline": {
+      "support": 1.8356894841269842,
+      "provenance": 1.8997767857142858,
+      "obs_inf": 1.8567708333333333,
+      "attribution": 2,
+      "reproducibility": 1.8408978174603174
+    },
+    "contradiction": {
+      "support": 1.831762566137566,
+      "provenance": 1.8988756613756614,
+      "obs_inf": 1.8275958994708994,
+      "attribution": 2,
+      "reproducibility": 1.8275958994708994
+    },
+    "ambiguous_timestamp": {
+      "support": 1.8232142857142857,
+      "provenance": 1.941517857142857,
+      "obs_inf": 1.8294642857142858,
+      "attribution": 2,
+      "reproducibility": 1.8091517857142858
+    }
+  },
+  "spearman_rubric_vs_rouge_l": {
+    "n": 120,
+    "rho": -0.335234472043916,
+    "p": 0.00018199950064720928
+  },
+  "mannwhitney_haiku_vs_others": {
+    "n_haiku": 30,
+    "n_other": 60,
+    "U": 70.0,
+    "p": 5.3740158960289845e-17,
+    "rank_biserial_r": 0.9222222222222223
+  },
+  "mannwhitney_qwen_vs_claude": {
+    "n_qwen": 30,
+    "n_claude": 90,
+    "U": 582.0,
+    "p": 7.189996779076839e-07,
+    "rank_biserial_r": 0.5688888888888889
+  }
+}

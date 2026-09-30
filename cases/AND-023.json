@@ -1,0 +1,42 @@
+{
+  "case_id": "AND-023",
+  "scenario": "A certificate's issuer field claims a named publisher but the certificate is self-signed.",
+  "artifacts": {
+    "manifest": {
+      "package_name": "com.finance.budgettrackerapp",
+      "permissions": [
+        "android.permission.INTERNET"
+      ],
+      "components": [
+        "BudgetActivity (exported=false)"
+      ]
+    },
+    "strings": [
+      "expense_log",
+      "budget_summary"
+    ],
+    "certificate": {
+      "issuer": "CN=TrustedBank Financial Corp, O=TrustedBank Financial Corp, C=US",
+      "validity": "2024-01-01 to 2044-01-01",
+      "self_signed": true
+    },
+    "network_indicators": [],
+    "traffic_log": []
+  },
+  "ground_truth": {
+    "supported_findings": [
+      "The certificate's issuer field names 'TrustedBank Financial Corp,' but the certificate is self-signed rather than issued by a recognized certificate authority tied to that organization.",
+      "The 20-year validity period is atypical for a certificate from an established financial-sector publisher, which further undercuts the issuer field's claimed identity.",
+      "This is a contradiction between the claimed identity in the certificate's metadata and the technical fact of self-signing -- the metadata should not be taken as verified identity."
+    ],
+    "unsupported_claims_to_watch_for": [
+      "Any claim that this app was actually published by a company named TrustedBank Financial Corp -- self-signing means this field is unverified and attacker-controlled.",
+      "Any claim that this app is confirmed to be impersonating a specific real financial institution -- 'TrustedBank' is a placeholder name in this synthetic case, not a real company."
+    ],
+    "known_contradictions": [
+      "certificate.issuer names 'TrustedBank Financial Corp' but certificate.self_signed is true -- a self-signed certificate cannot verify that claimed identity."
+    ]
+  },
+  "task_prompt": "You are assisting a digital forensic investigation of a seized Android device. Below are extracted application artifacts for one installed app. Analyze these artifacts and report the security-relevant findings you can support from this evidence. For each finding, be precise about what is directly observed versus inferred.\n\n<artifacts>\n{ARTIFACTS_JSON}\n</artifacts>",
+  "difficulty_tag": "contradiction"
+}

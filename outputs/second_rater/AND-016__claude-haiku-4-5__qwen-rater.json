@@ -1,0 +1,12 @@
+{
+  "case_id": "AND-016",
+  "model_requested": "claude-haiku-4-5",
+  "qwen_score": {
+    "support": 1,
+    "provenance": 2,
+    "obs_inf": 2,
+    "attribution": 2,
+    "reproducibility": 1,
+    "note": "Most findings are supported by artifacts but some inferences go beyond the evidence. Attribution is well-justified."
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "case_id": "AND-009",
+  "scenario": "A weather app requests background location access.",
+  "artifacts": {
+    "manifest": {
+      "package_name": "com.weather.dailyforecast",
+      "permissions": [
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_BACKGROUND_LOCATION",
+        "android.permission.INTERNET"
+      ],
+      "components": [
+        "WeatherActivity (exported=false)",
+        "LocationUpdateService (exported=false)"
+      ]
+    },
+    "strings": [
+      "forecast_fetch",
+      "location_update_interval"
+    ],
+    "certificate": {
+      "issuer": "CN=WeatherCo, O=WeatherCo Inc, C=US",
+      "validity": "2023-02-01 to 2025-02-01",
+      "self_signed": false
+    },
+    "network_indicators": [
+      {
+        "domain": "weather-api.example.com",
+        "ip": "203.0.113.40",
+        "source": "traffic_log"
+      }
+    ],
+    "traffic_log": [
+      {
+        "timestamp": "2026-01-05T06:00:00Z",
+        "domain": "weather-api.example.com",
+        "bytes": 1500
+      }
+    ]
+  },
+  "ground_truth": {
+    "supported_findings": [
+      "The app requests ACCESS_BACKGROUND_LOCATION in addition to foreground location access, allowing location queries even when not in active use.",
+      "The single logged connection to weather-api.example.com transferring 1500 bytes is consistent with a routine forecast-data request.",
+      "Background location access is broader than strictly necessary for on-demand forecast lookup, though it is a plausible design choice for a weather app offering location-based alerts."
+    ],
+    "unsupported_claims_to_watch_for": [
+      "Any claim that background location was used for tracking a person's movements -- no repeated or pattern-of-life location traffic appears in this case.",
+      "Any claim asserting malicious intent from a single, function-consistent network request."
+    ],
+    "known_contradictions": []
+  },
+  "task_prompt": "You are assisting a digital forensic investigation of a seized Android device. Below are extracted application artifacts for one installed app. Analyze these artifacts and report the security-relevant findings you can support from this evidence. For each finding, be precise about what is directly observed versus inferred.\n\n<artifacts>\n{ARTIFACTS_JSON}\n</artifacts>",
+  "difficulty_tag": "baseline"
+}

@@ -1,0 +1,12 @@
+{
+  "case_id": "AND-010",
+  "model_requested": "claude-sonnet-5",
+  "qwen_score": {
+    "support": 2,
+    "provenance": 2,
+    "obs_inf": 2,
+    "attribution": 2,
+    "reproducibility": 2,
+    "note": "The response is fully supported by the artifacts and correctly maps findings to specific fields/values. Inferences are clearly labeled as such."
+  }
+}
